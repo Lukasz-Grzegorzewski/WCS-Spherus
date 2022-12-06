@@ -10,11 +10,13 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer_container_logo">
-        <img
-          className="footer_logo"
-          src="./src/assets/images/logo_sphereus.png"
-          alt="sphereus"
-        />
+        <NavLink to="/home">
+          <img
+            className="footer_logo"
+            src="./src/assets/images/logo_sphereus.png"
+            alt="sphereus"
+          />
+        </NavLink>
       </div>
       <div className="footer_social">
         <a href="https://www.instagram.com">
