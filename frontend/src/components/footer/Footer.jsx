@@ -17,11 +17,15 @@ function Footer() {
         />
       </div>
       <div className="footer_social">
-        <FaInstagramSquare className="footer_social_icon" />
-
-        <FaFacebookSquare className="footer_social_icon" />
-
-        <FaTwitterSquare className="footer_social_icon" />
+        <a href="https://www.instagram.com">
+          <FaInstagramSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.facebook.com">
+          <FaFacebookSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.twitter.com">
+          <FaTwitterSquare className="footer_social_icon" />
+        </a>
       </div>
       <div className="footer_link">
         <NavLink to="/policy">
