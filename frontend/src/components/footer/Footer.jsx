@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   FaInstagramSquare,
   FaFacebookSquare,
@@ -8,20 +9,36 @@ import {
 function Footer() {
   return (
     <div className="footer">
-      <img
-        className="footer_logo"
-        src="./src/assets/images/logo_sphereus.png"
-        alt="sphereus"
-      />
+      <div className="footer_container_logo">
+        <NavLink to="/home">
+          <img
+            className="footer_logo"
+            src="./src/assets/images/logo_sphereus.png"
+            alt="sphereus"
+          />
+        </NavLink>
+      </div>
       <div className="footer_social">
-        <FaInstagramSquare className="footer_social_icon" />
-        <FaFacebookSquare className="footer_social_icon" />
-        <FaTwitterSquare className="footer_social_icon" />
+        <a href="https://www.instagram.com">
+          <FaInstagramSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.facebook.com">
+          <FaFacebookSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.twitter.com">
+          <FaTwitterSquare className="footer_social_icon" />
+        </a>
       </div>
       <div className="footer_link">
-        <p>Privacy Policy</p>
-        <p>Cookies</p>
-        <p>Terms of Services</p>
+        <NavLink to="/policy">
+          <p>Privacy Policy</p>
+        </NavLink>
+        <NavLink to="/cookies">
+          <p>Cookies</p>
+        </NavLink>
+        <NavLink to="/termsofservices">
+          <p>Terms of Services</p>
+        </NavLink>
       </div>
     </div>
   );
