@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function Sliderdata({ id, title, date, cat, url, display }) {
   const year = date?.substring(0, 9);
-  const videoUrl = `backend/public${url}`;
+  const videoUrl = `http://localhost:5001${url}`;
 
   return (
     <div className="sliderdata">
