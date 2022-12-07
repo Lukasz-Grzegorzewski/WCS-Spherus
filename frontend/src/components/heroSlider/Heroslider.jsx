@@ -26,10 +26,6 @@ function Heroslider() {
     axios
       .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
       .then((res) => {
-        console.warn(
-          `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`,
-          res.data
-        );
         setSliderInfo(res.data);
       });
   };
@@ -45,6 +41,7 @@ function Heroslider() {
           containerClass="heroslider_carousel"
           responsive={responsive}
           infinite
+          showDots
         >
           {sliderInfo.map((infos) => {
             return (

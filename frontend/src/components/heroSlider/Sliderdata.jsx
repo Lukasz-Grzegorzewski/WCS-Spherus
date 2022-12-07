@@ -1,26 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
+import HoverVideoPlayer from "react-hover-video-player";
+// import { GrResume } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-function Sliderdata({ id, title, date, cat, url, display }) {
-  const year = date?.substring(0, 9);
-  const videoUrl = `http://localhost:5001${url}`;
+function Sliderdata({ id, title, date, cat, url }) {
+  const year = date?.substring(0, 7);
+  const videoUrl = `http://localhost:5000/${url}`;
 
   return (
     <div className="sliderdata">
-      <video className="sliderdate_video">
-        <source src={videoUrl} type="video/mp4" />
-        <track
-          src={title}
-          kind="captions"
-          srcLang="en"
-          label="english_captions"
+      <div className="sliderdata_video">
+        <HoverVideoPlayer
+          videoClassName="sliderdata_video"
+          className="sliderdata_video"
+          videoSrc={videoUrl}
+          muted
+          playbackRangeStart={0}
+          playbackRangeEnd={6}
         />
-      </video>
-      <p>{id}</p>
-      <p>{cat}</p>
-      <p>{display}</p>
-      <p>{year}</p>
+      </div>
+      <div className="sliderdata_infos">
+        <p className="sliderdata_infos_name">
+          {title} - {year}
+        </p>
+        <p className="sliderdata_infos_cat">Category : {cat}</p>
+        <Link to={`/videos/${id}`}>
+          <button type="button" className="sliderdata_infos_btn">
+            {" "}
+            Watch{" "}
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
@@ -33,5 +44,4 @@ Sliderdata.propTypes = {
   date: PropTypes.string.isRequired,
   cat: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  display: PropTypes.number.isRequired,
 };
