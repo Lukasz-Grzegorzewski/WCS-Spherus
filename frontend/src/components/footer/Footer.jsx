@@ -10,18 +10,24 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer_container_logo">
-        <img
-          className="footer_logo"
-          src="./src/assets/images/logo_sphereus.png"
-          alt="sphereus"
-        />
+        <NavLink to="/">
+          <img
+            className="footer_logo"
+            src="./src/assets/images/logo_sphereus.png"
+            alt="sphereus"
+          />
+        </NavLink>
       </div>
       <div className="footer_social">
-        <FaInstagramSquare className="footer_social_icon" />
-
-        <FaFacebookSquare className="footer_social_icon" />
-
-        <FaTwitterSquare className="footer_social_icon" />
+        <a href="https://www.instagram.com">
+          <FaInstagramSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.facebook.com">
+          <FaFacebookSquare className="footer_social_icon" />
+        </a>
+        <a href="https://www.twitter.com">
+          <FaTwitterSquare className="footer_social_icon" />
+        </a>
       </div>
       <div className="footer_link">
         <NavLink to="/policy">

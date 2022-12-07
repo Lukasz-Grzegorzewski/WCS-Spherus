@@ -364,7 +364,10 @@ INSERT INTO
 VALUES
   ( 1 ),
   ( 2 ),
-  ( 3 );
+  ( 3 ),
+  ( 10 ),
+  ( 9 ),
+  ( 8 );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`publicity`
@@ -382,6 +385,15 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+INSERT INTO
+  `origins_digital_wcs`.`publicity` (url_image, description, url_link, name)
+VALUES
+  ( 
+    'https://www.wildcodeschool.com/assets/wildcodeschool-logo-meta-image-f6f2f7f52b82bfc419f031f6a989020a8b094d7a4e6676ab6f0dff0b0f470da9.png',
+    'WCS is a bad ass school!',
+    'https://www.wildcodeschool.com/fr-FR',
+    'Wild Code School'
+  );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`video_category`
