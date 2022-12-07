@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import C from "react-multi-carousel";
 import Sliderdata from "./Sliderdata";
 import "react-multi-carousel/lib/styles.css";
@@ -19,7 +20,17 @@ const responsive = {
 function Heroslider() {
   const Carousel = C.default ? C.default : C;
 
-  const [sliderInfo] = useState([]);
+  const [sliderInfo, setSliderInfo] = useState([]);
+
+  const getSliderInfo = () => {
+    axios.get(`http://localhost:5000/hero`).then((res) => {
+      setSliderInfo(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getSliderInfo();
+  }, []);
 
   return (
     <div className="heroslider">
@@ -32,7 +43,14 @@ function Heroslider() {
           {sliderInfo.map((infos) => {
             return (
               <div key={infos.id}>
-                <Sliderdata />
+                <Sliderdata
+                  id={infos.id}
+                  title={infos.title}
+                  date={infos.date}
+                  cat={infos.name}
+                  url={infos.url}
+                  display={infos.display}
+                />
               </div>
             );
           })}
