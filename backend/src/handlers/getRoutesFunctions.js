@@ -109,7 +109,7 @@ const getVideosByCategoryId = (req, res) => {
 
   database
     .query(
-      "SELECT c.name AS cat, v.title, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
+      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
       [id]
     )
     .then(([videos]) => {

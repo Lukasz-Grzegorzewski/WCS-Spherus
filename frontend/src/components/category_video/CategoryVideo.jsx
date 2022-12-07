@@ -1,38 +1,49 @@
 import Heroslider from "@components/heroSlider/Heroslider";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import VideoCard from "./VideoCard";
 
 function CategoryVideo() {
-  const id = "astro";
+  const { id } = useParams();
 
-  const [video, setVideo] = useState();
+  const [video, setVideo] = useState([]);
 
   const getVideo = () => {
-    axios.get(`http://localhost5000/`).then((res) => {
-      setVideo(res.data);
-    });
+    axios
+      .get(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/videos/categories/${id}`
+      )
+      .then((res) => {
+        setVideo(res.data);
+      });
   };
+
   useEffect(() => {
     getVideo();
-  }, []);
+  }, [id]);
 
   return (
     <div className="category_video">
       <Heroslider />
       <div className="category_video_main">
-        {video.map((e) => (
-          <div>
-            <div>{e.name}</div>
-            <div className="category_video_container">
-              <div className="category_video_card">
-                <div>video url{id}</div>
-                <div>{e.title}</div>
-                <div>{e.description}</div>
-              </div>
+        <div className="category_video_main_name">
+          {video.length > 1 && video[0].cat}
+        </div>
+        <div className="category_video_main_container">
+          {video.map((e) => (
+            <div key={e.id}>
+              <VideoCard
+                id={e.id}
+                url={e.url}
+                title={e.title}
+                description={e.description}
+              />
             </div>
-          </div>
-        ))}
-        ;
+          ))}
+        </div>
       </div>
     </div>
   );

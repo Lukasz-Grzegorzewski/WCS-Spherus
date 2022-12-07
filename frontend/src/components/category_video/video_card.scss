@@ -1,0 +1,12 @@
+.videocard {
+  width: 280px;
+  height: auto;
+  background-color: chartreuse;
+  margin: 10px;
+
+  video {
+    width: 280px;
+    height: auto;
+    overflow: hidden;
+  }
+}

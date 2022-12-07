@@ -1,0 +1,32 @@
+@import "./video_card.scss";
+
+.category_video {
+  width: auto;
+  min-width: 320px;
+  height: auto;
+  background-color: cadetblue;
+
+  &_main {
+    width: 100%;
+    height: auto;
+    background-color: darkkhaki;
+
+    &_name {
+      width: 30%;
+      background-color: aqua;
+      padding: 5px;
+      color: black;
+    }
+
+    &_container {
+      min-width: 320;
+      width: 90%;
+      height: auto;
+      background-color: brown;
+      display: flex;
+      flex-wrap: wrap;
+      margin: auto;
+      justify-content: center;
+    }
+  }
+}
