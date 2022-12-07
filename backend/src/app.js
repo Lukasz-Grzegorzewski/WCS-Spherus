@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+
 const getRoutes = require("./routes/getRoutes");
 const postRoutes = require("./routes/postRoutes");
 const patchRoutes = require("./routes/patchRoutes");
@@ -27,10 +28,12 @@ app.use(express.static(path.join(__dirname, "../public/assets")));
 // app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
 
 // API routes
+
 app.use(getRoutes);
 app.use(postRoutes);
 app.use(patchRoutes);
 app.use(deleteRoutes);
+
 
 // Redirect all requests to the REACT app
 // const reactIndexFile = path.join(

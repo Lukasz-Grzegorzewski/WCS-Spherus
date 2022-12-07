@@ -10,7 +10,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer_container_logo">
-        <NavLink to="/home">
+        <NavLink to="/">
           <img
             className="footer_logo"
             src="./src/assets/images/logo_sphereus.png"
