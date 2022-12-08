@@ -9,20 +9,23 @@
   &_main {
     width: 100%;
     height: auto;
-    background-color: darkkhaki;
+    background-color: #142850;
 
     &_name {
       width: 30%;
-      background-color: aqua;
+      background-color: #142850;
       padding: 5px;
-      color: black;
+      font-size: 35px;
+      font-weight: bold;
+      color: #fa7d09;
+      margin: 30px 0;
     }
 
     &_container {
       min-width: 320;
       width: 90%;
       height: auto;
-      background-color: brown;
+      background-color: #27496d;
       display: flex;
       flex-wrap: wrap;
       margin: auto;

@@ -40,6 +40,7 @@ function CategoryVideo() {
                 url={e.url}
                 title={e.title}
                 description={e.description}
+                display={e.display}
               />
             </div>
           ))}
