@@ -13,7 +13,7 @@ function Footer() {
         <NavLink to="/">
           <img
             className="footer_logo"
-            src="./src/assets/images/logo_sphereus.png"
+            src="././src/assets/images/logo_sphereus.png"
             alt="sphereus"
           />
         </NavLink>
