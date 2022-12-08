@@ -1,0 +1,27 @@
+.videocard {
+  width: 280px;
+  height: auto;
+  background-color: chartreuse;
+  margin: 10px;
+
+  &_video {
+    width: 280px;
+    height: auto;
+    overflow: hidden;
+  }
+}
+
+.videocard_veil {
+  width: 280px;
+  height: auto;
+  background-color: aquamarine;
+  opacity: 60%;
+  margin: 10px;
+  z-index: 0;
+
+  &_video {
+    width: 280px;
+    height: auto;
+    overflow: hidden;
+  }
+}
