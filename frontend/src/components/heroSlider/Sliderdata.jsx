@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 function Sliderdata({ id, title, date, cat, url }) {
   const year = date?.substring(0, 7);
-  const videoUrl = `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${url}`;
+  const videoUrl = `http://localhost:${
+    import.meta.env.VITE_PORT_BACKEND
+  }/${url}`;
 
   return (
     <div className="sliderdata">
@@ -28,7 +30,7 @@ function Sliderdata({ id, title, date, cat, url }) {
         <Link to={`/videos/${id}`}>
           <button type="button" className="sliderdata_infos_btn">
             {" "}
-            Watch{" "} <FaPlayCircle className="sliderdata_infos_btn_icon" />
+            Watch <FaPlayCircle className="sliderdata_infos_btn_icon" />
           </button>
         </Link>
       </div>
