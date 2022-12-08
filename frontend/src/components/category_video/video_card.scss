@@ -1,7 +1,7 @@
 .videocard {
   width: 280px;
   height: auto;
-  background-color: chartreuse;
+  background-color: #fa7d09;
   margin: 10px;
 
   &_video {
@@ -14,7 +14,7 @@
 .videocard_veil {
   width: 280px;
   height: auto;
-  background-color: aquamarine;
+  background-color: $fourth-color;
   opacity: 60%;
   margin: 10px;
   z-index: 0;

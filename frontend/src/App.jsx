@@ -17,7 +17,6 @@ function App() {
         <Route path="/termsofservices" element={<TermsOfServices />} />
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<Registration />} />
-
       </Routes>
       <Footer />
     </div>
