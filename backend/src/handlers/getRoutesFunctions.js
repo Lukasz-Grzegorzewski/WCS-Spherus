@@ -103,7 +103,7 @@ const getVideoById = (req, res) => {
     });
 };
 const getVideosByCategoryId = (req, res) => {
-  const id = parseInt(req.params.id_vid, 10);
+  const id = parseInt(req.params.idCat, 10);
   const image404 =
     "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
