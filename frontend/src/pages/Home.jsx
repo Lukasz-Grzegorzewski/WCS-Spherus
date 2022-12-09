@@ -19,25 +19,6 @@ export default function Home() {
     getCategory();
   }, []);
 
-  // const [video, setVideo] = useState([]);
-
-  // const getVideo = () => {
-  //   section.forEach((s) =>
-  //     axios
-  //       .get(
-  //         `http://localhost:${import.meta.env.VITE_PORT_BACKEND
-  //         }/videos/categories/${s.id}`
-  //       )
-  //       .then((res) => {
-  //         setVideo([...video, ...res.data]);
-  //       }));
-  // };
-
-  // useEffect(() => {
-  //   if (section)
-  //     getVideo();
-  // }, [section]);
-
   return (
     <div className="home">
       <Heroslider />

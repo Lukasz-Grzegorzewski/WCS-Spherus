@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
-import { FaLock } from "react-icons/fa";
+import { CiLock } from "react-icons/ci";
 
 function VideoCard({ url, title, description, display }) {
   const videoUrl = `http://localhost:${
@@ -31,7 +31,7 @@ function VideoCard({ url, title, description, display }) {
         playbackRangeStart={0}
         playbackRangeEnd={6}
       />
-      <FaLock className="videocard_veil_lock" />
+      <CiLock className="videocard_veil_lock" />
       <div>{title}</div>
       <div>{description}</div>
     </div>
