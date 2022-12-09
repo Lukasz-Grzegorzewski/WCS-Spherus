@@ -1,0 +1,38 @@
+.videocard {
+  width: 280px;
+  height: auto;
+  background-color: #fa7d09;
+  margin: 10px;
+
+  &_video {
+    width: 280px;
+    height: auto;
+    overflow: hidden;
+  }
+}
+
+.videocard_veil {
+  width: 280px;
+  height: auto;
+  background-color: $fourth-color;
+  opacity: 60%;
+  margin: 10px;
+  z-index: 0;
+  position: relative;
+
+  &_video {
+    width: 280px;
+    height: auto;
+    overflow: hidden;
+  }
+
+  &_lock {
+    position: absolute;
+    color: $fourth-color;
+    top: 25%;
+    right: 35%;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+  }
+}

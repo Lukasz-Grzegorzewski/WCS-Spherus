@@ -32,6 +32,9 @@
     &_btn {
       color: white;
       text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 13px;
       padding: 1%;
       font-size: 15px;
       background: none;
@@ -42,8 +45,8 @@
       cursor: pointer;
 
       &:hover {
-        color: orange;
-        border: 1px solid orange;
+        color: $secondary-color;
+        border: 1px solid $secondary-color;
       }
     }
   }
