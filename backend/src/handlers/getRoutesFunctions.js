@@ -103,13 +103,39 @@ const getVideoById = (req, res) => {
     });
 };
 const getVideosByCategoryId = (req, res) => {
-  const id = parseInt(req.params.id_cat, 10);
+  const id = parseInt(req.params.id_vid, 10);
   const image404 =
     "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query(
       "SELECT c.name AS cat, v.title, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
+      [id]
+    )
+    .then(([videos]) => {
+      if (videos[0] != null) {
+        res.status(200).json(videos);
+      } else {
+        res.write(
+          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/videos'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< VIDEOS</button></a></div>"
+        );
+        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
+        res.status(404).send();
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+const getVideosAndCategoryByVideoId = (req, res) => {
+  const id = parseInt(req.params.idVid, 10);
+  const image404 =
+    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
+
+  database
+    .query(
+      "SELECT v.id, c.name AS cat, v.title, v.url, v.description, CONCAT(YEAR(v.date), ' ', MONTHNAME(v.date), ' ', DAY(v.date)) AS date, v.display FROM video v INNER JOIN video_category vc ON vc.video_id = v.id AND v.id = ? INNER JOIN category c ON vc.category_id = c.id;",
       [id]
     )
     .then(([videos]) => {
@@ -215,4 +241,5 @@ module.exports = {
   getHeroSliderVideos,
   getPublicities,
   getPublicitiesById,
+  getVideosAndCategoryByVideoId,
 };

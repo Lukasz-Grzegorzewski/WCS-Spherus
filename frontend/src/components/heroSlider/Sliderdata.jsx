@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 function Sliderdata({ id, title, date, cat, url }) {
   const year = date?.substring(0, 7);
-  const videoUrl = `http://localhost:5000/${url}`;
+  const videoUrl = `http://localhost:${
+    import.meta.env.VITE_PORT_BACKEND
+  }/${url}`;
 
   return (
     <div className="sliderdata">
