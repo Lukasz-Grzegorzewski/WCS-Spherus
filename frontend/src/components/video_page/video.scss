@@ -5,9 +5,9 @@
 // $font-text: "Roboto";
 
 .video-component {
-  .video-player {
-    position: relative;
+  width: 100%;
 
+  .video-player {
     .video {
       width: 100%;
       aspect-ratio: 16/9;
@@ -17,12 +17,12 @@
       opacity: 50%;
     }
 
-    .lock-icon-video {
-      position: absolute;
-      z-index: 5;
-      font-size: 3rem;
-      color: white;
-    }
+    // .lock-icon-video {
+    //   position: absolute;
+    //   z-index: 5;
+    //   font-size: 3rem;
+    //   color: white;
+    // }
   }
   .description {
     display: flex;
@@ -45,6 +45,35 @@
     }
 
     .btn-seemore {
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .video-component {
+    .video-player {
+      display: flex;
+      justify-content: center;
+
+      .video {
+        width: 80%;
+        aspect-ratio: 16/9;
+      }
+
+      .locked {
+      }
+    }
+    .description {
+      .lock-icon-sub {
+      }
+
+      .btn {
+        .btn-subscribe {
+        }
+
+        .btn-seemore {
+        }
+      }
     }
   }
 }

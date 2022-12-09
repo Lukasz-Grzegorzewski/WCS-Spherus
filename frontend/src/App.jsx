@@ -19,7 +19,7 @@ function App() {
         <Route path="/termsofservices" element={<TermsOfServices />} />
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/videos/cat/:idVid" element={<VideoPage />} />
+        <Route path="/videos/:idVid" element={<VideoPage />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />

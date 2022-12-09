@@ -1,9 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { BsLock } from "@react-icons/all-files/bs/BsLock";
+import { CiLock } from "react-icons/ci";
+import Section from "@components/section/Section";
 
-function Video({ title, description, category, date, display, videoUrl }) {
+function Video({
+  idCat,
+  title,
+  description,
+  category,
+  date,
+  display,
+  videoUrl,
+}) {
   const url = `http://localhost:${
     import.meta.env.VITE_PORT_BACKEND
   }${videoUrl}`;
@@ -14,10 +23,10 @@ function Video({ title, description, category, date, display, videoUrl }) {
       <div className="video-player">
         {display === 1 ? (
           <div>
-            <BsLock className="lock lock-icon-video" />
             <video className="video" src={url} controls>
               <track kind="captions" />
             </video>
+            <CiLock className="lock lock-icon-video" />
           </div>
         ) : (
           <video className="video locked" src={url}>
@@ -31,7 +40,7 @@ function Video({ title, description, category, date, display, videoUrl }) {
         {display === 0 && (
           <div>
             <h1>
-              <BsLock className="lock lock-icon-sub" />
+              <CiLock className="lock lock-icon-sub" />
               Icone LOCK
             </h1>
             <p>Content reserved for subscribers</p>
@@ -51,9 +60,10 @@ function Video({ title, description, category, date, display, videoUrl }) {
         </div>
         <div>
           <hr />
-          <h1>SECTION</h1>
+          Id of this video's Category : {idCat}
+          <Section id={idCat} />
           <button type="button" className="btn btn-seemore">
-            <NavLink to="/categories">See More</NavLink>
+            <NavLink to={`/categories/${idCat}`}>See More</NavLink>
           </button>
         </div>
       </div>
@@ -65,6 +75,7 @@ function Video({ title, description, category, date, display, videoUrl }) {
 export default Video;
 
 Video.propTypes = {
+  idCat: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
