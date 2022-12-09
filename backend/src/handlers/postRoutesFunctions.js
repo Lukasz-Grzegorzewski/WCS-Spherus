@@ -6,7 +6,7 @@ const signInUserByUser = (req, res) => {
     firstname,
     lastname,
     nickname,
-    birthday,
+    birthday = null,
     email,
     password,
     isAdmin = 0,

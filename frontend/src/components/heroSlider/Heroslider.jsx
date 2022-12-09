@@ -23,9 +23,11 @@ function Heroslider() {
   const [sliderInfo, setSliderInfo] = useState([]);
 
   const getSliderInfo = () => {
-    axios.get(`http://localhost:5000/hero`).then((res) => {
-      setSliderInfo(res.data);
-    });
+    axios
+      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
+      .then((res) => {
+        setSliderInfo(res.data);
+      });
   };
 
   useEffect(() => {
@@ -39,6 +41,7 @@ function Heroslider() {
           containerClass="heroslider_carousel"
           responsive={responsive}
           infinite
+          showDots
         >
           {sliderInfo.map((infos) => {
             return (
@@ -47,7 +50,7 @@ function Heroslider() {
                   id={infos.id}
                   title={infos.title}
                   date={infos.date}
-                  cat={infos.name}
+                  cat={infos.cat}
                   url={infos.url}
                   display={infos.display}
                 />

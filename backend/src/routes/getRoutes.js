@@ -15,8 +15,12 @@ router.get("/favorites/:id_user", getRoutesFunctions.getFavoritesByUserId);
 router.get("/videos", getRoutesFunctions.getVideos);
 router.get("/videos/:id", getRoutesFunctions.getVideoById);
 router.get(
-  "/videos/categories/:id_cat",
+  "/videos/categories/:idCat",
   getRoutesFunctions.getVideosByCategoryId
+);
+router.get(
+  "/videos/cat/:idVid",
+  getRoutesFunctions.getVideosAndCategoryByVideoId
 );
 
 router.get("/categories", getRoutesFunctions.getCategorys);
