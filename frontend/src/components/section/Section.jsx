@@ -54,7 +54,7 @@ function Section({ id }) {
       <Carousel
         containerClass="section_carousel"
         responsive={responsive}
-        infinite
+        // infinite
       >
         {video.map((v) => (
           <div className="section_card" key={v.id}>

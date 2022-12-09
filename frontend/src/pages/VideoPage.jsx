@@ -29,6 +29,7 @@ function VideoPage() {
     <div className="video-container">
       {video && (
         <Video
+          idCat={video.idCat}
           title={video.title}
           description={video.description}
           category={video.cat}

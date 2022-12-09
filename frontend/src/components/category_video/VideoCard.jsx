@@ -10,7 +10,7 @@ function VideoCard({ id, url, title, description, display }) {
   }${url}`;
 
   return display ? (
-    <NavLink to={`/videos/cat/${id}`}>
+    <NavLink to={`/videos/${id}`}>
       <div className="videocard">
         <HoverVideoPlayer
           videoClassName="videocard_video"
@@ -25,7 +25,7 @@ function VideoCard({ id, url, title, description, display }) {
       </div>
     </NavLink>
   ) : (
-    <NavLink to={`/videos/cat/${id}`}>
+    <NavLink to={`/videos/${id}`}>
       <div className="videocard_veil">
         <HoverVideoPlayer
           videoClassName="videocard_veil_video"
