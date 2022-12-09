@@ -61,7 +61,7 @@ function Admin() {
           USERS <FaAngleLeft className="svgsamere" />
         </button>
         <div className="admin_menu_comp_users">
-          {user === true && <AdminUsers />}
+          {user === true && <AdminUsers className="comp" />}
         </div>
         <button
           className={classButtonHome()}
