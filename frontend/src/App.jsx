@@ -7,6 +7,7 @@ import TermsOfServices from "./components/footer/legal_pages/termsofservices/Ter
 import Cookies from "./components/footer/legal_pages/cookies/Cookies";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
+import VideoPage from "./pages/VideoPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/termsofservices" element={<TermsOfServices />} />
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/videos/cat/:idVid" element={<VideoPage />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />

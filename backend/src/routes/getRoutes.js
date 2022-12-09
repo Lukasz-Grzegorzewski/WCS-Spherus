@@ -18,6 +18,10 @@ router.get(
   "/videos/categories/:id_cat",
   getRoutesFunctions.getVideosByCategoryId
 );
+router.get(
+  "/videos/cat/:idVid",
+  getRoutesFunctions.getVideosAndCategoryByVideoId
+);
 
 router.get("/categories", getRoutesFunctions.getCategorys);
 router.get("/categories/:id_cat", getRoutesFunctions.getCategoryById);

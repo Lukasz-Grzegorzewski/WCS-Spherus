@@ -10,6 +10,7 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "axios": "^1.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
