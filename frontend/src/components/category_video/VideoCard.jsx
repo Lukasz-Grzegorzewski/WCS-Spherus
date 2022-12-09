@@ -4,7 +4,9 @@ import HoverVideoPlayer from "react-hover-video-player";
 import { FaLock } from "react-icons/fa";
 
 function VideoCard({ url, title, description, display }) {
-  const videoUrl = `http://localhost:5000/${url}`;
+  const videoUrl = `http://localhost:${
+    import.meta.env.VITE_PORT_BACKEND
+  }${url}`;
 
   return display ? (
     <div className="videocard">
