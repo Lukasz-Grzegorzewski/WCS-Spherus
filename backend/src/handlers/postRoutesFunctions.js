@@ -6,28 +6,54 @@ const signInUserByUser = (req, res) => {
     firstname,
     lastname,
     nickname,
-    birthday,
+    birthday = null,
     email,
     password,
     isAdmin = 0,
   } = req.body;
 
+  let finalBirthday = birthday;
+  if (req.body.birthday === "") {
+    finalBirthday = null;
+  }
+
   database
-    .query(
-      "INSERT INTO user(firstname, lastname, nickname, birthday, email, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [firstname, lastname, nickname, birthday, email, password, isAdmin]
-    )
-    .then(([result]) => {
-      res
-        .location(`/users/${result.insertId}`)
-        .status(201)
-        .send({ message: "user created" });
+    .query("SELECT email FROM user WHERE email = ?", [email])
+    .then(([[resp]]) => {
+      if (!resp) {
+        database
+          .query(
+            "INSERT INTO user (firstname, lastname, nickname, birthday, email, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [
+              firstname,
+              lastname,
+              nickname,
+              finalBirthday,
+              email,
+              password,
+              isAdmin,
+            ]
+          )
+          .then(([result]) => {
+            res
+              .location(`/users/${result.insertId}`)
+              .status(201)
+              .send({ message: "user created" });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error saving the user");
+          });
+      } else {
+        res.status(500).send("Fuck saving the user");
+      }
     })
     .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error saving the user");
+      console.warn(err);
+      res.status(409).send("Fuck");
     });
 };
+
 /* user by admin */
 const signInUserByAdmin = (req, res) => {
   const { firstname, lastname, nickname, birthday, email, password, isAdmin } =
