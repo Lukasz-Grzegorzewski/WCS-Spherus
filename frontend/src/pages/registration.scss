@@ -1,4 +1,7 @@
 .registration-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   background-image: url("https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg");
   background-size: 100vw;
@@ -7,15 +10,15 @@
 
   .registration-box {
     animation: smooth-fade-in 0.8s ease-out;
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     height: 105vh;
-    width: 50vw;
+    left: 5vw;
+    width: 90vw;
+    max-width: 800px;
     border-radius: 8px;
-    left: 25vw;
     top: 5vh;
 
     @keyframes smooth-fade-in {
@@ -30,41 +33,71 @@
       }
     }
 
-    h2 {
-      margin-block: 50px;
-      text-align: center;
-      font-size: 32px;
-      font-weight: bold;
-    }
-
     form {
       input {
         opacity: 0.6;
-        border-radius: 4px;
+        border-bottom-left-radius: 4px;
         display: flex;
-        width: 30vw;
+        width: 70vw;
+        max-width: 750px;
         padding-block: 8px;
         margin-block: 32px;
         border-left: none;
         border-right: none;
         border-top: none;
+
+        &::placeholder {
+          padding-left: 2px;
+        }
       }
 
-      :last-child {
-        width: 50%;
+      :first-child {
+        margin-top: 50px;
+      }
+
+      .email-input {
+        animation: border-fade-in 2s infinite ease;
+        border-bottom-left-radius: 0;
+        border-radius: 4px;
+        border: 1px solid rgb(255, 8, 8);
+      }
+
+      @keyframes border-fade-in {
+        0% {
+          box-shadow: 0 0 10px rgb(179, 0, 0);
+        }
+
+        50% {
+          box-shadow: 0 0 3px rgb(179, 0, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 10px rgb(179, 0, 0);
+        }
+      }
+
+      :last-child.submit-button {
+        width: 85%;
+        border-radius: 8px;
+        border-top: 2px solid black;
         font-size: 24px;
         opacity: 1;
         justify-content: center;
-        margin-left: 50%;
+        margin-left: 10%;
         background: linear-gradient(
           90deg,
-          rgba(152, 71, 0, 1) 0%,
+          rgb(251, 224, 201) 0%,
           rgba(255, 163, 0, 1) 100%
         );
       }
 
       p {
         font-size: 16px;
+
+        a {
+          font-weight: bold;
+          text-decoration: underline;
+        }
       }
     }
   }
