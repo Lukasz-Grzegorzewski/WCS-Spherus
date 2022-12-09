@@ -5,11 +5,21 @@
   padding-bottom: 3%;
 
   .home_section_container {
-    width: 30%;
+    width: 95%;
     height: 30px;
-    padding: 5px;
+    padding: 3% 0 1% 0.5%;
     font-size: 30px;
     font-weight: bold;
     color: $secondary-color;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .home-section_container_seebtn {
+    background-color: #142850;
+    border: 2px solid #00a7ff;
+    color: #00a7ff;
+    padding: 4px;
+    font-size: 18px;
   }
 }

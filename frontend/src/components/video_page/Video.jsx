@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { BsLock } from "@react-icons/all-files/bs/BsLock";
 
 function Video({ title, description, category, date, display, videoUrl }) {
   const url = `http://localhost:${
@@ -14,7 +13,6 @@ function Video({ title, description, category, date, display, videoUrl }) {
       <div className="video-player">
         {display === 1 ? (
           <div>
-            <BsLock className="lock lock-icon-video" />
             <video className="video" src={url} controls>
               <track kind="captions" />
             </video>
@@ -30,10 +28,7 @@ function Video({ title, description, category, date, display, videoUrl }) {
       <div className="description">
         {display === 0 && (
           <div>
-            <h1>
-              <BsLock className="lock lock-icon-sub" />
-              Icone LOCK
-            </h1>
+            <h1>Icone LOCK</h1>
             <p>Content reserved for subscribers</p>
             <button type="button" className="btn btn-subscribe">
               <NavLink to="/registration">Subscribe</NavLink>
