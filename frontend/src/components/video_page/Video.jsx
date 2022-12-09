@@ -60,7 +60,7 @@ function Video({
         </div>
         <div>
           <hr />
-          Id of this video's Category : {idCat}
+          <h1>{category}</h1>
           <Section id={idCat} />
           <button type="button" className="btn btn-seemore">
             <NavLink to={`/categories/${idCat}`}>See More</NavLink>

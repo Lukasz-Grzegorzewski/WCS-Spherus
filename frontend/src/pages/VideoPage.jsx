@@ -24,7 +24,6 @@ function VideoPage() {
   useEffect(() => {
     getVideo(idVid);
   }, []);
-
   return (
     <div className="video-container">
       {video && (
