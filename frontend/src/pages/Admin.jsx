@@ -13,12 +13,42 @@ function Admin() {
   const [videos, setVideos] = useState(false);
   const [colors, setColors] = useState(false);
 
+  const classButtonUser = () => {
+    if (user === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+  const classButtonHome = () => {
+    if (home === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+  const classButtonCat = () => {
+    if (category === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+  const classButtonVid = () => {
+    if (videos === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+  const classButtonColor = () => {
+    if (colors === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+
   return (
     <div className="admin">
-      <h1 className="admin_title">Admin Page</h1>
       <div className="admin_menu">
         <button
-          className="admin_menu_btn"
+          className={classButtonUser()}
           type="button"
           onClick={() => {
             setUser(!user);
@@ -28,11 +58,13 @@ function Admin() {
             setColors(false);
           }}
         >
-          USERS <FaAngleLeft />
+          USERS <FaAngleLeft className="svgsamere" />
         </button>
-        {user === true && <AdminUsers className="admin_menu_comp_users" />}
+        <div className="admin_menu_comp_users">
+          {user === true && <AdminUsers />}
+        </div>
         <button
-          className="admin_menu_btn"
+          className={classButtonHome()}
           type="button"
           onClick={() => {
             setUser(false);
@@ -42,11 +74,13 @@ function Admin() {
             setColors(false);
           }}
         >
-          HOME PAGE <FaAngleLeft />
+          HOME PAGE <FaAngleLeft className="svgsamere" />
         </button>
-        {home === true && <AdminHomePage className="admin_menu_comp_home" />}
+        <div className="admin_menu_comp_home">
+          {home === true && <AdminHomePage />}
+        </div>
         <button
-          className="admin_menu_btn"
+          className={classButtonCat()}
           type="button"
           onClick={() => {
             setUser(false);
@@ -56,11 +90,13 @@ function Admin() {
             setColors(false);
           }}
         >
-          CATEGORY <FaAngleLeft />
+          CATEGORY <FaAngleLeft className="svgsamere" />
         </button>
-        {category === true && <AdminCategory className="admin_menu_comp_cat" />}
+        <div className="admin_menu_comp_cat">
+          {category === true && <AdminCategory />}
+        </div>
         <button
-          className="admin_menu_btn"
+          className={classButtonVid()}
           type="button"
           onClick={() => {
             setUser(false);
@@ -70,11 +106,13 @@ function Admin() {
             setColors(false);
           }}
         >
-          VIDEOS <FaAngleLeft />
+          VIDEOS <FaAngleLeft className="svgsamere" />
         </button>
-        {videos === true && <AdminVideos className="admin_menu_comp_videos" />}
+        <div className="admin_menu_comp_videos">
+          {videos === true && <AdminVideos />}
+        </div>
         <button
-          className="admin_menu_btn"
+          className={classButtonColor()}
           type="button"
           onClick={() => {
             setUser(false);
@@ -84,18 +122,18 @@ function Admin() {
             setColors(!colors);
           }}
         >
-          COLORS <FaAngleLeft />
+          COLORS <FaAngleLeft className="svgsamere" />
         </button>
-        {colors === true && <AdminColors className="admin_menu_comp_colors" />}
+        <div className="admin_menu_comp_colors">
+          {colors === true && <AdminColors />}
+        </div>
       </div>
       <div className="admin_components">
-        {user === true && <AdminUsers className="admin_components_users" />}
-        {home === true && <AdminHomePage className="admin_components_home" />}
-        {category === true && (
-          <AdminCategory className="admin_components_cat" />
-        )}
-        {videos === true && <AdminVideos className="admin_components_videos" />}
-        {colors === true && <AdminColors className="admin_components_colors" />}
+        {user === true && <AdminUsers />}
+        {home === true && <AdminHomePage />}
+        {category === true && <AdminCategory />}
+        {videos === true && <AdminVideos />}
+        {colors === true && <AdminColors />}
       </div>
     </div>
   );
