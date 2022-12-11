@@ -55,6 +55,16 @@
         rotate: -90deg;
       }
     }
+
+    &_comp_users,
+    &_comp_home,
+    &_comp_cat,
+    &_comp_videos,
+    &_comp_hero,
+    &_comp_colors {
+      width: 100%;
+      margin: auto;
+    }
   }
 
   &_components {
@@ -88,6 +98,7 @@
       &_comp_users,
       &_comp_home,
       &_comp_cat,
+      &_comp_hero,
       &_comp_videos,
       &_comp_colors {
         display: none;
