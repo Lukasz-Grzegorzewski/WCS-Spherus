@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ActuallyHeroSlider from "./ActuallyHeroSlider";
-import ChoiceHero from "./ChoiceHero";
 
 function AdminHeroSlider() {
   const [heroInfo, setHeroInfo] = useState([]);
@@ -20,25 +19,26 @@ function AdminHeroSlider() {
 
   return (
     <div className="adminheroslider">
-      <div>
-        <h1>Admin Hero Slider</h1>
-        <h2>Actually in the Hero Slider :</h2>
+      <div className="adminheroslider_text">
+        <h1>Actually in the Hero Slider</h1>
       </div>
-      <div>
+      <div className="adminheroslider_videos">
         {heroInfo.map((infos) => {
           return (
-            <div key={infos.id}>
+            <div key={infos.hsid}>
               <ActuallyHeroSlider
+                id={infos.hsid}
                 title={infos.title}
                 cat={infos.cat}
                 url={infos.url}
+                heroInfo={heroInfo}
+                setHeroInfo={setHeroInfo}
+                // setrefresh={setrefresh}
+                // refresh={refresh}
               />
             </div>
           );
         })}
-      </div>
-      <div>
-        <ChoiceHero />
       </div>
     </div>
   );

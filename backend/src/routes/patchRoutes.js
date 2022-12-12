@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-// const patchRoutesFunctions = require("../handlers/patchRoutesFunctions");
+const patchRoutesFunctions = require("../handlers/patchRoutesFunctions");
 
 // router.get("/", getRoutesFunctions.welcome);
 
@@ -19,7 +19,7 @@ const router = express.Router();
 // router.get("/categorys", getRoutesFunctions.getCategorys);
 // router.get("/categorys/:id_cat", getRoutesFunctions.getCategoryById);
 
-// router.get("/hero_slider", getRoutesFunctions.getHeroSliderVideos);
+router.put("/hero_slider/:id", patchRoutesFunctions.updateHeroSliderById);
 
 // router.get("/publicities/", getRoutesFunctions.getPublicities);
 // router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
