@@ -26,6 +26,8 @@
 
 @media screen and (min-width: 600px) {
   .adminheroslider {
+    min-height: 700px;
+
     &_videos {
       width: 100%;
       display: flex;

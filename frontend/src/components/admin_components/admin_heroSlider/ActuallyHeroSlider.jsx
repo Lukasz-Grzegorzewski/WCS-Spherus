@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
-import { FaAngleLeft, FaTrashAlt } from "react-icons/fa";
+import { FaPenFancy } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
 function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
@@ -19,9 +19,9 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
   };
   return (
     <div className="actuallyHeroSlider">
-      <div>
+      <div className="actuallyHeroSlider_video">
         <HoverVideoPlayer
-          videoClassName="actuallyHeroSlider_video"
+          videoClassName="actuallyHeroSlider_video_player"
           videoSrc={videoUrl}
           muted
         />
@@ -30,25 +30,25 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
       <p className="actuallyHeroSlider_title">Title : {title}</p>
       <div className="actuallyHeroSlider_btn">
         <button
-          className="actuallyHeroSlider_btn_delete"
-          type="button"
-          onClick={() => {
-            setChoice(!choice);
-          }}
-        >
-          Delete in slider <FaTrashAlt className="svgtrash" />
-        </button>
-      </div>
-      <div className="actuallyHeroSlider_btn">
-        <button
           className={classButton()}
           type="button"
           onClick={() => {
             setChoice(!choice);
           }}
         >
-          Modify <FaAngleLeft className="svg" />
+          Modify <FaPenFancy className="svg" />
         </button>
+        <div className="actuallyHeroSlider_btn_delete">
+          <button
+            type="button"
+            onClick={() => {
+              setChoice(!choice);
+            }}
+          >
+            <span>Delete</span>
+            <i />
+          </button>
+        </div>
       </div>
       <div>
         {choice === true && (
@@ -69,8 +69,6 @@ ActuallyHeroSlider.propTypes = {
   heroInfo: PropTypes.arrayOf(
     PropTypes.shape({
       cat: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      display: PropTypes.number.isRequired,
       hsid: PropTypes.number.isRequired,
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
