@@ -190,7 +190,7 @@ const getCategoryById = (req, res) => {
 const getHeroSliderVideos = (req, res) => {
   database
     .query(
-      "SELECT v.id, v.title, v.date, c.name as cat, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+      "SELECT hs.id as hsid, v.id, v.title, v.date, c.name as cat, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
     )
     .then(([hsVideos]) => res.status(200).json(hsVideos))
     .catch((err) => console.error(err));
