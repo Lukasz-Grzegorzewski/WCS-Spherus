@@ -33,8 +33,6 @@ function AdminHeroSlider() {
                 url={infos.url}
                 heroInfo={heroInfo}
                 setHeroInfo={setHeroInfo}
-                // setrefresh={setrefresh}
-                // refresh={refresh}
               />
             </div>
           );

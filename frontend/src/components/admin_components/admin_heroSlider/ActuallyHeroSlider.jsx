@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaTrashAlt } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
 function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
@@ -20,7 +20,6 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
 
   return (
     <div className="actuallyHeroSlider">
-      <p className="actuallyHeroSlider_number">Video {id}</p>
       <div>
         <HoverVideoPlayer
           videoClassName="actuallyHeroSlider_video"
@@ -30,6 +29,17 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
       </div>
       <p className="actuallyHeroSlider_cat">Category : {cat}</p>
       <p className="actuallyHeroSlider_title">Title : {title}</p>
+      <div className="actuallyHeroSlider_btn">
+        <button
+          className="actuallyHeroSlider_btn_delete"
+          type="button"
+          onClick={() => {
+            setChoice(!choice);
+          }}
+        >
+          Delete <FaTrashAlt className="svgtrash" />
+        </button>
+      </div>
       <div className="actuallyHeroSlider_btn">
         <button
           className={classButton()}
@@ -43,13 +53,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
       </div>
       <div>
         {choice === true && (
-          <ChoiceHero
-            id={id}
-            heroInfo={heroInfo}
-            setHeroInfo={setHeroInfo}
-            // setRefresh={setRefresh}
-            // refresh={refresh}
-          />
+          <ChoiceHero id={id} heroInfo={heroInfo} setHeroInfo={setHeroInfo} />
         )}
       </div>
     </div>
