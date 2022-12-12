@@ -8,6 +8,7 @@ router.patch("/videos/:id", patchRoutesFunctions.patchVideoById);
 router.patch("/users/:id", patchRoutesFunctions.patchUserById);
 router.patch("/categories/:id", patchRoutesFunctions.patchCategoryById);
 
+// Admin Hero Slider
 router.put("/hero_slider/:id", patchRoutesFunctions.updateHeroSliderById);
 
 module.exports = router;

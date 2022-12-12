@@ -7,7 +7,11 @@ function AdminHeroSlider() {
 
   const getHeroInfo = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
+      .get(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/hero_slider/table`
+      )
       .then((res) => {
         setHeroInfo(res.data);
       });

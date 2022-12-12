@@ -195,6 +195,14 @@ const getHeroSliderVideos = (req, res) => {
     .then(([hsVideos]) => res.status(200).json(hsVideos))
     .catch((err) => console.error(err));
 };
+const getHeroSliderTable = (req, res) => {
+  database
+    .query(
+      "SELECT hs.id as hsid, v.id, v.title, c.name as cat, v.url FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+    )
+    .then(([hsVideos]) => res.status(200).json(hsVideos))
+    .catch((err) => console.error(err));
+};
 
 /* PUBLICITYS ROUTES */
 const getPublicities = (req, res) => {
@@ -239,6 +247,7 @@ module.exports = {
   getCategorys,
   getCategoryById,
   getHeroSliderVideos,
+  getHeroSliderTable,
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,
