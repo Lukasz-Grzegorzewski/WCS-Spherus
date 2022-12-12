@@ -109,7 +109,8 @@ const patchCategoryById = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error editing category");
-
+    });
+};
 // Update Hero Slider in admin
 const updateHeroSliderById = (req, res) => {
   const { id } = req.params;
