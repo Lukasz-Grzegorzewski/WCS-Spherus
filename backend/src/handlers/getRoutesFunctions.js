@@ -135,7 +135,7 @@ const getVideosAndCategoryByVideoId = (req, res) => {
 
   database
     .query(
-      "SELECT c.id AS idCat, v.id, c.name AS cat, v.title, v.url, v.description, CONCAT(YEAR(v.date), ' ', MONTHNAME(v.date), ' ', DAY(v.date)) AS date, v.display FROM video v INNER JOIN video_category vc ON vc.video_id = v.id AND v.id = ? INNER JOIN category c ON vc.category_id = c.id;",
+      "SELECT c.id AS idCat, v.id AS idVid, c.name AS cat, v.title, v.url, v.description, CONCAT(YEAR(v.date), ' ', MONTHNAME(v.date), ' ', DAY(v.date)) AS date, v.display FROM video v INNER JOIN video_category vc ON vc.video_id = v.id AND v.id = ? INNER JOIN category c ON vc.category_id = c.id;",
       [id]
     )
     .then(([videos]) => {
