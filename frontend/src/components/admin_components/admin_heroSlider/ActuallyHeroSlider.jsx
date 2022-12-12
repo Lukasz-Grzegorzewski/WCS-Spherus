@@ -17,7 +17,6 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
     }
     return "actuallyHeroSlider_btn_inactiv";
   };
-
   return (
     <div className="actuallyHeroSlider">
       <div>
@@ -37,7 +36,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
             setChoice(!choice);
           }}
         >
-          Delete <FaTrashAlt className="svgtrash" />
+          Delete in slider <FaTrashAlt className="svgtrash" />
         </button>
       </div>
       <div className="actuallyHeroSlider_btn">
