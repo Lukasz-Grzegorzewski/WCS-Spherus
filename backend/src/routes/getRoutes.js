@@ -15,14 +15,20 @@ router.get("/favorites/:id_user", getRoutesFunctions.getFavoritesByUserId);
 router.get("/videos", getRoutesFunctions.getVideos);
 router.get("/videos/:id", getRoutesFunctions.getVideoById);
 router.get(
-  "/videos/categories/:id_cat",
+  "/videos/categories/:idCat",
   getRoutesFunctions.getVideosByCategoryId
+);
+router.get(
+  "/videos/cat/:idVid",
+  getRoutesFunctions.getVideosAndCategoryByVideoId
 );
 
 router.get("/categories", getRoutesFunctions.getCategorys);
 router.get("/categories/:id_cat", getRoutesFunctions.getCategoryById);
 
+// HeroSlider Component
 router.get("/hero_slider", getRoutesFunctions.getHeroSliderVideos);
+router.get("/hero_slider/table", getRoutesFunctions.getHeroSliderTable);
 
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);

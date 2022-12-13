@@ -6,16 +6,31 @@ function LoginPopUp() {
       <div className="login-card">
         <h2>Connexion</h2>
         <form>
-          <label>
-            <input type="email" placeholder="Votre adresse mail" />
+          <label htmlFor="email">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Votre adresse mail"
+            />
           </label>
-          <label>
-            <input type="password" placeholder="Votre mot de passe" />
+          <label htmlFor="password">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Votre mot de passe"
+            />
           </label>
-          <label>
-            <input id="btn-submit" type="submit" value="Envoyer" />
+          <label htmlFor="submit">
+            <input
+              id="btn-submit"
+              name="submit"
+              type="submit"
+              value="Envoyer"
+            />
           </label>
-          <label>
+          <label htmlFor="redirecting">
             <input
               id="btn-registration"
               type="submit"

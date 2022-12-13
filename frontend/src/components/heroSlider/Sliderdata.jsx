@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
-// import { GrResume } from "react-icons/fa";
+import { FaPlayCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Sliderdata({ id, title, date, cat, url }) {
   const year = date?.substring(0, 7);
-  const videoUrl = `http://localhost:5000/${url}`;
+  const videoUrl = `http://localhost:${
+    import.meta.env.VITE_PORT_BACKEND
+  }/${url}`;
 
   return (
     <div className="sliderdata">
@@ -28,7 +30,7 @@ function Sliderdata({ id, title, date, cat, url }) {
         <Link to={`/videos/${id}`}>
           <button type="button" className="sliderdata_infos_btn">
             {" "}
-            Watch{" "}
+            Watch <FaPlayCircle className="sliderdata_infos_btn_icon" />
           </button>
         </Link>
       </div>
