@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuOff {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.menuOn {
+  height: 6rem;
+  opacity: 1;
+  transition: all 0.7s ease;
+}
+
+.menu-title {
+  background-color: aqua;
+}
+.menubutton {
+  background-color: blue;
+}
+
+.menubutton button {
+  background-color: blueviolet;
+}

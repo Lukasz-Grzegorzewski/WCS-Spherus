@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Navbar from "@components/navbar/Navbar";
 import CategoryVideo from "@components/category_video/CategoryVideo";
 import VideoPage from "@pages/VideoPage";
 import Admin from "@pages/Admin";
@@ -13,6 +14,8 @@ import Registration from "./pages/Registration";
 function App() {
   return (
     <div className="App">
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/policy" element={<Policy />} />
