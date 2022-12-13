@@ -134,10 +134,26 @@ const attachCategoryToVideo = (req, res) => {
     });
 };
 
+// Post Hero Slider
+const postHeroSlider = (req, res) => {
+  const { fkVideo } = req.body;
+
+  database
+    .query("INSERT INTO hero_slider(fk_video) VALUES (?)", [fkVideo])
+    .then(([hero]) => {
+      hero.status(201).send({ message: "Hero Slider Updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error update the hero slider");
+    });
+};
+
 module.exports = {
   signInUserByUser,
   signInUserByAdmin,
   postVideo,
   postCategory,
   attachCategoryToVideo,
+  postHeroSlider,
 };

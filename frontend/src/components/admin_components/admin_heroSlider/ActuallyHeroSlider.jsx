@@ -1,15 +1,39 @@
 import React, { useState } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { FaPenFancy } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
-function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
+function ActuallyHeroSlider({
+  id,
+  title,
+  url,
+  cat,
+  heroInfo,
+  setHeroInfo,
+  refresh,
+  setRefresh,
+}) {
   const videoUrl = `http://localhost:${
     import.meta.env.VITE_PORT_BACKEND
   }/${url}`;
 
   const [choice, setChoice] = useState(false);
+  const [response, setResponse] = useState("");
+
+  const deleteHero = () => {
+    axios
+      .delete(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/hero_slider/${id}`
+      )
+      .then((res) => {
+        setResponse(res.data);
+        setRefresh(!refresh);
+      });
+  };
 
   const classButton = () => {
     if (choice === true) {
@@ -17,6 +41,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
     }
     return "actuallyHeroSlider_btn_inactiv";
   };
+
   return (
     <div className="actuallyHeroSlider">
       <div className="actuallyHeroSlider_video">
@@ -42,7 +67,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
           <button
             type="button"
             onClick={() => {
-              setChoice(!choice);
+              deleteHero();
             }}
           >
             <span>Delete</span>
@@ -55,6 +80,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
           <ChoiceHero id={id} heroInfo={heroInfo} setHeroInfo={setHeroInfo} />
         )}
       </div>
+      <p>{response}</p>
     </div>
   );
 }
@@ -76,4 +102,6 @@ ActuallyHeroSlider.propTypes = {
     })
   ).isRequired,
   setHeroInfo: PropTypes.func.isRequired,
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
 };

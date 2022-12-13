@@ -54,6 +54,6 @@ function MenuButtonHandler({ handleChange, menu }) {
 export default MenuButtonHandler;
 
 MenuButtonHandler.propTypes = {
-  menu: PropTypes.number.isRequired,
+  menu: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

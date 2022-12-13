@@ -1,7 +1,12 @@
-.choicehero {
+.addhero {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  &_title {
+    font-size: 15px;
+    color: $secondary-color;
+  }
 
   &_cat {
     width: 100%;
@@ -53,7 +58,7 @@
 
   button span {
     display: block;
-    margin-left: 0.3em;
+    margin-left: 0.6em;
     transition: all 0.3s ease-in-out;
   }
 
@@ -91,13 +96,39 @@
 }
 
 @media screen and (min-width: 600px) {
-  .choicehero {
-    gap: 15px;
+  .addhero {
+    &_title {
+      font-size: 20px;
+    }
+
+    &_cat {
+      &_name {
+        &_select {
+          width: 15%;
+        }
+      }
+    }
+
+    &_video {
+      &_name {
+        &_select {
+          width: 15%;
+        }
+      }
+    }
 
     &_button {
-      button:hover span {
-        transform: translateX(6em);
-      }
+      align-self: inherit;
+      width: 15%;
+      margin-left: 105px;
+    }
+
+    button span {
+      margin-left: 1em;
+    }
+
+    button:hover span {
+      transform: translateX(9em);
     }
   }
 }
