@@ -77,7 +77,13 @@ function ActuallyHeroSlider({
       </div>
       <div>
         {choice === true && (
-          <ChoiceHero id={id} heroInfo={heroInfo} setHeroInfo={setHeroInfo} />
+          <ChoiceHero
+            id={id}
+            refresh={refresh}
+            setRefresh={setRefresh}
+            heroInfo={heroInfo}
+            setHeroInfo={setHeroInfo}
+          />
         )}
       </div>
       <p>{response}</p>
