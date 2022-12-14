@@ -7,7 +7,6 @@ function AddHero({ refresh, setRefresh }) {
   const [valueCat, setValueCat] = useState("");
   const [videos, setVideos] = useState([]);
   const [valueVideo, setValueVideo] = useState("");
-  const [response, setResponse] = useState("");
 
   const getCat = () => {
     axios
@@ -46,7 +45,7 @@ function AddHero({ refresh, setRefresh }) {
         }
       )
       .then((res) => {
-        setResponse(res.data);
+        console.warn(res.data);
         setRefresh(!refresh);
       })
       .catch((err) => {
@@ -134,7 +133,6 @@ function AddHero({ refresh, setRefresh }) {
           <span>Apply</span>
         </button>
       )}
-      <p>{response.message}</p>
     </div>
   );
 }
