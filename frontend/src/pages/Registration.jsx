@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import PasswordStrengthMeter from "../components/password_strength_meter/PasswordStrengthMeter";
 
 function Registration() {
+  const [password, setPassword] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
+  const [isUserCreated, setIsUserCreated] = useState(false);
   const [newUser, setNewUser] = useState({
     firstname: "",
     lastname: "",
@@ -38,9 +41,11 @@ function Registration() {
   const postNewUser = (e, data) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/users", data)
+      .post(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users`, data)
       .then(() => {
         clearInputs();
+        setIsUserCreated(true);
+        setTimeout(() => setIsUserCreated(false), 5000);
         console.warn("Victoire");
       })
       .catch((err) => {
@@ -73,6 +78,7 @@ function Registration() {
             onChange={(e) => onChange("lastname", e.target.value)}
           />
           <input
+            // Si la value de l'input === un email présent dans la DBB, on demande d'en choisir un autre
             value={newUser.nickname}
             type="text"
             placeholder="Enter your nickname"
@@ -85,6 +91,7 @@ function Registration() {
             onChange={(e) => onChange("birthday", e.target.value)}
           />
           <input
+            id="email"
             className={checkEmail ? "email-input" : ""}
             value={newUser.email}
             type="email"
@@ -97,11 +104,17 @@ function Registration() {
             onChange={(e) => onChange("email", e.target.value)}
           />
           <input
+            id="password"
+            className="password-input"
             value={newUser.password}
             type="password"
             placeholder="Enter your password"
-            onChange={(e) => onChange("password", e.target.value)}
+            onChange={(e) => {
+              onChange("password", e.target.value);
+              setPassword(e.target.value);
+            }}
           />
+          <PasswordStrengthMeter password={password} />
           {/* <input
             value={newUser.password}
             type="password"
@@ -114,11 +127,19 @@ function Registration() {
               general terms and conditions
             </NavLink>
           </p>
-          <input
-            className="submit-button"
+          {/* <input
+            className={isUserCreated ? "green-submit-button" : "submit-button"}
             type="submit"
             value="Créez votre compte"
-          />
+          /> */}
+          {isUserCreated ? (
+            <h3>Congratulations ! Your account is created.</h3>
+          ) : (
+            <h3>...</h3>
+          )}
+          <button id="btn-submit" type="submit" className="button-78">
+            Submit
+          </button>
         </form>
       </div>
     </div>

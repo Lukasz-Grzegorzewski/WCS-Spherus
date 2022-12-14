@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Heroslider from "@components/heroSlider/Heroslider";
-import axios from "axios";
-import Section from "@components/section/Section";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import Heroslider from "../components/heroSlider/Heroslider";
+import Section from "../components/section/Section";
 
 export default function Home() {
   const [section, setSection] = useState([]);
