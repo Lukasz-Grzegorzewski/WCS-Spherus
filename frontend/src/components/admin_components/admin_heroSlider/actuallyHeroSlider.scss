@@ -19,6 +19,7 @@
   &_cat,
   &_title {
     font-size: 15px;
+    font-family: $font-display;
   }
 
   &_btn {
@@ -27,6 +28,7 @@
     justify-content: space-between;
     margin-top: 2%;
     margin-bottom: 3%;
+    font-family: $font-display;
 
     &_delete {
       width: 33%;

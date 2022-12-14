@@ -42,10 +42,10 @@ function AdminHeroSlider() {
 
       {add === true && (
         <AddHero
-          setHeroInfo={setHeroInfo}
-          heroInfo={heroInfo}
           setRefresh={setRefresh}
           refresh={refresh}
+          add={add}
+          setAdd={setAdd}
         />
       )}
 
