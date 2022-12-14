@@ -139,9 +139,10 @@ const postHeroSlider = (req, res) => {
   const { fkVideo } = req.body;
 
   database
-    .query("INSERT INTO hero_slider(fk_video) VALUES (?)", [fkVideo])
+    .query("INSERT INTO hero_slider(fk_video) VALUES (?);", [Number(fkVideo)])
     .then(([hero]) => {
-      hero.status(201).send({ message: "Hero Slider Updated" });
+      res.status(201).send({ message: "Hero Slider Updated" });
+      console.warn(hero);
     })
     .catch((err) => {
       console.error(err);

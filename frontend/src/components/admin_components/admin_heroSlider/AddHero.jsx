@@ -48,6 +48,9 @@ function AddHero({ refresh, setRefresh }) {
       .then((res) => {
         setResponse(res.data);
         setRefresh(!refresh);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
@@ -131,7 +134,7 @@ function AddHero({ refresh, setRefresh }) {
           <span>Apply</span>
         </button>
       )}
-      <p>{response}</p>
+      <p>{response.message}</p>
     </div>
   );
 }
