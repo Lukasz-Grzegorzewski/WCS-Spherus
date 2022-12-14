@@ -135,7 +135,7 @@ const getVideosAndCategoryByVideoId = (req, res) => {
 
   database
     .query(
-      "SELECT c.id AS idCat, v.id, c.name AS cat, v.title, v.url, v.description, CONCAT(YEAR(v.date), ' ', MONTHNAME(v.date), ' ', DAY(v.date)) AS date, v.display FROM video v INNER JOIN video_category vc ON vc.video_id = v.id AND v.id = ? INNER JOIN category c ON vc.category_id = c.id;",
+      "SELECT c.id AS idCat, v.id AS idVid, c.name AS cat, v.title, v.url, v.description, CONCAT(YEAR(v.date), ' ', MONTHNAME(v.date), ' ', DAY(v.date)) AS date, v.display FROM video v INNER JOIN video_category vc ON vc.video_id = v.id AND v.id = ? INNER JOIN category c ON vc.category_id = c.id;",
       [id]
     )
     .then(([videos]) => {
@@ -190,7 +190,15 @@ const getCategoryById = (req, res) => {
 const getHeroSliderVideos = (req, res) => {
   database
     .query(
-      "SELECT v.id, v.title, v.date, c.name as cat, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+      "SELECT hs.id as hsid, v.id, v.title, v.date, c.name as cat, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+    )
+    .then(([hsVideos]) => res.status(200).json(hsVideos))
+    .catch((err) => console.error(err));
+};
+const getHeroSliderTable = (req, res) => {
+  database
+    .query(
+      "SELECT hs.id as hsid, v.id, v.title, c.name as cat, v.url FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
     )
     .then(([hsVideos]) => res.status(200).json(hsVideos))
     .catch((err) => console.error(err));
@@ -239,6 +247,7 @@ module.exports = {
   getCategorys,
   getCategoryById,
   getHeroSliderVideos,
+  getHeroSliderTable,
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,

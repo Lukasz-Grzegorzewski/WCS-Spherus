@@ -1,27 +1,12 @@
 const express = require("express");
 
+const getRoutesFunctions = require("../handlers/deleteRoutesFunctions");
+
 const router = express.Router();
 
-// const deleteRoutesFunctions = require("../handlers/deleteRoutesFunctions.js");
-
-// router.get("/", getRoutesFunctions.welcome);
-
-// router.get("/users", getRoutesFunctions.getUsers);
-// router.get("/users/:id", getRoutesFunctions.getUserById);
-
-// router.get("/favorites", getRoutesFunctions.getFavorites);
-// router.get("/favorites/:id_user", getRoutesFunctions.getFavoritesByUserId);
-
-// router.get("/videos", getRoutesFunctions.getVideos);
-// router.get("/videos/:id", getRoutesFunctions.getVideoById);
-// router.get("/videos/categories/:id_cat", getRoutesFunctions.getVideosByCategoryId);
-
-// router.get("/categorys", getRoutesFunctions.getCategorys);
-// router.get("/categorys/:id_cat", getRoutesFunctions.getCategoryById);
-
-// router.get("/hero_slider", getRoutesFunctions.getHeroSliderVideos);
-
-// router.get("/publicities/", getRoutesFunctions.getPublicities);
-// router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
+router.delete("/users/:id", getRoutesFunctions.deleteUserById);
+router.delete("/videos/:id", getRoutesFunctions.deleteVideoById);
+router.delete("/categories/:id", getRoutesFunctions.deleteCategoryById);
+router.delete("/hero_slider/:id", getRoutesFunctions.deleteHeroSliderById);
 
 module.exports = router;

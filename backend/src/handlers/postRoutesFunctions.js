@@ -118,9 +118,6 @@ const postCategory = (req, res) => {
 // attach category to video
 
 const attachCategoryToVideo = (req, res) => {
-  // const id_vid = parseInt(req.params.id_vid);
-  // const id_cat = parseInt(req.params.id_cat);
-
   const { videoId, categoryId } = req.body;
 
   database
@@ -137,26 +134,20 @@ const attachCategoryToVideo = (req, res) => {
     });
 };
 
-/* const getMovieById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const image404 = "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
- 
+// Post Hero Slider
+const postHeroSlider = (req, res) => {
+  const { fkVideo } = req.body;
+
   database
-    .query("SELECT * FROM movies WHERE id = ?", [id])
-    .then(([movie]) => {
-      if (movie[0] != null) {
-        res.status(200).json(movie[0]);
-      } else {
-        res.write("<div><h1 style='text-align:center;'>Not Found</h1><a href='/api/movies'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< MOVIES</button></a></div>");
-        res.write("<img src=" + image404 + " style='width: 100vw;'></img>");
-        res.status(404).send();
-      }
+    .query("INSERT INTO hero_slider(fk_video) VALUES (?)", [fkVideo])
+    .then(([hero]) => {
+      hero.status(201).send({ message: "Hero Slider Updated" });
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error retrieving data from database");
-    })
-}; */
+      res.status(500).send("Error update the hero slider");
+    });
+};
 
 module.exports = {
   signInUserByUser,
@@ -164,4 +155,5 @@ module.exports = {
   postVideo,
   postCategory,
   attachCategoryToVideo,
+  postHeroSlider,
 };
