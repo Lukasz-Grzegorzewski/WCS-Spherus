@@ -77,13 +77,15 @@ const signInUserByAdmin = (req, res) => {
 };
 
 // POST VIDEO
-const postVideo = (req, res) => {
-  const { url, description, display, title, date } = req.body;
 
+const postVideo = (req, res) => {
+  const { description, display, title, date, filename } = req.body;
+
+  const url = `/assets/videos/${filename}`;
   database
     .query(
       "INSERT INTO video(url, description, display, title, date) VALUES (?, ?, ?, ?, ?)",
-      [url, description, display, title, date]
+      [url, description, Number(display), title, date]
     )
     .then(([result]) => {
       res
