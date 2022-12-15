@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginPopUp() {
+  const navigate = useNavigate();
+
+  function navigateToRegistration() {
+    navigate("/registration");
+  }
+
   return (
     <div className="login-pop-up">
       <div className="login-card">
@@ -9,7 +16,7 @@ function LoginPopUp() {
           <label htmlFor="email">
             <input
               type="email"
-              id="email"
+              className="email"
               name="email"
               placeholder="Votre adresse mail"
             />
@@ -17,14 +24,14 @@ function LoginPopUp() {
           <label htmlFor="password">
             <input
               type="password"
-              id="password"
+              className="password"
               name="password"
               placeholder="Votre mot de passe"
             />
           </label>
           <label htmlFor="submit">
             <input
-              id="btn-submit"
+              className="btn-submit"
               name="submit"
               type="submit"
               value="Envoyer"
@@ -32,9 +39,10 @@ function LoginPopUp() {
           </label>
           <label htmlFor="redirecting">
             <input
-              id="btn-registration"
+              className="btn-registration"
               type="submit"
-              value="Créez votre compte"
+              value="Create your account"
+              onClick={navigateToRegistration}
             />
           </label>
         </form>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function ChoiceHero({ id, heroInfo, setHeroInfo }) {
+function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
   const [cat, setCat] = useState([]);
   const [videos, setVideos] = useState([]);
   const [valueCat, setValueCat] = useState("");
@@ -38,19 +38,9 @@ function ChoiceHero({ id, heroInfo, setHeroInfo }) {
         }
       )
       .then((res) => {
-        const tmp = [...heroInfo];
-        const video = videos.find(
-          (yop) => yop.id.toString() === valueVideo.toString()
-        );
-        tmp[id - 1] = {
-          cat: video.cat,
-          title: video.title,
-          id: video.id,
-          url: video.url,
-          hsid: id,
-        };
-        setHeroInfo(tmp);
+        setRefresh(!refresh);
         setResponse(res.data);
+        setChoice(!choice);
       });
   };
 
@@ -148,14 +138,8 @@ export default ChoiceHero;
 
 ChoiceHero.propTypes = {
   id: PropTypes.number.isRequired,
-  heroInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      cat: PropTypes.string.isRequired,
-      hsid: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  setHeroInfo: PropTypes.func.isRequired,
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
+  setChoice: PropTypes.func.isRequired,
+  choice: PropTypes.bool.isRequired,
 };

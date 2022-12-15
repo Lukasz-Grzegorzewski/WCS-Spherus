@@ -44,18 +44,13 @@ function Section({ id }) {
         setVideo(res.data);
       });
   };
-
   useEffect(() => {
     getVideo();
   }, []);
 
   return (
     <div className="section_container">
-      <Carousel
-        containerClass="section_carousel"
-        responsive={responsive}
-        // infinite
-      >
+      <Carousel containerClass="section_carousel" responsive={responsive}>
         {video.map((v) => (
           <div className="section_card" key={v.id}>
             <VideoCard

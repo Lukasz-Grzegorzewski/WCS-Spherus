@@ -29,6 +29,10 @@ router.get("/categories/:id_cat", getRoutesFunctions.getCategoryById);
 // HeroSlider Component
 router.get("/hero_slider", getRoutesFunctions.getHeroSliderVideos);
 router.get("/hero_slider/table", getRoutesFunctions.getHeroSliderTable);
+router.get(
+  "/hero_slider/catname/:id",
+  getRoutesFunctions.getCatNameVideoSliderById
+);
 
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);

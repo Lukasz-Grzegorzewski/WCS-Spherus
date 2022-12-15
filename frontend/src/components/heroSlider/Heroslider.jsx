@@ -50,7 +50,6 @@ function Heroslider() {
                   id={infos.id}
                   title={infos.title}
                   date={infos.date}
-                  cat={infos.cat}
                   url={infos.url}
                   display={infos.display}
                 />

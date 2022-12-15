@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function AddHero({ refresh, setRefresh }) {
+function AddHero({ refresh, setRefresh, add, setAdd }) {
   const [cat, setCat] = useState([]);
   const [valueCat, setValueCat] = useState("");
   const [videos, setVideos] = useState([]);
   const [valueVideo, setValueVideo] = useState("");
-  const [response, setResponse] = useState("");
 
   const getCat = () => {
     axios
@@ -46,8 +45,11 @@ function AddHero({ refresh, setRefresh }) {
         }
       )
       .then((res) => {
-        setResponse(res.data);
+        console.warn(res.data);
         setRefresh(!refresh);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
@@ -110,6 +112,7 @@ function AddHero({ refresh, setRefresh }) {
           type="button"
           onClick={() => {
             updateHero();
+            setAdd(!add);
           }}
         >
           <div className="svg-wrapper-1">
@@ -131,7 +134,6 @@ function AddHero({ refresh, setRefresh }) {
           <span>Apply</span>
         </button>
       )}
-      <p>{response}</p>
     </div>
   );
 }
@@ -141,4 +143,6 @@ export default AddHero;
 AddHero.propTypes = {
   setRefresh: PropTypes.func.isRequired,
   refresh: PropTypes.bool.isRequired,
+  setAdd: PropTypes.func.isRequired,
+  add: PropTypes.bool.isRequired,
 };
