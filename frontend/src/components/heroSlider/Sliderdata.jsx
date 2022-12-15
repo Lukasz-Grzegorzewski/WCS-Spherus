@@ -47,7 +47,12 @@ function Sliderdata({ id, title, date, url }) {
           {title} - {year}
         </p>
         <p className="sliderdata_infos_cat">
-          Category : {cat.length >= 1 && cat.map((infos) => `${infos.name}, `)}
+          Category :{" "}
+          {cat.length >= 1 &&
+            cat
+              .map((infos) => `${infos.name}, `)
+              .join("")
+              .slice(0, -2)}{" "}
         </p>
         <Link to={`/videos/${id}`}>
           <button type="button" className="sliderdata_infos_btn">
