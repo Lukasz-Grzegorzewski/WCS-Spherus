@@ -12,4 +12,6 @@ router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
 router.post("/categories", postRoutesFunctions.postCategory);
 
+router.post("/hero_slider", postRoutesFunctions.postHeroSlider);
+
 module.exports = router;

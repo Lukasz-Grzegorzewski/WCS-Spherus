@@ -190,7 +190,7 @@ const getCategoryById = (req, res) => {
 const getHeroSliderVideos = (req, res) => {
   database
     .query(
-      "SELECT hs.id as hsid, v.id, v.title, v.date, c.name as cat, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+      "SELECT hs.id as hsid,fk_video, v.id, v.title, v.date, v.url, v.display FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id;"
     )
     .then(([hsVideos]) => res.status(200).json(hsVideos))
     .catch((err) => console.error(err));
@@ -199,6 +199,16 @@ const getHeroSliderTable = (req, res) => {
   database
     .query(
       "SELECT hs.id as hsid, v.id, v.title, c.name as cat, v.url FROM video v INNER JOIN hero_slider hs ON hs.fk_video = v.id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id;"
+    )
+    .then(([hsVideos]) => res.status(200).json(hsVideos))
+    .catch((err) => console.error(err));
+};
+const getCatNameVideoSliderById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query(
+      "SELECT c.name from category as c inner join video_category as vc on c.id=vc.category_id inner join video on video.id=vc.video_id where video_id= ?;",
+      [id]
     )
     .then(([hsVideos]) => res.status(200).json(hsVideos))
     .catch((err) => console.error(err));
@@ -251,4 +261,5 @@ module.exports = {
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,
+  getCatNameVideoSliderById,
 };

@@ -22,11 +22,13 @@ function App() {
 
   return (
     <div className="App">
+
       <Navbar
         handlePopUpLogIn={() => {
           handlePopUpLogIn();
         }}
       />
+
 
       <Routes>
         <Route path="/" element={<Home />} />

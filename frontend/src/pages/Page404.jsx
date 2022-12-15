@@ -3,10 +3,10 @@ import React from "react";
 function Page404() {
   return (
     <div className="page404">
-      <div>
+      <div className="lala">
         <a href="/">
           <button type="button" className="btn home-page-link">
-            &#60; &#60; &#60; Home Page
+            &#60; &#60; &#60; HOME PAGE
           </button>
         </a>
       </div>

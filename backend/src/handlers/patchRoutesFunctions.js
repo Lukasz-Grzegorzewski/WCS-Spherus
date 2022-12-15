@@ -118,7 +118,10 @@ const updateHeroSliderById = (req, res) => {
   const { fkVideo } = req.body;
 
   database
-    .query("UPDATE hero_slider set fk_video = ? WHERE id = ?", [fkVideo, id])
+    .query("UPDATE hero_slider set fk_video = ? WHERE id = ?", [
+      Number(fkVideo),
+      id,
+    ])
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.status(404).send("Not Found");

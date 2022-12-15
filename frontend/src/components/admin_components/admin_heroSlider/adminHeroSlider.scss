@@ -1,21 +1,129 @@
 @import "./actuallyHeroSlider.scss";
 @import "./choiceHero.scss";
+@import "./addHero.scss";
 
 .adminheroslider {
   width: 96%;
   border: 2px solid $secondary-color;
   padding: 1%;
   background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 
   &_text {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-left: 1%;
     margin-top: 1%;
     margin-bottom: 2%;
 
     h1 {
       font-size: 20px;
+      font-family: $font-display;
+    }
+
+    .icon-btn {
+      width: 50px;
+      height: 50px;
+      border: 2px solid $secondary-color;
+      background: $primary-color;
+      border-radius: 25px;
+      color: white;
+      overflow: hidden;
+      position: relative;
+      transition: width 0.2s ease-in-out;
+      font-size: 15px;
+      font-family: $font-text;
+      cursor: pointer;
+      color: $secondary-color;
+    }
+
+    .add-btn:hover {
+      width: 120px;
+      color: $secondary-color;
+    }
+
+    .add-btn::before,
+    .add-btn::after {
+      transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 10px;
+      top: calc(50% - 2px);
+      background: $secondary-color;
+    }
+
+    .add-btn::after {
+      right: 14px;
+      overflow: hidden;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .add-btn::before {
+      left: 14px;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    .icon-btn:focus {
+      outline: none;
+    }
+
+    .btn-txt {
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-family: $font-display;
+    }
+
+    .add-btn:hover::before,
+    .add-btn:hover::after {
+      width: 4px;
+      border-radius: 2px;
+    }
+
+    .add-btn:hover .btn-txt {
+      opacity: 1;
+    }
+
+    .add-icon::after,
+    .add-icon::before {
+      transition: all 0.2s ease-in-out;
+      content: "";
+      position: absolute;
+      height: 20px;
+      width: 3px;
+      top: calc(50% - 10px);
+      background: $secondary-color;
+      overflow: hidden;
+    }
+
+    .add-icon::before {
+      left: 22px;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    .add-icon::after {
+      right: 22px;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .add-btn:hover .add-icon::before {
+      left: 15px;
+      height: 4px;
+      top: calc(50% - 2px);
+    }
+
+    .add-btn:hover .add-icon::after {
+      right: 15px;
+      height: 4px;
+      top: calc(50% - 2px);
     }
   }
 
@@ -27,6 +135,15 @@
 @media screen and (min-width: 600px) {
   .adminheroslider {
     min-height: 700px;
+
+    &_text {
+      gap: 30px;
+      margin-left: 0%;
+
+      h1 {
+        font-size: 25px;
+      }
+    }
 
     &_videos {
       width: 100%;

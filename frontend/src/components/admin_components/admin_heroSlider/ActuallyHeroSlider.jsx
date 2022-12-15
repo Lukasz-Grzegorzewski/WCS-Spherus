@@ -1,15 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { FaPenFancy } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
-function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
+function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
   const videoUrl = `http://localhost:${
     import.meta.env.VITE_PORT_BACKEND
   }/${url}`;
 
   const [choice, setChoice] = useState(false);
+  const [response, setResponse] = useState("");
+  const [cat, setCat] = useState([]);
+
+  const getCat = () => {
+    axios
+      .get(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/hero_slider/catname/${idVid}`
+      )
+      .then((res) => {
+        setCat(res.data);
+      });
+  };
+
+  useEffect(() => {
+    getCat();
+  }, []);
+
+  const deleteHero = () => {
+    axios
+      .delete(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/hero_slider/${id}`
+      )
+      .then((res) => {
+        setResponse(res.data);
+        setRefresh(!refresh);
+      });
+  };
 
   const classButton = () => {
     if (choice === true) {
@@ -17,6 +49,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
     }
     return "actuallyHeroSlider_btn_inactiv";
   };
+
   return (
     <div className="actuallyHeroSlider">
       <div className="actuallyHeroSlider_video">
@@ -26,7 +59,14 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
           muted
         />
       </div>
-      <p className="actuallyHeroSlider_cat">Category : {cat}</p>
+      <p className="actuallyHeroSlider_cat">
+        Category :{" "}
+        {cat.length >= 1 &&
+          cat
+            .map((infos) => `${infos.name}, `)
+            .join("")
+            .slice(0, -2)}{" "}
+      </p>
       <p className="actuallyHeroSlider_title">Title : {title}</p>
       <div className="actuallyHeroSlider_btn">
         <button
@@ -42,7 +82,7 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
           <button
             type="button"
             onClick={() => {
-              setChoice(!choice);
+              deleteHero();
             }}
           >
             <span>Delete</span>
@@ -52,9 +92,16 @@ function ActuallyHeroSlider({ id, title, url, cat, heroInfo, setHeroInfo }) {
       </div>
       <div>
         {choice === true && (
-          <ChoiceHero id={id} heroInfo={heroInfo} setHeroInfo={setHeroInfo} />
+          <ChoiceHero
+            id={id}
+            choice={choice}
+            setChoice={setChoice}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
         )}
       </div>
+      <p>{response}</p>
     </div>
   );
 }
@@ -63,17 +110,9 @@ export default ActuallyHeroSlider;
 
 ActuallyHeroSlider.propTypes = {
   title: PropTypes.string.isRequired,
-  cat: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  idVid: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
-  heroInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      cat: PropTypes.string.isRequired,
-      hsid: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  setHeroInfo: PropTypes.func.isRequired,
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
 };

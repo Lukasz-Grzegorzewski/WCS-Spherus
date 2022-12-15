@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
+function AddHero({ refresh, setRefresh, add, setAdd }) {
   const [cat, setCat] = useState([]);
-  const [videos, setVideos] = useState([]);
   const [valueCat, setValueCat] = useState("");
+  const [videos, setVideos] = useState([]);
   const [valueVideo, setValueVideo] = useState("");
-  const [response, setResponse] = useState("");
+
   const getCat = () => {
     axios
       .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
@@ -15,6 +15,11 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
         setCat(res.data);
       });
   };
+
+  useEffect(() => {
+    getCat();
+  }, []);
+
   const getVideos = () => {
     axios
       .get(
@@ -27,45 +32,44 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
       });
   };
 
+  useEffect(() => {
+    if (valueCat !== "") getVideos();
+  }, [valueCat]);
+
   const updateHero = () => {
     axios
-      .put(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/${id}`,
+      .post(
+        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`,
         {
           fkVideo: `${valueVideo}`,
         }
       )
       .then((res) => {
+        console.warn(res.data);
         setRefresh(!refresh);
-        setResponse(res.data);
-        setChoice(!choice);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
   const handleChange = (e) => {
     setValueCat(e.target.value);
   };
+
   const handleChange2 = (e) => {
     setValueVideo(e.target.value);
   };
 
-  useEffect(() => {
-    getCat();
-  }, []);
-  useEffect(() => {
-    if (valueCat !== "") getVideos();
-  }, [valueCat]);
-
   return (
-    <div className="choicehero">
-      <form className="choicehero_cat">
-        <label className="choicehero_cat_name" htmlFor="category-select">
+    <div className="addhero">
+      <h1 className="addhero_title">Add video in Hero Slider</h1>
+      <form className="addhero_cat">
+        <label className="addhero_cat_name" htmlFor="category-select">
           Category name{" "}
           {cat.length > 1 && (
             <select
-              className="choicehero_cat_name_select"
+              className="addhero_cat_name_select"
               id="category-select"
               onChange={handleChange}
             >
@@ -82,11 +86,11 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
         </label>
       </form>
       {videos.length > 1 && (
-        <form className="choicehero_video">
-          <label className="choicehero_video_name" htmlFor="video-select">
+        <form className="addhero_video">
+          <label className="addhero_video_name" htmlFor="video-select">
             Video name{" "}
             <select
-              className="choicehero_video_name_select"
+              className="addhero_video_name_select"
               id="video-select"
               onChange={handleChange2}
             >
@@ -104,10 +108,11 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
       )}
       {valueVideo !== "" && (
         <button
-          className="choicehero_button"
+          className="addhero_button"
           type="button"
           onClick={() => {
             updateHero();
+            setAdd(!add);
           }}
         >
           <div className="svg-wrapper-1">
@@ -129,17 +134,15 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
           <span>Apply</span>
         </button>
       )}
-      <p>{response}</p>
     </div>
   );
 }
 
-export default ChoiceHero;
+export default AddHero;
 
-ChoiceHero.propTypes = {
-  id: PropTypes.number.isRequired,
+AddHero.propTypes = {
   setRefresh: PropTypes.func.isRequired,
   refresh: PropTypes.bool.isRequired,
-  setChoice: PropTypes.func.isRequired,
-  choice: PropTypes.bool.isRequired,
+  setAdd: PropTypes.func.isRequired,
+  add: PropTypes.bool.isRequired,
 };

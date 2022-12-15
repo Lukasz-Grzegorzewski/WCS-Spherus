@@ -15,6 +15,7 @@
 
   .login-card {
     position: relative;
+    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 80vw;
     height: 75vh;
@@ -60,7 +61,7 @@
         margin-left: 60%;
       }
 
-      #btn-submit {
+      .btn-submit {
         width: 80px;
         border-bottom: none;
         border-radius: 4px;
@@ -69,11 +70,11 @@
           rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
       }
 
-      #btn-submit:hover {
+      .btn-submit:hover {
         background-color: rgb(241, 162, 98);
       }
 
-      #btn-registration {
+      .btn-registration {
         border-bottom: none;
         border-radius: 12px;
         margin-left: 10%;
@@ -81,7 +82,7 @@
           rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
       }
 
-      #btn-registration:hover {
+      .btn-registration:hover {
         background-color: rgb(241, 162, 98);
       }
     }
