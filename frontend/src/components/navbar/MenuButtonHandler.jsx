@@ -37,13 +37,13 @@ function MenuButtonHandler({ handleChange, menu }) {
   }
 
   return (
-    <div>
+    <div className="menu-icon">
       {menu ? (
-        <button type="button" onClick={changeButtonImage}>
+        <button type="button" onClick={() => changeButtonImage()}>
           {buttonImageTwo}
         </button>
       ) : (
-        <button type="button" onClick={changeButtonImage}>
+        <button type="button" onClick={() => changeButtonImage()}>
           {buttonImageOne}
         </button>
       )}

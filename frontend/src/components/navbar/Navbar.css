@@ -1,6 +1,13 @@
 .navbar {
   display: flex;
   flex-direction: column;
+  background-color: #f14a16;
+  align-items: center;
+}
+
+.menu-icon {
+  background-color: #f14a16;
+  width: 2000px;
 }
 
 .menuOff {
@@ -8,21 +15,36 @@
   opacity: 0;
   overflow: hidden;
   transition: all 0.5s ease;
+  position: fixed;
+  top: 0;
 }
 
 .menuOn {
   height: 6rem;
   opacity: 1;
-  transition: all 0.7s ease;
+  transition: all 0.9s ease;
+  position: fixed;
+  top: 0;
 }
 
 .menu-title {
   background-color: aqua;
 }
 .menubutton {
-  background-color: blue;
+  text-align: center;
+  margin: 5% 0;
+  border-bottom: solid black;
 }
 
 .menubutton button {
-  background-color: blueviolet;
+  background-color: #f14a16;
+  color: #fc9918;
+}
+
+.navbar_container_logo {
+  width: 100%;
+}
+
+.navbar_logo {
+  width: 50px;
 }
