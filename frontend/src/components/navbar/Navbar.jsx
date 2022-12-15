@@ -1,27 +1,40 @@
 import React, { useState } from "react";
-import "./Navbar.css";
+import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import MenuButton from "./MenuButton";
 import MenuButtonHandler from "./MenuButtonHandler";
 
-function Navbar() {
+function Navbar({ handlePopUpLogIn }) {
   const [menu, setMenu] = useState(false);
+
+  function test() {
+    console.log("onclick");
+  }
 
   const buttonList = [
     {
-      name: "link1",
-      id: 1,
+      name: "Why Subscribe?",
+      buttonid: 1,
+      urlLink: "/registration",
+      onclick: test,
     },
     {
-      name: "link2",
-      id: 2,
+      name: "Log in",
+      buttonid: 2,
+      onclick: handlePopUpLogIn,
+      urlLink: "/registration",
     },
     {
-      name: "link3",
-      id: 3,
+      name: "Sing In",
+      buttonid: 3,
+      urlLink: "/registration",
+      onclick: test,
     },
     {
-      name: "link4",
-      id: 4,
+      name: "Light Mode",
+      buttonid: 4,
+      urlLink: "/registration",
+      onclick: test,
     },
   ];
 
@@ -31,10 +44,29 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <MenuButtonHandler menu={menu} handleChange={() => handleChange()} />
+      <div className="navbar_container_logo">
+        <NavLink to="/">
+          <img
+            className="navbar_logo"
+            src="/src/assets/images/logo_sphereus.png"
+            alt="sphereus"
+          />
+        </NavLink>
+      </div>
+
+      <div className="navbar_container_logo">
+        <MenuButtonHandler menu={menu} handleChange={() => handleChange()} />
+      </div>
+
       <div className={menu ? "menuOn" : "menuOff"}>
         {buttonList.map((button) => (
-          <MenuButton name={button.name} id={button.id} key={button.id} />
+          <MenuButton
+            name={button.name}
+            id={button.buttonid}
+            key={button.buttonid}
+            onclick={button.onclick}
+            urlLink={button.urlLink}
+          />
         ))}
       </div>
     </div>
@@ -42,3 +74,7 @@ function Navbar() {
 }
 
 export default Navbar;
+
+Navbar.propTypes = {
+  handlePopUpLogIn: PropTypes.func.isRequired,
+};

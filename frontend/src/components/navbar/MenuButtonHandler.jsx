@@ -37,13 +37,13 @@ function MenuButtonHandler({ handleChange, menu }) {
   }
 
   return (
-    <div>
+    <div className="menu-icon">
       {menu ? (
-        <button type="button" onClick={changeButtonImage}>
+        <button type="button" onClick={() => changeButtonImage()}>
           {buttonImageTwo}
         </button>
       ) : (
-        <button type="button" onClick={changeButtonImage}>
+        <button type="button" onClick={() => changeButtonImage()}>
           {buttonImageOne}
         </button>
       )}
@@ -54,6 +54,6 @@ function MenuButtonHandler({ handleChange, menu }) {
 export default MenuButtonHandler;
 
 MenuButtonHandler.propTypes = {
-  menu: PropTypes.number.isRequired,
+  menu: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
