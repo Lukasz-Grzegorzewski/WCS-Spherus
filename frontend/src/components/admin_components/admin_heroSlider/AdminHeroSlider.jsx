@@ -10,11 +10,7 @@ function AdminHeroSlider() {
 
   const getHeroInfo = async () => {
     await axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/table`
-      )
+      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
       .then((res) => {
         setHeroInfo(res.data);
       });
@@ -55,11 +51,9 @@ function AdminHeroSlider() {
             <div key={infos.hsid}>
               <ActuallyHeroSlider
                 id={infos.hsid}
+                idVid={infos.id}
                 title={infos.title}
-                cat={infos.cat}
                 url={infos.url}
-                heroInfo={heroInfo}
-                setHeroInfo={setHeroInfo}
                 setRefresh={setRefresh}
                 refresh={refresh}
               />

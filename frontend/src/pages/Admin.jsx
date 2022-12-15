@@ -150,6 +150,7 @@ function Admin() {
             setCategory(false);
             setVideos(false);
             setColors(!colors);
+            setHero(false);
           }}
         >
           COLORS <FaAngleLeft className="svgsamere" />
