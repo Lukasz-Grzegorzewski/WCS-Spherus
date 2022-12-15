@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { FaPlayCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function Sliderdata({ id, title, date, cat, url }) {
+function Sliderdata({ id, title, date, url }) {
   const year = date?.substring(0, 7);
+
   const videoUrl = `http://localhost:${
     import.meta.env.VITE_PORT_BACKEND
   }/${url}`;
+
+  const [cat, setCat] = useState([]);
+
+  const getCat = () => {
+    axios
+      .get(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/hero_slider/catname/${id}`
+      )
+      .then((res) => {
+        setCat(res.data);
+      });
+  };
+
+  useEffect(() => {
+    getCat();
+  }, []);
 
   return (
     <div className="sliderdata">
@@ -26,7 +46,9 @@ function Sliderdata({ id, title, date, cat, url }) {
         <p className="sliderdata_infos_name">
           {title} - {year}
         </p>
-        <p className="sliderdata_infos_cat">Category : {cat}</p>
+        <p className="sliderdata_infos_cat">
+          Category : {cat.length >= 1 && cat.map((infos) => `${infos.name}, `)}
+        </p>
         <Link to={`/videos/${id}`}>
           <button type="button" className="sliderdata_infos_btn">
             {" "}
@@ -44,6 +66,5 @@ Sliderdata.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  cat: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
