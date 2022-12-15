@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function ChoiceHero({ id, refresh, setRefresh }) {
+function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
   const [cat, setCat] = useState([]);
   const [videos, setVideos] = useState([]);
   const [valueCat, setValueCat] = useState("");
@@ -40,6 +40,7 @@ function ChoiceHero({ id, refresh, setRefresh }) {
       .then((res) => {
         setRefresh(!refresh);
         setResponse(res.data);
+        setChoice(!choice);
       });
   };
 
@@ -139,4 +140,6 @@ ChoiceHero.propTypes = {
   id: PropTypes.number.isRequired,
   setRefresh: PropTypes.func.isRequired,
   refresh: PropTypes.bool.isRequired,
+  setChoice: PropTypes.func.isRequired,
+  choice: PropTypes.bool.isRequired,
 };
