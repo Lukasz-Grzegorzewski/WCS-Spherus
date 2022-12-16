@@ -8,7 +8,7 @@ function Navbar({ handlePopUpLogIn }) {
   const [menu, setMenu] = useState(false);
 
   function test() {
-    console.log("onclick");
+    console.warn("onclick");
   }
 
   const buttonList = [
