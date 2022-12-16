@@ -33,48 +33,54 @@ function AdminVideos() {
   };
 
   return (
-    <div>
-      <div className="adminvideo_container">
+    <div className="adminvideo_container">
+      <div>
         <div>
-          <form action="" onSubmit={handleUpload} className="uplod_video">
-            <label htmlFor="file">Upload a video</label>
-            <input
-              type="file"
-              id="file"
-              name="file"
-              accept=".mp4"
-              onChange={(e) => {
-                setFile(e.target.files[0]);
-              }}
-            />
+          <form action="" onSubmit={handleUpload} className="upload_video">
+            <div className="adminvideo_file_container">
+              <label className="adminvideo_file_label" htmlFor="file">
+                Upload a video
+              </label>
+              <input
+                className="adminvideo_file_input"
+                type="file"
+                id="file"
+                name="file"
+                accept=".mp4"
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                }}
+              />
+            </div>
+            <div className="adminvideo_fields_input">
+              <label htmlFor="title">Video title</label>
+              <input
+                type="text"
+                id="title"
+                value={videoDetails.title}
+                placeholder="Enter the video title"
+                onChange={(e) =>
+                  setVideoDetails({ ...videoDetails, title: e.target.value })
+                }
+              />
+              {videoDetails.title}
 
-            <input
-              type="text"
-              id="title"
-              value={videoDetails.title}
-              placeholder="Enter the video title"
-              onChange={(e) =>
-                setVideoDetails({ ...videoDetails, title: e.target.value })
-              }
-            />
-            {videoDetails.title}
+              <label htmlFor="description">Video description</label>
+              <input
+                type="text"
+                id="description"
+                value={videoDetails.description}
+                placeholder="Enter the video description"
+                onChange={(e) =>
+                  setVideoDetails({
+                    ...videoDetails,
+                    description: e.target.value,
+                  })
+                }
+              />
+              {videoDetails.description}
 
-            <input
-              type="text"
-              id="description"
-              value={videoDetails.description}
-              placeholder="Enter the video description"
-              onChange={(e) =>
-                setVideoDetails({
-                  ...videoDetails,
-                  description: e.target.value,
-                })
-              }
-            />
-            {videoDetails.description}
-
-            <label htmlFor="display">
-              Display video?{" "}
+              <label htmlFor="display">Display video? </label>
               <select
                 className="display"
                 id="display"
@@ -86,19 +92,23 @@ function AdminVideos() {
                 <option value="0">locked</option>
                 <option value="1">available</option>;
               </select>
-            </label>
 
-            <input
-              type="date"
-              value={videoDetails.date}
-              id="date"
-              placeholder="date of upload"
-              onChange={(e) =>
-                setVideoDetails({ ...videoDetails, date: e.target.value })
-              }
-            />
-            {videoDetails.date}
-            <input type="submit" value="Upload" />
+              <label htmlFor="date">Date of upload</label>
+              <input
+                type="date"
+                value={videoDetails.date}
+                id="date"
+                placeholder="date of upload"
+                onChange={(e) =>
+                  setVideoDetails({ ...videoDetails, date: e.target.value })
+                }
+              />
+              <input
+                className="adminvideo_upload_btn"
+                type="submit"
+                value="Upload"
+              />
+            </div>
           </form>
         </div>
       </div>
