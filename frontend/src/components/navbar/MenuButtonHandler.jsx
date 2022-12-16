@@ -5,9 +5,9 @@ function MenuButtonHandler({ handleChange, menu }) {
   const buttonImageOne = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
+      width="50"
+      height="100%"
+      fill="#fc9918"
       className="bi bi-list"
       viewBox="0 0 16 16"
     >
@@ -21,9 +21,9 @@ function MenuButtonHandler({ handleChange, menu }) {
   const buttonImageTwo = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
+      width="50"
+      height="100%"
+      fill="#fc9918"
       className="bi bi-x-circle"
       viewBox="0 0 16 16"
     >
@@ -37,13 +37,21 @@ function MenuButtonHandler({ handleChange, menu }) {
   }
 
   return (
-    <div>
+    <div className="menu-icon">
       {menu ? (
-        <button type="button" onClick={changeButtonImage}>
+        <button
+          className="button-menu-open"
+          type="button"
+          onClick={() => changeButtonImage()}
+        >
           {buttonImageTwo}
         </button>
       ) : (
-        <button type="button" onClick={changeButtonImage}>
+        <button
+          className="button-menu-close"
+          type="button"
+          onClick={() => changeButtonImage()}
+        >
           {buttonImageOne}
         </button>
       )}

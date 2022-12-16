@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
-function MenuButton({ name, id }) {
+function MenuButton({ name, id, onclick, urlLink }) {
   return (
     <div className="menubutton">
-      <button id={id} type="button">
-        {name}
-      </button>
+      <NavLink to={urlLink}>
+        <button className={id} type="button" onClick={onclick}>
+          {name}
+        </button>
+      </NavLink>
     </div>
   );
 }
@@ -14,6 +17,8 @@ function MenuButton({ name, id }) {
 export default MenuButton;
 
 MenuButton.propTypes = {
-  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  onclick: PropTypes.func.isRequired,
+  urlLink: PropTypes.string.isRequired,
 };
