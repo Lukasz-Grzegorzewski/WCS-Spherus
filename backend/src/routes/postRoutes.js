@@ -2,10 +2,18 @@ const express = require("express");
 
 const router = express.Router();
 
+const { hashPassword, verifyPassword } = require("../handlers/auth");
+
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
-router.post("/users", postRoutesFunctions.signInUserByUser);
+router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
+
+router.post(
+  "/",
+  postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
+  verifyPassword
+);
 
 router.post("/videos", postRoutesFunctions.postVideo);
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);

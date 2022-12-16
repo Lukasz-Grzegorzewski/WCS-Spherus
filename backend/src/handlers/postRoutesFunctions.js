@@ -45,7 +45,7 @@ const signInUserByUser = (req, res) => {
             res.status(500).send("Error saving the user");
           });
       } else {
-        res.status(500).send("Fuck saving the user");
+        res.status(500).send("Impossible to save the user");
       }
     })
     .catch((err) => {
@@ -149,8 +149,31 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// Post a user that try to log his account
+const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const { email } = req.body;
+
+  database
+    .query("SELECT * FROM user WHERE email = ?", [email])
+    .then(([users]) => {
+      if (users[0] != null) {
+        // eslint-disable-next-line prefer-destructuring
+        req.user = users[0];
+
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
 module.exports = {
   signInUserByUser,
+  getUserByEmailWithPasswordAndPassToNext,
   signInUserByAdmin,
   postVideo,
   postCategory,
