@@ -8,7 +8,7 @@ const welcome = (req, res) => {
 /* USERS ROUTES */
 const getUsers = (req, res) => {
   database
-    .query("SELECT * FROM user")
+    .query("SELECT firstname, lastname, nickname FROM user")
     .then(([users]) => res.status(200).json(users))
     .catch((err) => console.error(err));
 };
