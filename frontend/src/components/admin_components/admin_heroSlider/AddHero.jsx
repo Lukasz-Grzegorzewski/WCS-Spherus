@@ -63,7 +63,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 
   return (
     <div className="addhero">
-      <h1 className="addhero_title">Add video in Hero Slider</h1>
+      <h1 className="addhero_title">Add new video</h1>
       <form className="addhero_cat">
         <label className="addhero_cat_name" htmlFor="category-select">
           Category name{" "}
