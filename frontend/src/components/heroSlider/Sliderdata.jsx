@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
-import { FaPlayCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Sliderdata({ id, title, date, url }) {
@@ -43,22 +42,42 @@ function Sliderdata({ id, title, date, url }) {
         />
       </div>
       <div className="sliderdata_infos">
-        <p className="sliderdata_infos_name">
-          {title} - {year}
-        </p>
-        <p className="sliderdata_infos_cat">
-          Category :{" "}
-          {cat.length >= 1 &&
-            cat
-              .map((infos) => `${infos.name}, `)
-              .join("")
-              .slice(0, -2)}{" "}
-        </p>
+        <div className="sliderdata_infos_box">
+          <p className="sliderdata_infos_box_title">{title} </p>
+          <p className="sliderdata_infos_box_name">{year}</p>
+          <p className="sliderdata_infos_box_cat">
+            Category :{" "}
+            {cat.length >= 1 &&
+              cat
+                .map((infos) => `${infos.name}, `)
+                .join("")
+                .slice(0, -2)}{" "}
+          </p>
+        </div>
         <Link to={`/videos/${id}`}>
-          <button type="button" className="sliderdata_infos_btn">
+          <button type="button" className="cssbuttons-io-button">
+            {" "}
+            Watch
+            <div className="icon">
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </button>
+
+          {/* <button type="button" className="sliderdata_infos_btn">
             {" "}
             Watch <FaPlayCircle className="sliderdata_infos_btn_icon" />
-          </button>
+          </button> */}
         </Link>
       </div>
     </div>
