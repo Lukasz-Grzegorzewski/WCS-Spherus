@@ -35,6 +35,7 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 
