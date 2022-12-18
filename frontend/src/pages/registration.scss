@@ -98,6 +98,19 @@
         margin-bottom: 2px;
       }
 
+      .password-strength-meter {
+        animation: soft-slide .2s ease-in-out;
+      }
+
+      @keyframes soft-slide {
+        0% {
+          transform: translateX(0%)
+        }
+        100% {
+          transform: translateX(100%)
+        }
+      }
+
       .button-78 {
         width: 50%;
         max-width: 150px;
