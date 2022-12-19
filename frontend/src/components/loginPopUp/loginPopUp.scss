@@ -1,8 +1,102 @@
-.login-card {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: 50vh;
-  margin: 200px 8vw;
-  h1 {
-    font-size: 32px;
+.login-pop-up {
+  animation: soft-fade-in 0.7s ease-out;
+  position: absolute;
+  top: 20%;
+
+  @keyframes soft-fade-in {
+    0% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .login-card {
+    position: relative;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 80vw;
+    height: 75vh;
+    left: 10vw;
+    border-radius: 12px;
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      padding-top: 24px;
+    }
+
+    form {
+      position: absolute;
+      width: 100%;
+      font-size: 16px;
+      justify-content: center;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+
+      label {
+        margin-left: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 8px 0;
+        width: 70%;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      :nth-child(3) {
+        margin-left: 60%;
+      }
+
+      .btn-submit {
+        width: 80px;
+        border-bottom: none;
+        border-radius: 4px;
+        background-color: rgb(254, 115, 1);
+        box-shadow: rgba(0, 0, 1, 0.3) 0px 20px 25px -5px,
+          rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
+      }
+
+      .btn-submit:hover {
+        background-color: rgb(241, 162, 98);
+      }
+
+      .btn-registration {
+        border-bottom: none;
+        border-radius: 12px;
+        margin-left: 10%;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+          rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      }
+
+      .btn-registration:hover {
+        background-color: rgb(241, 162, 98);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .login-pop-up {
+    top: 15vh;
+
+    .login-card {
+      width: 50vw;
+      height: 70vh;
+      left: 25vw;
+    }
   }
 }

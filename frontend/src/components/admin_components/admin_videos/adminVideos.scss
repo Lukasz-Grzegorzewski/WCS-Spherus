@@ -1,0 +1,63 @@
+.adminvideo_container {
+  width: 100%;
+  height: auto;
+  border: 2px solid $secondary-color;
+  background-color: $primary-color;
+  padding: 15px;
+  margin-right: 20px;
+  font-family: $font-text;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .adminvideo_file_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .adminvideo_file_label {
+    font-size: 18px;
+  }
+
+  .adminvideo_file_input {
+    width: 350px;
+    height: 300px;
+    background-color: rgb(76, 124, 197);
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .adminvideo_fields_input {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 10px;
+
+    label {
+      font-size: 18px;
+    }
+
+    input,
+    select,
+    option {
+      background-color: $tertiary-color;
+      color: white;
+    }
+
+    option {
+      width: 30%;
+    }
+
+    .adminvideo_upload_btn {
+      width: 25%;
+      background-color: $secondary-color;
+      margin: 0px auto;
+    }
+  }
+}

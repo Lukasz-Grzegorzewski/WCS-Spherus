@@ -2,7 +2,17 @@
 @import "./reset.scss";
 @import "./loginPopUp/loginPopUp.scss";
 @import "./footer/footer.scss";
-
+@import "../pages/registration.scss";
 @import "./heroSlider/heroslider.scss";
-
+@import "../pages/videoPage.scss";
+@import "../pages/home.scss";
+@import "./section/section.scss";
+@import "../pages/admin.scss";
 @import "./category_video/category_video.scss";
+@import "../components/section/section.scss";
+@import "./admin_components/admin_homePage/adminHomePage.scss";
+@import "./admin_components/admin_heroSlider/adminHeroSlider.scss";
+@import "../pages/page404.scss";
+@import "../app.scss";
+@import "../components/navbar/Navbar.css";
+@import "../components/admin_components/admin_videos/adminVideos.scss";

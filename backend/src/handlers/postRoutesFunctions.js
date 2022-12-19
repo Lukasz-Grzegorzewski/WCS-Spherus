@@ -6,28 +6,54 @@ const signInUserByUser = (req, res) => {
     firstname,
     lastname,
     nickname,
-    birthday,
+    birthday = null,
     email,
     password,
     isAdmin = 0,
   } = req.body;
 
+  let finalBirthday = birthday;
+  if (req.body.birthday === "") {
+    finalBirthday = null;
+  }
+
   database
-    .query(
-      "INSERT INTO user(firstname, lastname, nickname, birthday, email, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [firstname, lastname, nickname, birthday, email, password, isAdmin]
-    )
-    .then(([result]) => {
-      res
-        .location(`/users/${result.insertId}`)
-        .status(201)
-        .send({ message: "user created" });
+    .query("SELECT email FROM user WHERE email = ?", [email])
+    .then(([[resp]]) => {
+      if (!resp) {
+        database
+          .query(
+            "INSERT INTO user (firstname, lastname, nickname, birthday, email, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [
+              firstname,
+              lastname,
+              nickname,
+              finalBirthday,
+              email,
+              password,
+              isAdmin,
+            ]
+          )
+          .then(([result]) => {
+            res
+              .location(`/users/${result.insertId}`)
+              .status(201)
+              .send({ message: "user created" });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error saving the user");
+          });
+      } else {
+        res.status(500).send("Fuck saving the user");
+      }
     })
     .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error saving the user");
+      console.warn(err);
+      res.status(409).send("Fuck");
     });
 };
+
 /* user by admin */
 const signInUserByAdmin = (req, res) => {
   const { firstname, lastname, nickname, birthday, email, password, isAdmin } =
@@ -51,19 +77,20 @@ const signInUserByAdmin = (req, res) => {
 };
 
 // POST VIDEO
-const postVideo = (req, res) => {
-  const { url, description, display, title, date } = req.body;
+
+const postVideo = async (req, res, next) => {
+  const { description, display, title, date, filename } = req.body;
+
+  const url = `/assets/videos/${filename}`;
 
   database
     .query(
       "INSERT INTO video(url, description, display, title, date) VALUES (?, ?, ?, ?, ?)",
-      [url, description, display, title, date]
+      [url, description, Number(display), title, date]
     )
     .then(([result]) => {
-      res
-        .location(`/videos/${result.insertId}`)
-        .status(201)
-        .send({ message: "video added" });
+      req.body.videoId = result.insertId;
+      next();
     })
     .catch((err) => {
       console.error(err);
@@ -89,14 +116,10 @@ const postCategory = (req, res) => {
     });
 };
 
-// attach category to video
+/* attach category to video */
 
 const attachCategoryToVideo = (req, res) => {
-  // const id_vid = parseInt(req.params.id_vid);
-  // const id_cat = parseInt(req.params.id_cat);
-
   const { videoId, categoryId } = req.body;
-
   database
     .query("INSERT INTO video_category(video_id, category_id) VALUES (?, ?)", [
       videoId,
@@ -111,26 +134,20 @@ const attachCategoryToVideo = (req, res) => {
     });
 };
 
-/* const getMovieById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const image404 = "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
- 
+// Post Hero Slider
+const postHeroSlider = (req, res) => {
+  const { fkVideo } = req.body;
+
   database
-    .query("SELECT * FROM movies WHERE id = ?", [id])
-    .then(([movie]) => {
-      if (movie[0] != null) {
-        res.status(200).json(movie[0]);
-      } else {
-        res.write("<div><h1 style='text-align:center;'>Not Found</h1><a href='/api/movies'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< MOVIES</button></a></div>");
-        res.write("<img src=" + image404 + " style='width: 100vw;'></img>");
-        res.status(404).send();
-      }
+    .query("INSERT INTO hero_slider(fk_video) VALUES (?);", [Number(fkVideo)])
+    .then(() => {
+      res.status(201).send({ message: "Hero Slider Updated" });
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error retrieving data from database");
-    })
-}; */
+      res.status(500).send("Error update the hero slider");
+    });
+};
 
 module.exports = {
   signInUserByUser,
@@ -138,4 +155,5 @@ module.exports = {
   postVideo,
   postCategory,
   attachCategoryToVideo,
+  postHeroSlider,
 };

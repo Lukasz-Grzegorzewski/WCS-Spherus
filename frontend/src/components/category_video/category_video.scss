@@ -4,28 +4,28 @@
   width: auto;
   min-width: 320px;
   height: auto;
-  background-color: cadetblue;
+  background-color: $primary-color;
+  padding-bottom: 3%;
 
   &_main {
     width: 100%;
     height: auto;
-    background-color: #142850;
 
     &_name {
       width: 30%;
-      background-color: #142850;
+      background-color: $primary-color;
       padding: 5px;
       font-size: 35px;
       font-weight: bold;
-      color: #fa7d09;
-      margin: 30px 0;
+      color: $secondary-color;
+      margin: 30px 0 30px 20px;
     }
 
     &_container {
       min-width: 320;
       width: 90%;
       height: auto;
-      background-color: #27496d;
+      background-color: $tertiary-color;
       display: flex;
       flex-wrap: wrap;
       margin: auto;
