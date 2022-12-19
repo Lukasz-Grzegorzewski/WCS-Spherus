@@ -1,6 +1,51 @@
-.App {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  // justify-content: space-between;
+.App.dark-theme {
+  color: $dt-font-color;
+  background: $dt-background;
+
+  .navbar,
+  .footer {
+    background-color: $dt-navbar-footer-color;
+  }
+
+  .publicity {
+    background-color: $dt-publicity-background-color;
+  }
+
+  button {
+    color: $dt-font-color;
+  }
+
+  a {
+    color: $dt-font-color;
+  }
+}
+
+.App.light-theme {
+  color: $lt-font-color;
+  background: $lt-background;
+
+  .navbar,
+  .footer {
+    background-color: $lt-navbar-footer-color;
+  }
+
+  .publicity {
+    background-color: $lt-publicity-background-color;
+    color: $lt-publicity-font-color;
+  }
+
+  button {
+    color: $lt-font-color;
+  }
+
+  a {
+    color: $lt-font-color;
+  }
+}
+
+.App .heroslider {
+  color: $dt-font-color;
+  button {
+    color: $dt-font-color;
+  }
 }

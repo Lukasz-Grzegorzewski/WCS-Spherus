@@ -9,29 +9,40 @@
     height: 100%;
 
     .react-multiple-carousel__arrow {
-      background-color: $tertiary-color;
+      background-color: $button-background-three;
+      border: $button-input-border-size solid $dt-toggle-color-border;
 
       &:hover {
-        background-color: $secondary-color;
+        background-color: $button-background-two;
 
         &::before {
-          color: $tertiary-color;
+          color: $button-background-three;
         }
       }
 
       &::before {
-        color: $secondary-color;
+        color: $button-background-two;
       }
     }
 
     .react-multi-carousel-dot-list {
       margin-bottom: 2%;
     }
-
+    
+    .react-multi-carousel-dot:first-child button, 
+    .react-multi-carousel-dot:last-child button {
+      scale: 50%;
+    }
+    .react-multi-carousel-dot:nth-last-child(2) button, 
+    .react-multi-carousel-dot:nth-child(2) button {
+      scale: 75%;
+    }
+    
     .react-multi-carousel-dot--active button {
-      background: $secondary-color;
+      background: $button-background-three;
       scale: 125%;
     }
+
   }
 }
 
