@@ -96,7 +96,6 @@ function AdminVideos() {
               }
             />
 
-
             <label htmlFor="description">Video description</label>
             <input
               type="text"
@@ -110,7 +109,6 @@ function AdminVideos() {
                 })
               }
             />
-
 
             <label htmlFor="display">Display video? </label>
             <select
