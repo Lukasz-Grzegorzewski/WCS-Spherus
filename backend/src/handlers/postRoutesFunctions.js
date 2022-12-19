@@ -151,6 +151,25 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// POST ADVERT
+const postAdvert = (req, res) => {
+  const { description, urlLink, name, filename } = req.body;
+
+  const urlImage = `/assets/images/${filename}`;
+  database
+    .query(
+      "INSERT INTO publicity(url_image, description, url_link, name) VALUES (?, ?, ?, ?);",
+      [urlImage, description, urlLink, name]
+    )
+    .then(() => {
+      res.status(201).send({ message: "Advert Added" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error add new Advertising");
+    });
+};
+
 // Post a user that try to log his account
 const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
   const { email } = req.body;
@@ -181,4 +200,5 @@ module.exports = {
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,
+  postAdvert,
 };

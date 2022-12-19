@@ -102,6 +102,8 @@ function Admin() {
             setVideos(!videos);
             setColors(false);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           VIDEOS <FaAngleLeft className="svgsamere" />

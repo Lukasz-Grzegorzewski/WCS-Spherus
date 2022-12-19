@@ -1,0 +1,21 @@
+@import "./addAdvert.scss";
+
+.adminad {
+  width: 96%;
+  border: 2px solid $secondary-color;
+  border-radius: 20px;
+  padding: 1%;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &_add {
+    width: 100%;
+
+    &_title {
+      font-family: $font-display;
+      font-size: 25px;
+    }
+  }
+}
