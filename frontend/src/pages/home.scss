@@ -1,7 +1,6 @@
 .home {
   display: flex;
   flex-direction: column;
-  background-color: $primary-color;
 
   &_section {
     width: 100%;
@@ -14,7 +13,7 @@
       padding: 3% 0 1% 0.5%;
       font-size: 30px;
       font-weight: bold;
-      color: $secondary-color;
+      //color: $secondary-color;
       display: flex;
       justify-content: space-between;
 
