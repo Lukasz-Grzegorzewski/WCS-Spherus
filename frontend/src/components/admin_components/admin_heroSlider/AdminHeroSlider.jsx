@@ -23,7 +23,7 @@ function AdminHeroSlider() {
   return (
     <div className="adminheroslider">
       <div className="adminheroslider_text">
-        <h1>Actually in the Hero Slider</h1>
+        <h1>Currently in the Hero Slider</h1>
         <button
           className="icon-btn add-btn"
           type="button"
@@ -44,23 +44,24 @@ function AdminHeroSlider() {
           setAdd={setAdd}
         />
       )}
-
-      <div className="adminheroslider_videos">
-        {heroInfo.map((infos) => {
-          return (
-            <div key={infos.hsid}>
-              <ActuallyHeroSlider
-                id={infos.hsid}
-                idVid={infos.id}
-                title={infos.title}
-                url={infos.url}
-                setRefresh={setRefresh}
-                refresh={refresh}
-              />
-            </div>
-          );
-        })}
-      </div>
+      {heroInfo.length >= 1 && (
+        <div className="adminheroslider_videos">
+          {heroInfo.map((infos) => {
+            return (
+              <div key={infos.hsid}>
+                <ActuallyHeroSlider
+                  id={infos.hsid}
+                  idVid={infos.id}
+                  title={infos.title}
+                  url={infos.url}
+                  setRefresh={setRefresh}
+                  refresh={refresh}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

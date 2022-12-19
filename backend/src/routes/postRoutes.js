@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
+const { hashPassword, verifyPassword } = require("../handlers/auth");
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/assets/videos");
@@ -15,12 +17,22 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
-router.post("/users", postRoutesFunctions.signInUserByUser);
+router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
+router.post(
+  "/",
+  postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
+  verifyPassword
+);
+
+router.post("/videos", postRoutesFunctions.postVideo);
+
 router.post("/videos", upload.single("file"), postRoutesFunctions.postVideo);
+
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
 router.post("/categories", postRoutesFunctions.postCategory);

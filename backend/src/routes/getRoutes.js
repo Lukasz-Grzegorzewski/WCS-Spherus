@@ -1,12 +1,13 @@
 const express = require("express");
 
 const router = express.Router();
+const { verifyToken } = require("../handlers/auth");
 
 const getRoutesFunctions = require("../handlers/getRoutesFunctions");
 
 router.get("/", getRoutesFunctions.welcome);
 
-router.get("/users", getRoutesFunctions.getUsers);
+router.get("/users", verifyToken, getRoutesFunctions.getUsers);
 router.get("/users/:id", getRoutesFunctions.getUserById);
 
 router.get("/favorites", getRoutesFunctions.getFavorites);
@@ -34,6 +35,7 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 
