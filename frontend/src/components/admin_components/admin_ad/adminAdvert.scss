@@ -1,4 +1,5 @@
 @import "./addAdvert.scss";
+@import "./deleteAdvert.scss";
 
 .adminad {
   width: 96%;
@@ -10,8 +11,10 @@
   flex-direction: column;
   gap: 15px;
 
-  &_add {
+  &_box {
     width: 100%;
+    margin-left: 1%;
+    margin-top: 1%;
 
     &_title {
       font-family: $font-display;

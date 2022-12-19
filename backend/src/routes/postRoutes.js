@@ -29,7 +29,7 @@ const storageImg = multer.diskStorage({
   },
 });
 
-const uploadImg = multer({ storageImg });
+const uploadImg = multer({ storage: storageImg });
 
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
