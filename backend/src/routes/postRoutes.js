@@ -37,12 +37,18 @@ router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
 router.post(
+
+  "/videos",
+  upload.single("file"),
+  postRoutesFunctions.postVideo,
+  postRoutesFunctions.attachCategoryToVideo
+);
+
   "/",
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
 
-router.post("/videos", upload.single("file"), postRoutesFunctions.postVideo);
 
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
