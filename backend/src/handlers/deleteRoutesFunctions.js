@@ -76,9 +76,26 @@ const deleteHeroSliderById = (req, res) => {
     });
 };
 
+const deletePublicityById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  database
+    .query("DELETE FROM publicity WHERE id = ?", [id])
+    .then(([pub]) => {
+      return pub.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a advert");
+    });
+};
+
 module.exports = {
   deleteUserById,
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,
+  deletePublicityById,
 };

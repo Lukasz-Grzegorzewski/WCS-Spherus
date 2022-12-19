@@ -46,6 +46,7 @@ function PasswordStrengthMeter({ password }) {
     height: "7px",
     margin: "0px",
     borderRadius: "12px",
+    animate: "soft-slide 2s ease-out",
   });
 
   return (
