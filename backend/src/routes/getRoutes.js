@@ -1,12 +1,17 @@
 const express = require("express");
 
 const router = express.Router();
+const { verifyToken } = require("../handlers/auth");
+
 const getRoutesFunctions = require("../handlers/getRoutesFunctions");
 /* router */
 router.get("/", getRoutesFunctions.welcome);
 
+
 /* user */
-router.get("/users", getRoutesFunctions.getUsers);
+
+router.get("/users", verifyToken, getRoutesFunctions.getUsers);
+
 router.get("/users/:id", getRoutesFunctions.getUserById);
 
 /* favorites */
@@ -38,6 +43,7 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 

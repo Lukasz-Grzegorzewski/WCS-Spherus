@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Advert from "@components/advert/Advert";
 import Heroslider from "../components/heroSlider/Heroslider";
 import Section from "../components/section/Section";
 
@@ -30,13 +31,14 @@ export default function Home() {
                 <div>{e.name}</div>
               </NavLink>
               <NavLink to={`/categories/${e.id}`}>
-                <div className="home-section_container_seebtn">See More</div>
+                <div className="home_section_container_seebtn">See More</div>
               </NavLink>
             </div>
             <Section id={e.id} />
           </div>
         ))}
       </div>
+      <Advert />
     </div>
   );
 }

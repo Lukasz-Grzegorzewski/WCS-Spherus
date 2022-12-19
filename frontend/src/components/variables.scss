@@ -1,6 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$font-family-Kdam: 'Kdam Thmor Pro', sans-serif;
+$font-family-Roboto: 'Roboto', sans-serif;
+
+//THEME TOGGLE
+$dt-toggle-color-border: white;
+$dt-toggle-background-color-font: black;
+
+$lt-toggle-color-border: black;
+
+//BUTTONS
+$button-input-border-size: 2px;
+$button-input-border-color: white;
+$button-background-login: #FF8A00;
+$button-background-one: transparent;
+$button-background-two: white;
+$button-background-three: black;
+$button-background-off: red;
+$button-background-on: green;
+
+//PLACEHOLDER
+$placeholder-font-color: #888888;
+
+//FONT
+
+
+//--------------------LIGHT THEME---------------------------------------------
+
+//font
+$lt-font-color: #000000;
+//BACKGROUND VARIABLES
+$lt-background-gradient-color-top: #D1DDEB;
+$lt-background-gradient-color-middle: #90A7BF;
+$lt-background-gradient-color-bottom: #FFFFFF;
+//background
+$lt-background: linear-gradient(
+    180deg,
+    $lt-background-gradient-color-top 22.97%,
+    $lt-background-gradient-color-middle 43.4%,
+    $lt-background-gradient-color-bottom 98.86%
+  );
+//footer / navbar
+$lt-navbar-footer-color: #D1DDEB;
+//publicity
+$lt-publicity-background-color: #E3ECF5;
+$lt-publicity-font-color: #555555;
+
+//--------------------DARK THEME---------------------------------------------
+
+//font
+$dt-font-color: #ffffff;
+//BACKGROUND VARIABLES
+$dt-background-gradient-color-top: #01153D;
+$dt-background-gradient-color-middle: #546b88;
+$dt-background-gradient-color-bottom: #000000;
+//background
+$dt-background: linear-gradient(
+    180deg,
+    $dt-background-gradient-color-top 40.6%,
+    $dt-background-gradient-color-middle 50.7%,
+    $dt-background-gradient-color-bottom 100%
+  );
+//footer / navbar
+$dt-navbar-footer-color: #01153D;
+
+//publicity
+$dt-publicity-background-color: #383838;
+
+//button
+$dt-button-font-color: #FFFFFF;
+
+//-----------------------------------------------------------------
 $primary-color: #142850;
 $secondary-color: #fa7d09;
 $tertiary-color: #27496d;
 $fourth-color: #1c6dd0;
-$font-display: "Righteous";
+$font-display: "Kdam Thmor Pro";
 $font-text: "Roboto";
