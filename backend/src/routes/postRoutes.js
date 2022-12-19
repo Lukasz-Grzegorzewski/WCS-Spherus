@@ -20,7 +20,12 @@ const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 router.post("/users", postRoutesFunctions.signInUserByUser);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
-router.post("/videos", upload.single("file"), postRoutesFunctions.postVideo);
+router.post(
+  "/videos",
+  upload.single("file"),
+  postRoutesFunctions.postVideo,
+  postRoutesFunctions.attachCategoryToVideo
+);
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
 router.post("/categories", postRoutesFunctions.postCategory);
