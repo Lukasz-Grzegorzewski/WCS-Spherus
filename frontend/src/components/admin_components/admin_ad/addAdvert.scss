@@ -11,33 +11,34 @@
       gap: 15px;
 
       &_label {
-        font-size: 15px;
+        font-size: 18px;
       }
 
       &_input {
         border-radius: 20px;
         text-indent: 2%;
         height: 25px;
-        width: 35%;
+        width: 80%;
         margin-left: 2%;
       }
 
       &_textarea {
         border-radius: 20px;
-        text-indent: 2%;
-        height: 100px;
-        width: 35%;
+        text-indent: 3%;
+        height: 120px;
+        width: 80%;
         margin-left: 2%;
+        font-family: $font-family-Roboto;
       }
 
       &_btn {
         font-family: $font-family-Roboto;
         font-size: 15px;
         background-color: $fourth-color;
-        width: 36%;
+        width: 82%;
         height: 40px;
         margin-left: 2%;
-        margin-top: 1%;
+        margin-top: 2%;
         color: $secondary-color;
         padding: 0.7em 1em;
         padding-left: 0.9em;
@@ -75,6 +76,27 @@
 
       button:active {
         transform: scale(0.95);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .addadvert {
+    &_form {
+      &_container {
+        &_input {
+          width: 50%;
+        }
+
+        &_textarea {
+          height: 150px;
+          width: 50%;
+        }
+
+        &_btn {
+          width: 51%;
+        }
       }
     }
   }
