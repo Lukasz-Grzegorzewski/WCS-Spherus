@@ -27,7 +27,9 @@
       border: 2px solid $fourth-color;
       color: $secondary-color;
       font-size: 20px;
+      font-family: $font-family-Kdam;
       transition: 0.3s ease-in-out;
+      border-radius: 20px;
       cursor: pointer;
 
       &:hover {
@@ -47,8 +49,10 @@
       border: 2px solid $fourth-color;
       color: $primary-color;
       font-size: 20px;
+      font-family: $font-family-Kdam;
       transition: 0.3s ease-in-out;
       transform: scale(1.07);
+      border-radius: 20px;
       cursor: pointer;
 
       .svgsamere {

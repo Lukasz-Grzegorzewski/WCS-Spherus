@@ -16,9 +16,11 @@
 
       &_select {
         width: 40%;
+        height: 25px;
         background-color: $fourth-color;
         color: white;
         margin-left: 10px;
+        border-radius: 20px;
       }
     }
   }
@@ -31,9 +33,11 @@
 
       &_select {
         width: 40%;
+        height: 25px;
         background-color: $fourth-color;
         color: white;
         margin-left: 29px;
+        border-radius: 20px;
       }
     }
   }
@@ -44,14 +48,16 @@
     font-family: inherit;
     font-size: 15px;
     background-color: $fourth-color;
-    width: 35%;
+    width: 40%;
     height: 30px;
+    margin-left: 3%;
     color: $secondary-color;
     padding: 0.7em 1em;
     padding-left: 0.9em;
     display: flex;
     align-items: center;
     border: 2px solid $secondary-color;
+    border-radius: 20px;
     overflow: hidden;
     transition: all 0.3s;
   }
@@ -121,6 +127,7 @@
       align-self: inherit;
       width: 15%;
       margin-left: 105px;
+      height: 35px;
     }
 
     button span {

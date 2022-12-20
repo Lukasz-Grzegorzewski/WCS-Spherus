@@ -78,20 +78,19 @@ const signInUserByAdmin = (req, res) => {
 
 // POST VIDEO
 
-const postVideo = (req, res) => {
+const postVideo = async (req, res, next) => {
   const { description, display, title, date, filename } = req.body;
 
   const url = `/assets/videos/${filename}`;
+
   database
     .query(
       "INSERT INTO video(url, description, display, title, date) VALUES (?, ?, ?, ?, ?)",
       [url, description, Number(display), title, date]
     )
     .then(([result]) => {
-      res
-        .location(`/videos/${result.insertId}`)
-        .status(201)
-        .send({ message: "video added" });
+      req.body.videoId = result.insertId;
+      next();
     })
     .catch((err) => {
       console.error(err);
@@ -117,11 +116,10 @@ const postCategory = (req, res) => {
     });
 };
 
-// attach category to video
+/* attach category to video */
 
 const attachCategoryToVideo = (req, res) => {
   const { videoId, categoryId } = req.body;
-
   database
     .query("INSERT INTO video_category(video_id, category_id) VALUES (?, ?)", [
       videoId,
@@ -148,6 +146,25 @@ const postHeroSlider = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error update the hero slider");
+    });
+};
+
+// POST ADVERT
+const postAdvert = (req, res) => {
+  const { description, urlLink, name, filename } = req.body;
+
+  const urlImage = `/assets/images/${filename}`;
+  database
+    .query(
+      "INSERT INTO publicity(url_image, description, url_link, name) VALUES (?, ?, ?, ?);",
+      [urlImage, description, urlLink, name]
+    )
+    .then(() => {
+      res.status(201).send({ message: "Advert Added" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error add new Advertising");
     });
 };
 
@@ -181,4 +198,5 @@ module.exports = {
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,
+  postAdvert,
 };

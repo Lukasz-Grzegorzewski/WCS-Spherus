@@ -105,12 +105,18 @@ section {
 
 html {
   font-size: 10px;
-  font-family: $font-text;
   overflow-x: hidden;
+  font-family: $font-family-Roboto; //FONT GLOBAL
   scroll-behavior: smooth;
   cursor: default;
-  background: #f9f9f9;
-  color: $primary-color;
+}
+
+h1 {
+  font-family: $font-family-Kdam; //FONT H1
+}
+
+h1 {
+  font-family: $font-family-Kdam;
 }
 
 body {
