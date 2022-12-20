@@ -3,69 +3,68 @@ import PropTypes from "prop-types";
 import axios from "axios";
 
 function DeleteVideo({ message }) {
-    const [video, setVideo] = useState([]);
-    const [videoId, setVideoId] = useState([]);
-    const [deleteMessage, setDeleteMessage] = useState(false);
+  const [video, setVideo] = useState([]);
+  const [videoId, setVideoId] = useState([]);
+  const [deleteMessage, setDeleteMessage] = useState(false);
 
-    const getVideo = () => {
-        axios
-            .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`)
-            .then((res) => {
-                setVideo(res.data);
+  const getVideo = () => {
+    axios
+      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`)
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch(() => {
+        console.error("video not found");
+      });
+  };
 
-            })
-            .catch(() => {
-                console.error("video not found");
-            });
-    };
+  useEffect(() => {
+    getVideo();
+  }, [message]);
 
-    useEffect(() => {
-        getVideo();
-    }, [message]);
+  const deleteVideo = () => {
+    axios
+      .delete(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/videos/${videoId}`
+      )
+      .then(() => setDeleteMessage(true))
+      .catch(() => {
+        console.error("video not found");
+      });
+  };
 
-    const deleteVideo = () => {
+  return (
+    <div className="delete_video_container">
+      <h2>Delete a video</h2>
+      <div className="delete_video_selection">
+        {video.length > 0 && (
+          <select
+            className="delete_video_select"
+            onChange={(e) => setVideoId(e.target.value)}
+          >
+            <option value="">---</option>
+            {video.map((v) => (
+              <option value={v.id}>{v.title}</option>
+            ))}
+          </select>
+        )}
 
-        axios
-            .delete(
-                `http://localhost:${import.meta.env.VITE_PORT_BACKEND
-                }/videos/${videoId}`
-            )
-            .then(() => setDeleteMessage(true))
-            .catch(() => {
-                console.error("video not found");
-            });
-    };
+        <button type="button" onClick={deleteVideo}>
+          Delete video
+        </button>
+      </div>
 
-    return (
-        <div className="delete_video_container">
-            <h2>Delete a video</h2>
-            <div className="delete_video_selection">
-                {video.length > 0 && (
-                    <select
-                        className="delete_video_select"
-                        onChange={(e) => setVideoId(e.target.value)}
-                    >
-                        <option value="">---</option>
-                        {video.map((v) => (
-                            <option value={v.id}>{v.title}</option>
-                        ))}
-                    </select>
-                )}
-
-                <button type="button" onClick={deleteVideo}>
-                    Delete video
-                </button>
-            </div>
-
-            <div className={deleteMessage ? "delete_message" : "delete_message_not"}>
-                <h2>Video has been deleted!</h2>
-            </div>
-        </div>
-    );
+      <div className={deleteMessage ? "delete_message" : "delete_message_not"}>
+        <h2>Video has been deleted!</h2>
+      </div>
+    </div>
+  );
 }
 
 DeleteVideo.propTypes = {
-    message: PropTypes.bool.isRequired,
+  message: PropTypes.bool.isRequired,
 };
 
 export default DeleteVideo;
