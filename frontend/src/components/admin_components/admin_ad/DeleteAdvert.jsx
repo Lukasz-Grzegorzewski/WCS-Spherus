@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+import PopupAdvertDelete from "./PopupAdvertDelete";
 
-function DeleteAdvert() {
-  const [pub, setPub] = useState([]);
+function DeleteAdvert({ pub, setRefresh, refresh }) {
   const [idPub, setIdPub] = useState("");
-  const [refresh, setRefresh] = useState(false);
-
-  const getPub = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/publicities`)
-      .then((res) => {
-        setPub(res.data);
-      });
-  };
-
-  useEffect(() => {
-    getPub();
-  }, [refresh]);
+  const [check, setCheck] = useState(false);
 
   const deletePub = () => {
     axios
@@ -25,9 +14,11 @@ function DeleteAdvert() {
           import.meta.env.VITE_PORT_BACKEND
         }/publicities/${idPub}`
       )
-      .then((res) => {
-        setPub(res.data);
-        setRefresh(!refresh);
+      .then(() => {
+        setCheck(true);
+      })
+      .catch((error) => {
+        console.warn(error);
       });
   };
 
@@ -37,10 +28,10 @@ function DeleteAdvert() {
 
   return (
     <div className="deleteadvert">
-      <form className="deleteadvert_form">
-        <label className="deleteadvert_form_label" htmlFor="publicity-select">
-          Choose advertising to delete{" "}
-          {pub.length >= 1 && (
+      {check === false ? (
+        <form className="deleteadvert_form">
+          <label className="deleteadvert_form_label" htmlFor="publicity-select">
+            Choose advertising to delete <br />
             <select
               className="deleteadvert_form_label_select"
               id="publicity-select"
@@ -49,15 +40,23 @@ function DeleteAdvert() {
               <option value="">---</option>
               {pub.map((infos) => {
                 return (
-                  <option key={infos.id} value={infos.id}>
+                  <option key={infos.name} value={infos.id}>
                     {infos.name}
                   </option>
                 );
               })}
             </select>
-          )}
-        </label>
-      </form>
+          </label>
+        </form>
+      ) : (
+        <div className="deleteadvert_check">
+          <PopupAdvertDelete
+            setCheck={setCheck}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        </div>
+      )}
       <div className="deleteadvert_delete">
         <button
           type="button"
@@ -74,3 +73,16 @@ function DeleteAdvert() {
 }
 
 export default DeleteAdvert;
+
+DeleteAdvert.propTypes = {
+  pub: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      url_image: PropTypes.string.isRequired,
+      url_link: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
+};

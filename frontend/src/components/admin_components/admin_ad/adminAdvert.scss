@@ -1,5 +1,6 @@
 @import "./addAdvert.scss";
 @import "./deleteAdvert.scss";
+@import "./popupAdvert.scss";
 
 .adminad {
   width: 96%;
@@ -9,7 +10,14 @@
   background-color: $primary-color;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+
+  &_separate {
+    display: flex;
+    align-self: center;
+    width: 70%;
+    border-bottom: 2px solid $secondary-color;
+  }
 
   &_box {
     width: 100%;
