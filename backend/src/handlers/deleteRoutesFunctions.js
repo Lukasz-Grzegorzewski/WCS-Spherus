@@ -1,4 +1,5 @@
 const database = require("../../database");
+const fs = require('fs');
 
 const deleteUserById = (req, res) => {
   const id = parseInt(req.params.id, 10);
@@ -20,29 +21,43 @@ const deleteVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   database
-    .query("DELETE FROM video_category WHERE video_id = ?", [id])
-    .then(([videoCategory]) => {
-      if (videoCategory.affectedRows !== 0) {
-        database
-          .query("DELETE FROM video WHERE id = ?", [id])
-          .then(([video]) => {
-            return video.affectedRows === 0
-              ? res.status(404).send("Not Found")
-              : res.sendStatus(204);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send("Error deleting a video");
-          });
-      } else {
-        console.warn("youhou ça marche pas!");
-      }
+    .query("SELECT url FROM video WHERE id = ?", [id])
+    .then(([[url]]) => {
+      database
+        .query("DELETE FROM video_category WHERE video_id = ?", [id])
+        .then(([videoCategory]) => {
+          if (videoCategory.affectedRows !== 0) {
+            database
+              .query("DELETE FROM video WHERE id = ?", [id])
+              .then(([video]) => {
+
+                const path = `/${url.url}`;
+                fs.unlink("public" + path, (err) => {
+                  if (err) {
+                    console.error(err)
+                    return
+                  }
+                })
+
+                return video.affectedRows === 0
+                  ? res.status(404).send("Not Found")
+                  : res.sendStatus(204);
+              })
+
+              .catch((err) => {
+                console.error(err);
+                res.status(500).send("Error deleting a video");
+              })
+          }
+        })
+
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error deleting a video_category attachment");
+        })
+
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a video_category attachment");
-    });
-};
+}
 
 const deleteCategoryById = (req, res) => {
   const id = parseInt(req.params.id, 10);
