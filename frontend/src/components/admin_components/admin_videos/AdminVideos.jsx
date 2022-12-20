@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DeleteVideo from "./DeleteVideo";
 
 function AdminVideos() {
   const [file, setFile] = useState({});
+  const [message, setMessage] = useState(false)
   const [videoDetails, setVideoDetails] = useState({
     title: "",
     description: "",
@@ -10,16 +12,29 @@ function AdminVideos() {
     date: null,
   });
 
+
   const uploadVideo = (data) => {
     axios
       .post(
         `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`,
         data
       )
+      .then(() => setMessage(true))
+      .then(() => clearInput())
       .catch(() => {
         console.error("video not uploaded");
       });
   };
+
+  const clearInput = () => {
+    setVideoDetails({
+      title: "",
+      description: "",
+      display: "",
+      date: null,
+    })
+  };
+
 
   const [categoryLink, setCategoryLink] = useState(null);
 
@@ -44,7 +59,7 @@ function AdminVideos() {
         setCategory(res.data);
       })
       .catch(() => {
-        console.error("ta gueule");
+        console.error("category not found");
       });
   };
   useEffect(() => {
@@ -64,6 +79,8 @@ function AdminVideos() {
   useEffect(() => {
     linkCategory();
   }, []);
+
+
 
   return (
     <div className="adminvideo_container">
@@ -151,8 +168,17 @@ function AdminVideos() {
             />
           </div>
         </form>
+
+        <div className={message ? "upload_message" : "upload_message_not"} >
+          <h2>
+            Video has been Uploaded!
+          </h2>
+        </div>
+
+        <DeleteVideo message={message} setMessage={setMessage} />
+
       </div>
-    </div>
+    </div >
   );
 }
 
