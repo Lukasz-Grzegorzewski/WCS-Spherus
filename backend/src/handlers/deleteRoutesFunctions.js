@@ -35,16 +35,13 @@ const deleteVideoById = (req, res) => {
             res.status(500).send("Error deleting a video");
           });
       } else {
-        console.log("youhou ça marche pas!")
+        console.warn("youhou ça marche pas!");
       }
-
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error deleting a video_category attachment");
     });
-
-
 };
 
 const deleteCategoryById = (req, res) => {

@@ -4,7 +4,7 @@ import DeleteVideo from "./DeleteVideo";
 
 function AdminVideos() {
   const [file, setFile] = useState({});
-  const [message, setMessage] = useState(false)
+  const [message, setMessage] = useState(false);
   const [videoDetails, setVideoDetails] = useState({
     title: "",
     description: "",
@@ -12,6 +12,14 @@ function AdminVideos() {
     date: null,
   });
 
+  const clearInput = () => {
+    setVideoDetails({
+      title: "",
+      description: "",
+      display: "",
+      date: null,
+    });
+  };
 
   const uploadVideo = (data) => {
     axios
@@ -25,16 +33,6 @@ function AdminVideos() {
         console.error("video not uploaded");
       });
   };
-
-  const clearInput = () => {
-    setVideoDetails({
-      title: "",
-      description: "",
-      display: "",
-      date: null,
-    })
-  };
-
 
   const [categoryLink, setCategoryLink] = useState(null);
 
@@ -79,8 +77,6 @@ function AdminVideos() {
   useEffect(() => {
     linkCategory();
   }, []);
-
-
 
   return (
     <div className="adminvideo_container">
@@ -169,16 +165,13 @@ function AdminVideos() {
           </div>
         </form>
 
-        <div className={message ? "upload_message" : "upload_message_not"} >
-          <h2>
-            Video has been Uploaded!
-          </h2>
+        <div className={message ? "upload_message" : "upload_message_not"}>
+          <h2>Video has been Uploaded!</h2>
         </div>
 
         <DeleteVideo message={message} setMessage={setMessage} />
-
       </div>
-    </div >
+    </div>
   );
 }
 

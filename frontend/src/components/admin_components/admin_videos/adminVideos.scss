@@ -68,7 +68,6 @@
       font-family: $font-text;
       font-size: 18px;
     }
-
   }
 
   .upload_message_not {
@@ -80,7 +79,6 @@
       font-family: $font-text;
       font-size: 18px;
       margin: 15px 15px 15px 160px;
-
     }
 
     .delete_video_selection {
@@ -112,12 +110,10 @@
         text-align: center;
         margin: 0px 0px;
       }
-
     }
 
     .delete_message_not {
       display: none;
     }
   }
-
 }
