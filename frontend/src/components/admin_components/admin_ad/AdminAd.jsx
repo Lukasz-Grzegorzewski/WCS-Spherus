@@ -29,7 +29,9 @@ function AdminAd() {
       <div className="adminad_separate" />
       <div className="adminad_box">
         <h1 className="adminad_box_title">Update Advertising</h1>
-        <UpdateAdvert />
+        {pub.length >= 1 && (
+          <UpdateAdvert pub={pub} refresh={refresh} setRefresh={setRefresh} />
+        )}
       </div>
       <div className="adminad_separate" />
       <div className="adminad_box">
