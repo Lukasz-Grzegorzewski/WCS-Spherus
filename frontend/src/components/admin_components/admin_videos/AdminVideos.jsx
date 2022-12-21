@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteVideo from "./DeleteVideo";
+import UpdateVideo from "./UpdateVideo";
 
 function AdminVideos() {
   const [file, setFile] = useState({});
@@ -9,7 +10,7 @@ function AdminVideos() {
     title: "",
     description: "",
     display: "",
-    date: null,
+    date: new Date().toISOString().split("T")[0],
   });
 
   const clearInput = () => {
@@ -17,7 +18,7 @@ function AdminVideos() {
       title: "",
       description: "",
       display: "",
-      date: null,
+      date: new Date().toISOString().split("T")[0],
     });
   };
 
@@ -170,6 +171,7 @@ function AdminVideos() {
         </div>
 
         <DeleteVideo message={message} setMessage={setMessage} />
+        <UpdateVideo />
       </div>
     </div>
   );
