@@ -23,19 +23,19 @@ function AdminAd() {
   return (
     <div className="adminad">
       <div className="adminad_box">
-        <h1 className="adminad_box_title">Add new Advertising</h1>
+        <h1 className="adminad_box_title">Add new Advert</h1>
         <AddAdvert refresh={refresh} setRefresh={setRefresh} />
       </div>
       <div className="adminad_separate" />
       <div className="adminad_box">
-        <h1 className="adminad_box_title">Update Advertising</h1>
+        <h1 className="adminad_box_title">Update Advert</h1>
         {pub.length >= 1 && (
           <UpdateAdvert pub={pub} refresh={refresh} setRefresh={setRefresh} />
         )}
       </div>
       <div className="adminad_separate" />
       <div className="adminad_box">
-        <h1 className="adminad_box_title">Delete Advertising</h1>
+        <h1 className="adminad_box_title">Delete Advert</h1>
         {pub.length >= 1 && (
           <DeleteAdvert pub={pub} refresh={refresh} setRefresh={setRefresh} />
         )}
