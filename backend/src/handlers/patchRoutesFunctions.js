@@ -134,16 +134,19 @@ const updateHeroSliderById = (req, res) => {
       res.status(500).send("Error editing the Hero");
     });
 };
-// Update Hero Slider in admin
+// Update Advertising in admin
 const updatePublicityById = (req, res) => {
   const { id } = req.params;
-  const { fkVideo } = req.body;
-
+  const { description, urlLink, name } = req.body;
   database
-    .query("UPDATE hero_slider set fk_video = ? WHERE id = ?", [
-      Number(fkVideo),
-      id,
-    ])
+    .query(
+      `UPDATE publicity set description = ${JSON.stringify(
+        description
+      )}, url_link= ${JSON.stringify(urlLink)}, name = ${JSON.stringify(
+        name
+      )} WHERE id = ?;`,
+      [Number(id)]
+    )
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.status(404).send("Not Found");

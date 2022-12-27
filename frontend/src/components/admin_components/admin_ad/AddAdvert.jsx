@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAdvertAdd from "./PopupAdvertAdd";
+import PopupAdvertError from "./PopupAdvertError";
 
 function AddAdvert({ setRefresh, refresh }) {
   const [file, setFile] = useState({});
   const [check, setCheck] = useState(false);
+  const [error, setError] = useState(false);
   const [imgDetails, setImgDetails] = useState({
     description: "",
     urlLink: "",
@@ -36,6 +38,7 @@ function AddAdvert({ setRefresh, refresh }) {
         clearFile();
       })
       .catch(() => {
+        setError(true);
         console.error("advertising not uploaded");
       });
   };
@@ -57,16 +60,19 @@ function AddAdvert({ setRefresh, refresh }) {
           <label className="addadvert_form_container_label" htmlFor="title">
             File
           </label>
-          <input
-            className="addadvert_form_container_input"
-            type="file"
-            id="file"
-            name="file"
-            accept=".jpg"
-            onChange={(e) => {
-              setFile(e.target.files[0]);
-            }}
-          />
+          <div>
+            <input
+              className="addadvert_form_container_input"
+              type="file"
+              id="file"
+              name="file"
+              placeholder="Choose a file"
+              accept=".jpg, .png"
+              onChange={(e) => {
+                setFile(e.target.files[0]);
+              }}
+            />
+          </div>
         </div>
         <div className="addadvert_form_container">
           <label className="addadvert_form_container_label" htmlFor="title">
@@ -81,6 +87,7 @@ function AddAdvert({ setRefresh, refresh }) {
             onChange={(e) =>
               setImgDetails({ ...imgDetails, name: e.target.value })
             }
+            required
           />
 
           <label
@@ -101,6 +108,7 @@ function AddAdvert({ setRefresh, refresh }) {
                 description: e.target.value,
               })
             }
+            required
           />
 
           <label
@@ -121,6 +129,7 @@ function AddAdvert({ setRefresh, refresh }) {
                 urlLink: e.target.value,
               })
             }
+            required
           />
           {check === false ? (
             <button
@@ -152,6 +161,7 @@ function AddAdvert({ setRefresh, refresh }) {
             </div>
           )}
         </div>
+        {error === true && <PopupAdvertError setCheck={setCheck} />}
       </form>
     </div>
   );
