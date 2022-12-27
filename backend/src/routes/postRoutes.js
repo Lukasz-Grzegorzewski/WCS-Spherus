@@ -29,7 +29,7 @@ const storageImg = multer.diskStorage({
   },
 });
 
-const uploadImg = multer({ storageImg });
+const uploadImg = multer({ storage: storageImg });
 
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
@@ -37,12 +37,17 @@ router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
 router.post(
+  "/videos",
+  upload.single("file"),
+  postRoutesFunctions.postVideo,
+  postRoutesFunctions.attachCategoryToVideo
+);
+
+router.post(
   "/",
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
-
-router.post("/videos", upload.single("file"), postRoutesFunctions.postVideo);
 
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 

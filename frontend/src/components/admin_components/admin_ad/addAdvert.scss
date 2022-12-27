@@ -1,0 +1,105 @@
+.addadvert {
+  &_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+
+    &_container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      border-radius: 20px;
+
+      &_label {
+        font-size: 18px;
+      }
+
+      &_input {
+        border-radius: 20px;
+        text-indent: 2%;
+        height: 25px;
+        width: 80%;
+        margin-left: 2%;
+      }
+
+      &_textarea {
+        border-radius: 20px;
+        text-indent: 3%;
+        height: 120px;
+        width: 80%;
+        margin-left: 2%;
+        font-family: $font-family-Roboto;
+      }
+
+      &_btn {
+        font-family: $font-family-Roboto;
+        font-size: 15px;
+        background-color: $fourth-color;
+        width: 82%;
+        height: 40px;
+        margin-left: 2%;
+        margin-top: 2%;
+        color: $secondary-color;
+        padding: 0.7em 1em;
+        padding-left: 0.9em;
+        display: flex;
+        align-items: center;
+        border: 2px solid $secondary-color;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      button span {
+        display: block;
+        margin-left: 0.6em;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button svg {
+        display: block;
+        transform-origin: center center;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      button:hover .svg-wrapper {
+        animation: fly-1 0.6s ease-in-out infinite alternate;
+      }
+
+      button:hover svg {
+        transform: translateX(1.2em) rotate(45deg) scale(1.1);
+      }
+
+      button:hover span {
+        transform: translateX(8em);
+      }
+
+      button:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .addadvert {
+    &_form {
+      &_container {
+        &_input {
+          width: 50%;
+        }
+
+        &_textarea {
+          height: 150px;
+          width: 50%;
+        }
+
+        &_btn {
+          width: 51%;
+        }
+      }
+    }
+  }
+}

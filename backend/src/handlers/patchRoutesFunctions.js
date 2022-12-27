@@ -134,10 +134,36 @@ const updateHeroSliderById = (req, res) => {
       res.status(500).send("Error editing the Hero");
     });
 };
+// Update Advertising in admin
+const updatePublicityById = (req, res) => {
+  const { id } = req.params;
+  const { description, urlLink, name } = req.body;
+  database
+    .query(
+      `UPDATE publicity set description = ${JSON.stringify(
+        description
+      )}, url_link= ${JSON.stringify(urlLink)}, name = ${JSON.stringify(
+        name
+      )} WHERE id = ?;`,
+      [Number(id)]
+    )
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the advert");
+    });
+};
 
 module.exports = {
   patchVideoById,
   patchUserById,
   patchCategoryById,
   updateHeroSliderById,
+  updatePublicityById,
 };
