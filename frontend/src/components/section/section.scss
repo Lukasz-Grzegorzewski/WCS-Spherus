@@ -1,20 +1,21 @@
 .section_container {
   // background-color: $tertiary-color;
   .react-multiple-carousel__arrow {
-    background-color: $button-background-three;
-    border: $button-input-border-size solid $dt-toggle-color-border;
+
+    background-color: $secondary-color;
+    border: $button-input-border-size solid $primary-color;
 
     &:hover {
-      background-color: $button-background-two;
-      border: $button-input-border-size solid $button-background-three;
+      background-color: $primary-color;
+      border: $button-input-border-size solid $secondary-color;
 
       &::before {
-        color: $button-background-three;
+        color: $secondary-color;
       }
     }
 
     &::before {
-      color: $button-background-two;
+      color: $primary-color;
     }
   }
 }
