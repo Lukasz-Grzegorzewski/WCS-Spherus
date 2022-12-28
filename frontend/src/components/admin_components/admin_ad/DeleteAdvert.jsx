@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAdvertDelete from "./PopupAdvertDelete";
@@ -6,6 +6,28 @@ import PopupAdvertDelete from "./PopupAdvertDelete";
 function DeleteAdvert({ pub, setRefresh, refresh }) {
   const [idPub, setIdPub] = useState("");
   const [check, setCheck] = useState(false);
+  const [screen, setScreen] = useState([]);
+  const [view, setView] = useState(false);
+
+  const videoUrl = `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
+    screen.url_image
+  }`;
+
+  const getPub = () => {
+    axios
+      .get(
+        `http://localhost:${
+          import.meta.env.VITE_PORT_BACKEND
+        }/publicities/${idPub}`
+      )
+      .then((res) => {
+        setScreen(res.data);
+      });
+  };
+
+  useEffect(() => {
+    getPub();
+  }, [idPub]);
 
   const deletePub = () => {
     axios
@@ -24,6 +46,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
 
   const handleChange = (e) => {
     setIdPub(e.target.value);
+    setView(true);
   };
 
   return (
@@ -47,6 +70,16 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
               })}
             </select>
           </label>
+          {view === true && (
+            <div className="deleteadvert_form_screen">
+              <img
+                className="deleteadvert_form_screen"
+                src={videoUrl}
+                alt={screen.name}
+              />
+              <p>{screen.description}</p>
+            </div>
+          )}
         </form>
       ) : (
         <div className="deleteadvert_check">
@@ -54,6 +87,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
             setCheck={setCheck}
             refresh={refresh}
             setRefresh={setRefresh}
+            setView={setView}
           />
         </div>
       )}
