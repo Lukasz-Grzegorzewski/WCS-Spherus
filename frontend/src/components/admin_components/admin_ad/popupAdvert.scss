@@ -8,7 +8,7 @@
   width: 78%;
   gap: 10px;
   padding: 2%;
-  border: 2px solid $secondary-color;
+  border: 2px solid $tertiary-color;
   border-radius: 20px;
 
   &_done {
@@ -18,7 +18,7 @@
   }
 
   .cssbuttons-io-button {
-    background: $tertiary-color;
+    background: $fourth-color;
     color: white;
     font-family: $font-display;
     width: 50%;
