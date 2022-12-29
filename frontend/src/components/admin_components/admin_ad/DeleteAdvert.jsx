@@ -70,7 +70,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
               })}
             </select>
           </label>
-          {view === true && (
+          {view === true && idPub !== "" && (
             <div className="deleteadvert_form_screen">
               <img
                 className="deleteadvert_form_screen"

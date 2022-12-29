@@ -134,6 +134,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
           <span>Apply</span>
         </button>
       )}
+      <div className="adminad_separate" />
     </div>
   );
 }

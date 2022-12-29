@@ -7,6 +7,8 @@
   &_video {
     display: flex;
     justify-content: center;
+    border: 1px solid $tertiary-color;
+    border-radius: 20px;
 
     &_player {
       margin-bottom: 2%;
@@ -44,7 +46,6 @@
         background: $fourth-color;
         border-radius: 20px;
         border: none;
-        color: $secondary-color;
         cursor: pointer;
       }
 
@@ -59,7 +60,7 @@
         content: "";
         position: absolute;
         inset: 2px;
-        background: $primary-color;
+        background: $fifte-color;
         border-radius: 20px;
       }
 
@@ -77,7 +78,7 @@
       button i::before {
         content: "";
         position: absolute;
-        border: 2px solid $secondary-color;
+        border: 2px solid $fourth-color;
         border-radius: 20px;
         width: 7px;
         height: 4px;
@@ -96,7 +97,7 @@
       button i::after {
         content: "";
         position: absolute;
-        border: 2px solid $secondary-color;
+        border: 2px solid $fourth-color;
         border-radius: 20px;
         width: 7px;
         height: 4px;
@@ -121,7 +122,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 2%;
-      background-color: $primary-color;
+      background-color: $fifte-color;
       border: 2px solid $fourth-color;
       border-radius: 20px;
       color: $secondary-color;
@@ -142,10 +143,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 1%;
-      background-color: $secondary-color;
+      background-color: $tertiary-color;
       border: 2px solid $fourth-color;
       border-radius: 20px;
-      color: $primary-color;
+      color: $secondary-color;
       font-size: 15px;
       transition: 0.3s ease-in-out;
       cursor: pointer;
