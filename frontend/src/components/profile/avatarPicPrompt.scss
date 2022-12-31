@@ -1,0 +1,42 @@
+.avatar-pic-prompt-container {
+  width: 80%;
+  height: 50%;
+  background-color: $primary-color;
+  color: $primary-color;
+  border-radius: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .choose-file-container {
+    height: 300px;
+    border-radius: 30px;
+    width: 96%;
+    margin: 2% auto auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    font-size: 2.5rem;
+    height: 40px;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 20px;
+  }
+
+  .btns-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    .btn-update {
+      background-color: green;
+    }
+    .btn-cancel {
+      background-color: rgb(226, 105, 105);
+    }
+  }
+}
