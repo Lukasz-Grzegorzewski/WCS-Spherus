@@ -1,3 +1,4 @@
+const { decode } = require("node-base64-image");
 const database = require("../../database");
 
 /* POST USER */
@@ -51,6 +52,26 @@ const signInUserByUser = (req, res) => {
     .catch((err) => {
       console.warn(err);
       res.status(409).send("Fuck");
+    });
+};
+
+const uploadAvatarUrl = (req, res) => {
+  const { id, base64 } = req.body;
+  const base64Final = base64.split("base64,")[1];
+  const url = `assets/images/avatars/${id}.jpg`;
+
+  database
+    .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
+    .then(async () => {
+      await decode(base64Final, {
+        fname: `./public/assets/images/avatars/${id}`,
+        ext: "jpg",
+      });
+      res.status(201).send({ message: "url avatar updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error updating avatar url");
     });
 };
 
@@ -199,4 +220,5 @@ module.exports = {
   attachCategoryToVideo,
   postHeroSlider,
   postAdvert,
+  uploadAvatarUrl,
 };

@@ -28,12 +28,13 @@ const storageImg = multer.diskStorage({
     cb(null, req.body.filename.toString());
   },
 });
-
 const uploadImg = multer({ storage: storageImg });
 
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
 router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
+router.post("/users/:id", postRoutesFunctions.uploadAvatarUrl);
+
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
 router.post(

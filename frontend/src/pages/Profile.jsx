@@ -4,9 +4,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
+import Avatar from "@components/profile/Avatar";
 
 function Profile({ id }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
   const [lastnameUpdate, setLastnameUpdate] = useState(false);
@@ -31,17 +32,18 @@ function Profile({ id }) {
 
   return (
     <div className="profile-conatainer">
-      <div>
-        <div className="img-profile-container">
-          <img
-            className="img-profile"
-            src="https://cdn.vectorstock.com/i/preview-1x/32/12/default-avatar-profile-icon-vector-39013212.jpg"
-            alt="profile img"
+      {user && refresh !== undefined && (
+        <div>
+          <Avatar
+            id={id}
+            photoSrc={
+              user.url
+                ? `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
+                    user.url
+                  }`
+                : "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg"
+            }
           />
-
-          <FaPen className="pen" />
-        </div>
-        {user && refresh !== undefined && (
           <div className="user-details-container">
             <div className="fields-container">
               <div className="field-user">
@@ -229,8 +231,8 @@ function Profile({ id }) {
               )}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <DeleteUser id={id} />
     </div>
   );
