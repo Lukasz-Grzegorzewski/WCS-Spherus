@@ -4,6 +4,7 @@ import CategoryVideo from "@components/category_video/CategoryVideo";
 import VideoPage from "@pages/VideoPage";
 import Admin from "@pages/Admin";
 import Page404 from "@pages/Page404";
+import Profile from "@pages/Profile";
 import LoginPopUp from "@components/loginPopUp/LoginPopUp";
 import { useState } from "react";
 import Footer from "./components/footer/Footer";
@@ -21,7 +22,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App dark-theme">
       <Navbar
         handlePopUpLogIn={() => {
           handlePopUpLogIn();
@@ -36,6 +37,7 @@ function App() {
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/videos/:idVid" element={<VideoPage />} />
+        <Route path="/profile" element={<Profile id={6} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>

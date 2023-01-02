@@ -1,3 +1,4 @@
+const { decode } = require("node-base64-image");
 const database = require("../../database");
 
 /* POST USER */
@@ -45,12 +46,32 @@ const signInUserByUser = (req, res) => {
             res.status(500).send("Error saving the user");
           });
       } else {
-        res.status(500).send("Fuck saving the user");
+        res.status(500).send("Impossible to save the user");
       }
     })
     .catch((err) => {
       console.warn(err);
       res.status(409).send("Fuck");
+    });
+};
+
+const uploadAvatarUrl = (req, res) => {
+  const { id, base64 } = req.body;
+  const base64Final = base64.split("base64,")[1];
+  const url = `assets/images/avatars/${id}.jpg`;
+
+  database
+    .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
+    .then(async () => {
+      await decode(base64Final, {
+        fname: `./public/assets/images/avatars/${id}`,
+        ext: "jpg",
+      });
+      res.status(201).send({ message: "url avatar updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error updating avatar url");
     });
 };
 
@@ -149,11 +170,55 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// POST ADVERT
+const postAdvert = (req, res) => {
+  const { description, urlLink, name, filename } = req.body;
+
+  const urlImage = `/assets/images/${filename}`;
+  database
+    .query(
+      "INSERT INTO publicity(url_image, description, url_link, name) VALUES (?, ?, ?, ?);",
+      [urlImage, description, urlLink, name]
+    )
+    .then(() => {
+      res.status(201).send({ message: "Advert Added" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error add new Advertising");
+    });
+};
+
+// Post a user that try to log his account
+const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const { email } = req.body;
+
+  database
+    .query("SELECT * FROM user WHERE email = ?", [email])
+    .then(([users]) => {
+      if (users[0] != null) {
+        // eslint-disable-next-line prefer-destructuring
+        req.user = users[0];
+
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
 module.exports = {
   signInUserByUser,
+  getUserByEmailWithPasswordAndPassToNext,
   signInUserByAdmin,
   postVideo,
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,
+  postAdvert,
+  uploadAvatarUrl,
 };

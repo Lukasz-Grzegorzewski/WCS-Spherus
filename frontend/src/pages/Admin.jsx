@@ -5,6 +5,8 @@ import AdminCategory from "@components/admin_components/admin_category/AdminCate
 import AdminVideos from "@components/admin_components/admin_videos/AdminVideos";
 import AdminColors from "@components/admin_components/admin_colors/AdminColors";
 import AdminHeroSlider from "@components/admin_components/admin_heroSlider/AdminHeroSlider";
+import AdminFixtures from "@components/admin_components/admin_fixtures/AdminFixtures";
+import AdminAd from "@components/admin_components/admin_ad/AdminAd";
 import { FaAngleLeft } from "react-icons/fa";
 
 function Admin() {
@@ -14,6 +16,8 @@ function Admin() {
   const [videos, setVideos] = useState(false);
   const [colors, setColors] = useState(false);
   const [hero, setHero] = useState(false);
+  const [advert, setadvert] = useState(false);
+  const [fixtures, setFixtures] = useState(false);
 
   const classButtonUser = () => {
     if (user === true) {
@@ -52,6 +56,20 @@ function Admin() {
     return "admin_menu_btn";
   };
 
+  const classFixtures = () => {
+    if (fixtures === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+
+  const classAdvert = () => {
+    if (advert === true) {
+      return "admin_menu_btn_activ";
+    }
+    return "admin_menu_btn";
+  };
+
   return (
     <div className="admin">
       <div className="admin_menu">
@@ -65,6 +83,8 @@ function Admin() {
             setVideos(false);
             setColors(false);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           USERS <FaAngleLeft className="svgsamere" />
@@ -82,6 +102,8 @@ function Admin() {
             setVideos(!videos);
             setColors(false);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           VIDEOS <FaAngleLeft className="svgsamere" />
@@ -99,6 +121,8 @@ function Admin() {
             setVideos(false);
             setColors(false);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           CATEGORY <FaAngleLeft className="svgsamere" />
@@ -116,6 +140,8 @@ function Admin() {
             setVideos(false);
             setColors(false);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           HOME PAGE <FaAngleLeft className="svgsamere" />
@@ -133,6 +159,8 @@ function Admin() {
             setVideos(false);
             setColors(false);
             setHero(!hero);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           HERO SLIDER <FaAngleLeft className="svgsamere" />
@@ -140,7 +168,44 @@ function Admin() {
         <div className="admin_menu_comp_hero">
           {hero === true && <AdminHeroSlider />}
         </div>
-
+        <button
+          className={classFixtures()}
+          type="button"
+          onClick={() => {
+            setUser(false);
+            setHome(false);
+            setCategory(false);
+            setVideos(false);
+            setColors(false);
+            setHero(false);
+            setFixtures(!fixtures);
+            setadvert(false);
+          }}
+        >
+          FIXTURES <FaAngleLeft className="svgsamere" />
+        </button>
+        <div className="admin_menu_comp_users">
+          {fixtures === true && <AdminFixtures className="comp" />}
+        </div>
+        <button
+          className={classAdvert()}
+          type="button"
+          onClick={() => {
+            setUser(false);
+            setHome(false);
+            setCategory(false);
+            setVideos(false);
+            setColors(false);
+            setHero(false);
+            setFixtures(false);
+            setadvert(!advert);
+          }}
+        >
+          ADVERT <FaAngleLeft className="svgsamere" />
+        </button>
+        <div className="admin_menu_comp_users">
+          {advert === true && <AdminAd className="comp" />}
+        </div>
         <button
           className={classButtonColor()}
           type="button"
@@ -151,6 +216,8 @@ function Admin() {
             setVideos(false);
             setColors(!colors);
             setHero(false);
+            setFixtures(false);
+            setadvert(false);
           }}
         >
           COLORS <FaAngleLeft className="svgsamere" />
@@ -165,6 +232,8 @@ function Admin() {
         {category === true && <AdminCategory />}
         {videos === true && <AdminVideos />}
         {colors === true && <AdminColors />}
+        {advert === true && <AdminAd />}
+        {fixtures === true && <AdminFixtures />}
         {hero === true && <AdminHeroSlider />}
       </div>
     </div>

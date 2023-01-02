@@ -11,9 +11,11 @@
 
       &_select {
         width: 40%;
+        height: 25px;
         background-color: $fourth-color;
         color: white;
         margin-left: 10px;
+        border-radius: 20px;
       }
     }
   }
@@ -26,9 +28,11 @@
 
       &_select {
         width: 40%;
+        height: 25px;
         background-color: $fourth-color;
         color: white;
         margin-left: 29px;
+        border-radius: 20px;
       }
     }
   }
@@ -36,10 +40,11 @@
   &_button {
     display: flex;
     align-self: center;
-    font-family: inherit;
+    font-family: $font-text;
     font-size: 15px;
-    background-color: $fourth-color;
-    width: 35%;
+    margin-left: 3%;
+    background-color: $tertiary-color;
+    width: 40%;
     height: 30px;
     color: $secondary-color;
     padding: 0.7em 1em;
@@ -47,6 +52,7 @@
     display: flex;
     align-items: center;
     border: 2px solid $secondary-color;
+    border-radius: 20px;
     overflow: hidden;
     transition: all 0.3s;
   }
@@ -95,6 +101,9 @@
     gap: 15px;
 
     &_button {
+      height: 35px;
+      margin-left: -2%;
+
       button:hover span {
         transform: translateX(6em);
       }

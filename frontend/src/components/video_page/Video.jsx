@@ -22,12 +22,9 @@ function Video({
       {/* VIDEO */}
       <div className="video-player">
         {display === 1 ? (
-          <div>
-            <video className="video" src={url} controls>
-              <track kind="captions" />
-            </video>
-            <CiLock className="lock lock-icon-video" />
-          </div>
+          <video className="video" src={url} controls>
+            <track kind="captions" />
+          </video>
         ) : (
           <video className="video locked" src={url}>
             <track kind="captions" />
@@ -49,9 +46,9 @@ function Video({
             </button>
           </div>
         )}
-        <div>
+        <div className="info_container">
           <hr />
-          <h1>INFORMATION</h1>
+          <h1 className="info">INFORMATIONS</h1>
 
           <p>{title}</p>
           <p>{description}</p>

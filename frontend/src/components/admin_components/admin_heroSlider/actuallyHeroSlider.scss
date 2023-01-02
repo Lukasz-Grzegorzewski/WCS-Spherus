@@ -7,19 +7,22 @@
   &_video {
     display: flex;
     justify-content: center;
+    border-radius: 20px;
 
     &_player {
       margin-bottom: 2%;
       width: 100%;
       max-width: 320px;
       height: 220px;
+      border-radius: 20px;
+      border: 1px solid $tertiary-color;
     }
   }
 
   &_cat,
   &_title {
     font-size: 15px;
-    font-family: $font-display;
+    font-family: $font-text;
   }
 
   &_btn {
@@ -28,21 +31,21 @@
     justify-content: space-between;
     margin-top: 2%;
     margin-bottom: 3%;
-    font-family: $font-display;
+    font-family: $font-text;
 
     &_delete {
       width: 33%;
 
       button {
         padding: 9px 30px;
-        margin-top: -3px;
+        margin-top: -2px;
         width: 100%;
         transition: 0.5s;
         position: relative;
         font-size: 15px;
         background: $fourth-color;
+        border-radius: 20px;
         border: none;
-        color: $secondary-color;
         cursor: pointer;
       }
 
@@ -57,7 +60,8 @@
         content: "";
         position: absolute;
         inset: 2px;
-        background: $primary-color;
+        background: $fifte-color;
+        border-radius: 20px;
       }
 
       button span {
@@ -74,7 +78,8 @@
       button i::before {
         content: "";
         position: absolute;
-        border: 2px solid $secondary-color;
+        border: 2px solid $fourth-color;
+        border-radius: 20px;
         width: 7px;
         height: 4px;
         top: -3.5px;
@@ -92,7 +97,8 @@
       button i::after {
         content: "";
         position: absolute;
-        border: 2px solid $secondary-color;
+        border: 2px solid $fourth-color;
+        border-radius: 20px;
         width: 7px;
         height: 4px;
         bottom: -3.5px;
@@ -110,14 +116,15 @@
 
     &_inactiv {
       width: 35%;
-      height: 30px;
+      height: 33px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       padding: 2%;
-      background-color: $primary-color;
+      background-color: $fifte-color;
       border: 2px solid $fourth-color;
+      border-radius: 20px;
       color: $secondary-color;
       font-size: 15px;
       transition: 0.3s ease-in-out;
@@ -136,9 +143,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 1%;
-      background-color: $secondary-color;
+      background-color: $tertiary-color;
       border: 2px solid $fourth-color;
-      color: $primary-color;
+      border-radius: 20px;
+      color: $secondary-color;
       font-size: 15px;
       transition: 0.3s ease-in-out;
       cursor: pointer;

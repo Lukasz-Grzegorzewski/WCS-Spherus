@@ -95,7 +95,6 @@ function AdminVideos() {
                 setVideoDetails({ ...videoDetails, title: e.target.value })
               }
             />
-            {videoDetails.title}
 
             <label htmlFor="description">Video description</label>
             <input
@@ -110,7 +109,6 @@ function AdminVideos() {
                 })
               }
             />
-            {videoDetails.description}
 
             <label htmlFor="display">Display video? </label>
             <select
