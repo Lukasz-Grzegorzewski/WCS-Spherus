@@ -20,6 +20,9 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
       )
       .then((res) => {
         setInfoPub(res.data);
+        setName(res.data.name);
+        setDescription(res.data.description);
+        setUrlLink(res.data.url_link);
       })
       .catch((error) => {
         console.warn(error);
@@ -107,7 +110,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="name"
               value={name}
-              placeholder={infoPub.name}
+              placeholder="Update name"
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -123,7 +126,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="description"
               value={description}
-              placeholder={infoPub.description}
+              placeholder="Update description"
               onChange={(e) => setDescription(e.target.value)}
               required
             />
@@ -136,7 +139,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="urlLink"
               value={urlLink}
-              placeholder={infoPub.url_link}
+              placeholder="Update link"
               onChange={(e) => setUrlLink(e.target.value)}
               required
             />
