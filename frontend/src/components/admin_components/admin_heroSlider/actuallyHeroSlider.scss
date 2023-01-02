@@ -7,7 +7,6 @@
   &_video {
     display: flex;
     justify-content: center;
-    border: 1px solid $tertiary-color;
     border-radius: 20px;
 
     &_player {
@@ -16,6 +15,7 @@
       max-width: 320px;
       height: 220px;
       border-radius: 20px;
+      border: 1px solid $tertiary-color;
     }
   }
 
