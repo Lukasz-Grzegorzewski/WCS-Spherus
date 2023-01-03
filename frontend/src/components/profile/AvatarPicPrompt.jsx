@@ -8,13 +8,12 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
 
   function onClose() {
     setCardToggle(false);
-    window.location.reload();
   }
 
   function onCrop(view) {
     setUrl(view);
     setData({
-      id: "6",
+      id: `${id}`,
       base64: view,
     });
   }
@@ -26,12 +25,12 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
         data
       )
       .then((response) => {
+        setCardToggle(false);
         console.warn("OK! response.data :", response.data);
       })
       .catch((err) => {
         console.error(err);
       });
-    setCardToggle(false);
   };
 
   return (
@@ -40,7 +39,6 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
         <Avatar
           width={250}
           height={250}
-          //   onCrop={(view) => onCrop(view)}
           onClose={() => onClose()}
           //   src={src}
           onCrop={(image) => onCrop(image)}
@@ -48,13 +46,12 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
           labelStyle={{
             backgroundColor: "transparent",
             color: "black",
-            borderBottom: "1px solid white",
             fontSize: "3rem",
             cursor: "pointer",
             display: "flex",
             justifyContent: "center",
           }}
-          borderStyle={{ border: "5px solid black", borderRadius: "30px" }}
+          borderStyle={{ borderRadius: "20px" }}
         />
       </div>
       <div className="btns-container">
