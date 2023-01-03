@@ -27,10 +27,7 @@ function AddAdvert({ setRefresh, refresh }) {
 
   const uploadAdd = (data) => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/publicity`,
-        data
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/publicity`, data)
       .then(() => {
         setCheck(true);
         setRefresh(!refresh);
