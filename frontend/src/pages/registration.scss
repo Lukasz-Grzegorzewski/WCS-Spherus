@@ -99,15 +99,15 @@
       }
 
       .password-strength-meter {
-        animation: soft-slide .2s ease-in-out;
+        animation: soft-slide 0.2s ease-in-out;
       }
 
       @keyframes soft-slide {
         0% {
-          transform: translateX(0%)
+          transform: translateX(0%);
         }
         100% {
-          transform: translateX(100%)
+          transform: translateX(100%);
         }
       }
 

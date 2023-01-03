@@ -46,15 +46,17 @@ function PasswordStrengthMeter({ password }) {
     height: "7px",
     margin: "0px",
     borderRadius: "12px",
-    animate: "soft-slide 2s ease-out",
+    transition: "all 300ms ease-in-out",
   });
 
   return (
-    <div>
+    <div style={{ width: "80%" }}>
       <div className="progress" style={{ height: "7px", margin: "0" }}>
         <div className="progress-bar" style={changePasswordColor()} />
       </div>
-      <p style={{ color: funcProgressColor() }}>{createPasswordLabel()}</p>
+      <p style={{ color: funcProgressColor(), fontSize: "16px" }}>
+        {createPasswordLabel()}
+      </p>
     </div>
   );
 }

@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 
 const { hashPassword, verifyPassword } = require("../handlers/auth");
+const { validateInputs } = require("../handlers/validator");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -20,7 +21,12 @@ const upload = multer({ storage });
 
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 
-router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
+router.post(
+  "/users",
+  validateInputs,
+  hashPassword,
+  postRoutesFunctions.signInUserByUser
+);
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
 router.post(
@@ -28,8 +34,6 @@ router.post(
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
-
-router.post("/videos", postRoutesFunctions.postVideo);
 
 router.post("/videos", upload.single("file"), postRoutesFunctions.postVideo);
 
