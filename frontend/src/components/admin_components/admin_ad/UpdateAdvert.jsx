@@ -13,11 +13,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
 
   const getPub = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
         setInfoPub(res.data);
         setName(res.data.name);
@@ -41,16 +37,11 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
 
   const updateAdd = () => {
     axios
-      .put(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`,
-        {
-          description: `${description}`,
-          urlLink: `${urlLink}`,
-          name: `${name}`,
-        }
-      )
+      .put(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`, {
+        description: `${description}`,
+        urlLink: `${urlLink}`,
+        name: `${name}`,
+      })
       .then(() => {
         setCheck(true);
         clearInputs();
@@ -69,9 +60,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
     updateAdd();
   };
 
-  const videoUrl = `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
-    infoPub.url_image
-  }`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${infoPub.url_image}`;
 
   return (
     <div className="addadvert">

@@ -46,4 +46,8 @@ router.get(
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 
+// Home
+router.get("/home", getRoutesFunctions.getHome);
+router.get("/home/:id", getRoutesFunctions.getHomeById);
+
 module.exports = router;

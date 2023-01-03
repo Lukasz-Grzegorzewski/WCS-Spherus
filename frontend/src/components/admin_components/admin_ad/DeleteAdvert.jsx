@@ -9,17 +9,11 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
   const [screen, setScreen] = useState([]);
   const [view, setView] = useState(false);
 
-  const videoUrl = `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
-    screen.url_image
-  }`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${screen.url_image}`;
 
   const getPub = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
         setScreen(res.data);
       });
@@ -31,11 +25,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
 
   const deletePub = () => {
     axios
-      .delete(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`
-      )
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then(() => {
         setCheck(true);
       })

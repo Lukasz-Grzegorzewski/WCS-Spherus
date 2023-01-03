@@ -9,11 +9,9 @@ export default function Home() {
   const [section, setSection] = useState([]);
 
   const getCategory = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
-      .then((res) => {
-        setSection(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_PORT_BACKEND}/categories`).then((res) => {
+      setSection(res.data);
+    });
   };
 
   useEffect(() => {

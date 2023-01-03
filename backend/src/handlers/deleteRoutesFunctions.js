@@ -60,10 +60,10 @@ const deleteCategoryById = (req, res) => {
       res.status(500).send("Error deleting a category");
     });
 };
+
 // HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-
   database
     .query("DELETE FROM hero_slider WHERE id = ?", [id])
     .then(([hero]) => {
@@ -104,10 +104,27 @@ const deletePublicityById = (req, res) => {
     });
 };
 
+// HOME PAGE
+const deleteHomeById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("DELETE FROM home WHERE id = ?", [id])
+    .then(([home]) => {
+      return home.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video in Hero Slider");
+    });
+};
+
 module.exports = {
   deleteUserById,
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,
   deletePublicityById,
+  deleteHomeById,
 };

@@ -6,9 +6,7 @@ import { FaPenFancy } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
 function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
-  const videoUrl = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }/${url}`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${url}`;
 
   const [choice, setChoice] = useState(false);
   const [response, setResponse] = useState("");
@@ -16,11 +14,7 @@ function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
 
   const getCat = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/catname/${idVid}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/catname/${idVid}`)
       .then((res) => {
         setCat(res.data);
       });
@@ -32,11 +26,7 @@ function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
 
   const deleteHero = () => {
     axios
-      .delete(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/${id}`
-      )
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`)
       .then((res) => {
         setResponse(res.data);
         setRefresh(!refresh);

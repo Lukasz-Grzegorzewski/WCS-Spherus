@@ -9,11 +9,9 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
   const [valueVideo, setValueVideo] = useState("");
 
   const getCat = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
-      .then((res) => {
-        setCat(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_PORT_BACKEND}/categories`).then((res) => {
+      setCat(res.data);
+    });
   };
 
   useEffect(() => {
@@ -22,11 +20,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 
   const getVideos = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/categories/${valueCat}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${valueCat}`)
       .then((res) => {
         setVideos(res.data);
       });
@@ -38,12 +32,9 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 
   const updateHero = () => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`,
-        {
-          fkVideo: `${valueVideo}`,
-        }
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider`, {
+        fkVideo: `${valueVideo}`,
+      })
       .then((res) => {
         console.warn(res.data);
         setRefresh(!refresh);
