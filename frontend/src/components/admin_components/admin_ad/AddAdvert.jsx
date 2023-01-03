@@ -1,13 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+import PopupAdvertAdd from "./PopupAdvertAdd";
+import PopupAdvertError from "./PopupAdvertError";
 
-function AddAdvert() {
+function AddAdvert({ setRefresh, refresh }) {
   const [file, setFile] = useState({});
+  const [check, setCheck] = useState(false);
+  const [error, setError] = useState(false);
   const [imgDetails, setImgDetails] = useState({
     description: "",
     urlLink: "",
     name: "",
   });
+
+  function clearInputs() {
+    setImgDetails({
+      description: "",
+      urlLink: "",
+      name: "",
+    });
+  }
+  function clearFile() {
+    setFile({});
+  }
 
   const uploadAdd = (data) => {
     axios
@@ -15,7 +31,14 @@ function AddAdvert() {
         `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/publicity`,
         data
       )
+      .then(() => {
+        setCheck(true);
+        setRefresh(!refresh);
+        clearInputs();
+        clearFile();
+      })
       .catch(() => {
+        setError(true);
         console.error("advertising not uploaded");
       });
   };
@@ -34,16 +57,22 @@ function AddAdvert() {
     <div className="addadvert">
       <form action="" onSubmit={handleUpload} className="addadvert_form">
         <div className="addadvert_form_container">
-          <input
-            className="addadvert_form_container_input"
-            type="file"
-            id="file"
-            name="file"
-            accept=".jpg"
-            onChange={(e) => {
-              setFile(e.target.files[0]);
-            }}
-          />
+          <label className="addadvert_form_container_label" htmlFor="title">
+            File
+          </label>
+          <div>
+            <input
+              className="addadvert_form_container_input"
+              type="file"
+              id="file"
+              name="file"
+              placeholder="Choose a file"
+              accept=".jpg, .png"
+              onChange={(e) => {
+                setFile(e.target.files[0]);
+              }}
+            />
+          </div>
         </div>
         <div className="addadvert_form_container">
           <label className="addadvert_form_container_label" htmlFor="title">
@@ -58,6 +87,7 @@ function AddAdvert() {
             onChange={(e) =>
               setImgDetails({ ...imgDetails, name: e.target.value })
             }
+            required
           />
 
           <label
@@ -66,18 +96,19 @@ function AddAdvert() {
           >
             Text
           </label>
-          <input
+          <textarea
             className="addadvert_form_container_textarea"
             type="text"
             id="description"
             value={imgDetails.description}
-            placeholder="Enter the advertising text description"
+            placeholder="Advertising text 500 max characters"
             onChange={(e) =>
               setImgDetails({
                 ...imgDetails,
                 description: e.target.value,
               })
             }
+            required
           />
 
           <label
@@ -98,39 +129,47 @@ function AddAdvert() {
                 urlLink: e.target.value,
               })
             }
+            required
           />
-          <button
-            className="addadvert_form_container_btn"
-            type="submit"
-            value="Upload"
-          >
-            <div className="svg-wrapper-1">
-              <div className="svg-wrapper">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    fill="currentColor"
-                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                  />
-                </svg>
+          {check === false ? (
+            <button
+              className="addadvert_form_container_btn"
+              type="submit"
+              value="Upload"
+            >
+              <div className="svg-wrapper-1">
+                <div className="svg-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      fill="currentColor"
+                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                    />
+                  </svg>
+                </div>
               </div>
+              <span>Apply</span>
+            </button>
+          ) : (
+            <div>
+              <PopupAdvertAdd setCheck={setCheck} />
             </div>
-            <span>Apply</span>
-          </button>
-          {/* <input
-            className="adminvideo_upload_btn"
-            type="submit"
-            value="Upload"
-          /> */}
+          )}
         </div>
+        {error === true && <PopupAdvertError setCheck={setCheck} />}
       </form>
     </div>
   );
 }
 
 export default AddAdvert;
+
+AddAdvert.propTypes = {
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
+};

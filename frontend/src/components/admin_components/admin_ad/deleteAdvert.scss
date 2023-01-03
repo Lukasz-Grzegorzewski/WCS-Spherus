@@ -1,30 +1,53 @@
 .deleteadvert {
+  color: $primary-color;
+
   &_form {
     gap: 10px;
     margin-top: 15px;
 
+    &_screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      object-fit: cover;
+      margin-top: 2%;
+      border-radius: 20px;
+
+      p {
+        font-size: 15px;
+        margin-top: 2%;
+      }
+    }
+
     &_label {
-      font-size: 15px;
+      font-size: 18px;
 
       &_select {
-        margin-left: 1%;
+        margin-top: 15px;
+        margin-left: 2%;
+        width: 80%;
+        height: 25px;
+        border-radius: 20px;
       }
     }
   }
 
   &_delete {
     width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 
     button {
       padding: 9px 30px;
       margin-top: 3%;
       margin-left: 2%;
-      width: 35%;
-      height: 35px;
+      width: 80%;
+      height: 40px;
       transition: 0.5s;
       position: relative;
       font-size: 15px;
-      background: $fourth-color;
+      background: $secondary-color;
       border-radius: 20px;
       border: none;
       color: $secondary-color;
@@ -42,7 +65,7 @@
       content: "";
       position: absolute;
       inset: 2px;
-      background: $primary-color;
+      background: $fourth-color;
       border-radius: 20px;
     }
 
@@ -93,6 +116,32 @@
     button:hover i::after {
       width: 20px;
       left: 80%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .deleteadvert {
+    &_form {
+      &_screen {
+        width: 55%;
+      }
+
+      &_label {
+        &_select {
+          width: 50%;
+        }
+      }
+    }
+
+    &_delete {
+      width: 64%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      button {
+        margin-left: 3%;
+      }
     }
   }
 }
