@@ -1,0 +1,51 @@
+@import "../components/profile/UpdateUserByUser.scss";
+@import "../components/profile/avatar.scss";
+@import "../components/profile/deleteUser.scss";
+
+.profile-conatainer {
+  min-height: calc(
+    100vh - 51.5px - 50px - 40px
+  ); // (- navbar -footer - padding)
+  font-family: $font-text;
+  font-weight: 100;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 23px;
+
+  .pen {
+    width: 20px;
+    height: 20px;
+  }
+
+  .user-details-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 3rem;
+
+    .fields-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .btn-update-toggle {
+        background-color: transparent;
+        cursor: pointer;
+      }
+
+      .field-user {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+
+        p {
+          font-size: 2.5rem;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+}

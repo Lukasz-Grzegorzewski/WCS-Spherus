@@ -1,3 +1,4 @@
+const fs = require("fs");
 const database = require("../../database");
 
 const deleteUserById = (req, res) => {
@@ -59,7 +60,7 @@ const deleteCategoryById = (req, res) => {
       res.status(500).send("Error deleting a category");
     });
 };
-
+// HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -76,9 +77,37 @@ const deleteHeroSliderById = (req, res) => {
     });
 };
 
+// ADVERTISING
+const deletePublicityById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("SELECT url_image ui FROM publicity WHERE id = ?", [id])
+    .then(([[ui]]) => {
+      database
+        .query("DELETE FROM publicity WHERE id = ?", [id])
+        .then(([pub]) => {
+          const path = `/${ui.ui}`;
+          fs.unlink(`public${path}`, (err) => {
+            if (err) {
+              console.error(err);
+            }
+
+            return pub.affectedRows === 0
+              ? res.status(404).send("Not Found")
+              : res.sendStatus(204);
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error deleting a advert");
+        });
+    });
+};
+
 module.exports = {
   deleteUserById,
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,
+  deletePublicityById,
 };

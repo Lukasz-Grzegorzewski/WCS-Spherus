@@ -1,0 +1,51 @@
+.App.dark-theme {
+  color: $primary-color;
+  background: $dt-background;
+
+  .navbar,
+  .footer {
+    background-color: $dt-navbar-footer-color;
+  }
+
+  .publicity {
+    background-color: $dt-publicity-background-color;
+  }
+
+  button {
+    color: $primary-color;
+  }
+
+  a {
+    color: $primary-color;
+  }
+}
+
+.App.light-theme {
+  color: $secondary-color;
+  background: $lt-background;
+
+  .navbar,
+  .footer {
+    background-color: $lt-navbar-footer-color;
+  }
+
+  .publicity {
+    background-color: $lt-publicity-background-color;
+    color: $lt-publicity-font-color;
+  }
+
+  button {
+    color: $secondary-color;
+  }
+
+  a {
+    color: $secondary-color;
+  }
+}
+
+.App .heroslider {
+  color: $primary-color;
+  button {
+    color: $primary-color;
+  }
+}

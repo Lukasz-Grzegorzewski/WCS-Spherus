@@ -73,11 +73,6 @@ function Sliderdata({ id, title, date, url }) {
               </svg>
             </div>
           </button>
-
-          {/* <button type="button" className="sliderdata_infos_btn">
-            {" "}
-            Watch <FaPlayCircle className="sliderdata_infos_btn_icon" />
-          </button> */}
         </Link>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Profile from "@pages/Profile";
 import { useState } from "react";
 import Navbar from "./components/navbar/Navbar";
 import CategoryVideo from "./components/category_video/CategoryVideo";
@@ -22,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App dark-theme">
       <Navbar
         handlePopUpLogIn={() => {
           handlePopUpLogIn();
@@ -37,6 +38,7 @@ function App() {
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<RegisterForm />} />
         <Route path="/videos/:idVid" element={<VideoPage />} />
+        <Route path="/profile" element={<Profile id={5} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>
