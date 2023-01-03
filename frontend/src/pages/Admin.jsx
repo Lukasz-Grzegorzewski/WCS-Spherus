@@ -90,7 +90,7 @@ function Admin() {
           USERS <FaAngleLeft className="svgsamere" />
         </button>
         <div className="admin_menu_comp_users">
-          {user === true && <AdminUsers className="comp" />}
+          {user === true && <AdminUsers id={6} className="comp" />}
         </div>
         <button
           className={classButtonVid()}
@@ -227,7 +227,7 @@ function Admin() {
         </div>
       </div>
       <div className="admin_components">
-        {user === true && <AdminUsers />}
+        {user === true && <AdminUsers id={6} />}
         {home === true && <AdminHomePage />}
         {category === true && <AdminCategory />}
         {videos === true && <AdminVideos />}
