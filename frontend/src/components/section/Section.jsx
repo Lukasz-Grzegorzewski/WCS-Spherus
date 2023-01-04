@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import VideoCard from "@components/category_video/VideoCard";
@@ -53,19 +54,35 @@ function Section({ type, idLink }) {
       {type === 1 && (
         <div>
           {category.length >= 1 && (
-            <Carousel containerClass="section_carousel" responsive={responsive}>
-              {category.map((infos) => (
-                <div className="section_card" key={infos.id}>
-                  <VideoCard
-                    id={infos.id}
-                    url={infos.url}
-                    title={infos.title}
-                    description={infos.description}
-                    display={infos.display}
-                  />
+            <div>
+              <div className="section_navigation">
+                <NavLink to={`/categories/${idLink}`}>
+                  <div className="section_name">{category[0].cat}</div>
+                </NavLink>
+                <div className="section_seeMoreBtn">
+                  <NavLink to={`/categories/${idLink}`}>
+                    <div className="section_seeMoreBtn_btn">See more</div>
+                  </NavLink>
                 </div>
-              ))}
-            </Carousel>
+              </div>
+
+              <Carousel
+                containerClass="section_carousel"
+                responsive={responsive}
+              >
+                {category.map((infos) => (
+                  <div className="section_card" key={infos.id}>
+                    <VideoCard
+                      id={infos.id}
+                      url={infos.url}
+                      title={infos.title}
+                      description={infos.description}
+                      display={infos.display}
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
           )}
         </div>
       )}
