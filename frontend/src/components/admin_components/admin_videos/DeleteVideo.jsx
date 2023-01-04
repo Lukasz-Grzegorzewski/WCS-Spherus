@@ -9,7 +9,7 @@ function DeleteVideo({ message, setMessage }) {
 
   const getVideo = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos`)
       .then((res) => {
         setVideo(res.data);
       })
@@ -28,11 +28,7 @@ function DeleteVideo({ message, setMessage }) {
 
   const deleteVideo = () => {
     axios
-      .delete(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/${videoId}`
-      )
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/videos/${videoId}`)
       .then(() => setDeleteMessage(true))
       .catch(() => {
         console.error("video not found");
@@ -51,7 +47,9 @@ function DeleteVideo({ message, setMessage }) {
           >
             <option value="">---</option>
             {video.map((v) => (
-              <option value={v.id}>{v.title}</option>
+              <option key={v.id} value={v.id}>
+                {v.title}
+              </option>
             ))}
           </select>
         )}

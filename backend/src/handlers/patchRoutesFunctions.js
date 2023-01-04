@@ -4,7 +4,6 @@ const patchVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const { url, description, display, title, date } = req.body;
   const reqBodyKeysArr = Object.keys(req.body);
-
   let sql = "UPDATE video SET";
   reqBodyKeysArr.forEach((item, index) => {
     if (index !== 0) sql += ",";

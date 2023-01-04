@@ -53,7 +53,7 @@ function AdminVideos() {
 
   const choseCategory = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {
         setCategory(res.data);
       })
@@ -67,9 +67,7 @@ function AdminVideos() {
 
   const linkCategory = () => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/category/video`
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/category/video`)
       .catch(() => {
         console.error("video not uploaded");
       });

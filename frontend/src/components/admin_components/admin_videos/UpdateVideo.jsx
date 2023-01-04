@@ -13,7 +13,7 @@ function UpdateVideos() {
 
   const getVideo = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos`)
       .then((res) => {
         setVideo(res.data);
       })
@@ -25,6 +25,18 @@ function UpdateVideos() {
   useEffect(() => {
     getVideo();
   }, []);
+
+  const modifyVideo = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        `${import.meta.env.VITE_PORT_BACKEND}/videos/${videoDetails.id}`,
+        videoDetails
+      )
+      .catch(() => {
+        console.error("video not modified");
+      });
+  };
 
   return (
     <div className="update_video_container">
@@ -55,7 +67,7 @@ function UpdateVideos() {
         )}
       </div>
       <div className="update_video_form_container">
-        <form action="" className="update_video_form">
+        <form action={modifyVideo} className="update_video_form">
           <div>
             <div>Current title: {videoDetails.title}</div>
             <label htmlFor="title" className="update_video_title_label">
@@ -67,7 +79,9 @@ function UpdateVideos() {
               className="update_video_title_select"
               value={videoDetails.title}
               placeholder={videoDetails.title}
-              onChange=""
+              onChange={(e) =>
+                setVideoDetails({ ...videoDetails, title: e.target.value })
+              }
             />
           </div>
 
@@ -85,7 +99,12 @@ function UpdateVideos() {
               className="update_video_description_select"
               value={videoDetails.description}
               placeholder={videoDetails.description}
-              onChange=""
+              onChange={(e) =>
+                setVideoDetails({
+                  ...videoDetails,
+                  description: e.target.value,
+                })
+              }
             />
           </div>
 
@@ -100,11 +119,13 @@ function UpdateVideos() {
               className="update_video_display_select"
               value={videoDetails.display}
               placeholder={videoDetails.display}
-              onChange=""
+              onChange={(e) =>
+                setVideoDetails({ ...videoDetails, display: e.target.value })
+              }
             />
           </div>
 
-          <div>
+          {/* <div>
             <div>Current date: {videoDetails.date}</div>
             <label htmlFor="date" className="update_video_date_label">
               Change date
@@ -114,9 +135,16 @@ function UpdateVideos() {
               type="date"
               id="date"
               className="update_video_date_select"
-              // value={videoDetails.date}
+              value={videoDetails.date}
               // placeholder={videoDetails.date}
-              onChange=""
+              onChange={(e) => setVideoDetails({ ...videoDetails, date: e.target.value })}
+            />
+          </div> */}
+          <div>
+            <input
+              type="submit"
+              className="update_video_update_btn"
+              value="Update"
             />
           </div>
         </form>

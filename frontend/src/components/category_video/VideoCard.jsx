@@ -5,9 +5,7 @@ import { CiLock } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
 function VideoCard({ id, url, title, description, display }) {
-  const videoUrl = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }${url}`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}${url}`;
 
   return display ? (
     <NavLink to={`/videos/${id}`}>
