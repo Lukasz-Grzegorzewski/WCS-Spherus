@@ -56,7 +56,6 @@ function AdminUsers({ id }) {
 
   return (
     <div className="admin-users-container">
-      <p>User ID : {id}</p>
       <div className="users-admins-choice-container">
         <label className="label-users-admins">
           <input
@@ -99,6 +98,7 @@ function AdminUsers({ id }) {
         placeholder="Search useb by Email"
         onChange={(e) => setQuery(e.target.value)}
       />
+      <p>User ID : {id}</p>
       <div className="users-table-container">
         <div className="headers">Emails</div>
         <div className="users-table">

@@ -1,8 +1,7 @@
 .adminvideo_container {
-  width: 100%;
+  width: 95%;
   height: auto;
   border: 2px solid $secondary-color;
-  background-color: $primary-color;
   padding: 15px;
   margin-right: 20px;
   font-family: $font-text;
@@ -10,9 +9,10 @@
   form {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    font-family: $font-text;
   }
 
   .adminvideo_file_container {
@@ -26,8 +26,6 @@
   }
 
   .adminvideo_file_input {
-    width: 350px;
-    height: 300px;
     background-color: rgb(76, 124, 197);
     padding: 20px;
     margin: 10px;
@@ -36,7 +34,7 @@
   .adminvideo_fields_input {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 80%;
     gap: 10px;
 
     label {
@@ -46,8 +44,10 @@
     input,
     select,
     option {
-      background-color: $tertiary-color;
-      color: white;
+      background-color: $primary-color;
+      border: $button-input-border-size;
+      height: 25px;
+      border-radius: 15px;
     }
 
     option {
@@ -56,8 +56,75 @@
 
     .adminvideo_upload_btn {
       width: 25%;
-      background-color: $secondary-color;
+      background-color: $fourth-color;
+      color: $primary-color;
       margin: 0px auto;
+      border: 2px white solid;
+    }
+  }
+
+  .upload_message {
+    h2 {
+      color: red;
+      text-align: center;
+      font-family: $font-text;
+      font-size: 18px;
+    }
+  }
+
+  .upload_message_not {
+    display: none;
+  }
+
+  .delete_video_container {
+    h2 {
+      font-family: $font-text;
+      font-size: 18px;
+      text-align: center;
+      margin: 30px 0 15px 0;
+    }
+
+    .delete_video_selection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .delete_video_select {
+      width: 80%;
+    }
+
+    input,
+    select,
+    option {
+      background-color: $primary-color;
+      border: $button-input-border-size;
+      height: 25px;
+      border-radius: 15px;
+    }
+
+    button {
+      width: 25%;
+      background-color: $fourth-color;
+      color: $primary-color;
+      margin: 0px auto;
+      border: 2px white solid;
+      border-radius: 15px;
+      height: 25px;
+    }
+
+    .delete_message {
+      h2 {
+        color: red;
+        text-align: center;
+        margin: 0px 0px;
+      }
+    }
+
+    .delete_message_not {
+      display: none;
     }
   }
 }

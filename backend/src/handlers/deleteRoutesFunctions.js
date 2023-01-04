@@ -20,29 +20,38 @@ const deleteUserById = (req, res) => {
 const deleteVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
-  database
-    .query("DELETE FROM video_category WHERE video_id = ?", [id])
-    .then(([videoCategory]) => {
-      return videoCategory.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.status(204).send("video_category attachment deleted");
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a video_category attachment");
-    });
+  database.query("SELECT url FROM video WHERE id = ?", [id]).then(([[url]]) => {
+    database
+      .query("DELETE FROM video_category WHERE video_id = ?", [id])
+      .then(([videoCategory]) => {
+        if (videoCategory.affectedRows !== 0) {
+          database
+            .query("DELETE FROM video WHERE id = ?", [id])
+            .then(([video]) => {
+              const path = `/${url.url}`;
+              fs.unlink(`public${path}`, (err) => {
+                if (err) {
+                  console.error(err);
+                }
+              });
 
-  database
-    .query("DELETE FROM video WHERE id = ?", [id])
-    .then(([video]) => {
-      return video.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a video");
-    });
+              return video.affectedRows === 0
+                ? res.status(404).send("Not Found")
+                : res.sendStatus(204);
+            })
+
+            .catch((err) => {
+              console.error(err);
+              res.status(500).send("Error deleting a video");
+            });
+        }
+      })
+
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error deleting a video_category attachment");
+      });
+  });
 };
 
 const deleteCategoryById = (req, res) => {
