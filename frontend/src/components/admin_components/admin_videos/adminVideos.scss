@@ -60,4 +60,60 @@
       margin: 0px auto;
     }
   }
+
+  .upload_message {
+    h2 {
+      color: red;
+      text-align: center;
+      font-family: $font-text;
+      font-size: 18px;
+    }
+  }
+
+  .upload_message_not {
+    display: none;
+  }
+
+  .delete_video_container {
+    h2 {
+      font-family: $font-text;
+      font-size: 18px;
+      margin: 15px 15px 15px 160px;
+    }
+
+    .delete_video_selection {
+      display: flex;
+      margin: 20px;
+    }
+
+    .delete_video_select {
+      width: 390px;
+    }
+
+    input,
+    select,
+    option {
+      background-color: $tertiary-color;
+      color: white;
+    }
+
+    button {
+      background-color: $secondary-color;
+      margin: 0px auto;
+      padding: 5px 15px;
+      width: 15%;
+    }
+
+    .delete_message {
+      h2 {
+        color: red;
+        text-align: center;
+        margin: 0px 0px;
+      }
+    }
+
+    .delete_message_not {
+      display: none;
+    }
+  }
 }
