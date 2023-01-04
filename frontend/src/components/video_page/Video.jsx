@@ -13,9 +13,7 @@ function Video({
   display,
   videoUrl,
 }) {
-  const url = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }${videoUrl}`;
+  const url = `${import.meta.env.VITE_PORT_BACKEND}${videoUrl}`;
 
   return (
     <div className="video-component">

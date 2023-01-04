@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-function Advert() {
+function Advert({ id }) {
   const [pub, setPub] = useState([]);
+
+  const urlImg = `${import.meta.env.VITE_PORT_BACKEND}${pub.url_image}`;
 
   const getPub = () => {
     axios
-      .get(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/publicities/1`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${id}`)
       .then((res) => {
         setPub(res.data);
       });
@@ -22,11 +23,7 @@ function Advert() {
     <div className="pub">
       <div className="pub_box">
         <a className="pub_box_link" href={pub.url_link}>
-          <img
-            className="pub_box_link_img"
-            src={pub.url_image}
-            alt={pub.name}
-          />
+          <img className="pub_box_link_img" src={urlImg} alt={pub.name} />
         </a>
 
         <div className="pub_box_text">
@@ -59,3 +56,7 @@ function Advert() {
 }
 
 export default Advert;
+
+Advert.propTypes = {
+  id: PropTypes.number.isRequired,
+};
