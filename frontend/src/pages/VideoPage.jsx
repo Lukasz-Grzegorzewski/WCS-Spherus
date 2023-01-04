@@ -10,11 +10,7 @@ function VideoPage() {
 
   function getVideo(idArg) {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/cat/${idArg}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/cat/${idArg}`)
       .then((res) => {
         // console.warn("result", res.data[0]);
         setVideo(res.data[0]);

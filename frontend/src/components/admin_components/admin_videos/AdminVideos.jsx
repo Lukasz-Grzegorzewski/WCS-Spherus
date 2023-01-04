@@ -24,10 +24,7 @@ function AdminVideos() {
 
   const uploadVideo = (data) => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`,
-        data
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/videos`, data)
       .then(() => setMessage(true))
       .then(() => clearInput())
       .catch(() => {
