@@ -26,17 +26,19 @@ function AdminHomePage() {
       <div className="adminhomepage_admin">
         <h1>Admin your home page</h1>
         <div className="adminhomepage_admin_add">
-          <h2>Add new section</h2>
-          <button
-            className="icon-btn add-btn"
-            type="button"
-            onClick={() => {
-              setAddSection(!addSection);
-            }}
-          >
-            <div className="add-icon" />
-            <div className="btn-txt">Add section</div>
-          </button>
+          <div className="adminhomepage_admin_add_title">
+            <h2>Add new section</h2>
+            <button
+              className="icon-btn add-btn"
+              type="button"
+              onClick={() => {
+                setAddSection(!addSection);
+              }}
+            >
+              <div className="add-icon" />
+              <div className="btn-txt">Add section</div>
+            </button>
+          </div>
           {addSection === true && (
             <div>
               <AdminHomeAddSection
@@ -48,17 +50,19 @@ function AdminHomePage() {
           )}
         </div>
         <div className="adminhomepage_admin_add">
-          <h2>Add new advert</h2>
-          <button
-            className="icon-btn add-btn"
-            type="button"
-            onClick={() => {
-              setAddPub(!addPub);
-            }}
-          >
-            <div className="add-icon" />
-            <div className="btn-txt">Add advert</div>
-          </button>
+          <div className="adminhomepage_admin_add_title">
+            <h2>Add new advert</h2>
+            <button
+              className="icon-btn add-btn"
+              type="button"
+              onClick={() => {
+                setAddPub(!addPub);
+              }}
+            >
+              <div className="add-icon" />
+              <div className="btn-txt">Add advert</div>
+            </button>
+          </div>
           {addPub === true && (
             <div>
               <AdminHomeAddPub

@@ -30,7 +30,7 @@ function AdminUsers({ id }) {
 
   function getUsers() {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users`)
       .then(async (res) => {
         await setUsers(res.data);
       })
@@ -39,7 +39,7 @@ function AdminUsers({ id }) {
 
   function getUserById(uId) {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${uId}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${uId}`)
       .then(async (res) => {
         await setUser(res.data);
       })
