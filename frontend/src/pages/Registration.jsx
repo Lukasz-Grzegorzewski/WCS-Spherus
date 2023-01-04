@@ -6,6 +6,7 @@ import PasswordStrengthMeter from "../components/password_strength_meter/Passwor
 function Registration() {
   const [checkEmail, setCheckEmail] = useState(null);
   const [isUserCreated, setIsUserCreated] = useState(false);
+  const [error, setError] = useState("");
   const [newUser, setNewUser] = useState({
     firstname: "",
     lastname: "",
@@ -17,6 +18,18 @@ function Registration() {
 
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
+  }
+
+  function fieldsNotEmpty(obj) {
+    for (const elements in obj) {
+      if (obj[elements] === "") {
+        if (elements !== "birthday") {
+          setCheckEmail(3);
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   function emailValidator() {
@@ -53,7 +66,7 @@ function Registration() {
 
   const postNewUser = (e, data) => {
     e.preventDefault();
-    if (isValidEmail(newUser.email)) {
+    if (isValidEmail(newUser.email) && fieldsNotEmpty(newUser)) {
       axios
         .post(
           `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users`,
@@ -66,7 +79,8 @@ function Registration() {
           console.warn("Victoire !");
         })
         .catch((err) => {
-          console.error(err);
+          console.error("MEEEERDE :", err);
+          setError(err.response.data[0]);
           clearEmailInput();
           setCheckEmail(1);
         });
@@ -141,6 +155,7 @@ function Registration() {
               general terms and conditions
             </NavLink>
           </p>
+          <p>{error.param === "password" && error.msg}</p>
           {isUserCreated ? (
             <h3>Congratulations ! Your account is created.</h3>
           ) : (

@@ -8,7 +8,7 @@ const welcome = (req, res) => {
 /* USERS ROUTES */
 const getUsers = (req, res) => {
   database
-    .query("SELECT firstname, lastname, nickname FROM user")
+    .query("SELECT * FROM user")
     .then(([users]) => res.status(200).json(users))
     .catch((err) => console.error(err));
 };
@@ -245,6 +245,32 @@ const getPublicitiesById = (req, res) => {
     });
 };
 
+/* HOME ROUTES */
+
+const getHome = (req, res) => {
+  database
+    .query("SELECT * FROM home")
+    .then(([home]) => res.status(200).json(home))
+    .catch((err) => console.error(err));
+};
+const getHomeById = (req, res) => {
+  const id = parseInt(req.params.id_pub, 10);
+
+  database
+    .query("SELECT * FROM home WHERE id = ?", [id])
+    .then(([home]) => {
+      if (home[0] != null) {
+        res.status(200).json(home[0]);
+      } else {
+        res.status(404).send();
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
 module.exports = {
   welcome,
   getUsers,
@@ -262,4 +288,6 @@ module.exports = {
   getPublicitiesById,
   getVideosAndCategoryByVideoId,
   getCatNameVideoSliderById,
+  getHome,
+  getHomeById,
 };

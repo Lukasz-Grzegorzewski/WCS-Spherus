@@ -35,11 +35,7 @@ function Section({ id }) {
 
   const getVideo = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/categories/${id}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${id}`)
       .then((res) => {
         setVideo(res.data);
       });

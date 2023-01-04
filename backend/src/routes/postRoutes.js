@@ -5,6 +5,7 @@ const multer = require("multer");
 
 const { hashPassword, verifyPassword } = require("../handlers/auth");
 
+// Import des fichiers vidéo dans le backend
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/assets/videos");
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+// Import des fichiers pub dans le backend
 const storageImg = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/assets/images");
@@ -54,12 +56,17 @@ router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
 router.post("/categories", postRoutesFunctions.postCategory);
 
+// Ajouter une video dans le Hero Slider
 router.post("/hero_slider", postRoutesFunctions.postHeroSlider);
 
+// Ajouter une publicité
 router.post(
   "/publicity",
   uploadImg.single("file"),
   postRoutesFunctions.postAdvert
 );
+
+// Ajouter un composant à la HomePage
+router.post("/home", postRoutesFunctions.postHome);
 
 module.exports = router;

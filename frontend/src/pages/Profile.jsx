@@ -28,7 +28,7 @@ function Profile({ id }) {
 
   useEffect(() => {
     getUser();
-  }, [refresh]);
+  }, [refresh, id]);
 
   return (
     <div className="profile-conatainer">
@@ -36,6 +36,8 @@ function Profile({ id }) {
         <div>
           <Avatar
             id={id}
+            refresh={refresh}
+            setRefresh={setRefresh}
             photoSrc={
               user.url
                 ? `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${

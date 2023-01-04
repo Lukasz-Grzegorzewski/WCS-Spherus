@@ -13,13 +13,12 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
 
   const getPub = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
         setInfoPub(res.data);
+        setName(res.data.name);
+        setDescription(res.data.description);
+        setUrlLink(res.data.url_link);
       })
       .catch((error) => {
         console.warn(error);
@@ -38,16 +37,11 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
 
   const updateAdd = () => {
     axios
-      .put(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/publicities/${idPub}`,
-        {
-          description: `${description}`,
-          urlLink: `${urlLink}`,
-          name: `${name}`,
-        }
-      )
+      .put(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`, {
+        description: `${description}`,
+        urlLink: `${urlLink}`,
+        name: `${name}`,
+      })
       .then(() => {
         setCheck(true);
         clearInputs();
@@ -66,9 +60,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
     updateAdd();
   };
 
-  const videoUrl = `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
-    infoPub.url_image
-  }`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${infoPub.url_image}`;
 
   return (
     <div className="addadvert">
@@ -107,7 +99,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="name"
               value={name}
-              placeholder={infoPub.name}
+              placeholder="Update name"
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -123,7 +115,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="description"
               value={description}
-              placeholder={infoPub.description}
+              placeholder="Update description"
               onChange={(e) => setDescription(e.target.value)}
               required
             />
@@ -136,7 +128,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
               type="text"
               id="urlLink"
               value={urlLink}
-              placeholder={infoPub.url_link}
+              placeholder="Update link"
               onChange={(e) => setUrlLink(e.target.value)}
               required
             />

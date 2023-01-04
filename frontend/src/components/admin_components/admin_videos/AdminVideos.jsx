@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DeleteVideo from "./DeleteVideo";
+import UpdateVideo from "./UpdateVideo";
 
 function AdminVideos() {
   const [file, setFile] = useState({});
+  const [message, setMessage] = useState(false);
   const [videoDetails, setVideoDetails] = useState({
     title: "",
     description: "",
     display: "",
-    date: null,
+    date: new Date().toISOString().split("T")[0],
   });
+
+  const clearInput = () => {
+    setVideoDetails({
+      title: "",
+      description: "",
+      display: "",
+      date: new Date().toISOString().split("T")[0],
+    });
+  };
 
   const uploadVideo = (data) => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/videos`,
-        data
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/videos`, data)
+      .then(() => setMessage(true))
+      .then(() => clearInput())
       .catch(() => {
         console.error("video not uploaded");
       });
@@ -39,12 +50,12 @@ function AdminVideos() {
 
   const choseCategory = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {
         setCategory(res.data);
       })
       .catch(() => {
-        console.error("ta gueule");
+        console.error("category not found");
       });
   };
   useEffect(() => {
@@ -53,9 +64,7 @@ function AdminVideos() {
 
   const linkCategory = () => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/category/video`
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/category/video`)
       .catch(() => {
         console.error("video not uploaded");
       });
@@ -151,6 +160,13 @@ function AdminVideos() {
             />
           </div>
         </form>
+
+        <div className={message ? "upload_message" : "upload_message_not"}>
+          <h2>Video has been Uploaded!</h2>
+        </div>
+
+        <DeleteVideo message={message} setMessage={setMessage} />
+        <UpdateVideo />
       </div>
     </div>
   );
