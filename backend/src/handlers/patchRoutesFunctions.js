@@ -6,7 +6,12 @@ const patchVideoById = (req, res) => {
   const reqBodyKeysArr = Object.keys(req.body);
   let sql = "UPDATE video SET";
   reqBodyKeysArr.forEach((item, index) => {
-    if (index !== 0) sql += ",";
+    if (index > 1) {
+      sql += ",";
+    }
+
+    const dateF = String(date.split("T")[0]);
+
     switch (item) {
       case "url":
         sql += ` ${item} = ${JSON.stringify(url)}`;
@@ -21,7 +26,7 @@ const patchVideoById = (req, res) => {
         sql += ` ${item} = ${JSON.stringify(title)}`;
         break;
       case "date":
-        sql += ` ${item} = ${JSON.stringify(date)}`;
+        sql += ` ${item} = ${JSON.stringify(dateF)}`;
         break;
       default:
         break;
@@ -34,7 +39,7 @@ const patchVideoById = (req, res) => {
     .then(([result]) => {
       return result.affectedRows === 0
         ? res.status(404).send("Not Found")
-        : res.sendStatus(204);
+        : res.status(204).send();
     })
     .catch((err) => {
       console.error(err);
