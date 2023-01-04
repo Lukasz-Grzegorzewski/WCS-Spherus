@@ -7,19 +7,13 @@ import { Link } from "react-router-dom";
 function Sliderdata({ id, title, date, url }) {
   const year = date?.substring(0, 7);
 
-  const videoUrl = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }/${url}`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${url}`;
 
   const [cat, setCat] = useState([]);
 
   const getCat = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/catname/${id}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/catname/${id}`)
       .then((res) => {
         setCat(res.data);
       });

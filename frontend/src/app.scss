@@ -1,5 +1,5 @@
 .App.dark-theme {
-  color: $dt-font-color;
+  color: $primary-color;
   background: $dt-background;
 
   .navbar,
@@ -12,16 +12,16 @@
   }
 
   button {
-    color: $dt-font-color;
+    color: $primary-color;
   }
 
   a {
-    color: $dt-font-color;
+    color: $primary-color;
   }
 }
 
 .App.light-theme {
-  color: $lt-font-color;
+  color: $secondary-color;
   background: $lt-background;
 
   .navbar,
@@ -35,17 +35,17 @@
   }
 
   button {
-    color: $lt-font-color;
+    color: $secondary-color;
   }
 
   a {
-    color: $lt-font-color;
+    color: $secondary-color;
   }
 }
 
 .App .heroslider {
-  color: $dt-font-color;
+  color: $primary-color;
   button {
-    color: $dt-font-color;
+    color: $primary-color;
   }
 }

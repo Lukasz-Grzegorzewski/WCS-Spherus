@@ -9,19 +9,19 @@
     height: 100%;
 
     .react-multiple-carousel__arrow {
-      background-color: $button-background-three;
-      border: $button-input-border-size solid $dt-toggle-color-border;
+      background-color: $secondary-color;
+      border: $button-input-border-size solid $primary-color;
 
       &:hover {
-        background-color: $button-background-two;
+        background-color: $primary-color;
 
         &::before {
-          color: $button-background-three;
+          color: $secondary-color;
         }
       }
 
       &::before {
-        color: $button-background-two;
+        color: $primary-color;
       }
     }
 
@@ -39,7 +39,7 @@
     }
 
     .react-multi-carousel-dot--active button {
-      background: $button-background-three;
+      background: $secondary-color;
       scale: 125%;
     }
   }

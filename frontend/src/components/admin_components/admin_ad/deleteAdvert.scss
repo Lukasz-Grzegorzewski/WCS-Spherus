@@ -1,0 +1,147 @@
+.deleteadvert {
+  color: $primary-color;
+
+  &_form {
+    gap: 10px;
+    margin-top: 15px;
+
+    &_screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      object-fit: cover;
+      margin-top: 2%;
+      border-radius: 20px;
+
+      p {
+        font-size: 15px;
+        margin-top: 2%;
+      }
+    }
+
+    &_label {
+      font-size: 18px;
+
+      &_select {
+        margin-top: 15px;
+        margin-left: 2%;
+        width: 80%;
+        height: 25px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  &_delete {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    button {
+      padding: 9px 30px;
+      margin-top: 3%;
+      margin-left: 2%;
+      width: 80%;
+      height: 40px;
+      transition: 0.5s;
+      position: relative;
+      font-size: 15px;
+      background: $secondary-color;
+      border-radius: 20px;
+      border: none;
+      color: $secondary-color;
+      cursor: pointer;
+    }
+
+    button:hover {
+      letter-spacing: 0.25em;
+      background: #ff1867;
+      color: #ff1867;
+      box-shadow: 0 0 45px #ff1867;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      background: $fourth-color;
+      border-radius: 20px;
+    }
+
+    button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    button i {
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+
+    button i::before {
+      content: "";
+      position: absolute;
+      border: 2px solid $secondary-color;
+      border-radius: 20px;
+      width: 20px;
+      height: 6px;
+      top: -3.5px;
+      left: 80%;
+      background: $tertiary-color;
+      transform: translateX(-50%);
+      transition: 0.5s;
+    }
+
+    button:hover i::before {
+      width: 20px;
+      left: 20%;
+    }
+
+    button i::after {
+      content: "";
+      position: absolute;
+      border: 2px solid $secondary-color;
+      border-radius: 20px;
+      width: 20px;
+      height: 6px;
+      bottom: -3.5px;
+      left: 20%;
+      background: $tertiary-color;
+      transform: translateX(-50%);
+      transition: 0.5s;
+    }
+
+    button:hover i::after {
+      width: 20px;
+      left: 80%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .deleteadvert {
+    &_form {
+      &_screen {
+        width: 55%;
+      }
+
+      &_label {
+        &_select {
+          width: 50%;
+        }
+      }
+    }
+
+    &_delete {
+      width: 64%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      button {
+        margin-left: 3%;
+      }
+    }
+  }
+}
