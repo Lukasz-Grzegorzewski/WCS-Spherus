@@ -80,6 +80,7 @@ function Registration() {
     <div className="registration-page">
       <div className="registration-box">
         <form
+          className="form-registration"
           action="http://localhost:5000/users"
           method="post"
           onSubmit={(e) => {

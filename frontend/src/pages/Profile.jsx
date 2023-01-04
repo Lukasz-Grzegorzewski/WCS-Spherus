@@ -19,7 +19,7 @@ function Profile({ id }) {
 
   function getUser() {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -40,9 +40,7 @@ function Profile({ id }) {
             setRefresh={setRefresh}
             photoSrc={
               user.url
-                ? `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/${
-                    user.url
-                  }`
+                ? `${import.meta.env.VITE_PORT_BACKEND}/${user.url}`
                 : "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg"
             }
           />
