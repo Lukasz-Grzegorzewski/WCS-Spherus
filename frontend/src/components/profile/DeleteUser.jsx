@@ -10,9 +10,7 @@ function DeleteUser({ id }) {
     const answer = window.confirm("Are you sure?");
     if (answer) {
       axios
-        .delete(
-          `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${id}`
-        )
+        .delete(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
         .then(() => {
           console.warn("user deleted successfully");
           navigate("/registration");

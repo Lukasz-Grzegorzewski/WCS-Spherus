@@ -20,10 +20,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
 
   const handleUpload = () => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${id}`,
-        data
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, data)
       .then((response) => {
         setCardToggle(false);
         console.warn("OK! response.data :", response.data);

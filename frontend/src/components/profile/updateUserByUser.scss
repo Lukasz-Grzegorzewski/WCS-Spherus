@@ -1,18 +1,18 @@
-.form {
+.form-profile {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 
   ::placeholder,
-  input[type="date"]::-webkit-datetime-edit-text,
-  input[type="date"]::-webkit-datetime-edit-month-field,
-  input[type="date"]::-webkit-datetime-edit-day-field,
-  input[type="date"]::-webkit-datetime-edit-year-field {
+  .inputs-form[type="date"]::-webkit-datetime-edit-text,
+  .inputs-form[type="date"]::-webkit-datetime-edit-month-field,
+  .inputs-form[type="date"]::-webkit-datetime-edit-day-field,
+  .inputs-form[type="date"]::-webkit-datetime-edit-year-field {
     color: $primary-color;
     opacity: 70%;
   }
 
-  input {
+  .inputs-form {
     all: unset;
 
     ::-webkit-datetime-edit-text {
