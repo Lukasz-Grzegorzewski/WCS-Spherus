@@ -4,7 +4,6 @@ const router = express.Router();
 const multer = require("multer");
 
 const { hashPassword, verifyPassword } = require("../handlers/auth");
-const { validateInputs } = require("../handlers/validator");
 
 // Import des fichiers vidéo dans le backend
 const storage = multer.diskStorage({
