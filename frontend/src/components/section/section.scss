@@ -4,23 +4,22 @@
     flex-direction: row;
     margin: 15px;
     align-items: baseline;
-    justify-content: space-around;
+    justify-content: space-between;
     font-family: $font-text;
 
     .section_name {
       font-family: $font-text;
       font-size: 3rem;
-      width: 50%;
+      width: 100%;
       font-family: $font-display;
     }
 
     .section_seeMoreBtn {
-      width: 50%;
       display: flex;
       justify-content: end;
 
       .section_seeMoreBtn_btn {
-        width: 20%;
+
         text-align: center;
         padding: 5px;
         font-size: 1.5rem;
