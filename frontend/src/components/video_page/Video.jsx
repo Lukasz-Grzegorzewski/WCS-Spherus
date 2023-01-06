@@ -53,7 +53,6 @@ function Video({
     // console.log("PAUSED");
   }
 
-  const url = `${import.meta.env.VITE_PORT_BACKEND}${videoUrl}`;
 
 
   return (
