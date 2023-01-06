@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 function PopupAddComponent({ setAddSection, setAddPub }) {
   return (
-    <div className="PopupAddComponent">
-      <p className="PopupAddComponent_done">Done !</p>
+    <div className="popupAddComponent">
+      <p className="popupAddComponent_done">Done !</p>
       <button
         type="button"
         className="cssbuttons-io-button"

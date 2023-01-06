@@ -1,38 +1,59 @@
 .videocard {
-  width: 280px;
+  width: 350px;
   height: auto;
-  background-color: #fa7d09;
   margin: 10px;
+  font-family: $font-text;
+  position: relative;
 
   &_video {
-    width: 280px;
+    width: 350px;
     height: auto;
     overflow: hidden;
+    border-radius: 15px;
+  }
+
+  &_video_description {
+    position: relative;
+    bottom: 47px;
+    padding: 10px;
+    font-size: 1.3rem;
+    background-color: $sixth-color;
+    border-radius: 0 0 15px 15px;
   }
 }
 
 .videocard_veil {
-  width: 280px;
+  width: 350px;
   height: auto;
-  background-color: $fourth-color;
-  opacity: 60%;
+  font-family: $font-text;
   margin: 10px;
   z-index: 0;
   position: relative;
 
   &_video {
-    width: 280px;
+    width: 350px;
     height: auto;
     overflow: hidden;
+    border-radius: 15px;
+    opacity: 60%;
   }
 
   &_lock {
     position: absolute;
-    color: $fourth-color;
-    top: 25%;
-    right: 35%;
+    color: $primary-color;
+    top: 20%;
+    right: 38%;
     z-index: 2;
     width: 80px;
     height: 80px;
+  }
+
+  &_video_description {
+    position: relative;
+    bottom: 47px;
+    padding: 10px;
+    font-size: 1.3rem;
+    background-color: $sixth-color;
+    border-radius: 0 0 15px 15px;
   }
 }

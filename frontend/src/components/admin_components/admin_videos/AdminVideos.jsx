@@ -166,7 +166,7 @@ function AdminVideos() {
         </div>
 
         <DeleteVideo message={message} setMessage={setMessage} />
-        <UpdateVideo />
+        <UpdateVideo message={message} setMessage={setMessage} />
       </div>
     </div>
   );
