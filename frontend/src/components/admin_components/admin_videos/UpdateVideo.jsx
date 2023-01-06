@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 
-function UpdateVideos() {
+function UpdateVideos({ message, setMessage }) {
   const [video, setVideo] = useState([]);
   const [videoDetails, setVideoDetails] = useState({
     id: "",
@@ -10,6 +11,7 @@ function UpdateVideos() {
     display: "",
     date: null,
   });
+  const [updateVideoMessage, setUpdateVideoMessage] = useState(false);
 
   const getVideo = () => {
     axios
@@ -24,7 +26,11 @@ function UpdateVideos() {
 
   useEffect(() => {
     getVideo();
-  }, []);
+  }, [message]);
+
+  const handleUpdateMessage = () => {
+    setMessage(false);
+  };
 
   const modifyVideo = (e) => {
     e.preventDefault();
@@ -34,6 +40,9 @@ function UpdateVideos() {
         `${import.meta.env.VITE_PORT_BACKEND}/videos/${videoDetails.id}`,
         videoDetails
       )
+      .then(() => {
+        setUpdateVideoMessage(true);
+      })
       .catch(() => {
         console.error("video not modified");
       });
@@ -49,6 +58,7 @@ function UpdateVideos() {
             onChange={(e) => {
               setVideoDetails(JSON.parse(e.target.value));
             }}
+            onClick={handleUpdateMessage}
           >
             <option value="">---</option>
             {video.map((v) => (
@@ -158,10 +168,22 @@ function UpdateVideos() {
               value="Update"
             />
           </div>
+          <div
+            className={
+              updateVideoMessage ? "update_message" : "update_message_not"
+            }
+          >
+            <h2>Video has been Updated!</h2>
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
+UpdateVideos.propTypes = {
+  message: PropTypes.bool.isRequired,
+  setMessage: PropTypes.string.isRequired,
+};
 
 export default UpdateVideos;

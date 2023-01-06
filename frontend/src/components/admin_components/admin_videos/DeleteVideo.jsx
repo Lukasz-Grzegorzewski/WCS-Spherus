@@ -30,6 +30,7 @@ function DeleteVideo({ message, setMessage }) {
     axios
       .delete(`${import.meta.env.VITE_PORT_BACKEND}/videos/${videoId}`)
       .then(() => setDeleteMessage(true))
+      .then(() => getVideo())
       .catch(() => {
         console.error("video not found");
       });
