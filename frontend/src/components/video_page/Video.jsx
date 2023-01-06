@@ -13,6 +13,7 @@ function Video({
   display,
   videoUrl,
 }) {
+
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -51,6 +52,9 @@ function Video({
     // }, 3000);
     // console.log("PAUSED");
   }
+
+  const url = `${import.meta.env.VITE_PORT_BACKEND}${videoUrl}`;
+
 
   return (
     <div className="video-component">
