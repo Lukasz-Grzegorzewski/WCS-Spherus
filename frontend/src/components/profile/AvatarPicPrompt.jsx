@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Avatar from "react-avatar-edit";
 import axios from "axios";
 
-function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
+function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   const [data, setData] = useState(null);
 
   function onClose() {
@@ -23,6 +23,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle }) {
       .post(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, data)
       .then((response) => {
         setCardToggle(false);
+        getUser();
         console.warn("OK! response.data :", response.data);
       })
       .catch((err) => {
@@ -76,5 +77,6 @@ export default AvatarPicPrompt;
 AvatarPicPrompt.propTypes = {
   setUrl: PropTypes.func.isRequired,
   setCardToggle: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };
