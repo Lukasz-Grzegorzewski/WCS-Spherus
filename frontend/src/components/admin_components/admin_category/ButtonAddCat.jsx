@@ -8,10 +8,7 @@ function ButtonAddCat({ getCategories }) {
     e.preventDefault();
     console.warn(typeof addedCat);
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories/`,
-        addedCat
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/categories/`, addedCat)
       .then(() => {
         getCategories();
       })
@@ -32,7 +29,6 @@ function ButtonAddCat({ getCategories }) {
           onChange={(e) => setAddedCat({ name: e.target.value })}
         />
         <input type="submit" value="ADD" />
-        {addedCat.name}
       </form>
     </div>
   );

@@ -6,11 +6,7 @@ function ButtonDeleteCat({ idCategory, getCategories }) {
 
   function deleteCategory() {
     axios
-      .delete(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/categories/${idCategory}/`
-      )
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/categories/${idCategory}/`)
       .then(() => {
         getCategories();
       })

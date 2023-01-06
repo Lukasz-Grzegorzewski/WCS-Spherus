@@ -58,17 +58,28 @@ const deleteCategoryById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   database
-    .query("DELETE FROM category WHERE id = ?", [id])
-    .then(([category]) => {
-      return category.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.sendStatus(204);
+    .query("DELETE FROM video_category WHERE category_id = ?", [id])
+    .then(() => {
+      database
+        .query("DELETE FROM category WHERE id = ?", [id])
+        .then(([category]) => {
+          return category.affectedRows === 0
+            ? res.status(404).send("Category Not Found")
+            : res.sendStatus(204);
+        })
+
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error deleting a category");
+        });
     })
+
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error deleting a category");
+      res.status(500).send("Error deleting a video_category attachment");
     });
 };
+
 
 // HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
