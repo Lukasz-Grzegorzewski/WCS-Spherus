@@ -80,7 +80,6 @@ const deleteCategoryById = (req, res) => {
     });
 };
 
-
 // HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
