@@ -7,10 +7,9 @@ function ToggleIsAdmin({ id, refresh, setRefresh }) {
 
   function handleToggle() {
     axios
-      .patch(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${id}`,
-        { isAdmin: isChecked ? 0 : 1 }
-      )
+      .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
+        isAdmin: isChecked ? 0 : 1,
+      })
       .then(() => {
         setRefresh(!refresh);
         console.warn("user updated");
@@ -20,7 +19,7 @@ function ToggleIsAdmin({ id, refresh, setRefresh }) {
 
   function getUserById(uid) {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${uid}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${uid}`)
       .then((res) => {
         setIsChecked(res.data.is_admin !== 0);
       })

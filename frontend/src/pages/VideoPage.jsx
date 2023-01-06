@@ -4,21 +4,37 @@ import { useParams } from "react-router-dom";
 import Video from "../components/video_page/Video";
 
 function VideoPage() {
-  const [video, setVideo] = useState();
+  const [video, setVideo] = useState(null);
+  const [arrCatId, setArrCatId] = useState([]);
+  const [arrCatName, setArrCatName] = useState([]);
 
   const { idVid } = useParams();
 
+  function getArrayOfCategoriesByVideoId(result) {
+    const arrCatIdTemp = [];
+    const arrCatNameTemp = [];
+    result.forEach((item) => {
+      arrCatIdTemp.push(parseInt(item.idCat, 10));
+      arrCatNameTemp.push(item.cat);
+    });
+
+    setArrCatId(arrCatIdTemp);
+    setArrCatName(arrCatNameTemp);
+  }
+
   function getVideo(idArg) {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/cat/${idArg}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/cat/${idArg}`)
       .then((res) => {
-        // console.warn("result", res.data[0]);
+        // console.warn("result", res.data);
         setVideo(res.data[0]);
-      });
+        return res.data;
+      })
+      .then((result) => {
+        // console.warn("result2", result);
+        getArrayOfCategoriesByVideoId(result);
+      })
+      .catch((err) => console.error(err));
   }
 
   useEffect(() => {
@@ -26,16 +42,18 @@ function VideoPage() {
   }, []);
   return (
     <div className="video-container">
-      {video && (
-        <Video
-          idCat={video.idCat}
-          title={video.title}
-          description={video.description}
-          category={video.cat}
-          date={video.date}
-          display={video.display}
-          videoUrl={video.url}
-        />
+      {video && arrCatId && arrCatName && (
+        <div>
+          <Video
+            arrCatId={arrCatId}
+            title={video.title}
+            description={video.description}
+            arrCatName={arrCatName}
+            date={video.date}
+            display={video.display}
+            videoUrl={video.url}
+          />
+        </div>
       )}
     </div>
   );

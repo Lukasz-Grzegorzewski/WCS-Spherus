@@ -2,7 +2,6 @@
 @import "./reset.scss";
 @import "./loginPopUp/loginPopUp.scss";
 @import "./footer/footer.scss";
-@import "../pages/registration.scss";
 @import "./heroSlider/heroslider.scss";
 @import "../pages/videoPage.scss";
 @import "../pages/home.scss";
@@ -16,10 +15,13 @@
 @import "../app.scss";
 @import "../components/navbar/Navbar.css";
 @import "../components/admin_components/admin_videos/adminVideos.scss";
+@import "../pages/registerForm.scss";
 @import "../components/admin_components/admin_fixtures/adminFixtures.scss";
 @import "../components/advert/advert.scss";
 @import "../components/admin_components/admin_ad/adminAdvert.scss";
-@import "../components/admin_components/admin_users/adminUsers.scss";
 
+@import "../components/admin_components/admin_videos/updateVideo.scss";
+
+@import "../components/admin_components/admin_users/adminUsers.scss";
 @import "../pages/profile.scss";
 @import "./buttons/buttonLogin.scss";

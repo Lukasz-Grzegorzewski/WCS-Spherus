@@ -2,7 +2,9 @@
 
 .video-component {
   .video-player {
+    position: relative;
     .video {
+      background-color: $secondary-color;
       width: 100%;
       aspect-ratio: 16/9;
     }
@@ -10,27 +12,79 @@
     .video.locked {
       opacity: 40%;
     }
+
+    //     $lt-background: linear-gradient(
+    //   180deg,
+    //   $lt-background-gradient-color-top 22.97%,
+    //   $lt-background-gradient-color-middle 43.4%,
+    //   $lt-background-gradient-color-bottom 98.86%
+    // );
+
+    .info-video {
+      transition: all 1000ms ease-in-out;
+      position: absolute;
+      left: 5%;
+      bottom: 30%;
+      padding: 10px 60px 10px 10px;
+      border-radius: 10px;
+      font-family: $font-text;
+      font-weight: 100;
+      font-size: 1.3rem;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        100deg,
+        rgba(0, 0, 0, 0.5) 55%,
+        rgba(138, 138, 154, 0) 83%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .video-title {
+        font-family: $font-display;
+        font-size: 2rem;
+      }
+      .video-desc {
+      }
+      .video-categories-container {
+        display: flex;
+        gap: 10px;
+      }
+    }
   }
 
   .description {
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 0 5%;
     // font-weight: 400;
+
+    .lock-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .lock-icon {
+        font-size: 4rem;
+        color: $fourth-color;
+      }
+      .lock-desc {
+        font-size: 1.7rem;
+        color: $fourth-color;
+      }
+      .btn {
+        font-size: 1.7rem;
+        background-color: $tertiary-color;
+        border-radius: 2rem;
+        margin-left: 5px;
+        color: $tertiary-color;
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
 
     .info {
       font-size: 2rem;
-    }
-
-    .lock-icon-sub {
-      font-size: 3rem;
-    }
-
-    .btn {
-      // background-color: $primary-color;
-      // border: 2px solid #00a7ff;
-      // color: #00a7ff;
-      padding: 5px;
     }
 
     .btn-subscribe {
@@ -39,6 +93,10 @@
     .btn-seemore {
     }
   }
+
+  .section-container {
+    margin-top: 30px;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -46,25 +104,69 @@
     .video-player {
       display: flex;
       justify-content: center;
-
+      position: relative;
       .video {
-        width: 80%;
+        background-color: $secondary-color;
+        width: 100%;
+        aspect-ratio: 16/9;
       }
 
-      .locked {
+      .video.locked {
+        opacity: 40%;
+      }
+      .info-video {
+        // left: 15%;
+        bottom: 18%;
+        font-size: large;
+
+        font-size: small;
+        .video-title {
+          font-family: $font-display;
+          font-size: 3rem;
+        }
+        .video-desc {
+          font-size: 1.7rem;
+        }
+        .video-categories-container {
+          display: flex;
+          gap: 10px;
+        }
       }
     }
 
     .description {
-      .lock-icon-sub {
+      // display: flex;
+      // flex-direction: column;
+      // padding: 0 5%;
+      // font-weight: 400;
+
+      .lock-container {
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        .lock-icon {
+          // font-size: 4rem;
+        }
+        .lock-desc {
+          font-size: 2rem;
+        }
+        .btn {
+          // background-color: $tertiary-color;
+          // border-radius: 10px;
+          // margin-left: 5px;
+          // color: $tertiary-color;
+          // padding: 5px;
+        }
       }
 
-      .btn {
-        .btn-subscribe {
-        }
+      .info {
+        // font-size: 2rem;
+      }
 
-        .btn-seemore {
-        }
+      .btn-subscribe {
+      }
+
+      .btn-seemore {
       }
     }
   }

@@ -9,19 +9,13 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
   const [valueVideo, setValueVideo] = useState("");
   const [response, setResponse] = useState("");
   const getCat = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
-      .then((res) => {
-        setCat(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_PORT_BACKEND}/categories`).then((res) => {
+      setCat(res.data);
+    });
   };
   const getVideos = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/categories/${valueCat}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${valueCat}`)
       .then((res) => {
         setVideos(res.data);
       });
@@ -29,14 +23,9 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
 
   const updateHero = () => {
     axios
-      .put(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/${id}`,
-        {
-          fkVideo: `${valueVideo}`,
-        }
-      )
+      .put(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`, {
+        fkVideo: `${valueVideo}`,
+      })
       .then((res) => {
         setRefresh(!refresh);
         setResponse(res.data);

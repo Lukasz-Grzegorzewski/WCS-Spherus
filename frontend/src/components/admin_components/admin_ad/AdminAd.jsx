@@ -10,7 +10,7 @@ function AdminAd() {
 
   const getPub = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/publicities`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities`)
       .then((res) => {
         setPub(res.data);
       });

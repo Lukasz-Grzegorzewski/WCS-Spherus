@@ -1,0 +1,19 @@
+.adminHomeAddSection {
+  &_form {
+    margin-top: 3%;
+
+    &_label {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: $font-text;
+      font-size: 15px;
+      margin-bottom: 4%;
+
+      &_select {
+        height: 20px;
+        border-radius: 20px;
+      }
+    }
+  }
+}

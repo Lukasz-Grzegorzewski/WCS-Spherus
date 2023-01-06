@@ -211,6 +211,21 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     });
 };
 
+// POST HOME
+const postHome = (req, res) => {
+  const { type, idLink } = req.body;
+
+  database
+    .query("INSERT INTO home(type, idLink) VALUES (?, ?);", [type, idLink])
+    .then(() => {
+      res.status(201).send({ message: "Component Added" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error add new component in Home");
+    });
+};
+
 module.exports = {
   signInUserByUser,
   getUserByEmailWithPasswordAndPassToNext,
@@ -221,4 +236,5 @@ module.exports = {
   postHeroSlider,
   postAdvert,
   uploadAvatarUrl,
+  postHome,
 };
