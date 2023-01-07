@@ -77,18 +77,9 @@ function AdminHomePage() {
       {currentHome.length >= 1 && (
         <div className="adminhomepage_current">
           <h1>Currently in the Home Page</h1>
-          {currentHome.map((infos) => {
-            return (
-              <div className="adminhomepage_current_comp" key={infos.id}>
-                <AdminHomeCurrentComp
-                  id={infos.id}
-                  type={infos.type}
-                  idLink={infos.idLink}
-                  getHome={getHome}
-                />
-              </div>
-            );
-          })}
+          <div className="adminhomepage_current_comp">
+            <AdminHomeCurrentComp currentHome={currentHome} getHome={getHome} />
+          </div>
         </div>
       )}
     </div>

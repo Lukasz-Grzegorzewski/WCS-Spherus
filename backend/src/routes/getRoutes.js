@@ -49,5 +49,6 @@ router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 // Home
 router.get("/home", getRoutesFunctions.getHome);
 router.get("/home/:id", getRoutesFunctions.getHomeById);
+router.get("/home/category/name/", getRoutesFunctions.getHomeCategoriesName);
 
 module.exports = router;
