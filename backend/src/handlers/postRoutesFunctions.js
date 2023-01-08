@@ -213,10 +213,10 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
 
 // POST HOME
 const postHome = (req, res) => {
-  const { type, idLink } = req.body;
+  const { position, type, idLink } = req.body;
 
   database
-    .query("INSERT INTO home(type, idLink) VALUES (?, ?);", [type, idLink])
+    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [position, type, idLink])
     .then(() => {
       res.status(201).send({ message: "Component Added" });
     })
