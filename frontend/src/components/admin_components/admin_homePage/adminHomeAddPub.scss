@@ -16,6 +16,7 @@
         border-radius: 20px;
       }
     }
+
     &_btn {
       font-family: $font-text;
       font-size: 15px;
@@ -56,7 +57,7 @@
     }
 
     button:hover span {
-      transform: translateX(8em);
+      transform: translateX(10em);
     }
 
     button:active {
