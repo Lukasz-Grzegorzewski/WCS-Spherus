@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function AddHero({ refresh, setRefresh, add, setAdd }) {
+function AddHero({ getHeroInfo, add, setAdd }) {
   const [cat, setCat] = useState([]);
   const [valueCat, setValueCat] = useState("");
   const [videos, setVideos] = useState([]);
@@ -37,7 +37,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
       })
       .then((res) => {
         console.warn(res.data);
-        setRefresh(!refresh);
+        getHeroInfo();
       })
       .catch((err) => {
         console.error(err);
@@ -133,8 +133,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 export default AddHero;
 
 AddHero.propTypes = {
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getHeroInfo: PropTypes.func.isRequired,
   setAdd: PropTypes.func.isRequired,
   add: PropTypes.bool.isRequired,
 };

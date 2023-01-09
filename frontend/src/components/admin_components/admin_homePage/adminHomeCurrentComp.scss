@@ -39,10 +39,10 @@
       .icon-btn {
         width: 50px;
         height: 50px;
-        border: 2px solid $tertiary-color;
-        background-color: #ff1867;
+        border: 2px solid red;
+        background-color: $secondary-color;
         border-radius: 25px;
-        color: $secondary-color;
+        color: $primary-color;
         overflow: hidden;
         position: relative;
         transition: width 0.2s ease-in-out;
@@ -53,7 +53,7 @@
 
       .add-btn:hover {
         width: 120px;
-        color: $secondary-color;
+        color: $primary-color;
       }
 
       .add-btn::before,
@@ -64,7 +64,7 @@
         height: 4px;
         width: 10px;
         top: calc(50% - 2px);
-        background: $secondary-color;
+        background: red;
       }
 
       .add-btn::after {
@@ -88,7 +88,7 @@
         opacity: 0;
         transition: opacity 0.2s;
         font-family: $font-display;
-        color: $secondary-color;
+        color: $primary-color;
       }
 
       .add-btn:hover::before,
@@ -138,108 +138,3 @@
     }
   }
 }
-
-//   &_infos {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 5px;
-//     padding: 1%;
-//     border: 1px solid $fifte-color;
-//     background-color: $primary-color;
-//     border-radius: 20px;
-//     width: 60%;
-//     margin-bottom: 5%;
-//     font-family: $font-text;
-//     color: $secondary-color;
-
-//     h2 {
-//       font-size: 15px;
-//     }
-
-//     h3 {
-//       font-size: 12px;
-//     }
-//   }
-
-//   &_delete {
-//     width: 35%;
-
-//     button {
-//       padding: 9px 30px;
-//       margin-top: -10px;
-//       width: 100%;
-//       transition: 0.5s;
-//       position: relative;
-//       font-size: 15px;
-//       background: $fourth-color;
-//       border-radius: 20px;
-//       border: none;
-//       cursor: pointer;
-//     }
-
-//     button:hover {
-//       letter-spacing: 0.25em;
-//       background: #ff1867;
-//       color: #ff1867;
-//       box-shadow: 0 0 45px #ff1867;
-//     }
-
-//     button::before {
-//       content: "";
-//       position: absolute;
-//       inset: 1px;
-//       background: $fifte-color;
-//       border-radius: 20px;
-//     }
-
-//     button span {
-//       position: relative;
-//       z-index: 1;
-//     }
-
-//     button i {
-//       position: absolute;
-//       inset: 0;
-//       display: block;
-//     }
-
-//     button i::before {
-//       content: "";
-//       position: absolute;
-//       border: 2px solid $fourth-color;
-//       border-radius: 20px;
-//       width: 7px;
-//       height: 4px;
-//       top: -3.5px;
-//       left: 80%;
-//       background: $tertiary-color;
-//       transform: translateX(-50%);
-//       transition: 0.5s;
-//     }
-
-//     button:hover i::before {
-//       width: 20px;
-//       left: 20%;
-//     }
-
-//     button i::after {
-//       content: "";
-//       position: absolute;
-//       border: 2px solid $fourth-color;
-//       border-radius: 20px;
-//       width: 7px;
-//       height: 4px;
-//       bottom: -3.5px;
-//       left: 20%;
-//       background: $tertiary-color;
-//       transform: translateX(-50%);
-//       transition: 0.5s;
-//     }
-
-//     button:hover i::after {
-//       width: 20px;
-//       left: 80%;
-//     }
-//   }
-// }
