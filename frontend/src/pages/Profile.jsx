@@ -36,6 +36,7 @@ function Profile({ id }) {
         <div>
           <Avatar
             id={id}
+            getUser={() => getUser()}
             refresh={refresh}
             setRefresh={setRefresh}
             photoSrc={

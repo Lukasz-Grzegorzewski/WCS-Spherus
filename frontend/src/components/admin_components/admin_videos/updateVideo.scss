@@ -60,4 +60,19 @@
       }
     }
   }
+
+  .update_message {
+    h2 {
+      color: red;
+      text-align: center;
+      font-family: $font-text;
+      font-size: 18px;
+    }
+  }
+
+  .update_message_not {
+    h2 {
+      display: none;
+    }
+  }
 }

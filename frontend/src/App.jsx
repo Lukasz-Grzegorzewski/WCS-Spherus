@@ -38,7 +38,7 @@ function App() {
         <Route path="/categories/:id" element={<CategoryVideo />} />
         <Route path="/registration" element={<RegisterForm />} />
         <Route path="/videos/:idVid" element={<VideoPage />} />
-        <Route path="/profile" element={<Profile id={5} />} />
+        <Route path="/profile" element={<Profile id={1} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>
