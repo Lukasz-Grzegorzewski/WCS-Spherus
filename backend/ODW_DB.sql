@@ -49,6 +49,7 @@ DROP TABLE IF EXISTS `origins_digital_wcs`.`home` ;
 
 CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`home` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `position` INT NOT NULL,
   `type` INT NOT NULL,
   `idLink` INT NOT NULL,
   PRIMARY KEY (`id`))
@@ -58,12 +59,12 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO
-  `origins_digital_wcs`.`home` (type, idLink)
+  `origins_digital_wcs`.`home` (position, type, idLink)
 VALUES
-  (1,1),
-  (1,3),
-  (2,1),
-  (1,2);
+  (4,1,1),
+  (2,1,3),
+  (3,2,1),
+  (1,1,2);
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`color`

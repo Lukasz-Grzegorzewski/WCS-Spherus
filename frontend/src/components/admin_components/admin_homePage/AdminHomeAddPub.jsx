@@ -7,7 +7,6 @@ function AdminHomeAddPub({ setAddPub, setAddSection, getHome }) {
   const [pub, setPub] = useState([]);
   const [idPub, setIdPub] = useState();
   const [check, setCheck] = useState(false);
-  const type = 2;
 
   const getPub = () => {
     axios
@@ -28,7 +27,8 @@ function AdminHomeAddPub({ setAddPub, setAddSection, getHome }) {
   const addComp = () => {
     axios
       .post(`${import.meta.env.VITE_PORT_BACKEND}/home`, {
-        type: `${type}`,
+        position: 0,
+        type: 2,
         idLink: `${idPub}`,
       })
       .then(() => {
@@ -40,7 +40,7 @@ function AdminHomeAddPub({ setAddPub, setAddSection, getHome }) {
 
   return (
     <div className="adminHomeAddSection">
-      {pub.length >= 1 && (
+      {pub.length >= 1 && check === false && (
         <form className="adminHomeAddSection_form">
           <label
             className="adminHomeAddSection_form_label"
@@ -65,7 +65,7 @@ function AdminHomeAddPub({ setAddPub, setAddSection, getHome }) {
           </label>
           {idPub !== undefined && (
             <button
-              className="addadvert_form_container_btn"
+              className="adminHomeAddSection_form_btn"
               type="button"
               onClick={() => {
                 addComp();
@@ -90,15 +90,13 @@ function AdminHomeAddPub({ setAddPub, setAddSection, getHome }) {
               <span>Add</span>
             </button>
           )}
-          {check === true && (
-            <div>
-              <PopupAddComponent
-                setAddPub={setAddPub}
-                setAddSection={setAddSection}
-              />
-            </div>
-          )}
         </form>
+      )}
+      {check === true && (
+        <PopupAddComponent
+          setAddPub={setAddPub}
+          setAddSection={setAddSection}
+        />
       )}
     </div>
   );

@@ -164,10 +164,32 @@ const updatePublicityById = (req, res) => {
     });
 };
 
+// Update Home in admin
+const updateHomeById = (req, res) => {
+  const { id } = req.params;
+  const { position } = req.body;
+  database
+    .query(`UPDATE home set position = ${Number(position)} WHERE id = ?;`, [
+      Number(id),
+    ])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the advert");
+    });
+};
+
 module.exports = {
   patchVideoById,
   patchUserById,
   patchCategoryById,
   updateHeroSliderById,
   updatePublicityById,
+  updateHomeById,
 };
