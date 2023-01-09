@@ -4,7 +4,7 @@
 
 .adminhomepage {
   width: 96%;
-  border: 2px solid $tertiary-color;
+  box-shadow: 0 0 5px 1px $primary-color;
   padding: 1%;
   border-radius: 20px;
 
@@ -171,14 +171,14 @@
     &_admin {
       width: 45%;
       border-bottom: none;
-      border-right: 2px solid $tertiary-color;
+      border-right: 2px solid $primary-color;
 
       h1 {
         font-size: 30px;
       }
 
       &_add {
-        margin-top: 10%;
+        margin-top: 7%;
 
         h2 {
           font-size: 20px;
