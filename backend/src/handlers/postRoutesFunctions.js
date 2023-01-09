@@ -216,7 +216,11 @@ const postHome = (req, res) => {
   const { position, type, idLink } = req.body;
 
   database
-    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [position, type, idLink])
+    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [
+      position,
+      type,
+      idLink,
+    ])
     .then(() => {
       res.status(201).send({ message: "Component Added" });
     })

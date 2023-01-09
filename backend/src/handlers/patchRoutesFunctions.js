@@ -168,14 +168,10 @@ const updatePublicityById = (req, res) => {
 const updateHomeById = (req, res) => {
   const { id } = req.params;
   const { position } = req.body;
-  console.log(position)
   database
-    .query(
-      `UPDATE home set position = ${Number(
-        position
-      )} WHERE id = ?;`,
-      [Number(id)]
-    )
+    .query(`UPDATE home set position = ${Number(position)} WHERE id = ?;`, [
+      Number(id),
+    ])
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.status(404).send("Not Found");
