@@ -58,25 +58,25 @@ const patchUserById = (req, res) => {
     if (index !== 0) sql += ",";
     switch (item) {
       case "firstname":
-        sql += ` ${item} = ${JSON.stringify(firstname)}`;
+        sql += ` ${item} = "${firstname}"`;
         break;
       case "lastname":
-        sql += ` ${item} = ${JSON.stringify(lastname)}`;
+        sql += ` ${item} = "${lastname}"`;
         break;
       case "nickname":
-        sql += ` ${item} = ${JSON.stringify(nickname)}`;
+        sql += ` ${item} = "${nickname}"`;
         break;
       case "birthday":
-        sql += ` ${item} = ${JSON.stringify(birthday)}`;
+        sql += ` ${item} = "${birthday}"`;
         break;
       case "email":
-        sql += ` ${item} = ${JSON.stringify(email)}`;
+        sql += ` ${item} = "${email}"`;
         break;
       case "password":
-        sql += ` ${item} = ${JSON.stringify(password)}`;
+        sql += ` ${item} = "${password}"`;
         break;
       case "isAdmin":
-        sql += ` is_admin = ${JSON.stringify(isAdmin)}`;
+        sql += ` is_admin = "${isAdmin}"`;
         break;
       default:
         break;
@@ -164,10 +164,32 @@ const updatePublicityById = (req, res) => {
     });
 };
 
+// Update Home in admin
+const updateHomeById = (req, res) => {
+  const { id } = req.params;
+  const { position } = req.body;
+  database
+    .query(`UPDATE home set position = ${Number(position)} WHERE id = ?;`, [
+      Number(id),
+    ])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the advert");
+    });
+};
+
 module.exports = {
   patchVideoById,
   patchUserById,
   patchCategoryById,
   updateHeroSliderById,
   updatePublicityById,
+  updateHomeById,
 };

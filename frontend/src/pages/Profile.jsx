@@ -36,6 +36,7 @@ function Profile({ id }) {
         <div>
           <Avatar
             id={id}
+            getUser={() => getUser()}
             refresh={refresh}
             setRefresh={setRefresh}
             photoSrc={
@@ -141,7 +142,7 @@ function Profile({ id }) {
             <div className="fields-container">
               <div className="field-user">
                 <h2 htmlFor="">Birthday</h2>
-                <p>{user.birthday?.split("T")[0]}</p>
+                <p>{user.birthday}</p>
                 <button
                   className="btn-update-toggle"
                   type="button"

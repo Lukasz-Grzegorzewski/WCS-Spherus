@@ -1,138 +1,139 @@
 .adminHomeCurrentComp {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+  width: 96%;
 
-  &_infos {
+  &_drag {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    padding: 1%;
-    border: 1px solid $fifte-color;
-    background-color: $primary-color;
-    border-radius: 20px;
-    width: 60%;
-    margin-bottom: 5%;
-    font-family: $font-text;
-    color: $secondary-color;
+    gap: 15px;
 
-    h2 {
-      font-size: 15px;
-    }
-
-    h3 {
-      font-size: 12px;
-    }
-  }
-
-  &_delete {
-    width: 35%;
-
-    button {
-      padding: 9px 30px;
-      margin-top: -10px;
-      width: 100%;
-      transition: 0.5s;
-      position: relative;
-      font-size: 15px;
-      background: $fourth-color;
+    &_box {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $fourth-color;
+      border: 3px solid $fifte-color;
       border-radius: 20px;
-      border: none;
-      cursor: pointer;
-    }
+      gap: 5px;
+      padding: 1%;
 
-    button:hover {
-      letter-spacing: 0.25em;
-      background: #ff1867;
-      color: #ff1867;
-      box-shadow: 0 0 45px #ff1867;
-    }
+      &_infos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
 
-    button::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      background: $fifte-color;
-      border-radius: 20px;
-    }
+        &_title {
+          font-family: $font-display;
+          font-size: 2.5em;
+        }
 
-    button span {
-      position: relative;
-      z-index: 1;
-    }
-
-    button i {
-      position: absolute;
-      inset: 0;
-      display: block;
-    }
-
-    button i::before {
-      content: "";
-      position: absolute;
-      border: 2px solid $fourth-color;
-      border-radius: 20px;
-      width: 7px;
-      height: 4px;
-      top: -3.5px;
-      left: 80%;
-      background: $tertiary-color;
-      transform: translateX(-50%);
-      transition: 0.5s;
-    }
-
-    button:hover i::before {
-      width: 20px;
-      left: 20%;
-    }
-
-    button i::after {
-      content: "";
-      position: absolute;
-      border: 2px solid $fourth-color;
-      border-radius: 20px;
-      width: 7px;
-      height: 4px;
-      bottom: -3.5px;
-      left: 20%;
-      background: $tertiary-color;
-      transform: translateX(-50%);
-      transition: 0.5s;
-    }
-
-    button:hover i::after {
-      width: 20px;
-      left: 80%;
-    }
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .adminHomeCurrentComp {
-    gap: 20px;
-    width: 80%;
-
-    &_infos {
-      border: 2px solid $fifte-color;
-      width: 80%;
-
-      h2 {
-        font-size: 20px;
+        &_name {
+          font-family: $font-text;
+          font-size: 2em;
+        }
       }
 
-      h3 {
-        font-size: 17px;
+      .icon-btn {
+        width: 50px;
+        height: 50px;
+        border: 2px solid red;
+        background-color: $secondary-color;
+        border-radius: 25px;
+        color: $primary-color;
+        overflow: hidden;
+        position: relative;
+        transition: width 0.2s ease-in-out;
+        font-size: 15px;
+        font-family: $font-text;
+        cursor: pointer;
       }
-    }
 
-    &_delete {
-      width: 36%;
+      .add-btn:hover {
+        width: 120px;
+        color: $primary-color;
+      }
 
-      button {
-        margin-top: -13px;
-        margin-bottom: 10px;
+      .add-btn::before,
+      .add-btn::after {
+        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 10px;
+        top: calc(50% - 2px);
+        background: red;
+      }
+
+      .add-btn::after {
+        right: 14px;
+        overflow: hidden;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      .add-btn::before {
+        left: 14px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      .icon-btn:focus {
+        outline: none;
+      }
+
+      .btn-txt {
+        opacity: 0;
+        transition: opacity 0.2s;
+        font-family: $font-display;
+        color: $primary-color;
+      }
+
+      .add-btn:hover::before,
+      .add-btn:hover::after {
+        width: 4px;
+        border-radius: 2px;
+      }
+
+      .add-btn:hover .btn-txt {
+        opacity: 1;
+      }
+
+      .add-icon::after,
+      .add-icon::before {
+        transition: all 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        width: 3px;
+        top: calc(50% - 10px);
+        background: $secondary-color;
+        overflow: hidden;
+      }
+
+      .add-icon::before {
+        left: 22px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      .add-icon::after {
+        right: 22px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      .add-btn:hover .add-icon::before {
+        left: 15px;
+        height: 4px;
+        top: calc(50% - 2px);
+      }
+
+      .add-btn:hover .add-icon::after {
+        right: 15px;
+        height: 4px;
+        top: calc(50% - 2px);
       }
     }
   }

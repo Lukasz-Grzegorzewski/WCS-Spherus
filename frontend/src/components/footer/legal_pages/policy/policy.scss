@@ -1,8 +1,11 @@
 .policy {
   margin: 25px;
+  font-family: $font-text;
 
   strong {
-    font-weight: bold;
+    font-family: $font-display;
     margin-bottom: 15px;
+    font-size: 15px;
+    color: $tertiary-color;
   }
 }

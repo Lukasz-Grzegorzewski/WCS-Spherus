@@ -40,7 +40,7 @@ function AdminHomePage() {
             </button>
           </div>
           {addSection === true && (
-            <div>
+            <div className="adminhomepage_admin_add">
               <AdminHomeAddSection
                 setAddPub={setAddPub}
                 setAddSection={setAddSection}
@@ -64,7 +64,7 @@ function AdminHomePage() {
             </button>
           </div>
           {addPub === true && (
-            <div>
+            <div className="adminhomepage_admin_add">
               <AdminHomeAddPub
                 setAddPub={setAddPub}
                 setAddSection={setAddSection}
@@ -76,19 +76,10 @@ function AdminHomePage() {
       </div>
       {currentHome.length >= 1 && (
         <div className="adminhomepage_current">
-          <h1>Currently in the Home Page</h1>
-          {currentHome.map((infos) => {
-            return (
-              <div className="adminhomepage_current_comp" key={infos.id}>
-                <AdminHomeCurrentComp
-                  id={infos.id}
-                  type={infos.type}
-                  idLink={infos.idLink}
-                  getHome={getHome}
-                />
-              </div>
-            );
-          })}
+          <h1>Currently in the home page</h1>
+          <div className="adminhomepage_current_comp">
+            <AdminHomeCurrentComp currentHome={currentHome} getHome={getHome} />
+          </div>
         </div>
       )}
     </div>

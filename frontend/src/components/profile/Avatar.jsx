@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FaPen } from "react-icons/fa";
 import AvatarPicPrompt from "./AvatarPicPrompt";
 
-function Avatar({ id, photoSrc, refresh, setRefresh }) {
+function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
   const [cardToggle, setCardToggle] = useState(false);
   const [url, setUrl] = useState(photoSrc);
 
@@ -21,7 +21,7 @@ function Avatar({ id, photoSrc, refresh, setRefresh }) {
 
   return (
     <div className="img-profile-container">
-      <img className="img-profile" src={url} alt="profile img" />
+      {url && <img className="img-profile" src={url} alt="profile img" />}
       <button
         className="btn-choose-pic"
         type="button"
@@ -32,6 +32,7 @@ function Avatar({ id, photoSrc, refresh, setRefresh }) {
       {cardToggle && (
         <AvatarPicPrompt
           id={id}
+          getUser={() => getUser()}
           setUrl={setUrl}
           setCardToggle={setCardToggle}
         />
@@ -47,4 +48,5 @@ Avatar.propTypes = {
   id: PropTypes.number.isRequired,
   refresh: PropTypes.bool.isRequired,
   setRefresh: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
 };

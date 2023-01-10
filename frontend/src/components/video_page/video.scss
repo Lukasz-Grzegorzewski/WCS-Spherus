@@ -4,21 +4,20 @@
   .video-player {
     position: relative;
     .video {
-      background-color: $secondary-color;
+      position: relative;
       width: 100%;
       aspect-ratio: 16/9;
+      background: linear-gradient(
+        180deg,
+        $dt-background-gradient-color-top 10.6%,
+        $secondary-color 40%,
+        #00000000 100%
+      );
     }
 
     .video.locked {
       opacity: 40%;
     }
-
-    //     $lt-background: linear-gradient(
-    //   180deg,
-    //   $lt-background-gradient-color-top 22.97%,
-    //   $lt-background-gradient-color-middle 43.4%,
-    //   $lt-background-gradient-color-bottom 98.86%
-    // );
 
     .info-video {
       transition: all 1000ms ease-in-out;
@@ -83,8 +82,20 @@
       }
     }
 
-    .info {
-      font-size: 2rem;
+    .info_container {
+      font-size: 1.5rem;
+      .info {
+        margin-block: 10px;
+        font-size: 2.5rem;
+      }
+      .info-video-categories-container {
+        display: flex;
+        gap: 10px;
+      }
+      .p-desc {
+        margin-top: 20px;
+        text-align: center;
+      }
     }
 
     .btn-subscribe {
@@ -106,9 +117,8 @@
       justify-content: center;
       position: relative;
       .video {
-        background-color: $secondary-color;
         width: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: 21/9;
       }
 
       .video.locked {
