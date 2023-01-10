@@ -13,7 +13,6 @@ function Video({
   display,
   videoUrl,
 }) {
-
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -52,8 +51,6 @@ function Video({
     // }, 3000);
     // console.log("PAUSED");
   }
-
-
 
   return (
     <div className="video-component">
