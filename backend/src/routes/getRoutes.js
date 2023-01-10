@@ -7,10 +7,8 @@ const getRoutesFunctions = require("../handlers/getRoutesFunctions");
 /* router */
 router.get("/", verifyToken, getRoutesFunctions.welcome);
 
-/* user */
-
+/* users */
 router.get("/users", getRoutesFunctions.getUsers);
-
 router.get("/users/:id", getRoutesFunctions.getUserById);
 
 /* favorites */
