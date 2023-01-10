@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-// const { verifyToken } = require("../handlers/auth");
+const { verifyToken } = require("../handlers/auth");
 
 const getRoutesFunctions = require("../handlers/getRoutesFunctions");
 /* router */
-router.get("/", getRoutesFunctions.welcome);
+router.get("/", verifyToken, getRoutesFunctions.welcome);
 
 /* user */
 

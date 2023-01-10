@@ -96,7 +96,7 @@ DROP TABLE IF EXISTS `origins_digital_wcs`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `url` VARCHAR(255) DEFAULT NULL,
+  `url` VARCHAR(255) NULL DEFAULT NULL,
   `firstname` VARCHAR(80) NOT NULL,
   `lastname` VARCHAR(80) NOT NULL,
   `nickname` VARCHAR(80) NOT NULL,

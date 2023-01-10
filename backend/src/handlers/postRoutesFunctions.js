@@ -1,4 +1,5 @@
 const { decode } = require("node-base64-image");
+const fs = require("fs");
 const database = require("../../database");
 
 /* POST USER */
@@ -58,13 +59,18 @@ const signInUserByUser = (req, res) => {
 const uploadAvatarUrl = (req, res) => {
   const { id, base64 } = req.body;
   const base64Final = base64.split("base64,")[1];
-  const url = `assets/images/avatars/${id}.jpg`;
+  const dir = `assets/images/avatars/`;
+  const url = `${dir}${id}.jpg`;
+
+  if (!fs.existsSync(`public/${dir}`)) {
+    fs.mkdirSync(`public/${dir}`);
+  }
 
   database
     .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
     .then(async () => {
       await decode(base64Final, {
-        fname: `./public/assets/images/avatars/${id}`,
+        fname: `./public/${dir}${id}`,
         ext: "jpg",
       });
       res.status(201).send({ message: "url avatar updated" });

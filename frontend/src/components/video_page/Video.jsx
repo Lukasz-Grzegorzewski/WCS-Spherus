@@ -15,25 +15,17 @@ function Video({
 }) {
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPausing, setIsPausing] = useState(false);
 
   const refVideo = useRef();
   const url = `${import.meta.env.VITE_PORT_BACKEND}${videoUrl}`;
 
   const handleMouseOver = () => {
     setIsHovering(true);
-    // setInterval(() => {
-    //   setIsHovering(false);
-    // }, 3000);
-    // console.log("mouseHover-IN");
   };
 
   const handleMouseOut = () => {
-    // if (!isPlaying) {
-    //   console.log("isPlaying :", isPlaying);
-    //   setIsHovering(false);
-    // };
     setIsHovering(false);
-    // console.log("mousHover-OUT");
   };
 
   function handleOnPlay() {
@@ -41,15 +33,12 @@ function Video({
     setInterval(() => {
       setIsPlaying(false);
     }, 3000);
-    // console.log("PLAYED");
   }
   function handleOnPause() {
-    setIsPlaying(false);
-    // setIsHovering(true);
-    // setInterval(() => {
-    //   setIsHovering(false);
-    // }, 3000);
-    // console.log("PAUSED");
+    setIsPausing(true);
+    setInterval(() => {
+      setIsPausing(false);
+    }, 3000);
   }
 
   return (
@@ -83,7 +72,7 @@ function Video({
             <track kind="captions" />
           </video>
         )}
-        {(isHovering || isPlaying) && (
+        {(isHovering || isPlaying || isPausing) && (
           <div className="info-video">
             <p className="video-title">{title}</p>
             <p className="video-desc">{description}</p>
@@ -119,6 +108,18 @@ function Video({
         <div className="info_container">
           <hr />
           <h1 className="info">Description</h1>
+          <p className="info-video-title">{title}</p>
+          <p className="info-video-desc">{description}</p>
+          <div className="info-video-categories-container">
+            Category :
+            {arrCatName?.map((item) => {
+              return (
+                <p key={item} className="info-video-category">
+                  {item}
+                </p>
+              );
+            })}
+          </div>
           <p className="p-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
             finibus volutpat nisi eu rhoncus. Ut venenatis vitae velit sed

@@ -14,20 +14,17 @@ const getUsers = (req, res) => {
 };
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
-    .query("SELECT * FROM user WHERE id = ?", [id])
+    .query(
+      "SELECT id, url, firstname, lastname, nickname, DATE_FORMAT(birthday, '%Y-%m-%d') as birthday, email, password, is_admin, token, token_start FROM user WHERE id = ?",
+      [id]
+    )
     .then(([user]) => {
       if (user[0] != null) {
         res.status(200).json(user[0]);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/users'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< USERS</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -47,8 +44,6 @@ const getFavorites = (req, res) => {
 };
 const getFavoritesByUserId = (req, res) => {
   const id = parseInt(req.params.id_user, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query(
@@ -59,11 +54,7 @@ const getFavoritesByUserId = (req, res) => {
       if (userFavourites[0] != null) {
         res.status(200).json(userFavourites);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/favorites'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< FAVORITES</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -81,8 +72,6 @@ const getVideos = (req, res) => {
 };
 const getVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query("SELECT * FROM video WHERE id = ?", [id])
@@ -90,11 +79,7 @@ const getVideoById = (req, res) => {
       if (video[0] != null) {
         res.status(200).json(video[0]);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/videos'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< VIDEOS</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -104,8 +89,6 @@ const getVideoById = (req, res) => {
 };
 const getVideosByCategoryId = (req, res) => {
   const id = parseInt(req.params.idCat, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query(
@@ -116,11 +99,7 @@ const getVideosByCategoryId = (req, res) => {
       if (videos[0] != null) {
         res.status(200).json(videos);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/videos'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< VIDEOS</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -130,8 +109,6 @@ const getVideosByCategoryId = (req, res) => {
 };
 const getVideosAndCategoryByVideoId = (req, res) => {
   const id = parseInt(req.params.idVid, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query(
@@ -142,11 +119,7 @@ const getVideosAndCategoryByVideoId = (req, res) => {
       if (videos[0] != null) {
         res.status(200).json(videos);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/videos'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< VIDEOS</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -164,8 +137,6 @@ const getCategorys = (req, res) => {
 };
 const getCategoryById = (req, res) => {
   const id = parseInt(req.params.id_cat, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query("SELECT * FROM category WHERE id = ?", [id])
@@ -173,11 +144,7 @@ const getCategoryById = (req, res) => {
       if (category[0] != null) {
         res.status(200).json(category[0]);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/categorys'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< CATEGORYS</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
@@ -234,8 +201,6 @@ const getPublicities = (req, res) => {
 };
 const getPublicitiesById = (req, res) => {
   const id = parseInt(req.params.id_pub, 10);
-  const image404 =
-    "https://img.freepik.com/premium-vector/error-404-illustration_585024-2.jpg?w=740";
 
   database
     .query("SELECT * FROM publicity WHERE id = ?", [id])
@@ -243,11 +208,7 @@ const getPublicitiesById = (req, res) => {
       if (publicity[0] != null) {
         res.status(200).json(publicity[0]);
       } else {
-        res.write(
-          "<div><h1 style='text-align:center;'>Not Found</h1><a href='/publicities'><button style='position: absolute; left: calc(50% - 50px); height: 30px; width: 100px; border:none; box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);'> <<< PUBLICITIES</button></a></div>"
-        );
-        res.write(`<img src=${image404} style='width: 100vw;'></img>`);
-        res.status(404).send();
+        res.sendStatus(404);
       }
     })
     .catch((err) => {
