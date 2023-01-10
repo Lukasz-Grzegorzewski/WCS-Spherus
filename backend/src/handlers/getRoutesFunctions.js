@@ -225,6 +225,15 @@ const getFixturesVideos = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+const getDisplayFixtures = (req, res) => {
+  database
+    .query(`SELECT * FROM display_fixtures`)
+    .then(([result]) => {
+      res.status(200).send(result[0]);
+    })
+    .catch((err) => console.error(err));
+};
+
 /* PUBLICITYS ROUTES */
 const getPublicities = (req, res) => {
   database
@@ -302,6 +311,7 @@ module.exports = {
   getHeroSliderVideos,
   getHeroSliderTable,
   getFixturesVideos,
+  getDisplayFixtures,
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import ActuallyHeroSlider from "../admin_heroSlider/ActuallyHeroSlider";
 import AddFixtures from "./AddFixtures";
 import DeleteFixtures from "./DeleteFixtures";
 

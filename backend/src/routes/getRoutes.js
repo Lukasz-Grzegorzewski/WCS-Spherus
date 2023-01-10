@@ -44,6 +44,7 @@ router.get(
 
 // Fixtures Component
 router.get("/fixtures", getRoutesFunctions.getFixturesVideos);
+router.get("/display_fixtures", getRoutesFunctions.getDisplayFixtures);
 
 // Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
