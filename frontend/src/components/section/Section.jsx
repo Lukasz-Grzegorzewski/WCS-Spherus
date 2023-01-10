@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-import VideoCard from "@components/category_video/VideoCard";
-import Advert from "@components/advert/Advert";
 import C from "react-multi-carousel";
+import VideoCard from "../category_video/VideoCard";
+import Advert from "../advert/Advert";
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {

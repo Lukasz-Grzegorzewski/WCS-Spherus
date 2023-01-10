@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Section from "@components/section/Section";
+import Section from "../section/Section";
 
 function HomeDisplay() {
   const [currentHome, setCurrentHome] = useState({});

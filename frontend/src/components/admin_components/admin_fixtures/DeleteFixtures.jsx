@@ -13,7 +13,7 @@ function DeleteFixtures({ el, getFixtures }) {
 
   return (
     <li className="fixtures-map">
-      <VideoCard classname="fixtures-vid-slot" {...el} />;
+      <VideoCard classname="fixtures-vid-slot" {...el} />
       <div className="actuallyHeroSlider_btn_delete">
         <button onClick={() => deleteFromFixture(el.id)} type="button">
           <span>Delete</span>

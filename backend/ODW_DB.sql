@@ -365,6 +365,27 @@ VALUES
   (5,18);
 
 -- -----------------------------------------------------
+-- Table `origins_digital_wcs`.`display_fixtures`
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `origins_digital_wcs`.`display_fixtures` ;
+
+CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`display_fixtures` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `display` TINYINT DEFAULT FALSE NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`display_fixtures` (name)
+VALUES
+  ( 'Vidéos populaires' );
+
+-- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`fixtures`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `origins_digital_wcs`.`fixtures` ;
