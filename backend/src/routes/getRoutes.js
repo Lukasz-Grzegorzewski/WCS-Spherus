@@ -42,6 +42,9 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Fixtures Component
+router.get("/fixtures", getRoutesFunctions.getFixturesVideos);
+
 // Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);

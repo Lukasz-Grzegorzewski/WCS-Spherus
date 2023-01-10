@@ -86,6 +86,7 @@ const deleteHeroSliderById = (req, res) => {
   database
     .query("DELETE FROM hero_slider WHERE id = ?", [id])
     .then(([hero]) => {
+      console.warn(hero);
       return hero.affectedRows === 0
         ? res.status(404).send("Not Found")
         : res.sendStatus(204);
@@ -93,6 +94,24 @@ const deleteHeroSliderById = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error deleting a video in Hero Slider");
+    });
+};
+
+// FIXTURES
+
+const deleteFixturesById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("DELETE FROM fixtures WHERE id = ?", [id])
+    .then(([fix]) => {
+      console.warn(fix);
+      return fix.affectedRows === 0
+        ? res.status(404).send("File not found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video in Fixture Slider");
     });
 };
 
@@ -144,6 +163,7 @@ module.exports = {
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,
+  deleteFixturesById,
   deletePublicityById,
   deleteHomeById,
 };
