@@ -2,9 +2,10 @@
 @import "./choiceHero.scss";
 @import "./addHero.scss";
 
-.adminheroslider {
+.adminheroslider,
+.fixtures-slider {
   width: 96%;
-  border: 2px solid $tertiary-color;
+  box-shadow: 0 0 5px 1px $primary-color;
   border-radius: 20px;
   padding: 1%;
   background-color: $lt-background;
@@ -134,7 +135,8 @@
 }
 
 @media screen and (min-width: 600px) {
-  .adminheroslider {
+  .adminheroslider,
+  .fixtures-slider {
     min-height: 700px;
 
     &_text {

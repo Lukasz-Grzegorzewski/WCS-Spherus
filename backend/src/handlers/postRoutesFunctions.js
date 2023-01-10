@@ -176,6 +176,24 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// POST FIXTURE
+
+const postFixture = (req, res) => {
+  const { fkVideo } = req.body;
+
+  database
+    .query("INSERT INTO fixtures(fk_fix_video_id) VALUES (?);", [
+      Number(fkVideo),
+    ])
+    .then(() => {
+      res.status(201).send({ message: "Fixture Slider Updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error update the fixture slider");
+    });
+};
+
 // POST ADVERT
 const postAdvert = (req, res) => {
   const { description, urlLink, name, filename } = req.body;
@@ -219,10 +237,14 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
 
 // POST HOME
 const postHome = (req, res) => {
-  const { type, idLink } = req.body;
+  const { position, type, idLink } = req.body;
 
   database
-    .query("INSERT INTO home(type, idLink) VALUES (?, ?);", [type, idLink])
+    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [
+      position,
+      type,
+      idLink,
+    ])
     .then(() => {
       res.status(201).send({ message: "Component Added" });
     })
@@ -237,6 +259,7 @@ module.exports = {
   getUserByEmailWithPasswordAndPassToNext,
   signInUserByAdmin,
   postVideo,
+  postFixture,
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,

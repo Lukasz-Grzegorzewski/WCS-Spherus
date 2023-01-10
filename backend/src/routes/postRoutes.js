@@ -59,6 +59,9 @@ router.post("/categories", postRoutesFunctions.postCategory);
 // Ajouter une video dans le Hero Slider
 router.post("/hero_slider", postRoutesFunctions.postHeroSlider);
 
+// Ajouter une vidéo dans le Fixture Slider
+router.post("/fixtures", postRoutesFunctions.postFixture);
+
 // Ajouter une publicité
 router.post(
   "/publicity",

@@ -28,6 +28,7 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
   const addComp = () => {
     axios
       .post(`${import.meta.env.VITE_PORT_BACKEND}/home`, {
+        position: 0,
         type: `${type}`,
         idLink: `${idCat}`,
       })
@@ -40,7 +41,7 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
 
   return (
     <div className="adminHomeAddSection">
-      {cat.length >= 1 && (
+      {cat.length >= 1 && check === false && (
         <form className="adminHomeAddSection_form">
           <label
             className="adminHomeAddSection_form_label"
@@ -64,7 +65,7 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
           </label>
           {idCat !== undefined && (
             <button
-              className="addadvert_form_container_btn"
+              className="adminHomeAddSection_form_btn"
               type="button"
               onClick={() => {
                 addComp();
@@ -89,15 +90,13 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
               <span>Add</span>
             </button>
           )}
-          {check === true && (
-            <div>
-              <PopupAddComponent
-                setAddPub={setAddPub}
-                setAddSection={setAddSection}
-              />
-            </div>
-          )}
         </form>
+      )}
+      {check === true && (
+        <PopupAddComponent
+          setAddPub={setAddPub}
+          setAddSection={setAddSection}
+        />
       )}
     </div>
   );

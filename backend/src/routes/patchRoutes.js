@@ -15,4 +15,7 @@ router.put("/hero_slider/:id", patchRoutesFunctions.updateHeroSliderById);
 // Admin Advertising
 router.put("/publicities/:id", patchRoutesFunctions.updatePublicityById);
 
+// Admin Home Page
+router.put("/home/:id", patchRoutesFunctions.updateHomeById);
+
 module.exports = router;

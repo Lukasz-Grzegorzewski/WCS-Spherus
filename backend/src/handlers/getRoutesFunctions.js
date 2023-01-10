@@ -181,6 +181,17 @@ const getCatNameVideoSliderById = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+/* FIXTURES_SLIDER VIDEOS ROUTES */
+
+const getFixturesVideos = (req, res) => {
+  database
+    .query(
+      "SELECT * FROM video v INNER JOIN fixtures ON fixtures.fk_fix_video_id = v.id ORDER BY fixtures.id;"
+    )
+    .then(([hsVideos]) => res.status(200).json(hsVideos))
+    .catch((err) => console.error(err));
+};
+
 /* PUBLICITYS ROUTES */
 const getPublicities = (req, res) => {
   database
@@ -210,7 +221,7 @@ const getPublicitiesById = (req, res) => {
 
 const getHome = (req, res) => {
   database
-    .query("SELECT * FROM home")
+    .query("SELECT * FROM home ORDER BY position;")
     .then(([home]) => res.status(200).json(home))
     .catch((err) => console.error(err));
 };
@@ -231,6 +242,12 @@ const getHomeById = (req, res) => {
       res.status(500).send("Error retrieving data from database");
     });
 };
+const getHomeCategoriesName = (req, res) => {
+  database
+    .query("SELECT id, name FROM category")
+    .then(([category]) => res.status(200).json(category))
+    .catch((err) => console.error(err));
+};
 
 module.exports = {
   welcome,
@@ -245,10 +262,12 @@ module.exports = {
   getCategoryById,
   getHeroSliderVideos,
   getHeroSliderTable,
+  getFixturesVideos,
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,
   getCatNameVideoSliderById,
   getHome,
   getHomeById,
+  getHomeCategoriesName,
 };

@@ -42,6 +42,9 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Fixtures Component
+router.get("/fixtures", getRoutesFunctions.getFixturesVideos);
+
 // Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
@@ -49,5 +52,6 @@ router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 // Home
 router.get("/home", getRoutesFunctions.getHome);
 router.get("/home/:id", getRoutesFunctions.getHomeById);
+router.get("/home/category/name/", getRoutesFunctions.getHomeCategoriesName);
 
 module.exports = router;
