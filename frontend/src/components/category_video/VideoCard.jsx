@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { CiLock } from "react-icons/ci";
+import { FaStar, FaRegStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 function VideoCard({ id, url, title, description, display }) {
@@ -18,6 +19,8 @@ function VideoCard({ id, url, title, description, display }) {
           playbackRangeStart={0}
           playbackRangeEnd={6}
         />
+        <FaStar />
+        <FaRegStar />
         <div className="videocard_video_description">
           <div>{title}</div>
           <div>{description}</div>
