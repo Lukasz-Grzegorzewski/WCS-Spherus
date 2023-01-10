@@ -31,7 +31,7 @@ function RegisterForm() {
 
   const postNewUser = (data) => {
     axios
-      .post(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users`, data)
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/users`, data)
       .then((res) => {
         console.warn(res);
         setIsUserCreated(true);

@@ -17,6 +17,33 @@ const deleteUserById = (req, res) => {
     });
 };
 
+const deleteAvatarByUserId = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const urlAvatar = `public/assets/images/avatars/${id}.jpg`;
+  database
+    .query("Update user SET url = NULL WHERE id = ?", [id])
+    .then(() => {
+      try {
+        if (fs.existsSync(urlAvatar)) {
+          fs.unlink(urlAvatar, (err) => {
+            if (err) {
+              console.error(err);
+            }
+          });
+          res.sendStatus(204);
+        } else {
+          console.warn("file doesn't exists!");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting user");
+    });
+};
+
 const deleteVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -141,6 +168,7 @@ const deleteHomeById = (req, res) => {
 
 module.exports = {
   deleteUserById,
+  deleteAvatarByUserId,
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,

@@ -1,13 +1,13 @@
 .videocard {
   width: 350px;
-  height: auto;
+  height: 200px;
   margin: 10px;
   font-family: $font-text;
   position: relative;
 
   &_video {
     width: 350px;
-    height: auto;
+    height: 200px;
     overflow: hidden;
     border-radius: 15px;
   }
