@@ -4,7 +4,6 @@ const router = express.Router();
 const multer = require("multer");
 
 const { hashPassword, verifyPassword } = require("../handlers/auth");
-const { validateInputs } = require("../handlers/validator");
 
 // Import des fichiers vidéo dans le backend
 const storage = multer.diskStorage({
@@ -59,6 +58,9 @@ router.post("/categories", postRoutesFunctions.postCategory);
 
 // Ajouter une video dans le Hero Slider
 router.post("/hero_slider", postRoutesFunctions.postHeroSlider);
+
+// Ajouter une vidéo dans le Fixture Slider
+router.post("/fixtures", postRoutesFunctions.postFixture);
 
 // Ajouter une publicité
 router.post(

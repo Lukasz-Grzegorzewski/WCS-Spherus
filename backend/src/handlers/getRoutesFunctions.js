@@ -214,6 +214,17 @@ const getCatNameVideoSliderById = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+/* FIXTURES_SLIDER VIDEOS ROUTES */
+
+const getFixturesVideos = (req, res) => {
+  database
+    .query(
+      "SELECT * FROM video v INNER JOIN fixtures ON fixtures.fk_fix_video_id = v.id ORDER BY fixtures.id;"
+    )
+    .then(([hsVideos]) => res.status(200).json(hsVideos))
+    .catch((err) => console.error(err));
+};
+
 /* PUBLICITYS ROUTES */
 const getPublicities = (req, res) => {
   database
@@ -284,6 +295,7 @@ module.exports = {
   getCategoryById,
   getHeroSliderVideos,
   getHeroSliderTable,
+  getFixturesVideos,
   getPublicities,
   getPublicitiesById,
   getVideosAndCategoryByVideoId,
