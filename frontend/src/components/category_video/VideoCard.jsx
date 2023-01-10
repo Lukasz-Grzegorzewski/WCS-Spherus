@@ -18,8 +18,10 @@ function VideoCard({ id, url, title, description, display }) {
           playbackRangeStart={0}
           playbackRangeEnd={6}
         />
-        <div>{title}</div>
-        <div>{description}</div>
+        <div className="videocard_video_description">
+          <div>{title}</div>
+          <div>{description}</div>
+        </div>
       </div>
     </NavLink>
   ) : (
@@ -34,8 +36,11 @@ function VideoCard({ id, url, title, description, display }) {
           playbackRangeEnd={6}
         />
         <CiLock className="videocard_veil_lock" />
-        <div>{title}</div>
-        <div>{description}</div>
+
+        <div className="videocard_veil_video_description">
+          <div>{title}</div>
+          <div>{description}</div>
+        </div>
       </div>
     </NavLink>
   );

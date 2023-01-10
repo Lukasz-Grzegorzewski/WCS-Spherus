@@ -49,6 +49,7 @@ DROP TABLE IF EXISTS `origins_digital_wcs`.`home` ;
 
 CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`home` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `position` INT NOT NULL,
   `type` INT NOT NULL,
   `idLink` INT NOT NULL,
   PRIMARY KEY (`id`))
@@ -56,6 +57,14 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`home` (position, type, idLink)
+VALUES
+  (4,1,1),
+  (2,1,3),
+  (3,2,1),
+  (1,1,2);
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`color`
@@ -404,12 +413,8 @@ INSERT INTO
 VALUES
   ( 1 ),
   ( 2 ),
-  ( 3 ),
-  ( 10 ),
-  ( 9 ),
-  ( 8 );
+  ( 3 );
   
-
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`publicity`
 -- -----------------------------------------------------
@@ -427,6 +432,21 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+INSERT INTO
+  `origins_digital_wcs`.`publicity` (url_image, description, url_link, name)
+VALUES
+  (
+    '/assets/images/Pub11672837806144.jpg',
+    'Ceci est la pub numéro un',
+    'https://free.fr',
+    'Pub1'
+  ),
+  (
+    '/assets/images/Pub21672837847590.jpg',
+    'Ceci est la pub numéro deux',
+    'https://grosbill.com',
+    'Pub2'
+  );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`video_category`

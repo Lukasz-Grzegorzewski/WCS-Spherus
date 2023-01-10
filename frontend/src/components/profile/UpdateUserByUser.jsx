@@ -19,10 +19,9 @@ function UpdateUserByUser({
     const answer = window.confirm("Are you sure?");
     if (answer) {
       axios
-        .patch(
-          `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/users/${id}`,
-          { [keyName]: data }
-        )
+        .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
+          [keyName]: data,
+        })
         .then(() => {
           console.warn("user updated");
           setRefresh(!refresh);
@@ -35,8 +34,9 @@ function UpdateUserByUser({
   }
 
   return (
-    <form className="form" action={`/users/${id}`} method="post">
+    <form className="form-profile" action={`/users/${id}`} method="post">
       <input
+        className="inputs-form"
         type={`${type}`}
         value={data}
         onChange={(event) => setData(event.target.value)}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 
-function UpdateVideos() {
+function UpdateVideos({ message, setMessage }) {
   const [video, setVideo] = useState([]);
   const [videoDetails, setVideoDetails] = useState({
     id: "",
@@ -10,6 +11,7 @@ function UpdateVideos() {
     display: "",
     date: null,
   });
+  const [updateVideoMessage, setUpdateVideoMessage] = useState(false);
 
   const getVideo = () => {
     axios
@@ -24,15 +26,23 @@ function UpdateVideos() {
 
   useEffect(() => {
     getVideo();
-  }, []);
+  }, [message]);
+
+  const handleUpdateMessage = () => {
+    setMessage(false);
+  };
 
   const modifyVideo = (e) => {
     e.preventDefault();
+
     axios
       .patch(
         `${import.meta.env.VITE_PORT_BACKEND}/videos/${videoDetails.id}`,
         videoDetails
       )
+      .then(() => {
+        setUpdateVideoMessage(true);
+      })
       .catch(() => {
         console.error("video not modified");
       });
@@ -40,7 +50,7 @@ function UpdateVideos() {
 
   return (
     <div className="update_video_container">
-      <div>UpdateVideos</div>
+      <div className="update_video_title">UpdateVideos</div>
       <div className="upload_video_selection">
         {video.length > 0 && (
           <select
@@ -48,6 +58,7 @@ function UpdateVideos() {
             onChange={(e) => {
               setVideoDetails(JSON.parse(e.target.value));
             }}
+            onClick={handleUpdateMessage}
           >
             <option value="">---</option>
             {video.map((v) => (
@@ -57,7 +68,7 @@ function UpdateVideos() {
                   title: v.title,
                   description: v.description,
                   display: v.display,
-                  date: v.date,
+                  date: v.date.split("T")[0],
                 })}
               >
                 {v.title}
@@ -67,9 +78,11 @@ function UpdateVideos() {
         )}
       </div>
       <div className="update_video_form_container">
-        <form action={modifyVideo} className="update_video_form">
+        <form onSubmit={modifyVideo} className="update_video_form">
           <div>
-            <div>Current title: {videoDetails.title}</div>
+            <div className="update_video_form_current">
+              Current title: {videoDetails.title}
+            </div>
             <label htmlFor="title" className="update_video_title_label">
               Change title
             </label>
@@ -86,7 +99,9 @@ function UpdateVideos() {
           </div>
 
           <div>
-            <div>Current description: {videoDetails.description}</div>
+            <div className="update_video_form_current">
+              Current description: {videoDetails.description}
+            </div>
             <label
               htmlFor="description"
               className="update_video_description_label"
@@ -109,7 +124,9 @@ function UpdateVideos() {
           </div>
 
           <div>
-            <div>Current display: {videoDetails.display}</div>
+            <div className="update_video_form_current">
+              Current display: {videoDetails.display}
+            </div>
             <label htmlFor="display" className="update_video_display_label">
               Change display (1 =available; 0 = locked)
             </label>
@@ -125,8 +142,10 @@ function UpdateVideos() {
             />
           </div>
 
-          {/* <div>
-            <div>Current date: {videoDetails.date}</div>
+          <div>
+            <div className="update_video_form_current">
+              Current date: {videoDetails.date}
+            </div>
             <label htmlFor="date" className="update_video_date_label">
               Change date
             </label>
@@ -136,10 +155,12 @@ function UpdateVideos() {
               id="date"
               className="update_video_date_select"
               value={videoDetails.date}
-              // placeholder={videoDetails.date}
-              onChange={(e) => setVideoDetails({ ...videoDetails, date: e.target.value })}
+              placeholder={videoDetails.date}
+              onChange={(e) =>
+                setVideoDetails({ ...videoDetails, date: e.target.value })
+              }
             />
-          </div> */}
+          </div>
           <div>
             <input
               type="submit"
@@ -147,10 +168,22 @@ function UpdateVideos() {
               value="Update"
             />
           </div>
+          <div
+            className={
+              updateVideoMessage ? "update_message" : "update_message_not"
+            }
+          >
+            <h2>Video has been Updated!</h2>
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
+UpdateVideos.propTypes = {
+  message: PropTypes.bool.isRequired,
+  setMessage: PropTypes.string.isRequired,
+};
 
 export default UpdateVideos;
