@@ -24,12 +24,29 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
       .then((response) => {
         setCardToggle(false);
         getUser();
-        console.warn("OK! response.data :", response.data);
+        console.warn("POSTED OK! :", response.data);
       })
       .catch((err) => {
         console.error(err);
       });
   };
+
+  const handleDelete = () => {
+    axios
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/users/avatars/${id}`, data)
+      .then((response) => {
+        setCardToggle(false);
+        getUser();
+        console.warn("DELETE OK! :", response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  function onBeforeFileLoad() {
+    console.warn("onBeforeLoad on");
+  }
 
   return (
     <div className="avatar-pic-prompt-container">
@@ -40,6 +57,8 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
           onClose={() => onClose()}
           //   src={src}
           onCrop={(image) => onCrop(image)}
+          onBeforeFileLoad={() => onBeforeFileLoad()}
+          exportQuality={0.5}
           lineWidth={10}
           labelStyle={{
             backgroundColor: "transparent",
@@ -59,6 +78,13 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
           type="button"
         >
           Update
+        </button>
+        <button
+          className="btn btn-delete"
+          onClick={() => handleDelete()}
+          type="button"
+        >
+          Delete
         </button>
         <button
           className="btn btn-cancel"

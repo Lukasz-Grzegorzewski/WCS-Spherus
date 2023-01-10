@@ -1,11 +1,12 @@
 const express = require("express");
+const { hashPassword } = require("../handlers/auth");
 
 const router = express.Router();
 
 const patchRoutesFunctions = require("../handlers/patchRoutesFunctions");
 
 router.patch("/videos/:id", patchRoutesFunctions.patchVideoById);
-router.patch("/users/:id", patchRoutesFunctions.patchUserById);
+router.patch("/users/:id", hashPassword, patchRoutesFunctions.patchUserById);
 router.patch("/categories/:id", patchRoutesFunctions.patchCategoryById);
 
 // Admin Hero Slider

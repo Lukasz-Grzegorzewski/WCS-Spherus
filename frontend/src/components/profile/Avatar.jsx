@@ -21,7 +21,7 @@ function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
 
   return (
     <div className="img-profile-container">
-      <img className="img-profile" src={url} alt="profile img" />
+      {url && <img className="img-profile" src={url} alt="profile img" />}
       <button
         className="btn-choose-pic"
         type="button"
