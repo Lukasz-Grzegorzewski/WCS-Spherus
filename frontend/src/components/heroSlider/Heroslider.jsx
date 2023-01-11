@@ -24,7 +24,7 @@ function Heroslider() {
 
   const getSliderInfo = () => {
     axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
       .then((res) => {
         setSliderInfo(res.data);
       });

@@ -2,18 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function AddHero({ refresh, setRefresh, add, setAdd }) {
+function AddHero({ getHeroInfo, add, setAdd }) {
   const [cat, setCat] = useState([]);
   const [valueCat, setValueCat] = useState("");
   const [videos, setVideos] = useState([]);
   const [valueVideo, setValueVideo] = useState("");
 
   const getCat = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
-      .then((res) => {
-        setCat(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_PORT_BACKEND}/categories`).then((res) => {
+      setCat(res.data);
+    });
   };
 
   useEffect(() => {
@@ -22,11 +20,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 
   const getVideos = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/categories/${valueCat}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${valueCat}`)
       .then((res) => {
         setVideos(res.data);
       });
@@ -38,15 +32,12 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 
   const updateHero = () => {
     axios
-      .post(
-        `http://localhost:${import.meta.env.VITE_PORT_BACKEND}/hero_slider`,
-        {
-          fkVideo: `${valueVideo}`,
-        }
-      )
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider`, {
+        fkVideo: `${valueVideo}`,
+      })
       .then((res) => {
         console.warn(res.data);
-        setRefresh(!refresh);
+        getHeroInfo();
       })
       .catch((err) => {
         console.error(err);
@@ -142,8 +133,7 @@ function AddHero({ refresh, setRefresh, add, setAdd }) {
 export default AddHero;
 
 AddHero.propTypes = {
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getHeroInfo: PropTypes.func.isRequired,
   setAdd: PropTypes.func.isRequired,
   add: PropTypes.bool.isRequired,
 };

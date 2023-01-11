@@ -1,4 +1,5 @@
 const { decode } = require("node-base64-image");
+const fs = require("fs");
 const database = require("../../database");
 
 /* POST USER */
@@ -58,13 +59,18 @@ const signInUserByUser = (req, res) => {
 const uploadAvatarUrl = (req, res) => {
   const { id, base64 } = req.body;
   const base64Final = base64.split("base64,")[1];
-  const url = `assets/images/avatars/${id}.jpg`;
+  const dir = `assets/images/avatars/`;
+  const url = `${dir}${id}.jpg`;
+
+  if (!fs.existsSync(`public/${dir}`)) {
+    fs.mkdirSync(`public/${dir}`);
+  }
 
   database
     .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
     .then(async () => {
       await decode(base64Final, {
-        fname: `./public/assets/images/avatars/${id}`,
+        fname: `./public/${dir}${id}`,
         ext: "jpg",
       });
       res.status(201).send({ message: "url avatar updated" });
@@ -170,6 +176,24 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// POST FIXTURE
+
+const postFixture = (req, res) => {
+  const { fkVideo } = req.body;
+
+  database
+    .query("INSERT INTO fixtures(fk_fix_video_id) VALUES (?);", [
+      Number(fkVideo),
+    ])
+    .then(() => {
+      res.status(201).send({ message: "Fixture Slider Updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error update the fixture slider");
+    });
+};
+
 // POST ADVERT
 const postAdvert = (req, res) => {
   const { description, urlLink, name, filename } = req.body;
@@ -211,14 +235,35 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     });
 };
 
+// POST HOME
+const postHome = (req, res) => {
+  const { position, type, idLink } = req.body;
+
+  database
+    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [
+      position,
+      type,
+      idLink,
+    ])
+    .then(() => {
+      res.status(201).send({ message: "Component Added" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error add new component in Home");
+    });
+};
+
 module.exports = {
   signInUserByUser,
   getUserByEmailWithPasswordAndPassToNext,
   signInUserByAdmin,
   postVideo,
+  postFixture,
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,
   postAdvert,
   uploadAvatarUrl,
+  postHome,
 };

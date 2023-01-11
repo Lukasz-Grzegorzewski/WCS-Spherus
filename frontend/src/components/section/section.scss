@@ -1,4 +1,31 @@
 .section_container {
+  .section_navigation {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    align-items: baseline;
+    justify-content: space-between;
+    font-family: $font-text;
+
+    .section_name {
+      font-family: $font-text;
+      font-size: 3rem;
+      width: 100%;
+      font-family: $font-display;
+    }
+
+    .section_seeMoreBtn {
+      display: flex;
+      justify-content: end;
+
+      .section_seeMoreBtn_btn {
+        text-align: center;
+        padding: 5px;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   // background-color: $tertiary-color;
   .react-multiple-carousel__arrow {
     background-color: $secondary-color;

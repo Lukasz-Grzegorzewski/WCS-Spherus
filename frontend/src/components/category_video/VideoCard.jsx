@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { CiLock } from "react-icons/ci";
+import { FaStar, FaRegStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 function VideoCard({ id, url, title, description, display }) {
-  const videoUrl = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }${url}`;
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}${url}`;
 
   return display ? (
     <NavLink to={`/videos/${id}`}>
@@ -20,8 +19,12 @@ function VideoCard({ id, url, title, description, display }) {
           playbackRangeStart={0}
           playbackRangeEnd={6}
         />
-        <div>{title}</div>
-        <div>{description}</div>
+        <FaStar />
+        <FaRegStar />
+        <div className="videocard_video_description">
+          <div>{title}</div>
+          <div>{description}</div>
+        </div>
       </div>
     </NavLink>
   ) : (
@@ -36,8 +39,11 @@ function VideoCard({ id, url, title, description, display }) {
           playbackRangeEnd={6}
         />
         <CiLock className="videocard_veil_lock" />
-        <div>{title}</div>
-        <div>{description}</div>
+
+        <div className="videocard_veil_video_description">
+          <div>{title}</div>
+          <div>{description}</div>
+        </div>
       </div>
     </NavLink>
   );

@@ -5,10 +5,8 @@ import HoverVideoPlayer from "react-hover-video-player";
 import { FaPenFancy } from "react-icons/fa";
 import ChoiceHero from "./ChoiceHero";
 
-function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
-  const videoUrl = `http://localhost:${
-    import.meta.env.VITE_PORT_BACKEND
-  }/${url}`;
+function ActuallyHeroSlider({ id, idVid, title, url, getHeroInfo }) {
+  const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${url}`;
 
   const [choice, setChoice] = useState(false);
   const [response, setResponse] = useState("");
@@ -16,11 +14,7 @@ function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
 
   const getCat = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/catname/${idVid}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/catname/${idVid}`)
       .then((res) => {
         setCat(res.data);
       });
@@ -32,14 +26,10 @@ function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
 
   const deleteHero = () => {
     axios
-      .delete(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/${id}`
-      )
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`)
       .then((res) => {
         setResponse(res.data);
-        setRefresh(!refresh);
+        getHeroInfo();
       });
   };
 
@@ -96,8 +86,7 @@ function ActuallyHeroSlider({ id, idVid, title, url, refresh, setRefresh }) {
             id={id}
             choice={choice}
             setChoice={setChoice}
-            refresh={refresh}
-            setRefresh={setRefresh}
+            getHeroInfo={getHeroInfo}
           />
         )}
       </div>
@@ -113,6 +102,5 @@ ActuallyHeroSlider.propTypes = {
   id: PropTypes.number.isRequired,
   idVid: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getHeroInfo: PropTypes.func.isRequired,
 };

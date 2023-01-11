@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-$font-display: "Kdam Thmor Pro', sans-serif";
-$font-text: "Roboto', sans-serif";
+$font-display: "Kdam Thmor Pro", "sans-serif";
+$font-text: "Roboto", "sans-serif";
 
 $primary-color: #ffffff;
 $secondary-color: #000000;
 $tertiary-color: #ff8a00;
 $fourth-color: #888888;
 $fifte-color: #555555;
-
+$sixth-color: rgb(85, 85, 85, 0.5);
 //THEME TOGGLE
 $dt-toggle-background-color-font: black;
 
@@ -29,14 +29,14 @@ $placeholder-font-color: #888888;
 //--------------------LIGHT THEME---------------------------------------------
 //BACKGROUND VARIABLES
 $lt-background-gradient-color-top: #d1ddeb;
-$lt-background-gradient-color-middle: #90a7bf;
-$lt-background-gradient-color-bottom: #ffffff;
+$lt-background-gradient-color-middle: #8fa5bc;
+$lt-background-gradient-color-bottom: #d1ddeb;
 //background
 $lt-background: linear-gradient(
   180deg,
-  $lt-background-gradient-color-top 22.97%,
-  $lt-background-gradient-color-middle 43.4%,
-  $lt-background-gradient-color-bottom 98.86%
+  $lt-background-gradient-color-top 17.97%,
+  $lt-background-gradient-color-middle 53.4%,
+  $lt-background-gradient-color-bottom 80%
 );
 //footer / navbar
 $lt-navbar-footer-color: #d1ddeb;
@@ -48,14 +48,17 @@ $lt-publicity-font-color: #555555;
 
 //BACKGROUND VARIABLES
 $dt-background-gradient-color-top: #01153d;
-$dt-background-gradient-color-middle: #0d407f;
+$dt-background-gradient-color-first-middle: #000000;
+$dt-background-gradient-color-middle: #001c3f;
 $dt-background-gradient-color-bottom: #000000;
 //background
 $dt-background: linear-gradient(
   180deg,
   $dt-background-gradient-color-top 10.6%,
+  $dt-background-gradient-color-first-middle 20.6%,
   $dt-background-gradient-color-middle 60.7%,
-  $dt-background-gradient-color-bottom 100%
+  $dt-background-gradient-color-bottom 80%,
+  $dt-background-gradient-color-top 95%
 );
 //footer / navbar
 $dt-navbar-footer-color: #01153d;

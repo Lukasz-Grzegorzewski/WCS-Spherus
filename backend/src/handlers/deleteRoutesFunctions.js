@@ -17,32 +17,68 @@ const deleteUserById = (req, res) => {
     });
 };
 
+const deleteAvatarByUserId = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const urlAvatar = `public/assets/images/avatars/${id}.jpg`;
+  database
+    .query("Update user SET url = NULL WHERE id = ?", [id])
+    .then(() => {
+      try {
+        if (fs.existsSync(urlAvatar)) {
+          fs.unlink(urlAvatar, (err) => {
+            if (err) {
+              console.error(err);
+            }
+          });
+          res.sendStatus(204);
+        } else {
+          console.warn("file doesn't exists!");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting user");
+    });
+};
+
 const deleteVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
-  database
-    .query("DELETE FROM video_category WHERE video_id = ?", [id])
-    .then(([videoCategory]) => {
-      return videoCategory.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.status(204).send("video_category attachment deleted");
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a video_category attachment");
-    });
+  database.query("SELECT url FROM video WHERE id = ?", [id]).then(([[url]]) => {
+    database
+      .query("DELETE FROM video_category WHERE video_id = ?", [id])
+      .then(([videoCategory]) => {
+        if (videoCategory.affectedRows !== 0) {
+          database
+            .query("DELETE FROM video WHERE id = ?", [id])
+            .then(([video]) => {
+              const path = `/${url.url}`;
+              fs.unlink(`public${path}`, (err) => {
+                if (err) {
+                  console.error(err);
+                }
+              });
 
-  database
-    .query("DELETE FROM video WHERE id = ?", [id])
-    .then(([video]) => {
-      return video.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a video");
-    });
+              return video.affectedRows === 0
+                ? res.status(404).send("Not Found")
+                : res.sendStatus(204);
+            })
+
+            .catch((err) => {
+              console.error(err);
+              res.status(500).send("Error deleting a video");
+            });
+        }
+      })
+
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error deleting a video_category attachment");
+      });
+  });
 };
 
 const deleteVideoByIdFromCat = (req, res) => {
@@ -98,6 +134,7 @@ const deleteHeroSliderById = (req, res) => {
   database
     .query("DELETE FROM hero_slider WHERE id = ?", [id])
     .then(([hero]) => {
+      console.warn(hero);
       return hero.affectedRows === 0
         ? res.status(404).send("Not Found")
         : res.sendStatus(204);
@@ -105,6 +142,25 @@ const deleteHeroSliderById = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error deleting a video in Hero Slider");
+    });
+};
+
+
+// FIXTURES
+
+const deleteFixturesById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("DELETE FROM fixtures WHERE id = ?", [id])
+    .then(([fix]) => {
+      console.warn(fix);
+      return fix.affectedRows === 0
+        ? res.status(404).send("File not found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video in Fixture Slider");
     });
 };
 
@@ -135,11 +191,30 @@ const deletePublicityById = (req, res) => {
     });
 };
 
+// HOME PAGE
+const deleteHomeById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("DELETE FROM home WHERE id = ?", [id])
+    .then(([home]) => {
+      return home.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video in Hero Slider");
+    });
+};
+
 module.exports = {
   deleteUserById,
+  deleteAvatarByUserId,
   deleteVideoById,
   deleteCategoryById,
   deleteHeroSliderById,
+  deleteFixturesById,
   deletePublicityById,
   deleteVideoByIdFromCat,
+  deleteHomeById,
 };

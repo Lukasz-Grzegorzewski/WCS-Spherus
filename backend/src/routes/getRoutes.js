@@ -1,16 +1,14 @@
 const express = require("express");
 
 const router = express.Router();
-// const { verifyToken } = require("../handlers/auth");
+const { verifyToken } = require("../handlers/auth");
 
 const getRoutesFunctions = require("../handlers/getRoutesFunctions");
 /* router */
-router.get("/", getRoutesFunctions.welcome);
+router.get("/", verifyToken, getRoutesFunctions.welcome);
 
-/* user */
-
+/* users */
 router.get("/users", getRoutesFunctions.getUsers);
-
 router.get("/users/:id", getRoutesFunctions.getUserById);
 
 /* favorites */
@@ -42,8 +40,17 @@ router.get(
   getRoutesFunctions.getCatNameVideoSliderById
 );
 
+// Fixtures Component
+router.get("/fixtures", getRoutesFunctions.getFixturesVideos);
+router.get("/display_fixtures", getRoutesFunctions.getDisplayFixtures);
+
 // Advert
 router.get("/publicities/", getRoutesFunctions.getPublicities);
 router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
+
+// Home
+router.get("/home", getRoutesFunctions.getHome);
+router.get("/home/:id", getRoutesFunctions.getHomeById);
+router.get("/home/category/name/", getRoutesFunctions.getHomeCategoriesName);
 
 module.exports = router;

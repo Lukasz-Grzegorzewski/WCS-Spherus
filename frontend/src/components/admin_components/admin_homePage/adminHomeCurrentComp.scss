@@ -1,0 +1,140 @@
+.adminHomeCurrentComp {
+  width: 96%;
+
+  &_drag {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    &_box {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $fourth-color;
+      border: 3px solid $fifte-color;
+      border-radius: 20px;
+      gap: 5px;
+      padding: 1%;
+
+      &_infos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+
+        &_title {
+          font-family: $font-display;
+          font-size: 2.5em;
+        }
+
+        &_name {
+          font-family: $font-text;
+          font-size: 2em;
+        }
+      }
+
+      .icon-btn {
+        width: 50px;
+        height: 50px;
+        border: 2px solid red;
+        background-color: $secondary-color;
+        border-radius: 25px;
+        color: $primary-color;
+        overflow: hidden;
+        position: relative;
+        transition: width 0.2s ease-in-out;
+        font-size: 15px;
+        font-family: $font-text;
+        cursor: pointer;
+      }
+
+      .add-btn:hover {
+        width: 120px;
+        color: $primary-color;
+      }
+
+      .add-btn::before,
+      .add-btn::after {
+        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 10px;
+        top: calc(50% - 2px);
+        background: red;
+      }
+
+      .add-btn::after {
+        right: 14px;
+        overflow: hidden;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      .add-btn::before {
+        left: 14px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      .icon-btn:focus {
+        outline: none;
+      }
+
+      .btn-txt {
+        opacity: 0;
+        transition: opacity 0.2s;
+        font-family: $font-display;
+        color: $primary-color;
+      }
+
+      .add-btn:hover::before,
+      .add-btn:hover::after {
+        width: 4px;
+        border-radius: 2px;
+      }
+
+      .add-btn:hover .btn-txt {
+        opacity: 1;
+      }
+
+      .add-icon::after,
+      .add-icon::before {
+        transition: all 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        width: 3px;
+        top: calc(50% - 10px);
+        background: $secondary-color;
+        overflow: hidden;
+      }
+
+      .add-icon::before {
+        left: 22px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      .add-icon::after {
+        right: 22px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      .add-btn:hover .add-icon::before {
+        left: 15px;
+        height: 4px;
+        top: calc(50% - 2px);
+      }
+
+      .add-btn:hover .add-icon::after {
+        right: 15px;
+        height: 4px;
+        top: calc(50% - 2px);
+      }
+    }
+  }
+}

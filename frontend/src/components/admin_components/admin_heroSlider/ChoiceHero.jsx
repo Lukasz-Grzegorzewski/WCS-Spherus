@@ -2,26 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
+function ChoiceHero({ id, getHeroInfo, choice, setChoice }) {
   const [cat, setCat] = useState([]);
   const [videos, setVideos] = useState([]);
   const [valueCat, setValueCat] = useState("");
   const [valueVideo, setValueVideo] = useState("");
   const [response, setResponse] = useState("");
   const getCat = () => {
-    axios
-      .get(`http://localhost:${import.meta.env.VITE_PORT_BACKEND}/categories`)
-      .then((res) => {
-        setCat(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_PORT_BACKEND}/categories`).then((res) => {
+      setCat(res.data);
+    });
   };
   const getVideos = () => {
     axios
-      .get(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/videos/categories/${valueCat}`
-      )
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${valueCat}`)
       .then((res) => {
         setVideos(res.data);
       });
@@ -29,16 +23,11 @@ function ChoiceHero({ id, refresh, setRefresh, choice, setChoice }) {
 
   const updateHero = () => {
     axios
-      .put(
-        `http://localhost:${
-          import.meta.env.VITE_PORT_BACKEND
-        }/hero_slider/${id}`,
-        {
-          fkVideo: `${valueVideo}`,
-        }
-      )
+      .put(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`, {
+        fkVideo: `${valueVideo}`,
+      })
       .then((res) => {
-        setRefresh(!refresh);
+        getHeroInfo();
         setResponse(res.data);
         setChoice(!choice);
       });
@@ -138,8 +127,7 @@ export default ChoiceHero;
 
 ChoiceHero.propTypes = {
   id: PropTypes.number.isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getHeroInfo: PropTypes.func.isRequired,
   setChoice: PropTypes.func.isRequired,
   choice: PropTypes.bool.isRequired,
 };
