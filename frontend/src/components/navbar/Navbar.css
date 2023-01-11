@@ -64,5 +64,50 @@ img.navbar_logo {
   max-height: 52px;
 }
 
-.show-menu {
+.delete-popup-box {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100rem;
+  z-index: 100;
+}
+
+.popup-box {
+  position: relative;
+  width: 40%;
+  margin: 20% auto;
+  z-index: 99;
+  border: solid black;
+  min-height: 5rem;
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-confirmation {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100rem;
+  z-index: 100;
+}
+
+.box-message-confirmation {
+  position: relative;
+  width: 40%;
+  margin: 20% auto;
+  z-index: 99;
+  border: solid black;
+  min-height: 5rem;
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #27496d;
 }

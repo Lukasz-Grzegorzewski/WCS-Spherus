@@ -45,6 +45,26 @@ const deleteVideoById = (req, res) => {
     });
 };
 
+const deleteVideoByIdFromCat = (req, res) => {
+  const idVid = parseInt(req.params.idVid, 10);
+  const { idCat } = req.params;
+
+  database
+    .query(
+      "DELETE FROM video_category WHERE video_id = ? AND category_id = ?",
+      [idVid, idCat]
+    )
+    .then(([videoCategory]) => {
+      return videoCategory.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.status(204).send("video_category attachment deleted");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video_category attachment");
+    });
+};
+
 const deleteCategoryById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -71,21 +91,6 @@ const deleteCategoryById = (req, res) => {
     });
 };
 
-/* const deleteCategoryById = (req, res) => {
-  const id = parseInt(req.params.id, 10);
-
-  database
-    .query("DELETE FROM category WHERE id = ?", [id])
-    .then(([category]) => {
-      return category.affectedRows === 0
-        ? res.status(404).send("Not Found")
-        : res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error deleting a category");
-    });
-}; */
 // HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
@@ -136,4 +141,5 @@ module.exports = {
   deleteCategoryById,
   deleteHeroSliderById,
   deletePublicityById,
+  deleteVideoByIdFromCat,
 };
