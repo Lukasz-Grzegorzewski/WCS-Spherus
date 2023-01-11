@@ -81,6 +81,26 @@ const deleteVideoById = (req, res) => {
   });
 };
 
+const deleteVideoByIdFromCat = (req, res) => {
+  const idVid = parseInt(req.params.idVid, 10);
+  const { idCat } = req.params;
+
+  database
+    .query(
+      "DELETE FROM video_category WHERE video_id = ? AND category_id = ?",
+      [idVid, idCat]
+    )
+    .then(([videoCategory]) => {
+      return videoCategory.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.status(204).send("video_category attachment deleted");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting a video_category attachment");
+    });
+};
+
 const deleteCategoryById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -110,6 +130,7 @@ const deleteCategoryById = (req, res) => {
 // HERO SLIDER
 const deleteHeroSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
+
   database
     .query("DELETE FROM hero_slider WHERE id = ?", [id])
     .then(([hero]) => {
@@ -123,6 +144,7 @@ const deleteHeroSliderById = (req, res) => {
       res.status(500).send("Error deleting a video in Hero Slider");
     });
 };
+
 
 // FIXTURES
 
@@ -193,5 +215,6 @@ module.exports = {
   deleteHeroSliderById,
   deleteFixturesById,
   deletePublicityById,
+  deleteVideoByIdFromCat,
   deleteHomeById,
 };

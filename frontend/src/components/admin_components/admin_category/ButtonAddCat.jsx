@@ -8,7 +8,10 @@ function ButtonAddCat({ getCategories }) {
     e.preventDefault();
     console.warn(typeof addedCat);
     axios
-      .post(`${import.meta.env.VITE_PORT_BACKEND}/categories/`, addedCat)
+      .post(
+        `${import.meta.env.VITE_PORT_BACKEND}/categories/`,
+        addedCat
+      ) /* addedCat es un objeto, como lo que se pone en Postman para añadir un user */
       .then(() => {
         getCategories();
       })

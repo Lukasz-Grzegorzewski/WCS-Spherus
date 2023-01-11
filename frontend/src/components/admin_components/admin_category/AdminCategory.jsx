@@ -7,16 +7,14 @@ import Categories from "./Categories";
 function AdminCategory() {
   const [selectCategory, setSelectCategory] = useState([]);
   const [catId, setCatId] = useState();
-  /* const [catName, setCatName] = useState(); */
-  /* const [deletedCategory, setDeletedCategory] = useState([]); */
+  const [catName, setCatName] = useState();
 
   const getCategories = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {
         setSelectCategory(res.data);
-        /*  console.warn(res.data); */
-        /* setVideo(res.data[0]); */
+        console.warn(res.data);
       })
       .catch((err) => console.warn(err));
   };
@@ -26,11 +24,10 @@ function AdminCategory() {
   }, []);
 
   const handleOptions = (elem) => {
+    console.warn(elem);
     setCatId(elem.value);
+    setCatName(elem.label);
   };
-
-  /*   console.warn(catName); */
-  /* setChangeCategory(option); */
 
   return (
     <div className="select-category">
@@ -40,15 +37,17 @@ function AdminCategory() {
             label: elem.name,
             value: elem.id,
           }))}
-          defaultValue={{ label: "Search category" }}
+          defaultValue={{ value: { catId }, label: "Search your category" }}
           onChange={(elem) => handleOptions(elem)}
         />
       )}
-      {catId && (
+      {catId !== "Search category" && (
         <Categories
           catId={catId}
-          /*  catName={catName} */
+          setCatId={(value) => setCatId(value)}
+          catName={catName}
           getCategories={getCategories}
+          setCatName={(value) => setCatName(value)}
         />
       )}
       <ButtonOpenAddCat getCategories={() => getCategories()} />

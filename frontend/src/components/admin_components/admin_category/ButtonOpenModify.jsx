@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import ButtonModifyCat from "./ButtonModifyCat";
 
-function ButtonOpenModify({ getCategories, idCategory /* , catName */ }) {
+function ButtonOpenModify({ getCategories, catId, catName }) {
   const [showButtonModify, setShowButtonModify] = useState(false);
 
   function changeShowButtonModify() {
@@ -17,8 +17,8 @@ function ButtonOpenModify({ getCategories, idCategory /* , catName */ }) {
       {showButtonModify && (
         <ButtonModifyCat
           getCategories={() => getCategories()}
-          idCategory={idCategory}
-          /* catName={catName} */
+          catId={catId}
+          catName={catName}
         />
       )}
     </div>
@@ -29,5 +29,6 @@ export default ButtonOpenModify;
 
 ButtonOpenModify.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  idCategory: PropTypes.number.isRequired,
+  catId: PropTypes.number.isRequired,
+  catName: PropTypes.string.isRequired,
 };
