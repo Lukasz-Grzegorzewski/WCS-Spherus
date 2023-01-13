@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import HoverVideoPlayer from "react-hover-video-player";
 import { CiLock } from "react-icons/ci";
@@ -7,26 +7,39 @@ import { NavLink } from "react-router-dom";
 
 function VideoCard({ id, url, title, description, display }) {
   const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}${url}`;
+  const [favBtn, setFavBtn] = useState(false);
+
+  const handleClick = () => {
+    setFavBtn(!favBtn);
+  };
 
   return display ? (
-    <NavLink to={`/videos/${id}`}>
-      <div className="videocard">
-        <HoverVideoPlayer
-          videoClassName="videocard_video"
-          className="videocard_video"
-          videoSrc={videoUrl}
-          muted
-          playbackRangeStart={0}
-          playbackRangeEnd={6}
-        />
-        <FaStar />
-        <FaRegStar />
-        <div className="videocard_video_description">
-          <div>{title}</div>
-          <div>{description}</div>
+    <div>
+      <button type="button" className="videocard_fav_btn" onClick={handleClick}>
+        {favBtn ? (
+          <FaStar className="videocard_fav_btn_on" />
+        ) : (
+          <FaRegStar className="videocard_fav_btn_off" />
+        )}
+      </button>
+      <NavLink to={`/videos/${id}`}>
+        <div className="videocard">
+          <HoverVideoPlayer
+            videoClassName="videocard_video"
+            className="videocard_video"
+            videoSrc={videoUrl}
+            muted
+            playbackRangeStart={0}
+            playbackRangeEnd={6}
+          />
+
+          <div className="videocard_video_description">
+            <div>{title}</div>
+            <div>{description}</div>
+          </div>
         </div>
-      </div>
-    </NavLink>
+      </NavLink>
+    </div>
   ) : (
     <NavLink to={`/videos/${id}`}>
       <div className="videocard_veil">
