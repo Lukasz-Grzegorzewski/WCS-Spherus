@@ -66,7 +66,9 @@ const getFavoritesByUserId = (req, res) => {
 /* VIDEOS ROUTES */
 const getVideos = (req, res) => {
   database
-    .query("SELECT * FROM video")
+    .query(
+      "SELECT id, url, description, display, carousel, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video"
+    )
     .then(([videos]) => res.status(200).json(videos))
     .catch((err) => console.error(err));
 };
@@ -74,7 +76,10 @@ const getVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   database
-    .query("SELECT * FROM video WHERE id = ?", [id])
+    .query(
+      "SELECT id, url, description, display, carousel, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
+      [id]
+    )
     .then(([video]) => {
       if (video[0] != null) {
         res.status(200).json(video[0]);
@@ -92,7 +97,7 @@ const getVideosByCategoryId = (req, res) => {
 
   database
     .query(
-      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
+      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.carousel, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
       [id]
     )
     .then(([videos]) => {

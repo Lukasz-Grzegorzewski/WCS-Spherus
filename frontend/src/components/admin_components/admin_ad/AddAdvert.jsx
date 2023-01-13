@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import PopupAdvertAdd from "./PopupAdvertAdd";
 import PopupAdvertError from "./PopupAdvertError";
 
-function AddAdvert({ setRefresh, refresh }) {
+function AddAdvert({ getPub }) {
   const [file, setFile] = useState({});
   const [check, setCheck] = useState(false);
   const [error, setError] = useState(false);
@@ -30,9 +30,9 @@ function AddAdvert({ setRefresh, refresh }) {
       .post(`${import.meta.env.VITE_PORT_BACKEND}/publicity`, data)
       .then(() => {
         setCheck(true);
-        setRefresh(!refresh);
         clearInputs();
         clearFile();
+        getPub();
       })
       .catch(() => {
         setError(true);
@@ -167,6 +167,5 @@ function AddAdvert({ setRefresh, refresh }) {
 export default AddAdvert;
 
 AddAdvert.propTypes = {
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
 };

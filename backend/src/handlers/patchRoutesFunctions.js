@@ -2,15 +2,13 @@ const database = require("../../database");
 
 const patchVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const { url, description, display, title, date } = req.body;
+  const { url, description, display, carousel, title, date } = req.body;
   const reqBodyKeysArr = Object.keys(req.body);
   let sql = "UPDATE video SET";
   reqBodyKeysArr.forEach((item, index) => {
     if (index > 1) {
       sql += ",";
     }
-
-    const dateF = String(date.split("T")[0]);
 
     switch (item) {
       case "url":
@@ -22,11 +20,14 @@ const patchVideoById = (req, res) => {
       case "display":
         sql += ` ${item} = ${JSON.stringify(display)}`;
         break;
+      case "carousel":
+        sql += ` ${item} = ${JSON.stringify(carousel)}`;
+        break;
       case "title":
         sql += ` ${item} = ${JSON.stringify(title)}`;
         break;
       case "date":
-        sql += ` ${item} = ${JSON.stringify(dateF)}`;
+        sql += ` ${item} = ${JSON.stringify(date)}`;
         break;
       default:
         break;
