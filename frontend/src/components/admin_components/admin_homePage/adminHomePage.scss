@@ -1,6 +1,7 @@
 @import "./adminHomeCurrentComp.scss";
 @import "./adminHomeAddPub.scss";
 @import "./popupAddComponent.scss";
+@import "./adminHomeDragInComp.scss";
 
 .adminhomepage {
   width: 96%;
@@ -169,7 +170,7 @@
     min-height: 700px;
 
     &_admin {
-      width: 45%;
+      width: 48%;
       border-bottom: none;
       border-right: 2px solid $primary-color;
 
@@ -187,7 +188,7 @@
     }
 
     &_current {
-      width: 50%;
+      width: 48%;
 
       h1 {
         font-size: 30px;

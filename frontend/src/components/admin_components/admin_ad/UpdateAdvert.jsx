@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAdvertUpdate from "./PopupAdvertUpdate";
 
-function UpdateAdvert({ pub, setRefresh, refresh }) {
+function UpdateAdvert({ pub, getPub }) {
   const [idPub, setIdPub] = useState("");
   const [infoPub, setInfoPub] = useState([]);
   const [check, setCheck] = useState(false);
@@ -11,7 +11,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
   const [description, setDescription] = useState("");
   const [urlLink, setUrlLink] = useState("");
 
-  const getPub = () => {
+  const getAllPub = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
@@ -26,7 +26,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
   };
 
   useEffect(() => {
-    getPub();
+    getAllPub();
   }, [idPub]);
 
   function clearInputs() {
@@ -162,8 +162,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
                 <PopupAdvertUpdate
                   setIdPub={setIdPub}
                   setCheck={setCheck}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
+                  getPub={getPub}
                 />
               </div>
             )}
@@ -185,6 +184,5 @@ UpdateAdvert.propTypes = {
       url_link: PropTypes.string.isRequired,
     })
   ).isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
 };

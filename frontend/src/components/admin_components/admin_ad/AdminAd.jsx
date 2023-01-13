@@ -6,7 +6,6 @@ import DeleteAdvert from "./DeleteAdvert";
 
 function AdminAd() {
   const [pub, setPub] = useState([]);
-  const [refresh, setRefresh] = useState(false);
 
   const getPub = () => {
     axios
@@ -18,27 +17,23 @@ function AdminAd() {
 
   useEffect(() => {
     getPub();
-  }, [refresh]);
+  }, []);
 
   return (
     <div className="adminad">
       <div className="adminad_box">
         <h1 className="adminad_box_title">Add new Advert</h1>
-        <AddAdvert refresh={refresh} setRefresh={setRefresh} />
+        <AddAdvert getPub={getPub} />
       </div>
       <div className="adminad_separate" />
       <div className="adminad_box">
         <h1 className="adminad_box_title">Update Advert</h1>
-        {pub.length >= 1 && (
-          <UpdateAdvert pub={pub} refresh={refresh} setRefresh={setRefresh} />
-        )}
+        {pub.length >= 1 && <UpdateAdvert pub={pub} getPub={getPub} />}
       </div>
       <div className="adminad_separate" />
       <div className="adminad_box">
         <h1 className="adminad_box_title">Delete Advert</h1>
-        {pub.length >= 1 && (
-          <DeleteAdvert pub={pub} refresh={refresh} setRefresh={setRefresh} />
-        )}
+        {pub.length >= 1 && <DeleteAdvert pub={pub} getPub={getPub} />}
       </div>
     </div>
   );
