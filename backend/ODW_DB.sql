@@ -58,14 +58,6 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO
-  `origins_digital_wcs`.`home` (position, type, idLink)
-VALUES
-  (4,1,1),
-  (2,1,3),
-  (3,2,1),
-  (1,1,2);
-
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`color`
 -- -----------------------------------------------------

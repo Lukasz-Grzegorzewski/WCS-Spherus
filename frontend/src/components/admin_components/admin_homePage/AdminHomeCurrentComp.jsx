@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import DragVideoList from "./DragVideoList";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function AdminHomeCurrentComp({ currentHome, getHome }) {
@@ -8,7 +9,7 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
   const [pubName, setPubName] = useState([]);
   const [show, setShow] = useState(false);
 
-  const getName = () => {
+  const getAll = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/home/category/name/`)
       .then((res) => {
@@ -24,7 +25,7 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
       .catch((err) => console.error(err));
   };
   useEffect(() => {
-    getName();
+    getAll();
   }, []);
 
   const updateHome = (items) => {
@@ -83,7 +84,7 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="currentHome">
               {(provided) => (
-                <ul
+                <div
                   className="adminHomeCurrentComp_drag"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
@@ -96,7 +97,7 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
                         index={index}
                       >
                         {(provided) => (
-                          <li
+                          <div
                             className="adminHomeCurrentComp_drag_box"
                             ref={provided.innerRef}
                             {...provided.draggableProps}
@@ -110,6 +111,11 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
                                 "{whatName(type, idLink)}"
                               </p>
                             </div>
+                            {type === 1 &&
+                              <div className="adminHomeCurrentComp_drag_box_videos">
+                                <DragVideoList id={idLink} />
+                              </div>
+                            }
                             <button
                               className="icon-btn add-btn"
                               type="button"
@@ -121,13 +127,13 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
                               <div className="add-icon" />
                               <div className="btn-txt">Delete</div>
                             </button>
-                          </li>
+                          </div>
                         )}
                       </Draggable>
                     );
                   })}
                   {provided.placeholder}
-                </ul>
+                </div>
               )}
             </Droppable>
           </DragDropContext>

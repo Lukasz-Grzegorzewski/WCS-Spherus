@@ -52,5 +52,6 @@ router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 router.get("/home", getRoutesFunctions.getHome);
 router.get("/home/:id", getRoutesFunctions.getHomeById);
 router.get("/home/category/name/", getRoutesFunctions.getHomeCategoriesName);
+router.get("/carousel/:id", getRoutesFunctions.getVideoCarouselByCategoryId);
 
 module.exports = router;
