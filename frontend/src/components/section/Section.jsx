@@ -37,7 +37,7 @@ function Section({ type, idLink }) {
 
   const getInfos = () => {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${idLink}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/carousel/${idLink}`)
       .then((res) => {
         setCategory(res.data);
       })

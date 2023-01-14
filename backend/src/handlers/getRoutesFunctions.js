@@ -266,7 +266,7 @@ const getVideoCarouselByCategoryId = (req, res) => {
   const id = parseInt(req.params.id, 10);
   database
     .query(
-      "SELECT c.name AS cat, v.title, v.id, v.carousel FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? WHERE v.carousel = 1",
+      "SELECT c.name AS cat, v.title, v.description, v.display, v.url, v.id, v.carousel FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? WHERE v.carousel = 1",
       [id]
     )
     .then(([carousel]) => res.status(200).json(carousel))
