@@ -11,13 +11,18 @@
 
     &_box {
       width: 45%;
-      box-shadow: 0 0 5px 1px $primary-color;
+      box-shadow: 0 0 5px 1px $tertiary-color;
       border-radius: 20px;
       min-height: 280px;
       padding: 3%;
       display: flex;
       flex-direction: column;
       gap: 15px;
+
+      p {
+        font-size: 17px;
+        font-family: $font-display;
+      }
 
       &_div {
         width: 95%;

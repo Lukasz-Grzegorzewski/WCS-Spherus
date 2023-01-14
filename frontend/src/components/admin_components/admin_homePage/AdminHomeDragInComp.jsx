@@ -48,6 +48,7 @@ class AdminHomeDragInComp extends Component {
       )
       .then((res) => {
         this.setState({ items: res.data });
+        console.log(res.data);
       })
       .catch((err) => console.error(err));
   }
@@ -97,6 +98,14 @@ class AdminHomeDragInComp extends Component {
         .patch(`${import.meta.env.VITE_PORT_BACKEND}/videos/${element.id}`, {
           carousel: 1,
         })
+
+        .catch((err) => console.error(err));
+    });
+    this.state.items.forEach((element) => {
+      axios
+        .patch(`${import.meta.env.VITE_PORT_BACKEND}/videos/${element.id}`, {
+          carousel: 0,
+        })
         .then(() => {
           this.props.getHome();
         })
@@ -116,6 +125,7 @@ class AdminHomeDragInComp extends Component {
                     className="set_adminHomeDragInComp_box"
                     ref={provided.innerRef}
                   >
+                    <p>Category {this.state.items[0].cat}</p>
                     {this.state.items.map((item, index) => (
                       <Draggable
                         key={JSON.stringify(item.id)}
@@ -168,6 +178,7 @@ class AdminHomeDragInComp extends Component {
                     className="set_adminHomeDragInComp_box"
                     ref={provided.innerRef}
                   >
+                    <p>Section carousel {this.state.items[0].cat}</p>
                     {this.state.selected.map((item, index) => (
                       <Draggable
                         key={JSON.stringify(item.id)}

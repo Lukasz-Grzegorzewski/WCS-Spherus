@@ -148,7 +148,6 @@ const deleteHeroSliderById = (req, res) => {
     });
 };
 
-
 // FIXTURES
 
 const deleteFixturesById = (req, res) => {
