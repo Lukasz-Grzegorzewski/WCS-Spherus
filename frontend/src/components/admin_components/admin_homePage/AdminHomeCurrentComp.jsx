@@ -110,12 +110,13 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
                               <p className="adminHomeCurrentComp_drag_box_infos_name">
                                 "{whatName(type, idLink)}"
                               </p>
+                              {type === 1 &&
+                                <div className="adminHomeCurrentComp_drag_box_videos">
+                                  <DragVideoList id={id} />
+                                </div>
+                              }
                             </div>
-                            {type === 1 &&
-                              <div className="adminHomeCurrentComp_drag_box_videos">
-                                <DragVideoList id={idLink} />
-                              </div>
-                            }
+
                             <button
                               className="icon-btn add-btn"
                               type="button"

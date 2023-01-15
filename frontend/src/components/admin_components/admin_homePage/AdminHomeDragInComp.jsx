@@ -48,7 +48,6 @@ class AdminHomeDragInComp extends Component {
       )
       .then((res) => {
         this.setState({ items: res.data });
-        console.log(res.data);
       })
       .catch((err) => console.error(err));
   }
@@ -89,25 +88,18 @@ class AdminHomeDragInComp extends Component {
         selected: result.droppable2,
       });
     }
-    console.log(this.state.selected);
   };
 
-  updateDisplayCarousel = () => {
+  postDisplayCarousel = () => {
     this.state.selected.forEach((element) => {
       axios
-        .patch(`${import.meta.env.VITE_PORT_BACKEND}/videos/${element.id}`, {
-          carousel: 1,
-        })
-
-        .catch((err) => console.error(err));
-    });
-    this.state.items.forEach((element) => {
-      axios
-        .patch(`${import.meta.env.VITE_PORT_BACKEND}/videos/${element.id}`, {
-          carousel: 0,
+        .post(`${import.meta.env.VITE_PORT_BACKEND}/home/videos/`, {
+          videoId: `${element.id}`,
+          sectionId: this.props.idSection,
         })
         .then(() => {
           this.props.getHome();
+          this.props.setCheck(true);
         })
         .catch((err) => console.error(err));
     });
@@ -232,8 +224,7 @@ class AdminHomeDragInComp extends Component {
           className="adminHomeAddSection_form_btn"
           type="button"
           onClick={() => {
-            this.props.addComp();
-            this.updateDisplayCarousel();
+            this.postDisplayCarousel();
           }}
         >
           <div className="svg-wrapper-1">
@@ -252,7 +243,7 @@ class AdminHomeDragInComp extends Component {
               </svg>
             </div>
           </div>
-          <span>Add section</span>
+          <span>Add videos in the section</span>
         </button>
       </div>
     );
@@ -262,5 +253,8 @@ class AdminHomeDragInComp extends Component {
 export default AdminHomeDragInComp;
 
 AdminHomeDragInComp.propTypes = {
-  idCat: PropTypes.number.isRequired,
+  idCat: PropTypes.string.isRequired,
+  idSection: PropTypes.number.isRequired,
+  setCheck: PropTypes.func.isRequired,
+  getHome: PropTypes.func.isRequired,
 };

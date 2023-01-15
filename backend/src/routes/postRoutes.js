@@ -48,5 +48,7 @@ router.post(
 
 // Ajouter un composant à la HomePage
 router.post("/home", postRoutesFunctions.postHome);
+// Ajouter une video au carousel d'une section de la HomePage
+router.post("/home/videos/", postRoutesFunctions.attachSectionToVideo);
 
 module.exports = router;

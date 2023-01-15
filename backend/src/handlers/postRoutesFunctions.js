@@ -245,12 +245,30 @@ const postHome = (req, res) => {
       type,
       idLink,
     ])
-    .then(() => {
-      res.status(201).send({ message: "Component Added" });
+    .then((data) => {
+      res.status(201).send(data);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error add new component in Home");
+    });
+};
+
+/* POST VIDEO IN THE CAROUSEL SECTION */
+
+const attachSectionToVideo = (req, res) => {
+  const { videoId, sectionId } = req.body;
+  database
+    .query(
+      "INSERT INTO video_carousel(video_carousel_id, home_id) VALUES (?, ?)",
+      [Number(videoId), Number(sectionId)]
+    )
+    .then(() => {
+      res.status(201).send({ message: "video atached to the section" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error ataching video to the section");
     });
 };
 
@@ -266,4 +284,5 @@ module.exports = {
   postAdvert,
   uploadAvatarUrl,
   postHome,
+  attachSectionToVideo,
 };

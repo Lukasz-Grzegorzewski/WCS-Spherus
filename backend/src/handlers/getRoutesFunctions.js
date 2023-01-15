@@ -67,7 +67,7 @@ const getFavoritesByUserId = (req, res) => {
 const getVideos = (req, res) => {
   database
     .query(
-      "SELECT id, url, description, display, carousel, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video"
+      "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video"
     )
     .then(([videos]) => res.status(200).json(videos))
     .catch((err) => console.error(err));
@@ -77,7 +77,7 @@ const getVideoById = (req, res) => {
 
   database
     .query(
-      "SELECT id, url, description, display, carousel, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
+      "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
       [id]
     )
     .then(([video]) => {
@@ -97,7 +97,7 @@ const getVideosByCategoryId = (req, res) => {
 
   database
     .query(
-      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.carousel, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
+      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
       [id]
     )
     .then(([videos]) => {
@@ -262,14 +262,20 @@ const getHomeCategoriesName = (req, res) => {
     .then(([category]) => res.status(200).json(category))
     .catch((err) => console.error(err));
 };
-const getVideoCarouselByCategoryId = (req, res) => {
+const getVideosByHomeId = (req, res) => {
   const id = parseInt(req.params.id, 10);
   database
     .query(
-      "SELECT c.name AS cat, v.title, v.description, v.display, v.url, v.id, v.carousel FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? WHERE v.carousel = 1",
-      [id]
+      "SELECT v.title, v.url, v.description, v.display, v.id FROM video v INNER JOIN video_carousel vc ON vc.video_carousel_id = v.id INNER JOIN home h ON vc.home_id = h.id AND h.id = ? ORDER BY v.id;",
+      [Number(id)]
     )
-    .then(([carousel]) => res.status(200).json(carousel))
+    .then(([videos]) => {
+      if (videos[0] != null) {
+        res.status(200).json(videos);
+      } else {
+        res.sendStatus(404);
+      }
+    })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error retrieving data from database");
@@ -298,5 +304,5 @@ module.exports = {
   getHome,
   getHomeById,
   getHomeCategoriesName,
-  getVideoCarouselByCategoryId,
+  getVideosByHomeId,
 };
