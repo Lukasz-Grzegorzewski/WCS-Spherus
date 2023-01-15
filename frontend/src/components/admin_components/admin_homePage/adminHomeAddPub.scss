@@ -15,6 +15,12 @@
       }
     }
 
+    &_title {
+      font-family: $font-text;
+      font-size: 17px;
+      margin-bottom: 4%;
+    }
+
     &_btn {
       font-family: $font-text;
       font-size: 15px;
@@ -55,7 +61,7 @@
     }
 
     button:hover span {
-      transform: translateX(10em);
+      transform: translateX(20em);
     }
 
     button:active {

@@ -59,6 +59,26 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
+-- Table `origins_digital_wcs`.`video_carousel`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `origins_digital_wcs`.`video_carousel` ;
+
+CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video_carousel` (
+  `video_carousel_id` INT NULL DEFAULT NULL,
+  `home_id` INT NULL DEFAULT NULL,
+  INDEX `fk_home_id_idx` (`home_id` ASC) VISIBLE,
+  INDEX `fk_video_carousel_id_idx` (`video_carousel_id` ASC) VISIBLE,
+  CONSTRAINT `fk_home_id`
+    FOREIGN KEY (`home_id`)
+    REFERENCES `origins_digital_wcs`.`home` (`id`),
+  CONSTRAINT `fk_video_carousel_id`
+    FOREIGN KEY (`video_carousel_id`)
+    REFERENCES `origins_digital_wcs`.`video` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`color`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `origins_digital_wcs`.`color` ;
@@ -184,7 +204,6 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video` (
   `url` VARCHAR(255) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `display` TINYINT NOT NULL,
-  `carousel` TINYINT NOT NULL DEFAULT 0,
   `title` VARCHAR(90) NOT NULL,
   `date` DATE NOT NULL,
   PRIMARY KEY (`id`))
@@ -194,13 +213,12 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO
-  `origins_digital_wcs`.`video` (url, description, display, carousel, title, date)
+  `origins_digital_wcs`.`video` (url, description, display, title, date)
 VALUES
   (
     '/assets/videos/astro/astro_earth_rotation.mp4',
     'Earth rotation with aurora borealis',
     1,
-    0,
     'Earth Rotation 1',
     '1999-01-01'
   ),
@@ -208,14 +226,12 @@ VALUES
     '/assets/videos/astro/astro_earth_rotation_2.mp4',
     'Earth rotation 2',
     1,
-    0,
     'Earth Rotation 2',
     '2005-01-01'
   ),
   (
     '/assets/videos/astro/astro_galaxy.mp4',
     'Turning galaxy',
-    0,
     0,
     'Turning galaxy',
     '1993-01-01'
@@ -224,7 +240,6 @@ VALUES
     '/assets/videos/astro/astro_milkyway.mp4',
     'Milkyway from earth',
     0,
-    0,
     'Milkyway',
     '2010-01-01'
   ),
@@ -232,14 +247,12 @@ VALUES
     '/assets/videos/astro/astro_nebula.mp4',
     'Nebula',
     1,
-    0,
     'Nebula',
     '2015-01-01'
   ),
   (
     '/assets/videos/astro/astro_solarsytem_planets.mp4',
     'Solar system planets',
-    0,
     0,
     'Solar System',
     '2020-01-01'
@@ -248,7 +261,6 @@ VALUES
     '/assets/videos/sf/sf_astronaut.mp4',
     'Astronaut',
     0,
-    0,
     'Astronaut',
     '2022-01-01'
   ),
@@ -256,14 +268,12 @@ VALUES
     '/assets/videos/sf/sf_DNA.mp4',
     'DNA turning',
     1,
-    0,
     'DNA',
     '2022-01-01'
   ),
   (
     '/assets/videos/sf/sf_futur_earth.mp4',
     'futur earth',
-    0,
     0,
     'Futur Earth',
     '2012-01-01'
@@ -272,14 +282,12 @@ VALUES
     '/assets/videos/sf/sf_numbers.mp4',
     'numbers',
     1,
-    0,
     'Numbers',
     '2011-01-01'
   ),
   (
     '/assets/videos/sf/sf_tunnel.mp4',
     'tunnel',
-    0,
     0,
     'Tunnel',
     '2009-01-01'
@@ -288,7 +296,6 @@ VALUES
     '/assets/videos/sf/sf_ultimate_arm.mp4',
     'ultimate arm',
     1,
-    0,
     'Ultimate Arm',
     '2017-01-01'
   ),
@@ -296,14 +303,12 @@ VALUES
     '/assets/videos/sfx/sfx_dot_effect.mp4',
     'dots effect',
     1,
-    0,
     'Dot Effect',
     '2018-01-01'
   ),
   (
     '/assets/videos/sfx/sfx_ink_effect.mp4',
     'ink effect',
-    0,
     0,
     'Ink Effect',
     '2011-01-01'
@@ -312,7 +317,6 @@ VALUES
     '/assets/videos/sfx/sfx_ink2_effect.mp4',
     'ink effect 2',
     0,
-    0,
     'Ink Effect 2',
     '2014-01-01'
   ),
@@ -320,14 +324,12 @@ VALUES
     '/assets/videos/sfx/sfx_smoke_effect.mp4',
     'smoke effect',
     1,
-    0,
     'Smoke effect',
     '2011-01-01'
   ),
   (
     '/assets/videos/sfx/sfx_sparke.mp4',
     'sparke',
-    0,
     0,
     'Sparke',
     '2011-01-01'
@@ -336,7 +338,6 @@ VALUES
     '/assets/videos/sfx/sfx_waterdrop.mp4',
     'waterdrop',
     1,
-    0,
     'Waterdrop',
     '2011-01-01'
   );

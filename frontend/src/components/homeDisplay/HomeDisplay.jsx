@@ -24,7 +24,11 @@ function HomeDisplay() {
           {currentHome.map((infos) => {
             return (
               <div key={infos.id}>
-                <Section type={infos.type} idLink={infos.idLink} />
+                <Section
+                  type={infos.type}
+                  id={infos.id}
+                  idLink={infos.idLink}
+                />
               </div>
             );
           })}

@@ -8,7 +8,7 @@ function DragVideoList({ id }) {
 
   const getVideoName = () => {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/carousel/${id}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/home/carousel/${id}`)
       .then((res) => {
         setVideoName(res.data);
         setShow(true);
@@ -24,7 +24,11 @@ function DragVideoList({ id }) {
       {videoName.length >= 1 && show === true && (
         <div className="dragVideoList_box">
           {videoName.map((infos) => {
-            return <p className="dragVideoList_box_text">{infos.title}</p>;
+            return (
+              <p key={infos.id} className="dragVideoList_box_text">
+                {infos.title}
+              </p>
+            );
           })}
         </div>
       )}
