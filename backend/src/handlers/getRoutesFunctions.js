@@ -12,6 +12,14 @@ const getUsers = (req, res) => {
     .then(([users]) => res.status(200).json(users))
     .catch((err) => console.error(err));
 };
+const getUsersCsv = (req, res) => {
+  database
+    .query(
+      "SELECT id, firstname, lastname, nickname, DATE_FORMAT(birthday, ' % Y -% m -% d') as birthday, email FROM user;"
+    )
+    .then(([users]) => res.status(200).json(users))
+    .catch((err) => console.error(err));
+};
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -305,4 +313,5 @@ module.exports = {
   getHomeById,
   getHomeCategoriesName,
   getVideosByHomeId,
+  getUsersCsv,
 };
