@@ -22,7 +22,7 @@ router.post(
 
 // LOGIN
 router.post(
-  "/",
+  "/login",
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );

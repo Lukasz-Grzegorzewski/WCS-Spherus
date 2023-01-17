@@ -1,24 +1,54 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function LoginPopUp() {
+function LoginPopUp({ setToken }) {
   const navigate = useNavigate();
 
   function navigateToRegistration() {
     navigate("/registration");
   }
 
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const login = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/login`, loginDetails)
+      .then((res) => {
+        // setToken({ token: res.data.token, is_admin: res.data.is_admin })
+        setToken(res.data);
+        localStorage.setItem(
+          "token",
+          JSON.stringify({
+            user_token: res.data.token,
+            is_admin: res.data.is_admin,
+          })
+        );
+        console.warn("connecté");
+      })
+
+      .catch((err) => console.warn(err));
+  };
+
   return (
     <div className="login-pop-up">
       <div className="login-card">
         <h2>Connexion</h2>
-        <form>
+        <form onSubmit={login}>
           <label htmlFor="email">
             <input
               type="email"
               className="email"
               name="email"
               placeholder="Votre adresse mail"
+              onChange={(e) =>
+                setLoginDetails({ ...loginDetails, email: e.target.value })
+              }
             />
           </label>
           <label htmlFor="password">
@@ -27,6 +57,9 @@ function LoginPopUp() {
               className="password"
               name="password"
               placeholder="Votre mot de passe"
+              onChange={(e) =>
+                setLoginDetails({ ...loginDetails, password: e.target.value })
+              }
             />
           </label>
           <label htmlFor="submit">
@@ -50,5 +83,7 @@ function LoginPopUp() {
     </div>
   );
 }
-
+LoginPopUp.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
 export default LoginPopUp;

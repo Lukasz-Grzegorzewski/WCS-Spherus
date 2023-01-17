@@ -1,5 +1,6 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import UserContext from "./UserContext";
 
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
@@ -30,6 +31,17 @@ function App() {
     setControlPopUpLogIn(!controlPopUpLogIn);
   }
 
+  const [token, setToken] = useState({
+    user_token: "",
+    id_cat: "",
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, []);
+
   return (
     <div className="App dark-theme">
       <Suspense
@@ -40,26 +52,28 @@ function App() {
           </div>
         }
       >
-        <Navbar
-          handlePopUpLogIn={() => {
-            handlePopUpLogIn();
-          }}
-        />
+        <UserContext.Provider value={token}>
+          <Navbar
+            handlePopUpLogIn={() => {
+              handlePopUpLogIn();
+            }}
+          />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="/termsofservices" element={<TermsOfServices />} />
-          <Route path="/categories/:id" element={<CategoryVideo />} />
-          <Route path="/registration" element={<RegisterForm />} />
-          <Route path="/videos/:idVid" element={<VideoPage />} />
-          <Route path="/profile" element={<Profile id={1} />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/*" element={<Page404 />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/policy" element={<Policy />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/termsofservices" element={<TermsOfServices />} />
+            <Route path="/categories/:id" element={<CategoryVideo />} />
+            <Route path="/registration" element={<RegisterForm />} />
+            <Route path="/videos/:idVid" element={<VideoPage />} />
+            <Route path="/profile" element={<Profile id={1} />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/*" element={<Page404 />} />
+          </Routes>
+        </UserContext.Provider>
         <Footer />
-        {controlPopUpLogIn && <LoginPopUp />}
+        {controlPopUpLogIn && <LoginPopUp setToken={setToken} />}
       </Suspense>
     </div>
   );
