@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Couilliere from "@components/arthour/Couilliere";
 import PopupAdvertAdd from "./PopupAdvertAdd";
 import PopupAdvertError from "./PopupAdvertError";
 
@@ -8,6 +9,7 @@ function AddAdvert({ getPub }) {
   const [file, setFile] = useState({});
   const [check, setCheck] = useState(false);
   const [error, setError] = useState(false);
+  const url = `${import.meta.env.VITE_PORT_BACKEND}/assets/sound/lecode.mp3`;
   const [imgDetails, setImgDetails] = useState({
     description: "",
     urlLink: "",
@@ -56,6 +58,7 @@ function AddAdvert({ getPub }) {
         <div className="addadvert_form_container">
           <label className="addadvert_form_container_label" htmlFor="title">
             File
+            <Couilliere url={url} />
           </label>
           <div>
             <input
