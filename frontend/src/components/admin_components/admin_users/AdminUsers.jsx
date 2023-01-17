@@ -90,12 +90,15 @@ function AdminUsers({ id }) {
           />
           All
         </label>
+        <div className="label-users-admins">
+          <a href="http://localhost:5000/export">Export CSV</a>
+        </div>
       </div>
       <input
         className="input-search"
         value={query}
         type="search"
-        placeholder="Search useb by Email"
+        placeholder="Search user by Email"
         onChange={(e) => setQuery(e.target.value)}
       />
       <p>User ID : {id}</p>
