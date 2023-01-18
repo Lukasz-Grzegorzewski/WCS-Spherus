@@ -22,6 +22,49 @@
     margin-top: 1%;
     margin-bottom: 2%;
 
+    .title_fixtures_component {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      &_title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+      }
+
+      &_input {
+        display: flex;
+        gap: 24px;
+
+        input, button {
+          padding-block: 8px;
+          border-radius: 12px;
+          border: 1px solid black;
+        }
+
+        button {
+          padding-inline: 12px;
+          background: $tertiary-color;
+          font-size: 16px;
+          font-family: $font-display;
+          cursor: pointer;
+          transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98); 
+          transform: scale(1);
+
+          &:hover {
+            transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98);
+            transform: scale(1.19);
+          }
+        }
+
+        input {
+          width: 296px;
+        }
+      }
+    }
+
     h1 {
       font-size: 20px;
       font-family: $font-display;

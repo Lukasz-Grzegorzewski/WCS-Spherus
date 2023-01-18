@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddFixtures from "./AddFixtures";
 import DeleteFixtures from "./DeleteFixtures";
+import TitleFixtures from "./TitleFixtures";
 
 function AdminFixtures() {
   const [fixturesData, setFixturesData] = useState([]);
   const [getAllCategories, setGetAllCategories] = useState([]);
   const [add, setAdd] = useState(false);
 
-  function getFixtures() {
+  function getHeroInfo() {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/fixtures`)
       .then((res) => setFixturesData(res.data))
@@ -23,7 +24,7 @@ function AdminFixtures() {
   }
 
   useEffect(() => {
-    getFixtures();
+    getHeroInfo();
     getCategories();
   }, []);
 
@@ -40,11 +41,14 @@ function AdminFixtures() {
           <div className="add-icon" />
         </button>
       </div>
+      <div className="fixtures-slider_text">
+        <TitleFixtures />
+      </div>
       <div className="fixtures-selector-component">
         {add && getAllCategories.length > 0 && (
           <AddFixtures
             getAllCategories={getAllCategories}
-            getFixtures={() => getFixtures()}
+            getFixtures={() => getHeroInfo()}
           />
         )}
       </div>
@@ -55,7 +59,7 @@ function AdminFixtures() {
               <DeleteFixtures
                 key={el.id}
                 el={el}
-                getFixtures={() => getFixtures()}
+                getHeroInfo={() => getHeroInfo()}
               />
             );
           })}
