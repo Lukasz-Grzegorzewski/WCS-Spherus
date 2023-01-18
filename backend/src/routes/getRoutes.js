@@ -10,6 +10,7 @@ router.get("/", verifyToken, getRoutesFunctions.welcome);
 /* users */
 router.get("/users", getRoutesFunctions.getUsers);
 router.get("/users/:id", getRoutesFunctions.getUserById);
+router.get("/csv", getRoutesFunctions.getUsersCsv);
 
 /* favorites */
 router.get("/favorites", getRoutesFunctions.getFavorites);
@@ -52,5 +53,11 @@ router.get("/publicities/:id_pub", getRoutesFunctions.getPublicitiesById);
 router.get("/home", getRoutesFunctions.getHome);
 router.get("/home/:id", getRoutesFunctions.getHomeById);
 router.get("/home/category/name/", getRoutesFunctions.getHomeCategoriesName);
+router.get("/home/carousel/:id", getRoutesFunctions.getVideosByHomeId);
+
+// CSV
+const getCsvFunctions = require("./csv/csv");
+
+router.get("/export", getCsvFunctions.getCsv);
 
 module.exports = router;

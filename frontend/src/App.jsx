@@ -1,6 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import UserContext from "./UserContext";
+
+// const Profile = lazy(() => import("@pages/Profile"));
+
 
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
@@ -17,9 +21,9 @@ const CategoryVideo = lazy(() =>
 );
 const RegisterForm = lazy(() => import("@pages/RegisterForm"));
 const VideoPage = lazy(() => import("@pages/VideoPage"));
-const Profile = lazy(() => import("@pages/Profile"));
 const Admin = lazy(() => import("@pages/Admin"));
 const Page404 = lazy(() => import("@pages/Page404"));
+const Profile = lazy(() => import("@pages/Profile"));
 const Navbar = lazy(() => import("@components/navbar/Navbar"));
 const Footer = lazy(() => import("@components/footer/Footer"));
 const LoginPopUp = lazy(() => import("@components/loginPopUp/LoginPopUp"));

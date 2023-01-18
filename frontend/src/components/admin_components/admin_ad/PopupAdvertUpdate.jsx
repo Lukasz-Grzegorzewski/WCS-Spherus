@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function PopupAdvertUpdate({ setCheck, setRefresh, refresh, setIdPub }) {
+function PopupAdvertUpdate({ setCheck, getPub, setIdPub }) {
   return (
     <div className="popupadvert">
       <p className="popupadvert_done">Done !</p>
@@ -10,8 +10,8 @@ function PopupAdvertUpdate({ setCheck, setRefresh, refresh, setIdPub }) {
         className="cssbuttons-io-button"
         onClick={() => {
           setCheck(false);
-          setRefresh(!refresh);
           setIdPub("");
+          getPub();
         }}
       >
         {" "}
@@ -39,7 +39,6 @@ export default PopupAdvertUpdate;
 
 PopupAdvertUpdate.propTypes = {
   setCheck: PropTypes.func.isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
   setIdPub: PropTypes.func.isRequired,
 };

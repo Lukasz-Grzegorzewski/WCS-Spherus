@@ -12,6 +12,14 @@ const getUsers = (req, res) => {
     .then(([users]) => res.status(200).json(users))
     .catch((err) => console.error(err));
 };
+const getUsersCsv = (req, res) => {
+  database
+    .query(
+      "SELECT id, firstname, lastname, nickname, DATE_FORMAT(birthday, ' % Y -% m -% d') as birthday, email FROM user;"
+    )
+    .then(([users]) => res.status(200).json(users))
+    .catch((err) => console.error(err));
+};
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -66,7 +74,9 @@ const getFavoritesByUserId = (req, res) => {
 /* VIDEOS ROUTES */
 const getVideos = (req, res) => {
   database
-    .query("SELECT * FROM video")
+    .query(
+      "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video"
+    )
     .then(([videos]) => res.status(200).json(videos))
     .catch((err) => console.error(err));
 };
@@ -74,7 +84,10 @@ const getVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   database
-    .query("SELECT * FROM video WHERE id = ?", [id])
+    .query(
+      "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
+      [id]
+    )
     .then(([video]) => {
       if (video[0] != null) {
         res.status(200).json(video[0]);
@@ -257,6 +270,25 @@ const getHomeCategoriesName = (req, res) => {
     .then(([category]) => res.status(200).json(category))
     .catch((err) => console.error(err));
 };
+const getVideosByHomeId = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query(
+      "SELECT v.title, v.url, v.description, v.display, v.id FROM video v INNER JOIN video_carousel vc ON vc.video_carousel_id = v.id INNER JOIN home h ON vc.home_id = h.id AND h.id = ? ORDER BY v.id;",
+      [Number(id)]
+    )
+    .then(([videos]) => {
+      if (videos[0] != null) {
+        res.status(200).json(videos);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
 
 module.exports = {
   welcome,
@@ -280,4 +312,6 @@ module.exports = {
   getHome,
   getHomeById,
   getHomeCategoriesName,
+  getVideosByHomeId,
+  getUsersCsv,
 };

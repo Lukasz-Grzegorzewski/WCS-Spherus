@@ -23,7 +23,7 @@ function DeleteUser({ id }) {
 
   return (
     <button className="btn-delete" type="button" onClick={() => handleDelete()}>
-      Delete my account
+      Delete account
     </button>
   );
 }

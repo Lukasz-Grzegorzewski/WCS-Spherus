@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAddComponent from "./PopupAddComponent";
+import AdminHomeDragInComp from "./AdminHomeDragInComp";
 
 function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
   const [cat, setCat] = useState([]);
   const [idCat, setIdCat] = useState();
   const [check, setCheck] = useState(false);
+  const [newSectionId, setNewSectionId] = useState();
+
   const type = 1;
 
   const getCat = () => {
@@ -32,9 +35,8 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
         type: `${type}`,
         idLink: `${idCat}`,
       })
-      .then(() => {
-        setCheck(true);
-        getHome();
+      .then((res) => {
+        setNewSectionId(res.data);
       })
       .catch((err) => console.error(err));
   };
@@ -43,27 +45,29 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
     <div className="adminHomeAddSection">
       {cat.length >= 1 && check === false && (
         <form className="adminHomeAddSection_form">
-          <label
-            className="adminHomeAddSection_form_label"
-            htmlFor="category-select"
-          >
-            Choose the video category to link with this section <br />
-            <select
-              className="adminHomeAddSection_form_label_select"
-              id="publicity-select"
-              onChange={handleChange}
+          {newSectionId === undefined && (
+            <label
+              className="adminHomeAddSection_form_label"
+              htmlFor="category-select"
             >
-              <option value="">---</option>
-              {cat.map((infos) => {
-                return (
-                  <option key={infos.id} value={infos.id}>
-                    {infos.name}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-          {idCat !== undefined && (
+              Choose the video category to link with this section <br />
+              <select
+                className="adminHomeAddSection_form_label_select"
+                id="publicity-select"
+                onChange={handleChange}
+              >
+                <option value="">---</option>
+                {cat.map((infos) => {
+                  return (
+                    <option key={infos.id} value={infos.id}>
+                      {infos.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+          )}
+          {idCat !== undefined && newSectionId === undefined && (
             <button
               className="adminHomeAddSection_form_btn"
               type="button"
@@ -87,8 +91,21 @@ function AdminHomeAddSection({ setAddSection, setAddPub, getHome }) {
                   </svg>
                 </div>
               </div>
-              <span>Add</span>
+              <span>Add section</span>
             </button>
+          )}
+          {idCat !== undefined && newSectionId !== undefined && (
+            <div>
+              <p className="adminHomeAddSection_form_title">
+                Choose video for carousel
+              </p>
+              <AdminHomeDragInComp
+                idCat={idCat}
+                getHome={getHome}
+                idSection={newSectionId[0].insertId}
+                setCheck={setCheck}
+              />
+            </div>
           )}
         </form>
       )}

@@ -1,3 +1,4 @@
+
 const { decode } = require("node-base64-image");
 const fs = require("fs");
 
@@ -58,22 +59,27 @@ const signInUserByUser = (req, res) => {
 };
 
 const uploadAvatarUrl = (req, res) => {
-  const { id, base64 } = req.body;
-  const base64Final = base64.split("base64,")[1];
-  const dir = `assets/images/avatars/`;
-  const url = `${dir}${id}.jpg`;
+  // const { id, filename } = req.body;
+  const { filename } = req.body;
+  const { id } = req.params;
+  // const base64Final = base64.split("base64,")[1];
+  // console.log("base64Final :", base64Final);
 
-  if (!fs.existsSync(`public/${dir}`)) {
-    fs.mkdirSync(`public/${dir}`);
-  }
+  const dir = `assets/images/avatars/`;
+  // const url = `${dir}${id}.jpg`;
+  const url = `${dir}${filename}`;
+
+  // if (!fs.existsSync(`public/${dir}`)) {
+  //   fs.mkdirSync(`public/${dir}`);
+  // }
 
   database
     .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
-    .then(async () => {
-      await decode(base64Final, {
-        fname: `./public/${dir}${id}`,
-        ext: "jpg",
-      });
+    .then(() => {
+      // await decode(base64Final, {
+      //   fname: `./public/${dir}${id}`,
+      //   ext: "jpg",
+      // });
       res.status(201).send({ message: "url avatar updated" });
     })
     .catch((err) => {
@@ -246,12 +252,30 @@ const postHome = (req, res) => {
       type,
       idLink,
     ])
-    .then(() => {
-      res.status(201).send({ message: "Component Added" });
+    .then((data) => {
+      res.status(201).send(data);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error add new component in Home");
+    });
+};
+
+/* POST VIDEO IN THE CAROUSEL SECTION */
+
+const attachSectionToVideo = (req, res) => {
+  const { videoId, sectionId } = req.body;
+  database
+    .query(
+      "INSERT INTO video_carousel(video_carousel_id, home_id) VALUES (?, ?)",
+      [Number(videoId), Number(sectionId)]
+    )
+    .then(() => {
+      res.status(201).send({ message: "video atached to the section" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error ataching video to the section");
     });
 };
 
@@ -267,4 +291,5 @@ module.exports = {
   postAdvert,
   uploadAvatarUrl,
   postHome,
+  attachSectionToVideo,
 };
