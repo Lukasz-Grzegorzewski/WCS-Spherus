@@ -1,47 +1,51 @@
-.videocard {
-  width: 350px;
-  height: 200px;
-  margin: 10px;
-  font-family: $font-text;
+.main {
   position: relative;
 
-  &_video {
+  .videocard {
     width: 350px;
     height: 200px;
-    overflow: hidden;
-    border-radius: 15px;
-  }
-
-  &_video_description {
+    margin: 10px;
+    font-family: $font-text;
     position: relative;
-    bottom: 47px;
-    padding: 10px;
-    font-size: 1.3rem;
-    background-color: $sixth-color;
-    border-radius: 0 0 15px 15px;
-  }
 
-  &_fav_btn {
-    position: absolute;
-    z-index: 2;
-    background-color: transparent;
-    right: 20px;
-    top: 15px;
-    width: 10%;
-    height: 10%;
-    cursor: pointer;
-  }
+    &_video {
+      width: 350px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 15px;
+    }
 
-  &_fav_btn_on {
-    color: $tertiary-color;
-    width: 20px;
-    height: 20px;
-  }
+    &_video_description {
+      position: relative;
+      bottom: 47px;
+      padding: 10px;
+      font-size: 1.3rem;
+      background-color: $sixth-color;
+      border-radius: 0 0 15px 15px;
+    }
 
-  &_fav_btn_off {
-    color: $tertiary-color;
-    width: 20px;
-    height: 20px;
+    &_fav_btn {
+      position: absolute;
+      z-index: 2;
+      background-color: transparent;
+      right: 20px;
+      top: 15px;
+      width: 10%;
+      height: 10%;
+      cursor: pointer;
+    }
+
+    &_fav_btn_on {
+      color: $tertiary-color;
+      width: 20px;
+      height: 20px;
+    }
+
+    &_fav_btn_off {
+      color: $tertiary-color;
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
