@@ -1,5 +1,7 @@
-// const { decode } = require("node-base64-image");
-// const fs = require("fs");
+
+const { decode } = require("node-base64-image");
+const fs = require("fs");
+
 const database = require("../../database");
 
 /* POST USER */
