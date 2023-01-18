@@ -1,5 +1,5 @@
 // const { decode } = require("node-base64-image");
-const fs = require("fs");
+// const fs = require("fs");
 const database = require("../../database");
 
 /* POST USER */
@@ -67,9 +67,9 @@ const uploadAvatarUrl = (req, res) => {
   // const url = `${dir}${id}.jpg`;
   const url = `${dir}${filename}`;
 
-  if (!fs.existsSync(`public/${dir}`)) {
-    fs.mkdirSync(`public/${dir}`);
-  }
+  // if (!fs.existsSync(`public/${dir}`)) {
+  //   fs.mkdirSync(`public/${dir}`);
+  // }
 
   database
     .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
