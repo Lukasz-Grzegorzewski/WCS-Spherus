@@ -1,4 +1,5 @@
 const multer = require("multer");
+const fs = require("fs");
 
 // Import des videos dans le backend
 const storage = multer.diskStorage({
@@ -30,6 +31,11 @@ const uploadImg = multer({ storage: storageImg });
 // Import avatar
 const storageAvatar = multer.diskStorage({
   destination: (req, file, cb) => {
+    const dir = `assets/images/avatars/`;
+    if (!fs.existsSync(`public/${dir}`)) {
+      fs.mkdirSync(`public/${dir}`);
+    }
+
     cb(null, "./public/assets/images/avatars");
   },
   filename: (req, file, cb) => {
