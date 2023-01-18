@@ -28,7 +28,7 @@ function Profile({ id }) {
 
   useEffect(() => {
     getUser();
-  }, [refresh, id]);
+  }, [refresh, id, user]);
 
   return (
     <div className="profile-conatainer">

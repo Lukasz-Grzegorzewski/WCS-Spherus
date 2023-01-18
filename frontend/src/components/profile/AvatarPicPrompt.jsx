@@ -1,26 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import Avatar from "react-avatar-edit";
+import AvatarEditor from "react-avatar-editor";
+
 import axios from "axios";
 
 function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   const [data, setData] = useState(null);
+  const [scaleValue, setScaleValue] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isOpenCropCanvas, setIsOpenCropCanvas] = useState(false);
+  const [fileUploadErrors, setFileUploadErrors] = useState([]);
+  const [urlIn, setUrlIn] = useState([]);
 
-  function onClose() {
-    setCardToggle(false);
-  }
+  const inputRef = useRef();
 
-  function onCrop(view) {
-    setUrl(view);
+  function onCrop() {
+    const url = inputRef.current.getImageScaledToCanvas().toDataURL();
+    setUrl(url);
+    setUrlIn(url);
     setData({
       id: `${id}`,
-      base64: view,
+      base64: url,
     });
   }
 
+  function onScaleChange(scaleChangeEvent) {
+    const scaleVal = parseFloat(scaleChangeEvent.target.value);
+    setScaleValue(scaleVal);
+  }
+
+  function profilePicChange(fileChangeEvent) {
+    const file = fileChangeEvent.target.files[0];
+    const { type } = file;
+    if (
+      !(type.endsWith("jpeg") || type.endsWith("png") || type.endsWith("jpg"))
+    ) {
+      setFileUploadErrors(["type of file error"]);
+      console.warn("fileUploadErrors array :", fileUploadErrors);
+    } else {
+      setSelectedImage(fileChangeEvent.target.files[0]);
+      setFileUploadErrors([]);
+      setIsOpenCropCanvas(!isOpenCropCanvas);
+    }
+  }
+
   const handleUpload = () => {
+    const arr = urlIn.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n > 0) {
+      n -= 1;
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const file = new File([u8arr], `${id}.jpg`, { type: mime });
+    const formD = new FormData();
+    formD.append("id", id);
+    formD.append("file", file);
+
     axios
-      .post(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, data)
+      .post(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, formD)
       .then((response) => {
         setCardToggle(false);
         getUser();
@@ -44,32 +85,48 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
       });
   };
 
-  function onBeforeFileLoad() {
-    console.warn("onBeforeLoad on");
-  }
-
   return (
     <div className="avatar-pic-prompt-container">
       <div className="choose-file-container">
-        <Avatar
-          width={250}
-          height={250}
-          onClose={() => onClose()}
-          //   src={src}
-          onCrop={(image) => onCrop(image)}
-          onBeforeFileLoad={() => onBeforeFileLoad()}
-          exportQuality={0.5}
-          lineWidth={10}
-          labelStyle={{
-            backgroundColor: "transparent",
-            color: "black",
-            fontSize: "3rem",
-            cursor: "pointer",
-            display: "flex",
-            justifyContent: "center",
+        <input
+          type="file"
+          name="profilePicBtn"
+          accept="image/png, image/jpeg"
+          onChange={(e) => {
+            profilePicChange(e);
+            // onCrop();
           }}
-          borderStyle={{ borderRadius: "20px" }}
         />
+        {isOpenCropCanvas && (
+          <div className="cropCnt">
+            <AvatarEditor
+              image={selectedImage}
+              border={50}
+              scale={scaleValue}
+              rotate={0}
+              ref={inputRef}
+              className="cropCanvas"
+              onImageChange={() => onCrop()}
+              onImageReady={() => onCrop()}
+            />
+            <input
+              style={{ width: "100%" }}
+              type="range"
+              value={scaleValue}
+              name="points"
+              min="1"
+              max="10"
+              step=".1"
+              onChange={(e) => onScaleChange(e)}
+            />
+            {/* <button
+              onClick={() => onCrop()}
+              className="editorOverlayCloseBtn crpBtn"
+            >
+              Save
+            </button> */}
+          </div>
+        )}
       </div>
       <div className="btns-container">
         <button
@@ -88,7 +145,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
         </button>
         <button
           className="btn btn-cancel"
-          onClick={() => onClose()}
+          onClick={() => setCardToggle(false)}
           type="button"
         >
           Cancel
