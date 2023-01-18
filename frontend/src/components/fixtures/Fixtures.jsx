@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { NavLink } from "react-router-dom";
 import axios from "axios";
 import C from "react-multi-carousel";
 import VideoCard from "../category_video/VideoCard";
@@ -44,10 +43,7 @@ function Fixtures() {
   const getFixturesName = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/display_fixtures`)
-      .then((res) => {
-        setDisplayFixtures(res.data);
-        console.warn(res.data);
-      })
+      .then((res) => setDisplayFixtures(res.data))
       .catch((err) => console.error(err));
   };
 

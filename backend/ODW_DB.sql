@@ -395,7 +395,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 INSERT INTO
   `origins_digital_wcs`.`display_fixtures` (name)
 VALUES
-  ( 'Vidéos populaires' );
+  ( 'Popular videos' );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`fixtures`
