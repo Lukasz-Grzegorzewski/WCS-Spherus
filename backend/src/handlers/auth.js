@@ -37,7 +37,6 @@ const verifyPassword = (req, res) => {
         });
 
         res.send({ token, is_admin: req.user.is_admin });
-        res.sendStatus(401);
       }
     })
     .catch((err) => {

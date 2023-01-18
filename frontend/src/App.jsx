@@ -73,7 +73,12 @@ function App() {
           </Routes>
         </UserContext.Provider>
         <Footer />
-        {controlPopUpLogIn && <LoginPopUp setToken={setToken} />}
+        {controlPopUpLogIn && (
+          <LoginPopUp
+            setToken={setToken}
+            setControlPopUpLogIn={setControlPopUpLogIn}
+          />
+        )}
       </Suspense>
     </div>
   );

@@ -3,11 +3,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function LoginPopUp({ setToken }) {
+function LoginPopUp({ setToken, setControlPopUpLogIn }) {
   const navigate = useNavigate();
 
   function navigateToRegistration() {
     navigate("/registration");
+  }
+
+  function navigateToHome() {
+    navigate("/");
+  }
+
+  function redirect() {
+    navigateToHome();
+    setControlPopUpLogIn(false);
   }
 
   const [loginDetails, setLoginDetails] = useState({
@@ -29,6 +38,7 @@ function LoginPopUp({ setToken }) {
             is_admin: res.data.is_admin,
           })
         );
+        redirect();
         console.warn("connecté");
       })
 
@@ -62,6 +72,7 @@ function LoginPopUp({ setToken }) {
               }
             />
           </label>
+
           <label htmlFor="submit">
             <input
               className="btn-submit"
@@ -85,5 +96,6 @@ function LoginPopUp({ setToken }) {
 }
 LoginPopUp.propTypes = {
   setToken: PropTypes.func.isRequired,
+  setControlPopUpLogIn: PropTypes.func.isRequired,
 };
 export default LoginPopUp;

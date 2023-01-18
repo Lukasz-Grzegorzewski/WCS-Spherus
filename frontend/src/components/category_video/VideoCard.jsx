@@ -9,7 +9,7 @@ import UserContext from "../../UserContext";
 function VideoCard({ id, url, title, description, display }) {
   const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}${url}`;
   const [favBtn, setFavBtn] = useState(false);
-  const { token } = useContext(UserContext);
+  const token = useContext(UserContext);
 
   const handleClick = () => {
     setFavBtn(!favBtn);
@@ -17,7 +17,6 @@ function VideoCard({ id, url, title, description, display }) {
 
   return (
     <div>
-      {/* prettier-ignore */}
       {token.user_token !== "" ? (
         <div className="main">
           <button
