@@ -1,13 +1,17 @@
 const express = require("express");
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
-const { upload, uploadImg } = require("./multers/multers");
+const { upload, uploadImg, uploadAvatar } = require("./multers/multers");
 const { hashPassword, verifyPassword } = require("../handlers/auth");
 
 const router = express.Router();
 
 // USERS
 router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
-router.post("/users/:id", postRoutesFunctions.uploadAvatarUrl);
+router.post(
+  "/users/:id",
+  uploadAvatar.single("file"),
+  postRoutesFunctions.uploadAvatarUrl
+);
 
 // ADMIN
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
