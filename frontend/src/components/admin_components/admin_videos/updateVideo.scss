@@ -62,16 +62,23 @@
       label {
         font-size: 15px;
       }
+    }
 
-      .update_video_update_btn {
-        width: 25%;
-        background-color: $fourth-color;
-        color: $primary-color;
-        margin: 0px auto;
-        border: 2px white solid;
-        border-radius: 15px;
-        height: 25px;
-        font-size: 15px;
+    &_btn {
+      span {
+        margin-left: -60px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .update_video_form_container {
+    .update_video_form {
+      &_btn {
+        span {
+          margin-left: -100px;
+        }
       }
     }
   }
