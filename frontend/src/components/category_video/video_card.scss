@@ -3,16 +3,17 @@
 
   .videocard {
     width: 350px;
-    height: 200px;
+    height: 220px;
     margin: 10px;
     font-family: $font-text;
     position: relative;
 
     &_video {
       width: 350px;
-      height: 200px;
+      height: 220px;
       overflow: hidden;
-      border-radius: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 5px 1px $primary-color;
     }
 
     &_video_description {

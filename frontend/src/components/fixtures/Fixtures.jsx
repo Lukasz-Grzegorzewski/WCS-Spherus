@@ -57,7 +57,9 @@ function Fixtures() {
       {fixtures?.length >= 0 && (
         <div>
           <div className="section_navigation">
-            <div className="section_name">{displayFixtures.name}</div>
+            {fixtures.length !== 0 && (
+              <div className="section_name">{displayFixtures.name}</div>
+            )}
           </div>
 
           <Carousel containerClass="section_carousel" responsive={responsive}>

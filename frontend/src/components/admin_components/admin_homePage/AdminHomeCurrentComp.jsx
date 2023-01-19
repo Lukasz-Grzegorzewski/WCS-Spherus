@@ -118,14 +118,14 @@ function AdminHomeCurrentComp({ currentHome, getHome }) {
                             </div>
 
                             <button
-                              className="icon-btn add-btn"
+                              className="icone-btn adde-btn"
                               type="button"
                               onClick={() => {
                                 deleteComp(id);
                               }}
                             >
                               {" "}
-                              <div className="add-icon" />
+                              <div className="adde-icon" />
                               <div className="btn-txt">Delete</div>
                             </button>
                           </div>

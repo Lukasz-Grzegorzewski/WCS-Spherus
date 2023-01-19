@@ -161,17 +161,6 @@ VALUES
     '2022-12-01'
   ),
   (
-    'J',
-    'S',
-    'Megakrash',
-    '1980-01-01',
-    'john@john.com',
-    'j',
-    1,
-    'token_4',
-    '2022-12-01'
-  ),
-  (
     'D',
     'G',
     'Dani',
@@ -413,16 +402,6 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`fixtures` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-INSERT INTO
-  `origins_digital_wcs`.`fixtures` (fk_fix_video_id)
-VALUES
-  ( 1 ),
-  ( 2 ),
-  ( 3 ),
-  ( 10 ),
-  ( 9 ),
-  ( 8 );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`hero_slider`

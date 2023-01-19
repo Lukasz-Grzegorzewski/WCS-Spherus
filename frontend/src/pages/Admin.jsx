@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminUsers from "@components/admin_components/admin_users/AdminUsers";
 import AdminHomePage from "@components/admin_components/admin_homePage/AdminHomePage";
 import AdminCategory from "@components/admin_components/admin_category/AdminCategory";
@@ -8,6 +9,7 @@ import AdminHeroSlider from "@components/admin_components/admin_heroSlider/Admin
 import AdminFixtures from "@components/admin_components/admin_fixtures/AdminFixtures";
 import AdminAd from "@components/admin_components/admin_ad/AdminAd";
 import { FaAngleLeft } from "react-icons/fa";
+import UserContext from "../UserContext";
 
 function Admin() {
   const [user, setUser] = useState(false);
@@ -18,6 +20,20 @@ function Admin() {
   const [hero, setHero] = useState(false);
   const [advert, setadvert] = useState(false);
   const [fixtures, setFixtures] = useState(false);
+  const token = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token.is_admin === 0) {
+      navigate("/");
+    }
+    if (token.is_admin === "") {
+      navigate("/");
+    }
+    if (token.user_token === "") {
+      navigate("/");
+    }
+  }, [token]);
 
   const classButtonUser = () => {
     if (user === true) {
@@ -55,14 +71,12 @@ function Admin() {
     }
     return "admin_menu_btn";
   };
-
   const classFixtures = () => {
     if (fixtures === true) {
       return "admin_menu_btn_activ";
     }
     return "admin_menu_btn";
   };
-
   const classAdvert = () => {
     if (advert === true) {
       return "admin_menu_btn_activ";

@@ -55,7 +55,7 @@ const getFavoritesByUserId = (req, res) => {
 
   database
     .query(
-      "SELECT CONCAT(u.firstname,' ', u.lastname) AS fullname, v.title, c.name AS cat FROM user u INNER JOIN favorites f  ON u.id = f.user_id AND u.id = ? INNER JOIN video v ON v.id = f.video_fav_id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id ORDER BY fullname;",
+      "SELECT v.title, v.url, v.id, v.description, v.display, c.id AS idCat, c.name AS catName FROM user u INNER JOIN favorites f  ON u.id = f.user_id AND u.id = ? INNER JOIN video v ON v.id = f.video_fav_id INNER JOIN video_category vc ON v.id = vc.video_id INNER JOIN category c ON c.id = vc.category_id ORDER BY idCat;",
       [id]
     )
     .then(([userFavourites]) => {

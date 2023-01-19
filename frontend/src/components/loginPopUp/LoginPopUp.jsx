@@ -36,6 +36,7 @@ function LoginPopUp({ setToken, setControlPopUpLogIn }) {
           JSON.stringify({
             user_token: res.data.token,
             is_admin: res.data.is_admin,
+            id: res.data.id,
           })
         );
         redirect();
