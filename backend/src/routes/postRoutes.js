@@ -55,4 +55,7 @@ router.post("/home", postRoutesFunctions.postHome);
 // Ajouter une video au carousel d'une section de la HomePage
 router.post("/home/videos/", postRoutesFunctions.attachSectionToVideo);
 
+// ajouter une vidéo en favori
+router.post("/favorites", postRoutesFunctions.addVideoToFavorite);
+
 module.exports = router;
