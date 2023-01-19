@@ -38,7 +38,8 @@
         display: flex;
         gap: 24px;
 
-        input, button {
+        input,
+        button {
           padding-block: 8px;
           border-radius: 12px;
           border: 1px solid black;
@@ -50,7 +51,7 @@
           font-size: 16px;
           font-family: $font-display;
           cursor: pointer;
-          transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98); 
+          transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98);
           transform: scale(1);
 
           &:hover {

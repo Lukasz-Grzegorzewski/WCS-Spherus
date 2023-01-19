@@ -5,7 +5,6 @@ import UserContext from "./UserContext";
 
 // const Profile = lazy(() => import("@pages/Profile"));
 
-
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
   import("@components/footer/legal_pages/policy/Policy")
