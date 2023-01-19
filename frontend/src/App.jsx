@@ -26,6 +26,7 @@ const Profile = lazy(() => import("@pages/Profile"));
 const Navbar = lazy(() => import("@components/navbar/Navbar"));
 const Footer = lazy(() => import("@components/footer/Footer"));
 const LoginPopUp = lazy(() => import("@components/loginPopUp/LoginPopUp"));
+const Favorite = lazy(() => import("@components/favorite_page/Favorite"));
 
 function App() {
   const [controlPopUpLogIn, setControlPopUpLogIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
   const [token, setToken] = useState({
     user_token: "",
     is_admin: "",
+    id: "",
   });
 
   useEffect(() => {
@@ -73,6 +75,7 @@ function App() {
             <Route path="/profile" element={<Profile id={1} />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/*" element={<Page404 />} />
+            <Route path="/favorite" element={<Favorite />} />
           </Routes>
         </UserContext.Provider>
         <Footer />
