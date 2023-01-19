@@ -139,6 +139,30 @@ const updateHeroSliderById = (req, res) => {
       res.status(500).send("Error editing the Hero");
     });
 };
+
+// Update video from fixtures in admin
+const updateFixturesById = (req, res) => {
+  const { id } = req.params;
+  const { fkFixVideoId } = req.body;
+
+  database
+    .query("UPDATE fixtures set fk_fix_video_id = ? WHERE id = ?", [
+      Number(fkFixVideoId),
+      id,
+    ])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the Hero");
+    });
+};
+
 // Update Advertising in admin
 const updatePublicityById = (req, res) => {
   const { id } = req.params;
@@ -186,11 +210,23 @@ const updateHomeById = (req, res) => {
     });
 };
 
+// Update title of the fixture section
+
+const updateFixtureTitle = (req, res) => {
+  const { fixName } = req.body;
+  database
+    .query(`UPDATE display_fixtures SET name = ?`, [fixName])
+    .then(() => res.sendStatus(204))
+    .catch((err) => console.error(err));
+};
+
 module.exports = {
   patchVideoById,
   patchUserById,
   patchCategoryById,
   updateHeroSliderById,
+  updateFixturesById,
   updatePublicityById,
+  updateFixtureTitle,
   updateHomeById,
 };

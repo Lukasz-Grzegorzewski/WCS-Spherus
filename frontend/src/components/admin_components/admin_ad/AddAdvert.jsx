@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import Couilliere from "@components/arthour/Couilliere";
+import Couilliere from "../../arthour/Couilliere";
 import PopupAdvertAdd from "./PopupAdvertAdd";
 import PopupAdvertError from "./PopupAdvertError";
 

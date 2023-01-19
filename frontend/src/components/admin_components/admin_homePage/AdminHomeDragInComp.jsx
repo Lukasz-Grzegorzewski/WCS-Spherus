@@ -36,6 +36,8 @@ class AdminHomeDragInComp extends Component {
     items: [],
     selected: [],
     show: false,
+    catName: {},
+    bigShow: false,
   };
 
   constructor(props) {
@@ -48,6 +50,15 @@ class AdminHomeDragInComp extends Component {
       )
       .then((res) => {
         this.setState({ items: res.data });
+      })
+      .catch((err) => console.error(err));
+    axios
+      .get(
+        `${import.meta.env.VITE_PORT_BACKEND}/categories/${this.props.idCat}`
+      )
+      .then((res) => {
+        this.setState({ catName: res.data });
+        this.setState({ bigShow: true });
       })
       .catch((err) => console.error(err));
   }
@@ -108,8 +119,8 @@ class AdminHomeDragInComp extends Component {
   render() {
     return (
       <div className="set">
-        <div className="set_adminHomeDragInComp">
-          {this.state.items.length >= 1 && (
+        {this.state.bigShow === true && (
+          <div className="set_adminHomeDragInComp">
             <DragDropContext onDragEnd={this.onDragEnd}>
               <Droppable droppableId="droppable">
                 {(provided) => (
@@ -117,7 +128,7 @@ class AdminHomeDragInComp extends Component {
                     className="set_adminHomeDragInComp_box"
                     ref={provided.innerRef}
                   >
-                    <p>Category {this.state.items[0].cat}</p>
+                    <p>Category {this.state.catName.name}</p>
                     {this.state.items.map((item, index) => (
                       <Draggable
                         key={JSON.stringify(item.id)}
@@ -138,12 +149,14 @@ class AdminHomeDragInComp extends Component {
                               className="set_adminHomeDragInComp_box_div_btn"
                               type="button"
                               onClick={() => {
-                                this.setState({ show: !this.state.show });
+                                this.setState({
+                                  show: this.state.show ? null : item.id,
+                                });
                               }}
                             >
                               Video sample
                             </button>
-                            {this.state.show === true && (
+                            {this.state.show && this.state.show == item.id && (
                               <HoverVideoPlayer
                                 videoClassName="set_adminHomeDragInComp_box_div_video"
                                 className="set_adminHomeDragInComp_box_div_video"
@@ -170,7 +183,7 @@ class AdminHomeDragInComp extends Component {
                     className="set_adminHomeDragInComp_box"
                     ref={provided.innerRef}
                   >
-                    <p>Section carousel {this.state.items[0].cat}</p>
+                    <p>Section carousel {this.state.catName.name}</p>
                     {this.state.selected.map((item, index) => (
                       <Draggable
                         key={JSON.stringify(item.id)}
@@ -191,12 +204,14 @@ class AdminHomeDragInComp extends Component {
                               className="set_adminHomeDragInComp_box_div_btn"
                               type="button"
                               onClick={() => {
-                                this.setState({ show: !this.state.show });
+                                this.setState({
+                                  show: this.state.show ? null : item.id,
+                                });
                               }}
                             >
                               Video sample
                             </button>
-                            {this.state.show === true && (
+                            {this.state.show && this.state.show == item.id && (
                               <HoverVideoPlayer
                                 videoClassName="set_adminHomeDragInComp_box_div_video"
                                 className="set_adminHomeDragInComp_box_div_video"
@@ -218,8 +233,8 @@ class AdminHomeDragInComp extends Component {
                 )}
               </Droppable>
             </DragDropContext>
-          )}
-        </div>
+          </div>
+        )}
         <button
           className="adminHomeAddSection_form_btn"
           type="button"

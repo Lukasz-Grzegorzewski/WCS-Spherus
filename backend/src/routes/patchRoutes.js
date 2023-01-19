@@ -12,6 +12,10 @@ router.patch("/categories/:id", patchRoutesFunctions.patchCategoryById);
 // Admin Hero Slider
 router.put("/hero_slider/:id", patchRoutesFunctions.updateHeroSliderById);
 
+// Admin Fixtures
+router.put("/fixtures/:id", patchRoutesFunctions.updateFixturesById);
+router.patch("/display_fixtures", patchRoutesFunctions.updateFixtureTitle);
+
 // Admin Advertising
 router.put("/publicities/:id", patchRoutesFunctions.updatePublicityById);
 
