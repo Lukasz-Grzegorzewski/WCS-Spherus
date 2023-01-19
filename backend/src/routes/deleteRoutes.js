@@ -16,5 +16,6 @@ router.delete("/hero_slider/:id", deleteRoutesFunctions.deleteHeroSliderById);
 router.delete("/fixtures/:id", deleteRoutesFunctions.deleteFixturesById);
 router.delete("/publicities/:id", deleteRoutesFunctions.deletePublicityById);
 router.delete("/home/:id", deleteRoutesFunctions.deleteHomeById);
+router.delete("/favorites/:id", deleteRoutesFunctions.deleteVideoFromFavorite);
 
 module.exports = router;
