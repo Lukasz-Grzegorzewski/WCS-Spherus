@@ -5,7 +5,6 @@ import UserContext from "./UserContext";
 
 // const Profile = lazy(() => import("@pages/Profile"));
 
-
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
   import("@components/footer/legal_pages/policy/Policy")
@@ -37,12 +36,12 @@ function App() {
 
   const [token, setToken] = useState({
     user_token: "",
-    id_cat: "",
+    is_admin: "",
   });
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+      setToken(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
 

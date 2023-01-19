@@ -36,7 +36,7 @@ function Heroslider() {
 
   return (
     <div className="heroslider">
-      {sliderInfo.length > 1 && (
+      {sliderInfo.length >= 1 && (
         <Carousel
           containerClass="heroslider_carousel"
           responsive={responsive}

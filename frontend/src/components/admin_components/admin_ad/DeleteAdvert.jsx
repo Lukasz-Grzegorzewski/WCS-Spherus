@@ -70,6 +70,17 @@ function DeleteAdvert({ pub, getPub }) {
               <p>{screen.description}</p>
             </div>
           )}
+          <div className="deleteadvert_delete">
+            <button
+              type="button"
+              onClick={() => {
+                deletePub();
+              }}
+            >
+              <span>Delete</span>
+              <i />
+            </button>
+          </div>
         </form>
       ) : (
         <div className="deleteadvert_check">
@@ -80,17 +91,6 @@ function DeleteAdvert({ pub, getPub }) {
           />
         </div>
       )}
-      <div className="deleteadvert_delete">
-        <button
-          type="button"
-          onClick={() => {
-            deletePub();
-          }}
-        >
-          <span>Delete</span>
-          <i />
-        </button>
-      </div>
     </div>
   );
 }

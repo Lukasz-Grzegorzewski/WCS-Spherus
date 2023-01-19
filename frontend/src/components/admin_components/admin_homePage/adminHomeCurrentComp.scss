@@ -45,7 +45,7 @@
       }
     }
 
-    .icon-btn {
+    .icone-btn {
       width: 50px;
       height: 50px;
       border: 2px solid red;
@@ -60,13 +60,13 @@
       cursor: pointer;
     }
 
-    .add-btn:hover {
+    .adde-btn:hover {
       width: 120px;
       color: $primary-color;
     }
 
-    .add-btn::before,
-    .add-btn::after {
+    .adde-btn::before,
+    .adde-btn::after {
       transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
       content: "";
       position: absolute;
@@ -76,20 +76,20 @@
       background: red;
     }
 
-    .add-btn::after {
+    .adde-btn::after {
       right: 14px;
       overflow: hidden;
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
 
-    .add-btn::before {
+    .adde-btn::before {
       left: 14px;
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
     }
 
-    .icon-btn:focus {
+    .icone-btn:focus {
       outline: none;
     }
 
@@ -100,18 +100,18 @@
       color: $primary-color;
     }
 
-    .add-btn:hover::before,
-    .add-btn:hover::after {
+    .adde-btn:hover::before,
+    .adde-btn:hover::after {
       width: 4px;
       border-radius: 2px;
     }
 
-    .add-btn:hover .btn-txt {
+    .adde-btn:hover .btn-txt {
       opacity: 1;
     }
 
-    .add-icon::after,
-    .add-icon::before {
+    .adde-icon::after,
+    .adde-icon::before {
       transition: all 0.2s ease-in-out;
       content: "";
       position: absolute;
@@ -121,25 +121,25 @@
       overflow: hidden;
     }
 
-    .add-icon::before {
+    .adde-icon::before {
       left: 22px;
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
     }
 
-    .add-icon::after {
+    .adde-icon::after {
       right: 22px;
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
 
-    .add-btn:hover .add-icon::before {
+    .adde-btn:hover .add-icon::before {
       left: 15px;
       height: 4px;
       top: calc(50% - 2px);
     }
 
-    .add-btn:hover .add-icon::after {
+    .adde-btn:hover .add-icon::after {
       right: 15px;
       height: 4px;
       top: calc(50% - 2px);

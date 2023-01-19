@@ -158,7 +158,7 @@ function UpdateAdvert({ pub, getPub }) {
                 <span>Apply</span>
               </button>
             ) : (
-              <div>
+              <div className="addadvert_form_container">
                 <PopupAdvertUpdate
                   setIdPub={setIdPub}
                   setCheck={setCheck}
