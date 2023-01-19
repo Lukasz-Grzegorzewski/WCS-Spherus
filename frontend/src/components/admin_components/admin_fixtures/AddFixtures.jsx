@@ -2,14 +2,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function AddFixtures({ getFixtures, getAllCategories }) {
+function AddFixtures({ getFixtures, getAllCategories, setAdd }) {
   const [allVideos, setAllVideos] = useState(null);
   const [valueVideo, setValueVideo] = useState({ fkVideo: null });
 
   const postFixture = () => {
     axios
       .post(`${import.meta.env.VITE_PORT_BACKEND}/fixtures`, valueVideo)
-      .then(() => getFixtures())
+      .then(() => {
+        getFixtures();
+        setAdd(false);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -75,6 +78,7 @@ function AddFixtures({ getFixtures, getAllCategories }) {
 export default AddFixtures;
 
 AddFixtures.propTypes = {
+  setAdd: PropTypes.bool.isRequired,
   getFixtures: PropTypes.func.isRequired,
   getAllCategories: PropTypes.arrayOf(
     PropTypes.shape({

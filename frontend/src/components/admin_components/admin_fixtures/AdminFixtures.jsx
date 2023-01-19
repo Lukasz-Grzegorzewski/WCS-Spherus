@@ -31,6 +31,9 @@ function AdminFixtures() {
   return (
     <div className="fixtures-slider">
       <div className="fixtures-slider_text">
+        <TitleFixtures />
+      </div>
+      <div className="fixtures-slider_text">
         <h1>Currently in the Fixture Slider</h1>
         <button
           className="icon-btn add-btn"
@@ -41,14 +44,12 @@ function AdminFixtures() {
           <div className="add-icon" />
         </button>
       </div>
-      <div className="fixtures-slider_text">
-        <TitleFixtures />
-      </div>
       <div className="fixtures-selector-component">
         {add && getAllCategories.length > 0 && (
           <AddFixtures
             getAllCategories={getAllCategories}
             getFixtures={() => getHeroInfo()}
+            setAdd={setAdd}
           />
         )}
       </div>
