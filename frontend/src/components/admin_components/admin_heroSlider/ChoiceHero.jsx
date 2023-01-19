@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function ChoiceHero({ id, getHeroInfo, choice, setChoice }) {
+function ChoiceHero({ id, getHeroInfo, choice, setChoice, type }) {
   const [cat, setCat] = useState([]);
   const [videos, setVideos] = useState([]);
   const [valueCat, setValueCat] = useState("");
@@ -22,15 +22,27 @@ function ChoiceHero({ id, getHeroInfo, choice, setChoice }) {
   };
 
   const updateHero = () => {
-    axios
-      .put(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`, {
-        fkVideo: `${valueVideo}`,
-      })
-      .then((res) => {
-        getHeroInfo();
-        setResponse(res.data);
-        setChoice(!choice);
-      });
+    if (type === 1) {
+      axios
+        .put(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider/${id}`, {
+          fkVideo: `${valueVideo}`,
+        })
+        .then((res) => {
+          getHeroInfo();
+          setResponse(res.data);
+          setChoice(!choice);
+        });
+    } else {
+      axios
+        .put(`${import.meta.env.VITE_PORT_BACKEND}/fixtures/${id}`, {
+          fkFixVideoId: `${valueVideo}`,
+        })
+        .then((res) => {
+          getHeroInfo();
+          setResponse(res.data);
+          setChoice(!choice);
+        });
+    }
   };
 
   const handleChange = (e) => {
@@ -130,4 +142,5 @@ ChoiceHero.propTypes = {
   getHeroInfo: PropTypes.func.isRequired,
   setChoice: PropTypes.func.isRequired,
   choice: PropTypes.bool.isRequired,
+  type: PropTypes.number.isRequired,
 };

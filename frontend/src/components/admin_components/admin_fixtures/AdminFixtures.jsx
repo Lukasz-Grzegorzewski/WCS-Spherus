@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddFixtures from "./AddFixtures";
 import DeleteFixtures from "./DeleteFixtures";
+import TitleFixtures from "./TitleFixtures";
 
 function AdminFixtures() {
   const [fixturesData, setFixturesData] = useState([]);
   const [getAllCategories, setGetAllCategories] = useState([]);
   const [add, setAdd] = useState(false);
 
-  function getFixtures() {
+  function getHeroInfo() {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/fixtures`)
       .then((res) => setFixturesData(res.data))
@@ -23,12 +24,15 @@ function AdminFixtures() {
   }
 
   useEffect(() => {
-    getFixtures();
+    getHeroInfo();
     getCategories();
   }, []);
 
   return (
     <div className="fixtures-slider">
+      <div className="fixtures-slider_text">
+        <TitleFixtures />
+      </div>
       <div className="fixtures-slider_text">
         <h1>Currently in the Fixture Slider</h1>
         <button
@@ -44,7 +48,8 @@ function AdminFixtures() {
         {add && getAllCategories.length > 0 && (
           <AddFixtures
             getAllCategories={getAllCategories}
-            getFixtures={() => getFixtures()}
+            getFixtures={() => getHeroInfo()}
+            setAdd={setAdd}
           />
         )}
       </div>
@@ -55,7 +60,7 @@ function AdminFixtures() {
               <DeleteFixtures
                 key={el.id}
                 el={el}
-                getFixtures={() => getFixtures()}
+                getHeroInfo={() => getHeroInfo()}
               />
             );
           })}

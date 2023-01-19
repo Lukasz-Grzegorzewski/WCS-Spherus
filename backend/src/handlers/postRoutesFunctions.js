@@ -1,5 +1,6 @@
 // const { decode } = require("node-base64-image");
 // const fs = require("fs");
+
 const database = require("../../database");
 
 /* POST USER */
@@ -277,6 +278,24 @@ const attachSectionToVideo = (req, res) => {
     });
 };
 
+/* ADD a video in favorite */
+
+const addVideoToFavorite = (req, res) => {
+  const { userId, videoFavId } = req.body;
+  database
+    .query("INSERT INTO favorites (user_id, video_fav_id) VALUES (?, ?)", [
+      userId,
+      videoFavId,
+    ])
+    .then(() => {
+      res.status(201).send({ message: "video added in favorite" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error adding to favorite");
+    });
+};
+
 module.exports = {
   signInUserByUser,
   getUserByEmailWithPasswordAndPassToNext,
@@ -290,4 +309,5 @@ module.exports = {
   uploadAvatarUrl,
   postHome,
   attachSectionToVideo,
+  addVideoToFavorite,
 };

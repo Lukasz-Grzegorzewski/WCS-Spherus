@@ -1,5 +1,10 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
+import UserContext from "./UserContext";
+
+// const Profile = lazy(() => import("@pages/Profile"));
+
 
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
@@ -20,6 +25,7 @@ const Profile = lazy(() => import("@pages/Profile"));
 const Navbar = lazy(() => import("@components/navbar/Navbar"));
 const Footer = lazy(() => import("@components/footer/Footer"));
 const LoginPopUp = lazy(() => import("@components/loginPopUp/LoginPopUp"));
+const Favorite = lazy(() => import("@components/favorite_page/Favorite"));
 
 function App() {
   const [controlPopUpLogIn, setControlPopUpLogIn] = useState(false);
@@ -27,6 +33,18 @@ function App() {
   function handlePopUpLogIn() {
     setControlPopUpLogIn(!controlPopUpLogIn);
   }
+
+  const [token, setToken] = useState({
+    user_token: "",
+    is_admin: "",
+    id: "",
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(JSON.parse(localStorage.getItem("token")));
+    }
+  }, []);
 
   return (
     <div className="App dark-theme">
@@ -38,26 +56,33 @@ function App() {
           </div>
         }
       >
-        <Navbar
-          handlePopUpLogIn={() => {
-            handlePopUpLogIn();
-          }}
-        />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="/termsofservices" element={<TermsOfServices />} />
-          <Route path="/categories/:id" element={<CategoryPage />} />
-          <Route path="/registration" element={<RegisterForm />} />
-          <Route path="/videos/:id" element={<VideoPage />} />
-          <Route path="/profile" element={<Profile id={1} />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/*" element={<Page404 />} />
-        </Routes>
+        <UserContext.Provider value={token}>
+          <Navbar
+            handlePopUpLogIn={() => {
+              handlePopUpLogIn();
+            }}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/policy" element={<Policy />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/termsofservices" element={<TermsOfServices />} />
+            <Route path="/categories/:id" element={<CategoryPage />} />
+            <Route path="/registration" element={<RegisterForm />} />
+            <Route path="/videos/:id" element={<VideoPage />} />
+            <Route path="/profile" element={<Profile id={1} />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/*" element={<Page404 />} />
+            <Route path="/favorite" element={<Favorite />} />
+          </Routes>
+        </UserContext.Provider>
         <Footer />
-        {controlPopUpLogIn && <LoginPopUp />}
+        {controlPopUpLogIn && (
+          <LoginPopUp
+            setToken={setToken}
+            setControlPopUpLogIn={setControlPopUpLogIn}
+          />
+        )}
       </Suspense>
     </div>
   );

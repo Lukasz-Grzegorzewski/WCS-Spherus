@@ -161,7 +161,7 @@ function UpdateVideos({ video }) {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="pop">
           <PopupVideo setCheck={setCheck} />
         </div>
       )}

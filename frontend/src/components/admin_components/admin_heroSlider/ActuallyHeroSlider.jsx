@@ -87,6 +87,7 @@ function ActuallyHeroSlider({ id, idVid, title, url, getHeroInfo }) {
             choice={choice}
             setChoice={setChoice}
             getHeroInfo={getHeroInfo}
+            type={1}
           />
         )}
       </div>

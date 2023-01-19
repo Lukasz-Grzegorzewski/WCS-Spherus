@@ -242,6 +242,23 @@ const deleteHomeById = (req, res) => {
     });
 };
 
+// Favorite
+
+const deleteVideoFromFavorite = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query("DELETE FROM favorites WHERE video_fav_id = ?", [id])
+    .then(([favorite]) => {
+      return favorite.affectedRows === 0
+        ? res.status(404).send("Not Found")
+        : res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting favorite");
+    });
+};
+
 module.exports = {
   deleteUserById,
   deleteAvatarByUserId,
@@ -252,4 +269,5 @@ module.exports = {
   deletePublicityById,
   deleteVideoByIdFromCat,
   deleteHomeById,
+  deleteVideoFromFavorite,
 };
