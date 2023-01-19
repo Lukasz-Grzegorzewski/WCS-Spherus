@@ -69,4 +69,168 @@ $dt-publicity-background-color: #383838;
 //button
 $dt-button-font-color: #ffffff;
 
-//-----------------------------------------------------------------
+//--------------------BUTTONS---------------------------------------------
+
+// BUTTON HERO SLIDER + ADVERT + POPUP ADMINADVERT & ADMINHOMEPAGE
+.cssbuttons-io-button {
+  background: $tertiary-color;
+  color: white;
+  font-family: $font-display;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em $primary-color;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 20px;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em $secondary-color;
+  right: 0.3em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: $secondary-color;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+@media screen and (min-width: 600px) {
+  .cssbuttons-io-button {
+    font-size: 20px;
+  }
+}
+
+// BUTTON +- CIRCLE
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid $tertiary-color;
+  background-color: $tertiary-color;
+  border-radius: 25px;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-size: 15px;
+  font-family: $font-text;
+  cursor: pointer;
+  color: $secondary-color;
+}
+
+.add-btn:hover {
+  width: 120px;
+  color: $secondary-color;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: $secondary-color;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-family: $font-display;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 3px;
+  top: calc(50% - 10px);
+  background: $secondary-color;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
