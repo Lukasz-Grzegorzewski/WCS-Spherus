@@ -32,7 +32,6 @@ const responsive = {
 
 function Section({ type, idLink, id }) {
   const Carousel = C.default ? C.default : C;
-
   const [category, setCategory] = useState([]);
   const [categoryName, setCategoryName] = useState([]);
 

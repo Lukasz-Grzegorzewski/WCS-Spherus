@@ -5,7 +5,6 @@ import UserContext from "./UserContext";
 
 // const Profile = lazy(() => import("@pages/Profile"));
 
-
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
   import("@components/footer/legal_pages/policy/Policy")
@@ -27,6 +26,7 @@ const Profile = lazy(() => import("@pages/Profile"));
 const Navbar = lazy(() => import("@components/navbar/Navbar"));
 const Footer = lazy(() => import("@components/footer/Footer"));
 const LoginPopUp = lazy(() => import("@components/loginPopUp/LoginPopUp"));
+const Favorite = lazy(() => import("@components/favorite_page/Favorite"));
 
 function App() {
   const [controlPopUpLogIn, setControlPopUpLogIn] = useState(false);
@@ -37,12 +37,13 @@ function App() {
 
   const [token, setToken] = useState({
     user_token: "",
-    id_cat: "",
+    is_admin: "",
+    id: "",
   });
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+      setToken(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
 
@@ -74,6 +75,7 @@ function App() {
             <Route path="/profile" element={<Profile id={1} />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/*" element={<Page404 />} />
+            <Route path="/favorite" element={<Favorite />} />
           </Routes>
         </UserContext.Provider>
         <Footer />
