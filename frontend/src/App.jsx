@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-// const Profile = lazy(() => import("@pages/Profile"));
 
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
@@ -12,9 +11,7 @@ const Cookies = lazy(() =>
 const TermsOfServices = lazy(() =>
   import("@components/footer/legal_pages/termsofservices/TermsOfServices")
 );
-const CategoryVideo = lazy(() =>
-  import("@components/category_video/CategoryVideo")
-);
+const CategoryPage = lazy(() => import("@pages/CategoryPage"));
 const RegisterForm = lazy(() => import("@pages/RegisterForm"));
 const VideoPage = lazy(() => import("@pages/VideoPage"));
 const Admin = lazy(() => import("@pages/Admin"));
@@ -52,9 +49,9 @@ function App() {
           <Route path="/policy" element={<Policy />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/termsofservices" element={<TermsOfServices />} />
-          <Route path="/categories/:id" element={<CategoryVideo />} />
+          <Route path="/categories/:id" element={<CategoryPage />} />
           <Route path="/registration" element={<RegisterForm />} />
-          <Route path="/videos/:idVid" element={<VideoPage />} />
+          <Route path="/videos/:id" element={<VideoPage />} />
           <Route path="/profile" element={<Profile id={1} />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/*" element={<Page404 />} />
