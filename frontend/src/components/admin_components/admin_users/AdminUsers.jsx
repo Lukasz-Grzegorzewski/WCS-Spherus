@@ -91,7 +91,13 @@ function AdminUsers({ id }) {
           All
         </label>
         <div className="label-users-admins">
-          <a href="http://localhost:5000/export">Export CSV</a>
+          <a
+            href={`${import.meta.env.VITE_PORT_BACKEND}/export`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Export CSV
+          </a>
         </div>
       </div>
       <input

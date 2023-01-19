@@ -1,20 +1,37 @@
 .avatar-pic-prompt-container {
+  width: 70%;
   background-color: $secondary-color;
   box-shadow: 0 0 10px $primary-color;
   color: $primary-color;
   border-radius: 20px;
-  padding: 3%;
+  // padding: 3%;
   position: absolute;
   right: 50%;
   translate: 50%;
   bottom: 5%;
 
   .choose-file-container {
+    width: 90%;
+    margin: 10px auto;
     border-radius: 20px;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .cropCnt {
+      // width: 100%;
+      .cropCanvas {
+        width: auto !important;
+        // margin: 0 auto !important;
+      }
+    }
+
+    .range {
+      width: 93%;
+      margin-left: 3%;
+      // margin: 0 auto;
+    }
   }
 
   .btn {

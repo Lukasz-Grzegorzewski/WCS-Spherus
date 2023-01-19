@@ -11,6 +11,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   const [isOpenCropCanvas, setIsOpenCropCanvas] = useState(false);
   const [fileUploadErrors, setFileUploadErrors] = useState([]);
   const [urlIn, setUrlIn] = useState([]);
+  const [inputChooseToggle, setInputChooseToggle] = useState(false);
 
   const inputRef = useRef();
 
@@ -88,20 +89,23 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   return (
     <div className="avatar-pic-prompt-container">
       <div className="choose-file-container">
-        <input
-          type="file"
-          name="profilePicBtn"
-          accept="image/png, image/jpeg"
-          onChange={(e) => {
-            profilePicChange(e);
-            // onCrop();
-          }}
-        />
+        {!inputChooseToggle && (
+          <input
+            type="file"
+            name="profilePicBtn"
+            accept="image/png, image/jpeg"
+            onChange={(e) => {
+              profilePicChange(e);
+              setInputChooseToggle(!inputChooseToggle);
+              // onCrop();
+            }}
+          />
+        )}
         {isOpenCropCanvas && (
           <div className="cropCnt">
             <AvatarEditor
               image={selectedImage}
-              border={50}
+              border={46}
               scale={scaleValue}
               rotate={0}
               ref={inputRef}
@@ -110,7 +114,8 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
               onImageReady={() => onCrop()}
             />
             <input
-              style={{ width: "100%" }}
+              className="range"
+              // style={{ width: "90%" }}
               type="range"
               value={scaleValue}
               name="points"
