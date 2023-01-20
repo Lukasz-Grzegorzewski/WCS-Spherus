@@ -195,6 +195,8 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video` (
   `display` TINYINT NOT NULL,
   `title` VARCHAR(90) NOT NULL,
   `date` DATE NOT NULL,
+  `playbackRangeStart` INT NOT NULL DEFAULT 0,
+  `playbackRangeEnd` INT NOT NULL DEFAULT 6,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1

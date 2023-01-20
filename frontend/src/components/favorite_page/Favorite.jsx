@@ -4,13 +4,13 @@ import VideoCard from "@components/category_video/VideoCard";
 import UserContext from "../../UserContext";
 
 function Favorite() {
-  const token = useContext(UserContext);
+  const { id } = useContext(UserContext);
 
   const [favorite, setFavorite] = useState([]);
 
   const getFavorite = () => {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/favorites/${token.id}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/favorites/${id}`)
       .then((res) => {
         setFavorite(res.data);
       })
