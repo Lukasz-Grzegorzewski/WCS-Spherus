@@ -11,6 +11,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   const [isOpenCropCanvas, setIsOpenCropCanvas] = useState(false);
   const [fileUploadErrors, setFileUploadErrors] = useState([]);
   const [urlIn, setUrlIn] = useState([]);
+  const [inputChooseToggle, setInputChooseToggle] = useState(false);
 
   const inputRef = useRef();
 
@@ -88,37 +89,46 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   return (
     <div className="avatar-pic-prompt-container">
       <div className="choose-file-container">
-        <input
-          type="file"
-          name="profilePicBtn"
-          accept="image/png, image/jpeg"
-          onChange={(e) => {
-            profilePicChange(e);
-            // onCrop();
-          }}
-        />
+        {!inputChooseToggle && (
+          <input
+            className="btn-choose-file"
+            type="file"
+            name="profilePicBtn"
+            accept="image/png, image/jpeg"
+            onChange={(e) => {
+              profilePicChange(e);
+              setInputChooseToggle(!inputChooseToggle);
+              // onCrop();
+            }}
+          />
+        )}
         {isOpenCropCanvas && (
           <div className="cropCnt">
             <AvatarEditor
+              className="cropCanvas"
               image={selectedImage}
-              border={50}
+              height={300}
+              width={300}
+              border={1}
               scale={scaleValue}
               rotate={0}
               ref={inputRef}
-              className="cropCanvas"
               onImageChange={() => onCrop()}
               onImageReady={() => onCrop()}
             />
-            <input
-              style={{ width: "100%" }}
-              type="range"
-              value={scaleValue}
-              name="points"
-              min="1"
-              max="10"
-              step=".1"
-              onChange={(e) => onScaleChange(e)}
-            />
+            <div className="range-container">
+              <input
+                className="range"
+                // style={{ width: "90%" }}
+                type="range"
+                value={scaleValue}
+                name="points"
+                min="1"
+                max="10"
+                step=".1"
+                onChange={(e) => onScaleChange(e)}
+              />
+            </div>
             {/* <button
               onClick={() => onCrop()}
               className="editorOverlayCloseBtn crpBtn"

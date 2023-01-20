@@ -20,20 +20,20 @@ function Admin() {
   const [hero, setHero] = useState(false);
   const [advert, setadvert] = useState(false);
   const [fixtures, setFixtures] = useState(false);
-  const token = useContext(UserContext);
+  const { is_admin: isAdmin, user_token: userToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token.isAdmin === 0) {
+    if (isAdmin === 0) {
       navigate("/");
     }
-    if (token.isAdmin === "") {
+    if (isAdmin === "") {
       navigate("/");
     }
-    if (token.userToken === "") {
+    if (userToken === "") {
       navigate("/");
     }
-  }, [token]);
+  }, [isAdmin, userToken]);
 
   const classButtonUser = () => {
     if (user === true) {

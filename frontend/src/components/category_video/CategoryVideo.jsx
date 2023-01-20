@@ -1,4 +1,3 @@
-import Heroslider from "@components/heroSlider/Heroslider";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -23,7 +22,6 @@ function CategoryVideo() {
 
   return (
     <div className="category_video">
-      <Heroslider />
       <div className="category_video_main">
         <div className="category_video_main_name">
           {video.length > 1 && video[0].cat}
