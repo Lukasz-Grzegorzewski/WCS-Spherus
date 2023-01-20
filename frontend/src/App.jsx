@@ -1,10 +1,10 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import UserContext from "./UserContext";
+import ThemeContext from "./ThemeContext";
 
 // const Profile = lazy(() => import("@pages/Profile"));
-
 
 const Home = lazy(() => import("@pages/Home"));
 const Policy = lazy(() =>
@@ -40,6 +40,12 @@ function App() {
     id: "",
   });
 
+  const [themeToggle, setThemeToggle] = useState(false);
+
+  const themeControlObject = useMemo(() => {
+    return { themeToggle, setThemeToggle };
+  }, [themeToggle]);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setToken(JSON.parse(localStorage.getItem("token")));
@@ -47,7 +53,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App dark-theme">
+    <div className={themeToggle ? "App light-theme" : "App dark-theme"}>
       <Suspense
         fallback={
           <div className="loader-container">
@@ -56,26 +62,28 @@ function App() {
           </div>
         }
       >
-        <UserContext.Provider value={token}>
-          <Navbar
-            handlePopUpLogIn={() => {
-              handlePopUpLogIn();
-            }}
-          />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/policy" element={<Policy />} />
-            <Route path="/cookies" element={<Cookies />} />
-            <Route path="/termsofservices" element={<TermsOfServices />} />
-            <Route path="/categories/:id" element={<CategoryPage />} />
-            <Route path="/registration" element={<RegisterForm />} />
-            <Route path="/videos/:id" element={<VideoPage />} />
-            <Route path="/profile" element={<Profile id={1} />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/*" element={<Page404 />} />
-            <Route path="/favorite" element={<Favorite />} />
-          </Routes>
-        </UserContext.Provider>
+        <ThemeContext.Provider value={themeControlObject}>
+          <UserContext.Provider value={token}>
+            <Navbar
+              handlePopUpLogIn={() => {
+                handlePopUpLogIn();
+              }}
+            />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/policy" element={<Policy />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/termsofservices" element={<TermsOfServices />} />
+              <Route path="/categories/:id" element={<CategoryPage />} />
+              <Route path="/registration" element={<RegisterForm />} />
+              <Route path="/videos/:id" element={<VideoPage />} />
+              <Route path="/profile" element={<Profile id={1} />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/*" element={<Page404 />} />
+              <Route path="/favorite" element={<Favorite />} />
+            </Routes>
+          </UserContext.Provider>
+        </ThemeContext.Provider>
         <Footer />
         {controlPopUpLogIn && (
           <LoginPopUp

@@ -1,0 +1,18 @@
+@import "./navbarMobile/navbarMobile.scss";
+@import "./menus/menuBurger.scss";
+@import "../variables.scss";
+
+.navbar {
+  position: relative;
+  z-index: 1001;
+  .logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    img.logo {
+      margin-top: 10px;
+      width: 40px;
+    }
+  }
+}

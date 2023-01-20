@@ -10,6 +10,8 @@ function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
   function handleClick() {
     setCardToggle(true);
     setRefresh(!refresh);
+    const pointToScroll = document.querySelector(".img-profile");
+    pointToScroll.scrollIntoView();
   }
 
   async function handleSetUrl() {
