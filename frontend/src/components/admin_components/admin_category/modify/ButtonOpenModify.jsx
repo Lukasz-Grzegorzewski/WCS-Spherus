@@ -12,7 +12,7 @@ function ButtonOpenModify({ getCategories, catId, catName }) {
   return (
     <div className="button-open-modify">
       <button type="button" onClick={changeShowButtonModify}>
-        MODIFY CATEGORY
+        {showButtonModify ? "CLOSE" : "MODIFY CATEGORY"}
       </button>
       {showButtonModify && (
         <ButtonModifyCat
@@ -29,6 +29,6 @@ export default ButtonOpenModify;
 
 ButtonOpenModify.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  catId: PropTypes.number.isRequired,
+  catId: PropTypes.node.isRequired,
   catName: PropTypes.string.isRequired,
 };

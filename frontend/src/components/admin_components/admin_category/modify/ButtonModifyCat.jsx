@@ -45,7 +45,7 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
       </form>
       {openModifyPopUp && (
         <ModifyPopUp
-          modifyCategory={() => modifyCategory()}
+          modifyCategory={(e) => modifyCategory(e)}
           handleModifyPopUp={() => handleModifyPopUp()}
         />
       )}
@@ -58,7 +58,7 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
 export default ButtonModifyCat;
 
 ButtonModifyCat.propTypes = {
-  catId: PropTypes.number.isRequired,
+  catId: PropTypes.node.isRequired,
   catName: PropTypes.string.isRequired,
   getCategories: PropTypes.func.isRequired,
 };
