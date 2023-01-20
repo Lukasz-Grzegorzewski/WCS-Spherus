@@ -36,8 +36,8 @@ function App() {
   }
 
   const [token, setToken] = useState({
-    user_token: "",
-    is_admin: "",
+    userToken: "",
+    isAdmin: "",
     id: "",
   });
 

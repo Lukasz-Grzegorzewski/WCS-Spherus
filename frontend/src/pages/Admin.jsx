@@ -24,13 +24,13 @@ function Admin() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token.is_admin === 0) {
+    if (token.isAdmin === 0) {
       navigate("/");
     }
-    if (token.is_admin === "") {
+    if (token.isAdmin === "") {
       navigate("/");
     }
-    if (token.user_token === "") {
+    if (token.userToken === "") {
       navigate("/");
     }
   }, [token]);

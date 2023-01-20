@@ -36,7 +36,7 @@ const verifyPassword = (req, res) => {
           expiresIn: "1h",
         });
 
-        res.send({ token, is_admin: req.user.is_admin, id: req.user.id });
+        res.send({ token, isAdmin: req.user.isAdmin, id: req.user.id });
       }
     })
     .catch((err) => {
