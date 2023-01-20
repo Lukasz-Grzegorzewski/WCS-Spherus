@@ -12,9 +12,14 @@ function ButtonOpenAddCat({ getCategories }) {
   return (
     <div className="button-open-add">
       <button type="button" onClick={changeShowButtonAdd}>
-        ADD CATEGORY
+        {showButtonAdd ? "CLOSE" : "ADD CATEGORY"}
       </button>
-      {showButtonAdd && <ButtonAddCat getCategories={() => getCategories()} />}
+      {showButtonAdd && (
+        <ButtonAddCat
+          getCategories={() => getCategories()}
+          changeShowButtonAdd={() => changeShowButtonAdd()}
+        />
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import ButtonOpenAddCat from "@components/admin_components/admin_category/ButtonOpenAddCat";
+import ButtonOpenAddCat from "@components/admin_components/admin_category/add/ButtonOpenAddCat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "react-select";
@@ -6,7 +6,7 @@ import Categories from "./Categories";
 
 function AdminCategory() {
   const [selectCategory, setSelectCategory] = useState([]);
-  const [catId, setCatId] = useState();
+  const [catId, setCatId] = useState("Search category");
   const [catName, setCatName] = useState();
 
   const getCategories = () => {
@@ -14,7 +14,7 @@ function AdminCategory() {
       .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {
         setSelectCategory(res.data);
-        console.warn(res.data);
+        console.warn("ceci est res.dat getCategories", res.data);
       })
       .catch((err) => console.warn(err));
   };
@@ -41,7 +41,10 @@ function AdminCategory() {
           onChange={(elem) => handleOptions(elem)}
         />
       )}
-      {catId !== "Search category" && (
+      <ButtonOpenAddCat getCategories={() => getCategories()} />
+      {catId === "Search category" ? (
+        ""
+      ) : (
         <Categories
           catId={catId}
           setCatId={(value) => setCatId(value)}
@@ -50,7 +53,6 @@ function AdminCategory() {
           setCatName={(value) => setCatName(value)}
         />
       )}
-      <ButtonOpenAddCat getCategories={() => getCategories()} />
     </div>
   );
 }

@@ -81,7 +81,7 @@ img.navbar_logo {
   z-index: 99;
   border: solid black;
   min-height: 5rem;
-  background-color: red;
+  background-color: #f14a16;
   display: flex;
   justify-content: space-between;
 }
@@ -103,11 +103,57 @@ img.navbar_logo {
   z-index: 99;
   border: solid black;
   min-height: 5rem;
-  background-color: red;
+  background-color: #f14a16;
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  background-color: #27496d;
+  padding: 9px 30px;
+  min-height: 2rem;
+  margin: 1rem;
+  width: 10rem;
+  transition: 0.5s;
+  position: relative;
+  font-size: 15px;
+  background: #555555;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-open-add {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.button-no,
+.button-yes {
+  padding: 9px 30px;
+  min-height: 1rem;
+  margin: 1rem;
+  width: 10rem;
+  transition: 0.5s;
+  position: relative;
+  font-size: 15px;
+  background: #555555;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-open-modify,
+.button-open-add,
+.button-open-modify,
+.delete-cat.button,
+.delete-video-button {
+  margin: 0.5rem 0;
+}
+
+.add-videos-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
