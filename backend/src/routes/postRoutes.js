@@ -1,44 +1,22 @@
 const express = require("express");
-
-const router = express.Router();
-const multer = require("multer");
-
+const postRoutesFunctions = require("../handlers/postRoutesFunctions");
+const { upload, uploadImg, uploadAvatar } = require("./multers/multers");
 const { hashPassword, verifyPassword } = require("../handlers/auth");
 
-// Import des fichiers vidéo dans le backend
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/assets/videos");
-  },
-  filename: (req, file, cb) => {
-    const date = new Date().getTime();
-    req.body.filename = `${req.body.title + date.toString()}.mp4`;
-    cb(null, req.body.filename.toString());
-  },
-});
+const router = express.Router();
 
-const upload = multer({ storage });
-
-// Import des fichiers pub dans le backend
-const storageImg = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/assets/images");
-  },
-  filename: (req, file, cb) => {
-    const date = new Date().getTime();
-    req.body.filename = `${req.body.name + date.toString()}.jpg`;
-    cb(null, req.body.filename.toString());
-  },
-});
-const uploadImg = multer({ storage: storageImg });
-
-const postRoutesFunctions = require("../handlers/postRoutesFunctions");
-
+// USERS
 router.post("/users", hashPassword, postRoutesFunctions.signInUserByUser);
-router.post("/users/:id", postRoutesFunctions.uploadAvatarUrl);
+router.post(
+  "/users/:id",
+  uploadAvatar.single("file"),
+  postRoutesFunctions.uploadAvatarUrl
+);
 
+// ADMIN
 router.post("/users/admin", postRoutesFunctions.signInUserByAdmin);
 
+// VIDEOS
 router.post(
   "/videos",
   upload.single("file"),
@@ -46,18 +24,24 @@ router.post(
   postRoutesFunctions.attachCategoryToVideo
 );
 
+// LOGIN
 router.post(
-  "/",
+  "/login",
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
 
+// CATEGORY-VIDEO
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);
 
+// CATEGORIES
 router.post("/categories", postRoutesFunctions.postCategory);
 
 // Ajouter une video dans le Hero Slider
 router.post("/hero_slider", postRoutesFunctions.postHeroSlider);
+
+// Ajouter une vidéo dans le Fixture Slider
+router.post("/fixtures", postRoutesFunctions.postFixture);
 
 // Ajouter une publicité
 router.post(
@@ -68,5 +52,10 @@ router.post(
 
 // Ajouter un composant à la HomePage
 router.post("/home", postRoutesFunctions.postHome);
+// Ajouter une video au carousel d'une section de la HomePage
+router.post("/home/videos/", postRoutesFunctions.attachSectionToVideo);
+
+// ajouter une vidéo en favori
+router.post("/favorites", postRoutesFunctions.addVideoToFavorite);
 
 module.exports = router;

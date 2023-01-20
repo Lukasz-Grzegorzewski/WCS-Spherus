@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Couilliere from "../../arthour/Couilliere";
 import PopupAdvertAdd from "./PopupAdvertAdd";
 import PopupAdvertError from "./PopupAdvertError";
 
-function AddAdvert({ setRefresh, refresh }) {
+function AddAdvert({ getPub }) {
   const [file, setFile] = useState({});
   const [check, setCheck] = useState(false);
   const [error, setError] = useState(false);
+  const url = `${import.meta.env.VITE_PORT_BACKEND}/assets/sound/lecode.mp3`;
   const [imgDetails, setImgDetails] = useState({
     description: "",
     urlLink: "",
@@ -30,9 +32,9 @@ function AddAdvert({ setRefresh, refresh }) {
       .post(`${import.meta.env.VITE_PORT_BACKEND}/publicity`, data)
       .then(() => {
         setCheck(true);
-        setRefresh(!refresh);
         clearInputs();
         clearFile();
+        getPub();
       })
       .catch(() => {
         setError(true);
@@ -56,6 +58,7 @@ function AddAdvert({ setRefresh, refresh }) {
         <div className="addadvert_form_container">
           <label className="addadvert_form_container_label" htmlFor="title">
             File
+            <Couilliere url={url} />
           </label>
           <div>
             <input
@@ -129,27 +132,22 @@ function AddAdvert({ setRefresh, refresh }) {
             required
           />
           {check === false ? (
-            <button
-              className="addadvert_form_container_btn"
-              type="submit"
-              value="Upload"
-            >
-              <div className="svg-wrapper-1">
-                <div className="svg-wrapper">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path
-                      fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                    />
-                  </svg>
-                </div>
+            <button className="submitBtn" type="submit" value="Upload">
+              <div className="svg-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    fill="currentColor"
+                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                  />
+                </svg>
               </div>
+
               <span>Apply</span>
             </button>
           ) : (
@@ -167,6 +165,5 @@ function AddAdvert({ setRefresh, refresh }) {
 export default AddAdvert;
 
 AddAdvert.propTypes = {
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
 };

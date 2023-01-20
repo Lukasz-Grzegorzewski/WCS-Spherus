@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function PopupAdvertDelete({ setCheck, refresh, setRefresh, setView }) {
+function PopupAdvertDelete({ setCheck, getPub, setView }) {
   return (
     <div className="popupadvert">
       <p className="popupadvert_done">Done !</p>
@@ -10,8 +10,8 @@ function PopupAdvertDelete({ setCheck, refresh, setRefresh, setView }) {
         className="cssbuttons-io-button"
         onClick={() => {
           setCheck(false);
-          setRefresh(!refresh);
           setView(false);
+          getPub();
         }}
       >
         {" "}
@@ -38,8 +38,7 @@ function PopupAdvertDelete({ setCheck, refresh, setRefresh, setView }) {
 export default PopupAdvertDelete;
 
 PopupAdvertDelete.propTypes = {
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
   setCheck: PropTypes.func.isRequired,
   setView: PropTypes.func.isRequired,
 };

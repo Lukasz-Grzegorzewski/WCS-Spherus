@@ -3,7 +3,7 @@ import React from "react";
 function TermsOfServices() {
   return (
     <div className="terms">
-      <h3>CONDITIONS GENERALES DE VENTE</h3>
+      <h1>CONDITIONS GENERALES DE VENTE</h1>
 
       <h5>Applicables à compter du 29/09/2022</h5>
 

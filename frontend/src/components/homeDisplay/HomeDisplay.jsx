@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Section from "@components/section/Section";
+import Section from "../section/Section";
 
 function HomeDisplay() {
   const [currentHome, setCurrentHome] = useState({});
@@ -24,7 +24,11 @@ function HomeDisplay() {
           {currentHome.map((infos) => {
             return (
               <div key={infos.id}>
-                <Section type={infos.type} idLink={infos.idLink} />
+                <Section
+                  type={infos.type}
+                  id={infos.id}
+                  idLink={infos.idLink}
+                />
               </div>
             );
           })}

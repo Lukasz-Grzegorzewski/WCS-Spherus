@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-import VideoCard from "@components/category_video/VideoCard";
-import Advert from "@components/advert/Advert";
 import C from "react-multi-carousel";
+import VideoCard from "../category_video/VideoCard";
+import Advert from "../advert/Advert";
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
@@ -30,16 +30,22 @@ const responsive = {
   },
 };
 
-function Section({ type, idLink }) {
+function Section({ type, idLink, id }) {
   const Carousel = C.default ? C.default : C;
-
   const [category, setCategory] = useState([]);
+  const [categoryName, setCategoryName] = useState([]);
 
   const getInfos = () => {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${idLink}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/home/carousel/${id}`)
       .then((res) => {
         setCategory(res.data);
+      })
+      .catch((err) => console.error(err));
+    axios
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/categories/${idLink}`)
+      .then((res) => {
+        setCategoryName(res.data);
       })
       .catch((err) => console.error(err));
   };
@@ -57,7 +63,7 @@ function Section({ type, idLink }) {
             <div>
               <div className="section_navigation">
                 <NavLink to={`/categories/${idLink}`}>
-                  <div className="section_name">{category[0].cat}</div>
+                  <div className="section_name">{categoryName.name}</div>
                 </NavLink>
                 <div className="section_seeMoreBtn">
                   <NavLink to={`/categories/${idLink}`}>
@@ -98,5 +104,6 @@ function Section({ type, idLink }) {
 Section.propTypes = {
   type: PropTypes.number.isRequired,
   idLink: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 export default Section;

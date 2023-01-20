@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAdvertUpdate from "./PopupAdvertUpdate";
 
-function UpdateAdvert({ pub, setRefresh, refresh }) {
+function UpdateAdvert({ pub, getPub }) {
   const [idPub, setIdPub] = useState("");
   const [infoPub, setInfoPub] = useState([]);
   const [check, setCheck] = useState(false);
@@ -11,7 +11,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
   const [description, setDescription] = useState("");
   const [urlLink, setUrlLink] = useState("");
 
-  const getPub = () => {
+  const getAllPub = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
@@ -26,7 +26,7 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
   };
 
   useEffect(() => {
-    getPub();
+    getAllPub();
   }, [idPub]);
 
   function clearInputs() {
@@ -134,36 +134,30 @@ function UpdateAdvert({ pub, setRefresh, refresh }) {
             />
 
             {check === false ? (
-              <button
-                className="addadvert_form_container_btn"
-                type="submit"
-                value="Upload"
-              >
-                <div className="svg-wrapper-1">
-                  <div className="svg-wrapper">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      height="24"
-                    >
-                      <path fill="none" d="M0 0h24v24H0z" />
-                      <path
-                        fill="currentColor"
-                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                      />
-                    </svg>
-                  </div>
+              <button className="submitBtn" type="submit" value="Upload">
+                <div className="svg-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      fill="currentColor"
+                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                    />
+                  </svg>
                 </div>
+
                 <span>Apply</span>
               </button>
             ) : (
-              <div>
+              <div className="addadvert_form_container">
                 <PopupAdvertUpdate
                   setIdPub={setIdPub}
                   setCheck={setCheck}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
+                  getPub={getPub}
                 />
               </div>
             )}
@@ -185,6 +179,5 @@ UpdateAdvert.propTypes = {
       url_link: PropTypes.string.isRequired,
     })
   ).isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
 };

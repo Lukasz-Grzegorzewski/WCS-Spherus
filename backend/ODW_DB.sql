@@ -49,6 +49,7 @@ DROP TABLE IF EXISTS `origins_digital_wcs`.`home` ;
 
 CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`home` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `position` INT NOT NULL,
   `type` INT NOT NULL,
   `idLink` INT NOT NULL,
   PRIMARY KEY (`id`))
@@ -57,13 +58,25 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO
-  `origins_digital_wcs`.`home` (type, idLink)
-VALUES
-  (1,1),
-  (1,3),
-  (2,1),
-  (1,2);
+-- -----------------------------------------------------
+-- Table `origins_digital_wcs`.`video_carousel`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `origins_digital_wcs`.`video_carousel` ;
+
+CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video_carousel` (
+  `video_carousel_id` INT NULL DEFAULT NULL,
+  `home_id` INT NULL DEFAULT NULL,
+  INDEX `fk_home_id_idx` (`home_id` ASC) VISIBLE,
+  INDEX `fk_video_carousel_id_idx` (`video_carousel_id` ASC) VISIBLE,
+  CONSTRAINT `fk_home_id`
+    FOREIGN KEY (`home_id`)
+    REFERENCES `origins_digital_wcs`.`home` (`id`),
+  CONSTRAINT `fk_video_carousel_id`
+    FOREIGN KEY (`video_carousel_id`)
+    REFERENCES `origins_digital_wcs`.`video` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`color`
@@ -95,7 +108,7 @@ DROP TABLE IF EXISTS `origins_digital_wcs`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `url` VARCHAR(255) DEFAULT NULL,
+  `url` VARCHAR(255) NULL DEFAULT NULL,
   `firstname` VARCHAR(80) NOT NULL,
   `lastname` VARCHAR(80) NOT NULL,
   `nickname` VARCHAR(80) NOT NULL,
@@ -148,17 +161,6 @@ VALUES
     '2022-12-01'
   ),
   (
-    'J',
-    'S',
-    'Megakrash',
-    '1980-01-01',
-    'john@john.com',
-    'j',
-    1,
-    'token_4',
-    '2022-12-01'
-  ),
-  (
     'D',
     'G',
     'Dani',
@@ -193,6 +195,8 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video` (
   `display` TINYINT NOT NULL,
   `title` VARCHAR(90) NOT NULL,
   `date` DATE NOT NULL,
+  `playbackRangeStart` INT NOT NULL DEFAULT 0,
+  `playbackRangeEnd` INT NOT NULL DEFAULT 6,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
@@ -364,6 +368,27 @@ VALUES
   (5,18);
 
 -- -----------------------------------------------------
+-- Table `origins_digital_wcs`.`display_fixtures`
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `origins_digital_wcs`.`display_fixtures` ;
+
+CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`display_fixtures` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `display` TINYINT DEFAULT FALSE NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`display_fixtures` (name)
+VALUES
+  ( 'Popular videos' );
+
+-- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`fixtures`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `origins_digital_wcs`.`fixtures` ;
@@ -373,13 +398,12 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`fixtures` (
   `fk_fix_video_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  CONSTRAINT `fk_fix_video_id`
-    FOREIGN KEY (`id`)
+  CONSTRAINT FK_videoID
+    FOREIGN KEY (`fk_fix_video_id`)
     REFERENCES `origins_digital_wcs`.`video` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`hero_slider`

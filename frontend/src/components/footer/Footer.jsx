@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Couilliere from "@components/arthour/Couilliere";
+
 import {
   FaInstagramSquare,
   FaFacebookSquare,
@@ -7,6 +9,8 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+  const url = `${import.meta.env.VITE_PORT_BACKEND}/assets/sound/arthour2.mp3`;
+
   return (
     <div className="footer">
       <div className="footer_container_logo">
@@ -30,6 +34,7 @@ function Footer() {
         </a>
       </div>
       <div className="footer_link">
+        <Couilliere url={url} />
         <NavLink to="/policy">
           <p>Privacy Policy</p>
         </NavLink>

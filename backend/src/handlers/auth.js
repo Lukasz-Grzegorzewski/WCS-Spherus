@@ -9,17 +9,20 @@ const hashingOptions = {
 };
 
 const hashPassword = (req, res, next) => {
-  argon2
-    .hash(req.body.password, hashingOptions)
-    .then((hashedPassword) => {
-      req.body.password = hashedPassword;
-
-      next();
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sensStatus(500);
-    });
+  if (req.body.password) {
+    argon2
+      .hash(req.body.password, hashingOptions)
+      .then((hashedPassword) => {
+        req.body.password = hashedPassword;
+        next();
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  } else {
+    next();
+  }
 };
 
 const verifyPassword = (req, res) => {
@@ -33,9 +36,7 @@ const verifyPassword = (req, res) => {
           expiresIn: "1h",
         });
 
-        res.send({ token, user: req.user });
-      } else {
-        res.sendStatus(401);
+        res.send({ token, isAdmin: req.user.isAdmin, id: req.user.id });
       }
     })
     .catch((err) => {

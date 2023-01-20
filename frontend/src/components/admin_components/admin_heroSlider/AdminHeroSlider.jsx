@@ -7,12 +7,14 @@ function AdminHeroSlider() {
   const [heroInfo, setHeroInfo] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [add, setAdd] = useState(false);
+  const [show, setShow] = useState(false);
 
   const getHeroInfo = async () => {
     await axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/hero_slider`)
       .then((res) => {
         setHeroInfo(res.data);
+        setShow(true);
       });
   };
 
@@ -38,13 +40,14 @@ function AdminHeroSlider() {
 
       {add === true && (
         <AddHero
+          getHeroInfo={getHeroInfo}
           setRefresh={setRefresh}
           refresh={refresh}
           add={add}
           setAdd={setAdd}
         />
       )}
-      {heroInfo.length >= 1 && (
+      {show === true && (
         <div className="adminheroslider_videos">
           {heroInfo.map((infos) => {
             return (
@@ -54,8 +57,7 @@ function AdminHeroSlider() {
                   idVid={infos.id}
                   title={infos.title}
                   url={infos.url}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
+                  getHeroInfo={getHeroInfo}
                 />
               </div>
             );

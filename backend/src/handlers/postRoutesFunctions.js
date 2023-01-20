@@ -1,4 +1,6 @@
-const { decode } = require("node-base64-image");
+// const { decode } = require("node-base64-image");
+// const fs = require("fs");
+
 const database = require("../../database");
 
 /* POST USER */
@@ -56,17 +58,27 @@ const signInUserByUser = (req, res) => {
 };
 
 const uploadAvatarUrl = (req, res) => {
-  const { id, base64 } = req.body;
-  const base64Final = base64.split("base64,")[1];
-  const url = `assets/images/avatars/${id}.jpg`;
+  // const { id, filename } = req.body;
+  const { filename } = req.body;
+  const { id } = req.params;
+  // const base64Final = base64.split("base64,")[1];
+  // console.log("base64Final :", base64Final);
+
+  const dir = `assets/images/avatars/`;
+  // const url = `${dir}${id}.jpg`;
+  const url = `${dir}${filename}`;
+
+  // if (!fs.existsSync(`public/${dir}`)) {
+  //   fs.mkdirSync(`public/${dir}`);
+  // }
 
   database
     .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
-    .then(async () => {
-      await decode(base64Final, {
-        fname: `./public/assets/images/avatars/${id}`,
-        ext: "jpg",
-      });
+    .then(() => {
+      // await decode(base64Final, {
+      //   fname: `./public/${dir}${id}`,
+      //   ext: "jpg",
+      // });
       res.status(201).send({ message: "url avatar updated" });
     })
     .catch((err) => {
@@ -170,6 +182,24 @@ const postHeroSlider = (req, res) => {
     });
 };
 
+// POST FIXTURE
+
+const postFixture = (req, res) => {
+  const { fkVideo } = req.body;
+
+  database
+    .query("INSERT INTO fixtures(fk_fix_video_id) VALUES (?);", [
+      Number(fkVideo),
+    ])
+    .then(() => {
+      res.status(201).send({ message: "Fixture Slider Updated" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error update the fixture slider");
+    });
+};
+
 // POST ADVERT
 const postAdvert = (req, res) => {
   const { description, urlLink, name, filename } = req.body;
@@ -213,16 +243,56 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
 
 // POST HOME
 const postHome = (req, res) => {
-  const { type, idLink } = req.body;
+  const { position, type, idLink } = req.body;
 
   database
-    .query("INSERT INTO home(type, idLink) VALUES (?, ?);", [type, idLink])
-    .then(() => {
-      res.status(201).send({ message: "Component Added" });
+    .query("INSERT INTO home(position, type, idLink) VALUES (?, ?, ?);", [
+      position,
+      type,
+      idLink,
+    ])
+    .then((data) => {
+      res.status(201).send(data);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error add new component in Home");
+    });
+};
+
+/* POST VIDEO IN THE CAROUSEL SECTION */
+
+const attachSectionToVideo = (req, res) => {
+  const { videoId, sectionId } = req.body;
+  database
+    .query(
+      "INSERT INTO video_carousel(video_carousel_id, home_id) VALUES (?, ?)",
+      [Number(videoId), Number(sectionId)]
+    )
+    .then(() => {
+      res.status(201).send({ message: "video atached to the section" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error ataching video to the section");
+    });
+};
+
+/* ADD a video in favorite */
+
+const addVideoToFavorite = (req, res) => {
+  const { userId, videoFavId } = req.body;
+  database
+    .query("INSERT INTO favorites (user_id, video_fav_id) VALUES (?, ?)", [
+      userId,
+      videoFavId,
+    ])
+    .then(() => {
+      res.status(201).send({ message: "video added in favorite" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error adding to favorite");
     });
 };
 
@@ -231,10 +301,13 @@ module.exports = {
   getUserByEmailWithPasswordAndPassToNext,
   signInUserByAdmin,
   postVideo,
+  postFixture,
   postCategory,
   attachCategoryToVideo,
   postHeroSlider,
   postAdvert,
   uploadAvatarUrl,
   postHome,
+  attachSectionToVideo,
+  addVideoToFavorite,
 };

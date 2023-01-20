@@ -1,10 +1,20 @@
+.adminvideo_file_title {
+  font-size: 18px;
+  text-align: center;
+}
+
 .adminvideo_container {
   width: 95%;
   height: auto;
-  border: 2px solid $secondary-color;
+  border: 2px solid white;
   padding: 15px;
   margin-right: 20px;
   font-family: $font-text;
+  box-shadow: 0 0 5px 1px $primary-color;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   form {
     width: 100%;
@@ -26,7 +36,8 @@
   }
 
   .adminvideo_file_input {
-    background-color: rgb(76, 124, 197);
+    background-color: rgba(159, 193, 244, 0.611);
+    border-radius: 15px;
     padding: 20px;
     margin: 10px;
   }
@@ -36,6 +47,8 @@
     flex-direction: column;
     width: 80%;
     gap: 10px;
+    border-bottom: 1px white solid;
+    padding-bottom: 15px;
 
     label {
       font-size: 18px;
@@ -54,29 +67,17 @@
       width: 30%;
     }
 
-    .adminvideo_upload_btn {
-      width: 25%;
-      background-color: $fourth-color;
-      color: $primary-color;
-      margin: 0px auto;
-      border: 2px white solid;
+    .update_video_form_btn {
+      margin: 10px auto;
     }
-  }
-
-  .upload_message {
-    h2 {
-      color: red;
-      text-align: center;
-      font-family: $font-text;
-      font-size: 18px;
-    }
-  }
-
-  .upload_message_not {
-    display: none;
   }
 
   .delete_video_container {
+    width: 80%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+    margin: auto;
+
     h2 {
       font-family: $font-text;
       font-size: 18px;
@@ -93,7 +94,7 @@
     }
 
     .delete_video_select {
-      width: 80%;
+      width: 100%;
     }
 
     input,
@@ -105,26 +106,15 @@
       border-radius: 15px;
     }
 
-    button {
+    .delete_Btn {
       width: 25%;
+      font-size: 15px;
       background-color: $fourth-color;
       color: $primary-color;
-      margin: 0px auto;
+      margin: 10px auto;
       border: 2px white solid;
       border-radius: 15px;
       height: 25px;
-    }
-
-    .delete_message {
-      h2 {
-        color: red;
-        text-align: center;
-        margin: 0px 0px;
-      }
-    }
-
-    .delete_message_not {
-      display: none;
     }
   }
 }

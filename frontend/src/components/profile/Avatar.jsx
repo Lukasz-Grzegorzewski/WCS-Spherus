@@ -10,6 +10,8 @@ function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
   function handleClick() {
     setCardToggle(true);
     setRefresh(!refresh);
+    const pointToScroll = document.querySelector(".img-profile");
+    pointToScroll.scrollIntoView();
   }
 
   async function handleSetUrl() {
@@ -21,7 +23,7 @@ function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
 
   return (
     <div className="img-profile-container">
-      <img className="img-profile" src={url} alt="profile img" />
+      {url && <img className="img-profile" src={url} alt="profile img" />}
       <button
         className="btn-choose-pic"
         type="button"

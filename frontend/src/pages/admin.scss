@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   color: white;
-  width: 100%;
+  width: 98%;
   padding-top: 3%;
   padding-bottom: 3%;
 
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
 
     &_btn {
       width: 100%;
@@ -32,7 +32,7 @@
       cursor: pointer;
 
       &:hover {
-        border: 2px solid $secondary-color;
+        border: 2px solid $tertiary-color;
       }
     }
 
@@ -45,8 +45,8 @@
       align-items: center;
       padding: 1%;
       background-color: $tertiary-color;
-      border: 2px solid $fourth-color;
-      color: $primary-color;
+      box-shadow: 0 0 5px 1px $primary-color;
+      color: $secondary-color;
       font-size: 20px;
       font-family: $font-display;
       transition: 0.3s ease-in-out;
@@ -110,7 +110,25 @@
 
     &_components {
       display: flex;
-      width: 70%;
+      width: 75%;
     }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .admin {
+    min-height: 635px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .admin {
+    min-height: 745px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .admin {
+    min-height: 810px;
   }
 }

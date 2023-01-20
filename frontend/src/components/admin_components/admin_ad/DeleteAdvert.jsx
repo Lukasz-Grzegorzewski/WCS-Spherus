@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import PopupAdvertDelete from "./PopupAdvertDelete";
 
-function DeleteAdvert({ pub, setRefresh, refresh }) {
+function DeleteAdvert({ pub, getPub }) {
   const [idPub, setIdPub] = useState("");
   const [check, setCheck] = useState(false);
   const [screen, setScreen] = useState([]);
@@ -11,7 +11,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
 
   const videoUrl = `${import.meta.env.VITE_PORT_BACKEND}/${screen.url_image}`;
 
-  const getPub = () => {
+  const getImage = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/publicities/${idPub}`)
       .then((res) => {
@@ -20,7 +20,7 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
   };
 
   useEffect(() => {
-    getPub();
+    getImage();
   }, [idPub]);
 
   const deletePub = () => {
@@ -70,28 +70,27 @@ function DeleteAdvert({ pub, setRefresh, refresh }) {
               <p>{screen.description}</p>
             </div>
           )}
+          <div className="deleteadvert_delete">
+            <button
+              type="button"
+              onClick={() => {
+                deletePub();
+              }}
+            >
+              <span>Delete</span>
+              <i />
+            </button>
+          </div>
         </form>
       ) : (
         <div className="deleteadvert_check">
           <PopupAdvertDelete
             setCheck={setCheck}
-            refresh={refresh}
-            setRefresh={setRefresh}
+            getPub={getPub}
             setView={setView}
           />
         </div>
       )}
-      <div className="deleteadvert_delete">
-        <button
-          type="button"
-          onClick={() => {
-            deletePub();
-          }}
-        >
-          <span>Delete</span>
-          <i />
-        </button>
-      </div>
     </div>
   );
 }
@@ -107,6 +106,5 @@ DeleteAdvert.propTypes = {
       url_link: PropTypes.string.isRequired,
     })
   ).isRequired,
-  setRefresh: PropTypes.func.isRequired,
-  refresh: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
 };

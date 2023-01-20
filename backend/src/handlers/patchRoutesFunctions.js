@@ -2,15 +2,13 @@ const database = require("../../database");
 
 const patchVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const { url, description, display, title, date } = req.body;
+  const { url, description, display, carousel, title, date } = req.body;
   const reqBodyKeysArr = Object.keys(req.body);
   let sql = "UPDATE video SET";
   reqBodyKeysArr.forEach((item, index) => {
     if (index > 1) {
       sql += ",";
     }
-
-    const dateF = String(date.split("T")[0]);
 
     switch (item) {
       case "url":
@@ -22,11 +20,14 @@ const patchVideoById = (req, res) => {
       case "display":
         sql += ` ${item} = ${JSON.stringify(display)}`;
         break;
+      case "carousel":
+        sql += ` ${item} = ${JSON.stringify(carousel)}`;
+        break;
       case "title":
         sql += ` ${item} = ${JSON.stringify(title)}`;
         break;
       case "date":
-        sql += ` ${item} = ${JSON.stringify(dateF)}`;
+        sql += ` ${item} = ${JSON.stringify(date)}`;
         break;
       default:
         break;
@@ -58,25 +59,25 @@ const patchUserById = (req, res) => {
     if (index !== 0) sql += ",";
     switch (item) {
       case "firstname":
-        sql += ` ${item} = ${JSON.stringify(firstname)}`;
+        sql += ` ${item} = "${firstname}"`;
         break;
       case "lastname":
-        sql += ` ${item} = ${JSON.stringify(lastname)}`;
+        sql += ` ${item} = "${lastname}"`;
         break;
       case "nickname":
-        sql += ` ${item} = ${JSON.stringify(nickname)}`;
+        sql += ` ${item} = "${nickname}"`;
         break;
       case "birthday":
-        sql += ` ${item} = ${JSON.stringify(birthday)}`;
+        sql += ` ${item} = "${birthday}"`;
         break;
       case "email":
-        sql += ` ${item} = ${JSON.stringify(email)}`;
+        sql += ` ${item} = "${email}"`;
         break;
       case "password":
-        sql += ` ${item} = ${JSON.stringify(password)}`;
+        sql += ` ${item} = "${password}"`;
         break;
       case "isAdmin":
-        sql += ` is_admin = ${JSON.stringify(isAdmin)}`;
+        sql += ` is_admin = "${isAdmin}"`;
         break;
       default:
         break;
@@ -138,6 +139,30 @@ const updateHeroSliderById = (req, res) => {
       res.status(500).send("Error editing the Hero");
     });
 };
+
+// Update video from fixtures in admin
+const updateFixturesById = (req, res) => {
+  const { id } = req.params;
+  const { fkFixVideoId } = req.body;
+
+  database
+    .query("UPDATE fixtures set fk_fix_video_id = ? WHERE id = ?", [
+      Number(fkFixVideoId),
+      id,
+    ])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the Hero");
+    });
+};
+
 // Update Advertising in admin
 const updatePublicityById = (req, res) => {
   const { id } = req.params;
@@ -164,10 +189,44 @@ const updatePublicityById = (req, res) => {
     });
 };
 
+// Update Home in admin
+const updateHomeById = (req, res) => {
+  const { id } = req.params;
+  const { position } = req.body;
+  database
+    .query(`UPDATE home set position = ${Number(position)} WHERE id = ?;`, [
+      Number(id),
+    ])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the advert");
+    });
+};
+
+// Update title of the fixture section
+
+const updateFixtureTitle = (req, res) => {
+  const { fixName } = req.body;
+  database
+    .query(`UPDATE display_fixtures SET name = ?`, [fixName])
+    .then(() => res.sendStatus(204))
+    .catch((err) => console.error(err));
+};
+
 module.exports = {
   patchVideoById,
   patchUserById,
   patchCategoryById,
   updateHeroSliderById,
+  updateFixturesById,
   updatePublicityById,
+  updateFixtureTitle,
+  updateHomeById,
 };
