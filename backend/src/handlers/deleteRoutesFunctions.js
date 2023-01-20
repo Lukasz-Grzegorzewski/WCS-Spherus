@@ -127,31 +127,32 @@ const deleteVideoByIdFromCat = (req, res) => {
 
 const deleteCategoryById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  database
-    .query("DELETE FROM home WHERE type = 1 AND idLink = ?", [id])
-    .then(() => {
-      database
-        .query("DELETE FROM video_category WHERE category_id = ?", [id])
-        .then(() => {
-          database
-            .query("DELETE FROM category WHERE id = ?", [id])
-            .then(([category]) => {
-              return category.affectedRows === 0
-                ? res.status(404).send("Category Not Found")
-                : res.sendStatus(204);
-            })
+  if (id)
+    database
+      .query("DELETE FROM home WHERE type = 1 AND idLink = ?", [id])
+      .then(() => {
+        database
+          .query("DELETE FROM video_category WHERE category_id = ?", [id])
+          .then(() => {
+            database
+              .query("DELETE FROM category WHERE id = ?", [id])
+              .then(([category]) => {
+                return category.affectedRows === 0
+                  ? res.status(404).send("Category Not Found")
+                  : res.sendStatus(204);
+              })
 
-            .catch((err) => {
-              console.error(err);
-              res.status(500).send("Error deleting a category");
-            });
-        })
+              .catch((err) => {
+                console.error(err);
+                res.status(500).send("Error deleting a category");
+              });
+          })
 
-        .catch((err) => {
-          console.error(err);
-          res.status(500).send("Error deleting a video_category attachment");
-        });
-    });
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error deleting a video_category attachment");
+          });
+      });
 };
 
 // HERO SLIDER

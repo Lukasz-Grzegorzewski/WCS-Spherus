@@ -38,7 +38,7 @@ function PopupAdvertDelete({ setCheck, getPub, setView }) {
 export default PopupAdvertDelete;
 
 PopupAdvertDelete.propTypes = {
-  getPub: PropTypes.bool.isRequired,
+  getPub: PropTypes.func.isRequired,
   setCheck: PropTypes.func.isRequired,
   setView: PropTypes.func.isRequired,
 };

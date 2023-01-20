@@ -5,9 +5,7 @@ import PopupVideo from "./PopupVideo";
 
 function DeleteVideo({ video, getVideo }) {
   const [videoId, setVideoId] = useState([]);
-
   const [check, setCheck] = useState(false);
-
   const deleteVideo = () => {
     axios
       .delete(`${import.meta.env.VITE_PORT_BACKEND}/videos/${videoId}`)
@@ -54,8 +52,15 @@ function DeleteVideo({ video, getVideo }) {
   );
 }
 DeleteVideo.propTypes = {
-  video: PropTypes.string.isRequired,
-
+  video: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      display: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   getVideo: PropTypes.func.isRequired,
 };
 export default DeleteVideo;

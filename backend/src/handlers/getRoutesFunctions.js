@@ -82,43 +82,42 @@ const getVideos = (req, res) => {
 };
 const getVideoById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-
-  database
-    .query(
-      "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
-      [id]
-    )
-    .then(([video]) => {
-      if (video[0] != null) {
-        res.status(200).json(video[0]);
-      } else {
-        res.sendStatus(404);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error retrieving data from database");
-    });
+  if (id) {
+    database
+      .query(
+        "SELECT id, url, description, display, title, DATE_FORMAT(date, '%Y-%m-%d') as date FROM video WHERE id = ?",
+        [id]
+      )
+      .then(([video]) => {
+        if (video[0] != null) {
+          res.status(200).json(video[0]);
+        } else {
+          res.sendStatus(404);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error retrieving data from database");
+      });
+  }
 };
+
 const getVideosByCategoryId = (req, res) => {
   const id = parseInt(req.params.idCat, 10);
-
-  database
-    .query(
-      "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
-      [id]
-    )
-    .then(([videos]) => {
-      if (videos[0] != null) {
+  if (id) {
+    database
+      .query(
+        "SELECT c.name AS cat, v.title, v.id, v.description, v.display, v.url, year(v.date) AS year FROM video v INNER JOIN video_category vc  ON vc.video_id = v.id INNER JOIN category c  ON vc.category_id = c.id  AND c.id = ? ORDER BY cat;",
+        [id]
+      )
+      .then(([videos]) => {
         res.status(200).json(videos);
-      } else {
-        res.sendStatus(404);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error retrieving data from database");
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error retrieving data from database");
+      });
+  }
 };
 const getVideosAndCategoryByVideoId = (req, res) => {
   const id = parseInt(req.params.idVid, 10);

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import axios from "axios";
 
-function ButtonAddCat({ getCategories }) {
+function ButtonAddCat({ getCategories, changeShowButtonAdd }) {
   const [addedCat, setAddedCat] = useState({ name: "" });
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,12 +14,13 @@ function ButtonAddCat({ getCategories }) {
       ) /* addedCat es un objeto, como lo que se pone en Postman para añadir un user */
       .then(() => {
         getCategories();
+        changeShowButtonAdd();
       })
       .catch((err) => console.warn(err));
   }
 
   return (
-    <div>
+    <div className="open-add-box">
       <form
         action="/categories"
         method="post"
@@ -41,4 +42,5 @@ export default ButtonAddCat;
 
 ButtonAddCat.propTypes = {
   getCategories: PropTypes.func.isRequired,
+  changeShowButtonAdd: PropTypes.func.isRequired,
 };
