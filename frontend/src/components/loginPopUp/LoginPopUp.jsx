@@ -29,13 +29,12 @@ function LoginPopUp({ setToken, setControlPopUpLogIn }) {
     axios
       .post(`${import.meta.env.VITE_PORT_BACKEND}/login`, loginDetails)
       .then((res) => {
-        // setToken({ token: res.data.token, is_admin: res.data.is_admin })
         setToken(res.data);
         localStorage.setItem(
           "token",
           JSON.stringify({
-            user_token: res.data.token,
-            is_admin: res.data.is_admin,
+            userToken: res.data.token,
+            isAdmin: res.data.isAdmin,
             id: res.data.id,
           })
         );
