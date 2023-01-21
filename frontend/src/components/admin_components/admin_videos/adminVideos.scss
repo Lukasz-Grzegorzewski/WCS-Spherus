@@ -36,7 +36,7 @@
   }
 
   .adminvideo_file_input {
-    background-color: rgba(159, 193, 244, 0.611);
+    background-color: $sixth-color;
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
@@ -107,14 +107,7 @@
     }
 
     .delete_Btn {
-      width: 25%;
-      font-size: 15px;
-      background-color: $fourth-color;
-      color: $primary-color;
-      margin: 10px auto;
-      border: 2px white solid;
-      border-radius: 15px;
-      height: 25px;
+      margin-top: 1%;
     }
   }
 }

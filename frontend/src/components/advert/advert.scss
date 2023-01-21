@@ -11,11 +11,11 @@
     height: 140px;
     display: flex;
     flex-direction: row;
-    background-color: #383838;
+    background-color: $dt-publicity-background-color;
     border-radius: 20px;
     align-items: center;
     padding: 2%;
-    color: white;
+    color: $dt-publicity-font-color;
     gap: 10px;
 
     &_link {

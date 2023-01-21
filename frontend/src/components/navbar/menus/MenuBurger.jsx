@@ -30,7 +30,7 @@ function MenuBurger({ isBurgerClicked, setIsBurgerClicked, handlePopUpLogIn }) {
               setIsBurgerClicked(!isBurgerClicked);
             }}
           >
-            <CiCirclePlus className="signin-icon" /> Signin
+            <CiCirclePlus className="signin-icon" /> Sign in
           </button>
         </NavLink>
       </div>

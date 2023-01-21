@@ -7,5 +7,23 @@
 
 .addFixtures_btn {
   margin-left: 1%;
-  width: 15%;
+}
+
+.fixtures-map {
+  &_btn {
+    display: flex;
+    margin-left: 3%;
+    justify-content: space-between;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    .fx_delete {
+      width: 35%;
+      margin-right: 2%;
+    }
+  }
+
+  &_choice {
+    margin-left: 3%;
+  }
 }

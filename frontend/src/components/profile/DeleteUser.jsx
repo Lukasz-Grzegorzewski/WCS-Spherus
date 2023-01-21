@@ -22,8 +22,12 @@ function DeleteUser({ id }) {
   }
 
   return (
-    <button className="btn-delete" type="button" onClick={() => handleDelete()}>
-      Delete account
+    <button
+      className="deleteBtn btn-delete"
+      type="button"
+      onClick={() => handleDelete()}
+    >
+      Delete
     </button>
   );
 }
