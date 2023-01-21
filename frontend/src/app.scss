@@ -1,44 +1,4 @@
-.App.dark-theme {
-  color: $primary-color;
-  background: $dt-background;
-
-  .navbar,
-  .footer {
-    background-color: $dt-navbar-footer-color;
-  }
-
-  button {
-    color: $primary-color;
-  }
-
-  a {
-    color: $primary-color;
-  }
-}
-
-.App.light-theme {
-  color: $secondary-color;
-  background: $lt-background;
-
-  .navbar,
-  .footer {
-    background-color: $lt-navbar-footer-color;
-  }
-
-  .publicity {
-    background-color: $lt-publicity-background-color;
-    color: $lt-publicity-font-color;
-  }
-
-  button {
-    color: $secondary-color;
-  }
-
-  a {
-    color: $secondary-color;
-  }
-}
-
+//--------------App LAZY-----------------
 .App {
   .loader-container {
     width: 100%;
@@ -77,5 +37,130 @@
     100% {
       transform: rotate(360deg);
     }
+  }
+}
+
+// ------------------------------------
+//----------DARK & LIGHT THEMES--------
+//-------------------------------------
+
+//----------DARK-----------------------
+//-------------------------------------
+.App.dark-theme {
+  color: $primary-color;
+  background: $dt-background;
+
+  .footer {
+    background-color: $dt-navbar-footer-color;
+  }
+
+  button {
+    color: $primary-color;
+  }
+}
+
+//----------LIGHT-----------------------
+//--------------------------------------
+.App.light-theme {
+  color: $secondary-color;
+  background: $lt-background;
+
+  //------- Home Page---------
+
+  // Video Card
+  .main {
+    .videocard_video {
+      box-shadow: 0 0 5px 1px $secondary-color;
+    }
+  }
+
+  //------- Admin Page---------
+
+  // Admin Advert
+  .adminad {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
+  // Admin Video
+  .adminvideo_container {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+
+    .adminvideo_file_input {
+      background-color: $primary-color;
+      color: $secondary-color;
+    }
+  }
+
+  // Admin Hero Slider & Fixtures
+  .adminheroslider,
+  .fixtures-slider {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
+  // Admin Home Page
+  .adminhomepage {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+
+    .adminHomeCurrentComp_drag_box {
+      box-shadow: 0 0 5px 1px $secondary-color;
+      background-color: $sixth-color;
+    }
+
+    .set_adminHomeDragInComp_box {
+      box-shadow: 0 0 5px 1px $primary-color;
+
+      &_div {
+        box-shadow: 0 0 5px 1px $secondary-color;
+        background-color: $sixth-color;
+
+        &_title {
+          color: $tertiary-color;
+        }
+
+        &_btn {
+          background: $primary-color;
+
+          &:after {
+            background: $tertiary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // Admin Users
+  .admin-users-container {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+
+    .label-users-admins {
+      a {
+        color: $primary-color;
+      }
+    }
+
+    .input-search {
+      background-color: $primary-color;
+
+      &::placeholder {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .footer {
+    background-color: $lt-navbar-footer-color;
+  }
+
+  button {
+    color: $secondary-color;
+  }
+
+  a {
+    color: $secondary-color;
   }
 }

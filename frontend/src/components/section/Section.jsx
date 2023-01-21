@@ -8,23 +8,23 @@ import Advert from "../advert/Advert";
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
-  desktop2: {
-    breakpoint: { max: 4000, min: 1200 },
+  desktopB: {
+    breakpoint: { max: 4000, min: 1500 },
     items: 4,
     slidesToSlide: 2,
   },
-  desktop1: {
-    breakpoint: { max: 1200, min: 850 },
+  desktopS: {
+    breakpoint: { max: 1500, min: 1100 },
     items: 3,
     slidesToSlide: 2,
   },
-  tablette: {
-    breakpoint: { max: 850, min: 570 },
+  tablet: {
+    breakpoint: { max: 1100, min: 750 },
     items: 2,
     slidesToSlide: 1,
   },
   mobile: {
-    breakpoint: { max: 570, min: 320 },
+    breakpoint: { max: 750, min: 0 },
     items: 1,
     slidesToSlide: 1,
   },
@@ -73,11 +73,15 @@ function Section({ type, idLink, id }) {
               </div>
 
               <Carousel
-                containerClass="section_carousel"
+                containerClass="section_container_carousel"
                 responsive={responsive}
+                infinite
               >
                 {category.map((infos) => (
-                  <div className="section_card" key={infos.id}>
+                  <div
+                    key={infos.id}
+                    className="section_container_carousel_card"
+                  >
                     <VideoCard
                       id={infos.id}
                       url={infos.url}
