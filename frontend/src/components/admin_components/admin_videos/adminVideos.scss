@@ -6,7 +6,6 @@
 .adminvideo_container {
   width: 95%;
   height: auto;
-  border: 2px solid white;
   padding: 15px;
   margin-right: 20px;
   font-family: $font-text;
@@ -47,7 +46,7 @@
     flex-direction: column;
     width: 80%;
     gap: 10px;
-    border-bottom: 1px white solid;
+    border-bottom: 1px solid $primary-color;
     padding-bottom: 15px;
 
     label {
@@ -60,7 +59,7 @@
       background-color: $primary-color;
       border: $button-input-border-size;
       height: 25px;
-      border-radius: 15px;
+      border-radius: 20px;
     }
 
     option {
