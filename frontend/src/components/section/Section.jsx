@@ -56,9 +56,9 @@ function Section({ type, idLink, id }) {
   }, []);
 
   return (
-    <div className="section_container">
+    <div>
       {type === 1 && (
-        <div>
+        <div className="section_container">
           {category.length >= 1 && (
             <div>
               <div className="section_navigation">

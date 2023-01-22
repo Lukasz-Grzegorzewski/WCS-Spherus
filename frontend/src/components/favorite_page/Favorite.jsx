@@ -23,10 +23,9 @@ function Favorite() {
 
   return (
     <div>
-      <div className="category_video_main_name">{favorite.length >= 1}</div>
       <div className="category_video_main_container">
         {favorite.map((e) => (
-          <div key={e.idCat}>
+          <div className="category_video_main_container_title" key={e.idCat}>
             {e.catName}
             <VideoCard
               id={e.id}

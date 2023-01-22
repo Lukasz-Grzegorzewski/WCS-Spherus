@@ -1,8 +1,10 @@
 .section_container {
   width: 90%;
-  margin: auto;
-  padding: 1.5%;
-  border-radius: 20px;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 4%;
 
   .react-multi-carousel-item {
     width: 380px;
@@ -47,7 +49,6 @@
   }
 }
 
-// background-color: $tertiary-color;
 .react-multiple-carousel__arrow {
   background-color: $secondary-color;
   border: $button-input-border-size solid $primary-color;
@@ -63,5 +64,11 @@
 
   &::before {
     color: $primary-color;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .section_container {
+    margin-bottom: 2%;
   }
 }
