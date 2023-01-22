@@ -172,13 +172,13 @@ VALUES
     '2022-12-01'
   ),
   (
-    'X',
-    'Y',
-    'XY',
-    '2000-01-01',
-    'xy@xy.com',
-    'x',
-    0,
+    'jonathan',
+    'scattolini',
+    'Megakrash',
+    '1980-02-02',
+    'jscattolini@gmail.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$vN99MwcsPZrazM1lAen+0g$mI4VIGHa/kT/4ShiAyCp0OZF853+N+bTUAdHDN86mic',
+    1,
     'token_6',
     '2022-12-01'
   );
