@@ -62,7 +62,7 @@ function VideoCard({ id, url, title, description, display }) {
 
   return (
     <div className="videoCard">
-      {token.user_token !== "" ? (
+      {token.userToken !== "" ? (
         <div className="main">
           <button
             type="button"

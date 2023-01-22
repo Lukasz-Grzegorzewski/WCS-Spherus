@@ -20,7 +20,7 @@ function Admin() {
   const [hero, setHero] = useState(false);
   const [advert, setadvert] = useState(false);
   const [fixtures, setFixtures] = useState(false);
-  const { is_admin: isAdmin, user_token: userToken } = useContext(UserContext);
+  const { isAdmin, userToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {

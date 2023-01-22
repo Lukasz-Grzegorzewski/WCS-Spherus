@@ -71,6 +71,10 @@
   .main {
     .videocard_video {
       box-shadow: 0 0 5px 1px $secondary-color;
+
+      &_description {
+        color: $primary-color;
+      }
     }
   }
 
