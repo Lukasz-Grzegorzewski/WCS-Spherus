@@ -85,6 +85,7 @@ function MenuBurger({
                     <FaCog className="signin-icon" /> Profil
                   </button>
                   <img
+                    ref={inputImgAvatar}
                     className="img-avatar-profil"
                     src={`${
                       import.meta.env.VITE_PORT_BACKEND
