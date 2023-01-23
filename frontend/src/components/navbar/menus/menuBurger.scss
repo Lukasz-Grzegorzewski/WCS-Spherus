@@ -10,22 +10,27 @@
   0% {
     right: -200px;
   }
+
   60% {
     right: 20px;
   }
+
   100% {
     right: 10px;
   }
 }
+
 .menu-burger.inactive {
   opacity: 0;
   animation: slideOutMenu 700ms ease;
   transition: all 1000ms ease-in-out;
 }
+
 @keyframes slideOutMenu {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -50,6 +55,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     .btn {
       font-family: $font-text;
       font-size: 1.8rem;
@@ -63,13 +69,17 @@
       align-items: center;
       color: white;
     }
+
     .btn-login {
       background-color: rgb(116, 192, 2);
+
       .login-icon {
       }
     }
+
     .btn-signin {
       background-color: $tertiary-color;
+
       .signin-icon {
       }
     }

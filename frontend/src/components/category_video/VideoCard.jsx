@@ -61,8 +61,8 @@ function VideoCard({ id, url, title, description, display }) {
   }
 
   return (
-    <div>
-      {token.user_token !== "" ? (
+    <div className="videoCard">
+      {token.userToken !== "" ? (
         <div className="main">
           <button
             type="button"
@@ -79,7 +79,7 @@ function VideoCard({ id, url, title, description, display }) {
             <div className="videocard">
               <HoverVideoPlayer
                 videoClassName="videocard_video"
-                className="videocard_video"
+                // className="videocard_video"
                 videoSrc={videoUrl}
                 muted
                 playbackRangeStart={0}

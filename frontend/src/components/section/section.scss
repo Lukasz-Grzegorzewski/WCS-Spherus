@@ -1,33 +1,56 @@
-.section_container {
-  .section_navigation {
+.section {
+  &_container {
+    width: 90%;
+    margin-bottom: 5%;
     display: flex;
-    flex-direction: row;
-    margin: 15px;
-    align-items: baseline;
-    justify-content: space-between;
-    font-family: $font-text;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 4%;
 
-    .section_name {
-      font-family: $font-text;
-      font-size: 3rem;
-      width: 100%;
-      font-family: $font-display;
+    .react-multi-carousel-item {
+      width: 380px;
+
+      &:active {
+        width: 320px;
+      }
     }
 
-    .section_seeMoreBtn {
-      display: flex;
-      justify-content: end;
+    &_carousel {
+      width: 100%;
 
-      .section_seeMoreBtn_btn {
-        text-align: center;
-        padding: 5px;
-        font-size: 1.5rem;
+      &_card {
+        width: 320px;
+      }
+    }
+
+    .section_navigation {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-family: $font-text;
+      margin-bottom: 1%;
+
+      .section_name {
+        font-family: $font-text;
+        font-size: 3rem;
+        width: 100%;
+        font-family: $font-display;
+        margin-bottom: 1%;
+      }
+
+      .section_seeMoreBtn {
+        display: flex;
+
+        .section_seeMoreBtn_btn {
+          text-align: center;
+          padding: 5px;
+          font-size: 1.5rem;
+        }
       }
     }
   }
 }
 
-// background-color: $tertiary-color;
 .react-multiple-carousel__arrow {
   background-color: $secondary-color;
   border: $button-input-border-size solid $primary-color;
@@ -43,5 +66,11 @@
 
   &::before {
     color: $primary-color;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .section_container {
+    margin-bottom: 2%;
   }
 }

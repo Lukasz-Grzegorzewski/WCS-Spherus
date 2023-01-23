@@ -20,7 +20,7 @@ function Admin() {
   const [hero, setHero] = useState(false);
   const [advert, setadvert] = useState(false);
   const [fixtures, setFixtures] = useState(false);
-  const { is_admin: isAdmin, user_token: userToken } = useContext(UserContext);
+  const { isAdmin, userToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -107,25 +107,6 @@ function Admin() {
           {user === true && <AdminUsers id={6} className="comp" />}
         </div>
         <button
-          className={classButtonVid()}
-          type="button"
-          onClick={() => {
-            setUser(false);
-            setHome(false);
-            setCategory(false);
-            setVideos(!videos);
-            setColors(false);
-            setHero(false);
-            setFixtures(false);
-            setadvert(false);
-          }}
-        >
-          VIDEOS <FaAngleLeft className="svgsamere" />
-        </button>
-        <div className="admin_menu_comp_videos">
-          {videos === true && <AdminVideos />}
-        </div>
-        <button
           className={classButtonCat()}
           type="button"
           onClick={() => {
@@ -145,23 +126,23 @@ function Admin() {
           {category === true && <AdminCategory />}
         </div>
         <button
-          className={classButtonHome()}
+          className={classButtonVid()}
           type="button"
           onClick={() => {
             setUser(false);
-            setHome(!home);
+            setHome(false);
             setCategory(false);
-            setVideos(false);
+            setVideos(!videos);
             setColors(false);
             setHero(false);
             setFixtures(false);
             setadvert(false);
           }}
         >
-          HOME PAGE <FaAngleLeft className="svgsamere" />
+          VIDEOS <FaAngleLeft className="svgsamere" />
         </button>
-        <div className="admin_menu_comp_home">
-          {home === true && <AdminHomePage />}
+        <div className="admin_menu_comp_videos">
+          {videos === true && <AdminVideos />}
         </div>
         <button
           className={classHero()}
@@ -219,6 +200,25 @@ function Admin() {
         </button>
         <div className="admin_menu_comp_users">
           {advert === true && <AdminAd className="comp" />}
+        </div>
+        <button
+          className={classButtonHome()}
+          type="button"
+          onClick={() => {
+            setUser(false);
+            setHome(!home);
+            setCategory(false);
+            setVideos(false);
+            setColors(false);
+            setHero(false);
+            setFixtures(false);
+            setadvert(false);
+          }}
+        >
+          HOME PAGE <FaAngleLeft className="svgsamere" />
+        </button>
+        <div className="admin_menu_comp_home">
+          {home === true && <AdminHomePage />}
         </div>
         <button
           className={classButtonColor()}

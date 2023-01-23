@@ -172,13 +172,13 @@ VALUES
     '2022-12-01'
   ),
   (
-    'X',
-    'Y',
-    'XY',
-    '2000-01-01',
-    'xy@xy.com',
-    'x',
-    0,
+    'jonathan',
+    'scattolini',
+    'Megakrash',
+    '1980-02-02',
+    'jscattolini@gmail.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$vN99MwcsPZrazM1lAen+0g$mI4VIGHa/kT/4ShiAyCp0OZF853+N+bTUAdHDN86mic',
+    1,
     'token_6',
     '2022-12-01'
   );
@@ -353,20 +353,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO
-  `origins_digital_wcs`.`favorites` (user_id, video_fav_id)
-VALUES
-  (1,5),
-  (1,10),
-  (2,2),
-  (2,14),
-  (3,3),
-  (3,16),
-  (4,7),
-  (4,8),
-  (5,14),
-  (5,18);
-
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`display_fixtures`
 -- -----------------------------------------------------
@@ -380,6 +366,7 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`display_fixtures` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -402,6 +389,7 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`fixtures` (
     FOREIGN KEY (`fk_fix_video_id`)
     REFERENCES `origins_digital_wcs`.`video` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -421,13 +409,6 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-INSERT INTO
-  `origins_digital_wcs`.`hero_slider` (fk_video)
-VALUES
-  ( 1 ),
-  ( 2 ),
-  ( 3 );
   
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`publicity`
