@@ -7,8 +7,9 @@ function UpdateUserByUser({
   type,
   keyName,
   id,
-  refresh,
-  setRefresh,
+  getUser,
+  // refresh,
+  // setRefresh,
   closeUpdateInput,
 }) {
   const [data, setData] = useState("");
@@ -24,7 +25,8 @@ function UpdateUserByUser({
         })
         .then(() => {
           console.warn("user updated");
-          setRefresh(!refresh);
+          // setRefresh(!refresh);
+          getUser();
           closeUpdateInput(false);
         })
         .catch((err) => console.error(err));
@@ -58,8 +60,9 @@ export default UpdateUserByUser;
 
 UpdateUserByUser.propTypes = {
   keyName: PropTypes.string.isRequired,
-  refresh: PropTypes.bool.isRequired,
-  setRefresh: PropTypes.func.isRequired,
+  // refresh: PropTypes.bool.isRequired,
+  // setRefresh: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
   closeUpdateInput: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])

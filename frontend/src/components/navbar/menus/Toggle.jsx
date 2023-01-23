@@ -9,17 +9,21 @@ function Toggle() {
   }
 
   return (
-    <div className="toggle">
+    <div className="toggle-theme">
       <input
         className={
           themeToggle ? "toggle-input-mode light" : "toggle-input-mode dark"
         }
-        id="check"
+        id="check-theme"
         type="checkbox"
         onChange={() => handleToggle()}
         checked={!themeToggle}
       />
-      <label htmlFor="check" className="label-input-mode" aria-controls="check">
+      <label
+        htmlFor="check-theme"
+        className="label-input-mode"
+        aria-controls="check-theme"
+      >
         <p className="invis">Theme</p>
       </label>
     </div>

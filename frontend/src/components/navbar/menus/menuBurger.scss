@@ -1,22 +1,22 @@
 @import "./toggle.scss";
 
 .menu-burger.active {
-  left: 10px;
+  right: 10px;
   opacity: 1;
   animation: slideInMenu 700ms ease;
 }
 
 @keyframes slideInMenu {
   0% {
-    left: -200px;
+    right: -200px;
   }
 
   60% {
-    left: 20px;
+    right: 20px;
   }
 
   100% {
-    left: 10px;
+    right: 10px;
   }
 }
 
@@ -39,8 +39,8 @@
 .menu-burger {
   position: absolute;
   top: 55px;
-  left: -200px;
-  width: 100px;
+  right: -200px;
+  width: 110px;
   background-color: #01153dcb;
   border: 1px solid $primary-color;
   box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.509);
@@ -59,14 +59,15 @@
     .btn {
       font-family: $font-text;
       font-size: 1.8rem;
-      width: 90px;
+      width: fit-content;
       height: 30px;
       border-radius: 15px;
-      padding: 5px;
+      padding: 10px;
       display: flex;
       justify-content: center;
       gap: 5px;
       align-items: center;
+      color: white;
     }
 
     .btn-login {
@@ -80,6 +81,14 @@
       background-color: $tertiary-color;
 
       .signin-icon {
+      }
+    }
+    .btn-why-signin {
+      background-color: rgb(142, 92, 11);
+      padding-block: 0;
+      height: 20px;
+      font-size: 1rem;
+      .why-signin-icon {
       }
     }
   }

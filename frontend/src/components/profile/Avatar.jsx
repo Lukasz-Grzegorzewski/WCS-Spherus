@@ -3,13 +3,20 @@ import PropTypes from "prop-types";
 import { FaPen } from "react-icons/fa";
 import AvatarPicPrompt from "./AvatarPicPrompt";
 
-function Avatar({ id, photoSrc, refresh, setRefresh, getUser }) {
+function Avatar({
+  id,
+  photoSrc,
+  // refresh,
+  // setRefresh,
+  getUser,
+}) {
   const [cardToggle, setCardToggle] = useState(false);
   const [url, setUrl] = useState(photoSrc);
 
   function handleClick() {
     setCardToggle(true);
-    setRefresh(!refresh);
+    // setRefresh(!refresh);
+    getUser();
     const pointToScroll = document.querySelector(".img-profile");
     pointToScroll.scrollIntoView();
   }
@@ -48,7 +55,7 @@ export default Avatar;
 Avatar.propTypes = {
   photoSrc: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  refresh: PropTypes.bool.isRequired,
-  setRefresh: PropTypes.func.isRequired,
+  // refresh: PropTypes.bool.isRequired,
+  // setRefresh: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
 };

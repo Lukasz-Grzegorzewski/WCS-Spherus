@@ -114,7 +114,9 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
               rotate={0}
               ref={inputRef}
               onImageChange={() => onCrop()}
-              onImageReady={() => onCrop()}
+              onImageReady={() => {
+                onCrop();
+              }}
             />
             <div className="range-container">
               <input
@@ -139,28 +141,31 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
         )}
       </div>
       <div className="btns-container">
-        <button
-          className="btn btn-update"
-          onClick={() => handleUpload()}
-          type="button"
-        >
-          Update
-        </button>
-        <button
-          className="btn btn-delete"
-          onClick={() => handleDelete()}
-          type="button"
-        >
-          Delete
-        </button>
-        <button
-          className="btn btn-cancel"
-          onClick={() => setCardToggle(false)}
-          type="button"
-        >
-          Cancel
-        </button>
+        {selectedImage ? (
+          <button
+            className="btn btn-update"
+            onClick={() => handleUpload()}
+            type="button"
+          >
+            Update
+          </button>
+        ) : (
+          <button
+            className="btn btn-delete"
+            onClick={() => handleDelete()}
+            type="button"
+          >
+            Delete your avatar
+          </button>
+        )}
       </div>
+      <button
+        className="btn btn-cancel"
+        onClick={() => setCardToggle(false)}
+        type="button"
+      >
+        Cancel
+      </button>
     </div>
   );
 }

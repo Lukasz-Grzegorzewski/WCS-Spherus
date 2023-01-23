@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FaPen } from "react-icons/fa";
 
@@ -6,12 +6,12 @@ function Users({
   id,
   email,
   setUserId,
-  selected,
-  refresh,
-  setRefresh,
+  // selected,
+  // refresh,
+  // setRefresh,
   getUserById,
 }) {
-  useEffect(() => {}, [selected, refresh]);
+  // useEffect(() => {}, [selected, refresh]);
   return (
     <div className="label-container">
       <label className="label">
@@ -23,7 +23,7 @@ function Users({
           onChange={(event) => {
             setUserId(event.target.value);
             getUserById(id);
-            setRefresh(!refresh);
+            // setRefresh(!refresh);
           }}
         />
         <div className="pen-plus-email">
@@ -40,8 +40,8 @@ Users.propTypes = {
   id: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
   setUserId: PropTypes.func.isRequired,
-  selected: PropTypes.string.isRequired,
-  refresh: PropTypes.bool.isRequired,
-  setRefresh: PropTypes.func.isRequired,
+  // selected: PropTypes.string.isRequired,
+  // refresh: PropTypes.bool.isRequired,
+  // setRefresh: PropTypes.func.isRequired,
   getUserById: PropTypes.func.isRequired,
 };
