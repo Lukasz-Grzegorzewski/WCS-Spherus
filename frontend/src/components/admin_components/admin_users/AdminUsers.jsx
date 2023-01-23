@@ -12,7 +12,7 @@ function AdminUsers({ id }) {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState("all");
   const [userId, setUserId] = useState(null);
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
 
   const filteredUsers = users?.filter((item) => {
     if (selected === "users")
@@ -120,8 +120,8 @@ function AdminUsers({ id }) {
                   id={us.id}
                   email={us.email}
                   setUserId={setUserId}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   getUserById={(uid) => getUserById(uid)}
                 />
               );
@@ -133,8 +133,8 @@ function AdminUsers({ id }) {
           <ToggleIsAdmin
             id={Number(userId)}
             // isAdmin={user.is_admin}
-            refresh={refresh}
-            setRefresh={setRefresh}
+            // refresh={refresh}
+            // setRefresh={setRefresh}
           />
           <Profile id={Number(userId)} />
           {/* <UsersInformations id={Number(userId)} /> */}

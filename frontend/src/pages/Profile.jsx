@@ -15,7 +15,7 @@ function Profile({ id }) {
   const [birthdayUpdate, setBirthdayUpdate] = useState(false);
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
 
   function getUser() {
     axios
@@ -28,17 +28,22 @@ function Profile({ id }) {
 
   useEffect(() => {
     getUser();
-  }, [refresh, id, user]);
+  }, [
+    // refresh,
+    id,
+    // user
+  ]);
 
   return (
     <div className="profile-conatainer">
-      {user && refresh !== undefined && (
+      {user && (
+        // && refresh !== undefined
         <div>
           <Avatar
             id={id}
             getUser={() => getUser()}
-            refresh={refresh}
-            setRefresh={setRefresh}
+            // refresh={refresh}
+            // setRefresh={setRefresh}
             photoSrc={
               user.url
                 ? `${import.meta.env.VITE_PORT_BACKEND}/${user.url}`
@@ -70,8 +75,9 @@ function Profile({ id }) {
                   type="text"
                   keyName="firstname"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setFirstnameUpdate}
                 />
               )}
@@ -101,8 +107,9 @@ function Profile({ id }) {
                   type="text"
                   keyName="lastname"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setLastnameUpdate}
                 />
               )}
@@ -132,8 +139,9 @@ function Profile({ id }) {
                   type="text"
                   keyName="nickname"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setNicknameUpdate}
                 />
               )}
@@ -163,8 +171,9 @@ function Profile({ id }) {
                   type="date"
                   keyName="birthday"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setBirthdayUpdate}
                 />
               )}
@@ -194,8 +203,9 @@ function Profile({ id }) {
                   type="email"
                   keyName="email"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setEmailUpdate}
                 />
               )}
@@ -225,8 +235,9 @@ function Profile({ id }) {
                   type="password"
                   keyName="password"
                   id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  getUser={() => getUser()}
+                  // refresh={refresh}
+                  // setRefresh={setRefresh}
                   closeUpdateInput={setPasswordUpdate}
                 />
               )}
