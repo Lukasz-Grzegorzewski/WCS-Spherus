@@ -3,18 +3,19 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import NavbarMobile from "./navbarMobile/NavbarMobile";
 import ThemeContext from "../../ThemeContext";
+import NavbarDesktop from "./navbarDesktop/NavbarDesktop";
 
 function Navbar({ handlePopUpLogIn }) {
   const [size, setSize] = useState(false);
   const { themeToggle } = useContext(ThemeContext);
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 600) {
-      setSize(true);
-    } else {
-      setSize(false);
-    }
-  });
+  // window.addEventListener("resize", () => {
+  //   if (window.innerWidth >= 600) {
+  //     setSize(true);
+  //   } else {
+  //     setSize(false);
+  //   }
+  // });
 
   useEffect(() => {
     if (window.innerWidth >= 600) {
@@ -22,7 +23,7 @@ function Navbar({ handlePopUpLogIn }) {
     } else {
       setSize(false);
     }
-  }, []);
+  }, [window.innerWidth]);
 
   return (
     <div className="navbar">
@@ -56,7 +57,7 @@ function Navbar({ handlePopUpLogIn }) {
       {!size ? (
         <NavbarMobile handlePopUpLogIn={() => handlePopUpLogIn()} />
       ) : (
-        <p>LALALAL</p>
+        <NavbarDesktop handlePopUpLogIn={() => handlePopUpLogIn()} />
       )}
     </div>
   );
