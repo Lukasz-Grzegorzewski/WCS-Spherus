@@ -41,6 +41,7 @@ function Avatar({
       {cardToggle && (
         <AvatarPicPrompt
           id={id}
+          avatarUrl={url}
           getUser={() => getUser()}
           setUrl={setUrl}
           setCardToggle={setCardToggle}
