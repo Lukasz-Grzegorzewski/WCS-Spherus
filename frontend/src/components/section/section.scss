@@ -49,6 +49,9 @@
       }
     }
   }
+  &_container:empty {
+    display: none;
+  }
 }
 
 .react-multiple-carousel__arrow {
