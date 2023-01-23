@@ -12,6 +12,13 @@ function Footer() {
   const [size, setSize] = useState(false);
 
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 600) {
+        setSize(true);
+      } else {
+        setSize(false);
+      }
+    });
     if (window.innerWidth >= 600) {
       setSize(true);
     } else {

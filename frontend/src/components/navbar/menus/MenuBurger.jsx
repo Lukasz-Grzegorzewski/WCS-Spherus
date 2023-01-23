@@ -22,15 +22,14 @@ function MenuBurger({
   const [size, setSize] = useState(false);
   const inputImgAvatar = useRef();
 
-  // window.addEventListener("resize", () => {
-  //   if (window.innerWidth >= 600) {
-  //     setSize(true);
-  //   } else {
-  //     setSize(false);
-  //   }
-  // });
-
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 600) {
+        setSize(true);
+      } else {
+        setSize(false);
+      }
+    });
     if (window.innerWidth >= 600) {
       setSize(true);
     } else {

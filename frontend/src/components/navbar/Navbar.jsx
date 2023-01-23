@@ -9,15 +9,14 @@ function Navbar({ handlePopUpLogIn }) {
   const [size, setSize] = useState(false);
   const { themeToggle } = useContext(ThemeContext);
 
-  // window.addEventListener("resize", () => {
-  //   if (window.innerWidth >= 600) {
-  //     setSize(true);
-  //   } else {
-  //     setSize(false);
-  //   }
-  // });
-
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 600) {
+        setSize(true);
+      } else {
+        setSize(false);
+      }
+    });
     if (window.innerWidth >= 600) {
       setSize(true);
     } else {
