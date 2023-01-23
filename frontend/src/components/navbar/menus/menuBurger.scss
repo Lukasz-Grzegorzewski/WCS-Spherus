@@ -40,7 +40,7 @@
   position: absolute;
   top: 55px;
   right: -200px;
-  width: 110px;
+  min-width: 110px;
   background-color: #01153dcb;
   border: 1px solid $primary-color;
   box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.509);
@@ -77,6 +77,13 @@
       }
     }
 
+    .btn-logout {
+      background-color: rgb(192, 2, 2);
+
+      .logout-icon {
+      }
+    }
+
     .btn-signin {
       background-color: $tertiary-color;
 
@@ -89,6 +96,28 @@
       height: 20px;
       font-size: 1rem;
       .why-signin-icon {
+      }
+    }
+
+    .btn-admin-panel {
+      background-color: rgb(2, 132, 192);
+    }
+    .profile-favorites-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .btn-profil-image-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        .btn-profil {
+          background-color: rgb(2, 132, 192);
+        }
+        img.img-avatar-profil {
+          height: 30px;
+          border-radius: 15px;
+        }
       }
     }
   }

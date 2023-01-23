@@ -151,7 +151,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
           </button>
         ) : (
           <button
-            className="btn btn-delete"
+            className="deleteBtn btn-delete"
             onClick={() => handleDelete()}
             type="button"
           >

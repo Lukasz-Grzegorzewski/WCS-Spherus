@@ -24,7 +24,7 @@ function Toggle() {
         className="label-input-mode"
         aria-controls="check-theme"
       >
-        <p className="invis">Theme</p>
+        <p className="invis">|</p>
       </label>
     </div>
   );

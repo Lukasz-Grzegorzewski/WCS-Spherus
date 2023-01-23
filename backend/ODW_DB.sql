@@ -133,7 +133,7 @@ VALUES
     'Lukas',
     '1985-07-23',
     'luk@luk.com',
-    'l',
+    '$argon2id$v=19$m=65536,t=5,p=1$qeE+HvJbSo4pQezAkdFXfw$u8dUQqXUumdgJ9Loiv4s8KgHncDexReEBmV+mSF6Fdg',
     1,
     'token_1',
     '2022-12-01'
