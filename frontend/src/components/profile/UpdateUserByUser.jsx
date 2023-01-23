@@ -17,22 +17,22 @@ function UpdateUserByUser({
   function handleSubmit(e) {
     e.preventDefault();
 
-    const answer = window.confirm("Are you sure?");
-    if (answer) {
-      axios
-        .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
-          [keyName]: data,
-        })
-        .then(() => {
-          console.warn("user updated");
-          // setRefresh(!refresh);
-          getUser();
-          closeUpdateInput(false);
-        })
-        .catch((err) => console.error(err));
-    } else {
-      window.alert("Ok. Update cancelled.");
-    }
+    // const answer = window.confirm("Are you sure?");
+    // if (answer) {
+    axios
+      .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
+        [keyName]: data,
+      })
+      .then(() => {
+        console.warn("user updated");
+        // setRefresh(!refresh);
+        getUser();
+        closeUpdateInput(false);
+      })
+      .catch((err) => console.error(err));
+    // } else {
+    //   window.alert("Ok. Update cancelled.");
+    // }
   }
 
   return (

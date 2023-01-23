@@ -4,7 +4,7 @@ import AvatarEditor from "react-avatar-editor";
 
 import axios from "axios";
 
-function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
+function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
   const [data, setData] = useState(null);
   const [scaleValue, setScaleValue] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -151,7 +151,12 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
           </button>
         ) : (
           <button
-            className="deleteBtn btn-delete"
+            className={
+              avatarUrl ===
+              "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg"
+                ? "deleteBtn btn-delete dis-none"
+                : "deleteBtn btn-delete"
+            }
             onClick={() => handleDelete()}
             type="button"
           >
@@ -177,4 +182,5 @@ AvatarPicPrompt.propTypes = {
   setCardToggle: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
 };

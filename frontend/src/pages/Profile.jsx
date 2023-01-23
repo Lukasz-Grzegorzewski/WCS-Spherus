@@ -1,12 +1,12 @@
 import UpdateUserByUser from "@components/profile/UpdateUserByUser";
-import PropTypes from "prop-types";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
+import UserContext from "../UserContext";
 
-function Profile({ id }) {
+function Profile() {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -15,6 +15,7 @@ function Profile({ id }) {
   const [birthdayUpdate, setBirthdayUpdate] = useState(false);
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
+  const { id } = useContext(UserContext);
   // const [refresh, setRefresh] = useState(false);
 
   function getUser() {
@@ -33,6 +34,10 @@ function Profile({ id }) {
     id,
     // user
   ]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className="profile-conatainer">
@@ -252,6 +257,6 @@ function Profile({ id }) {
 
 export default Profile;
 
-Profile.propTypes = {
-  id: PropTypes.number.isRequired,
-};
+// Profile.propTypes = {
+//   id: PropTypes.number.isRequired,
+// };

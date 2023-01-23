@@ -7,18 +7,18 @@ function DeleteUser({ id }) {
   const navigate = useNavigate();
 
   function handleDelete() {
-    const answer = window.confirm("Are you sure?");
-    if (answer) {
-      axios
-        .delete(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
-        .then(() => {
-          console.warn("user deleted successfully");
-          navigate("/registration");
-        })
-        .catch((err) => console.error("DELETE ERROR : ", err));
-    } else {
-      window.alert("Ok. Deletion canceled.");
-    }
+    // const answer = window.confirm("Are you sure?");
+    // if (answer) {
+    axios
+      .delete(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .then(() => {
+        console.warn("user deleted successfully");
+        navigate("/registration");
+      })
+      .catch((err) => console.error("DELETE ERROR : ", err));
+    // } else {
+    //   window.alert("Ok. Deletion canceled.");
+    // }
   }
 
   return (
