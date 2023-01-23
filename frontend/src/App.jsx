@@ -34,7 +34,7 @@ function App() {
     setControlPopUpLogIn(!controlPopUpLogIn);
   }
 
-  const [token, setToken] = useState({
+  const [userContext, setUserContext] = useState({
     userToken: "",
     isAdmin: "",
     id: "",
@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setToken(JSON.parse(localStorage.getItem("token")));
+      setUserContext(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
 
@@ -63,7 +63,7 @@ function App() {
         }
       >
         <ThemeContext.Provider value={themeControlObject}>
-          <UserContext.Provider value={token}>
+          <UserContext.Provider value={userContext}>
             <Navbar
               handlePopUpLogIn={() => {
                 handlePopUpLogIn();
@@ -87,7 +87,7 @@ function App() {
         <Footer />
         {controlPopUpLogIn && (
           <LoginPopUp
-            setToken={setToken}
+            setUserContext={setUserContext}
             setControlPopUpLogIn={setControlPopUpLogIn}
           />
         )}
