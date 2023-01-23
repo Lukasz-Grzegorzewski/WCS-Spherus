@@ -3,20 +3,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function LoginPopUp({ setToken, setControlPopUpLogIn }) {
+function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
   const navigate = useNavigate();
 
   function navigateToRegistration() {
     navigate("/registration");
-  }
-
-  function navigateToHome() {
-    navigate("/");
-  }
-
-  function redirect() {
-    navigateToHome();
-    setControlPopUpLogIn(false);
   }
 
   const [loginDetails, setLoginDetails] = useState({
@@ -29,7 +20,7 @@ function LoginPopUp({ setToken, setControlPopUpLogIn }) {
     axios
       .post(`${import.meta.env.VITE_PORT_BACKEND}/login`, loginDetails)
       .then((res) => {
-        setToken(res.data);
+        setUserContext(res.data);
         localStorage.setItem(
           "token",
           JSON.stringify({
@@ -38,8 +29,8 @@ function LoginPopUp({ setToken, setControlPopUpLogIn }) {
             id: res.data.id,
           })
         );
-        redirect();
-        console.warn("connecté");
+        setControlPopUpLogIn(false);
+        window.location.reload();
       })
 
       .catch((err) => console.warn(err));
@@ -95,7 +86,7 @@ function LoginPopUp({ setToken, setControlPopUpLogIn }) {
   );
 }
 LoginPopUp.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setUserContext: PropTypes.func.isRequired,
   setControlPopUpLogIn: PropTypes.func.isRequired,
 };
 export default LoginPopUp;
