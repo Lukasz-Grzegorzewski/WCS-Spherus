@@ -30,7 +30,11 @@ function ButtonDeleteCat({ catId, getCategories, setCatId }) {
 
   return (
     <div className="delete-cat-button">
-      <button type="button" onClick={handledeletePopUp}>
+      <button
+        type="button"
+        className="button-delete-category"
+        onClick={handledeletePopUp}
+      >
         DELETE CATEGORY
       </button>
       {openDeletePopUp && (
