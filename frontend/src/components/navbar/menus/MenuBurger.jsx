@@ -16,6 +16,7 @@ function MenuBurger({
   isBurgerClicked = false,
   setIsBurgerClicked,
   handlePopUpLogIn,
+  handleRegisterPopUp,
 }) {
   const { isAdmin, userToken, id } = useContext(UserContext);
 
@@ -152,6 +153,7 @@ function MenuBurger({
               className="btn btn-why-signin"
               type="button"
               onClick={() => {
+                handleRegisterPopUp();
                 setIsBurgerClicked(false);
               }}
             >
@@ -172,4 +174,5 @@ MenuBurger.propTypes = {
   isBurgerClicked: PropTypes.bool.isRequired,
   handlePopUpLogIn: PropTypes.func.isRequired,
   setIsBurgerClicked: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };
