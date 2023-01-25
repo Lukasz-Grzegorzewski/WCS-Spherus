@@ -157,7 +157,8 @@ function MenuBurger({
                 setIsBurgerClicked(false);
               }}
             >
-              <FaQuestion className="why-signin-icon" /> Why to sign in?
+              <FaQuestion className="why-signin-icon" />
+              <p>Why to sign in ?</p>
             </button>
           </NavLink>
         </div>

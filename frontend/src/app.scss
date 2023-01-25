@@ -65,7 +65,23 @@
   color: $secondary-color;
   background: $lt-background;
 
+  //--------Lazy -------------
+
+  .loader-container {
+    background: $primary-color;
+
+    p {
+      color: $secondary-color;
+    }
+  }
+
   //------- Home Page---------
+
+  // Navbar
+  .btn-img-avatar {
+    box-shadow: 0 0 5px 1px $secondary-color;
+    border-radius: 20px;
+  }
 
   // Video Card
   .main {
@@ -140,6 +156,7 @@
     box-shadow: 0 0 5px 1px $secondary-color;
   }
 
+  .addhero_video_name_select,
   .addhero_cat_name_select,
   .choicehero_cat_name_select,
   .choicehero_video_name_select {
