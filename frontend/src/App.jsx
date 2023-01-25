@@ -26,12 +26,21 @@ const Navbar = lazy(() => import("@components/navbar/Navbar"));
 const Footer = lazy(() => import("@components/footer/Footer"));
 const LoginPopUp = lazy(() => import("@components/loginPopUp/LoginPopUp"));
 const Favorite = lazy(() => import("@components/favorite_page/Favorite"));
+const WhyRegister = lazy(() =>
+  import("@components/navbar/whyregisterpopup/WhyRegister")
+);
 
 function App() {
   const [controlPopUpLogIn, setControlPopUpLogIn] = useState(false);
 
   function handlePopUpLogIn() {
     setControlPopUpLogIn(!controlPopUpLogIn);
+  }
+
+  const [controlWhyRegisterPopUp, setControlWhyRegisterPopUp] = useState(false);
+
+  function handleRegisterPopUp() {
+    setControlWhyRegisterPopUp(!controlWhyRegisterPopUp);
   }
 
   const [userContext, setUserContext] = useState({
@@ -68,6 +77,9 @@ function App() {
               handlePopUpLogIn={() => {
                 handlePopUpLogIn();
               }}
+              handleRegisterPopUp={() => {
+                handleRegisterPopUp();
+              }}
             />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -93,6 +105,11 @@ function App() {
           <LoginPopUp
             setUserContext={setUserContext}
             setControlPopUpLogIn={setControlPopUpLogIn}
+          />
+        )}
+        {controlWhyRegisterPopUp && (
+          <WhyRegister
+            setControlWhyRegisterPopUp={setControlWhyRegisterPopUp}
           />
         )}
       </Suspense>

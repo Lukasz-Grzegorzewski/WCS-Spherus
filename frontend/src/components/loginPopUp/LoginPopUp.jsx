@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { FaSkull } from "react-icons/fa";
 
 function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
   const navigate = useNavigate();
@@ -36,10 +37,17 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
       .catch((err) => console.warn(err));
   };
 
+  function closePopUp() {
+    setControlPopUpLogIn(false);
+  }
+
   return (
     <div className="login-pop-up">
       <div className="login-card">
         <h2>Connexion</h2>
+        <button type="button" onClick={closePopUp}>
+          <FaSkull className="close_btn" />
+        </button>
         <form onSubmit={login}>
           <label htmlFor="email">
             <input
