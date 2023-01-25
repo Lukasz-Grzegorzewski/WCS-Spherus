@@ -1,4 +1,5 @@
 import UpdateUserByUser from "@components/profile/UpdateUserByUser";
+import PropTypes from "prop-types";
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { FaPen } from "react-icons/fa";
@@ -6,7 +7,7 @@ import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
 import UserContext from "../UserContext";
 
-function Profile() {
+function Profile({ iduser }) {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -20,7 +21,7 @@ function Profile() {
 
   function getUser() {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -31,7 +32,7 @@ function Profile() {
     getUser();
   }, [
     // refresh,
-    id,
+    iduser,
     // user
   ]);
 
@@ -257,6 +258,6 @@ function Profile() {
 
 export default Profile;
 
-// Profile.propTypes = {
-//   id: PropTypes.number.isRequired,
-// };
+Profile.propTypes = {
+  iduser: PropTypes.number.isRequired,
+};
