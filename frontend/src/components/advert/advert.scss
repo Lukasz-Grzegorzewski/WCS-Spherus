@@ -52,7 +52,7 @@
     margin-bottom: 0%;
 
     &_box {
-      width: 45%;
+      width: 70%;
       height: 180px;
       padding: 1%;
       gap: 25px;
@@ -80,6 +80,14 @@
           font-size: 20px;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .pub {
+    &_box {
+      width: 55%;
     }
   }
 }

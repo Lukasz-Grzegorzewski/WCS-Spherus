@@ -34,7 +34,7 @@ function AdminFixtures() {
         <TitleFixtures />
       </div>
       <div className="fixtures-slider_text">
-        <h1>Currently in the Fixture Slider</h1>
+        <h1>Currently in the Fixture</h1>
         <button
           className="icon-btn add-btn"
           type="button"

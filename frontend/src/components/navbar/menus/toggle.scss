@@ -17,13 +17,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: $primary-color;
     cursor: pointer;
   }
+
   input[type="checkbox"].toggle-input-mode.light + label {
     color: $primary-color;
   }
+
   input[type="checkbox"].toggle-input-mode.dark + label {
     color: $secondary-color;
   }
@@ -33,27 +35,30 @@
     width: 8rem;
     height: 2rem;
     background-color: transparent;
-    border: 2px solid $primary-color;
+    border: 2px solid $secondary-color;
     border-radius: 2rem;
   }
 
   input[type="checkbox"].toggle-input-mode + label::before {
     position: absolute;
+    font-family: $font-text;
     display: flex;
     justify-content: center;
     align-items: center;
     right: 2.6rem;
     width: 5rem;
-    height: 1.3rem;
+    height: 1.7rem;
     background-color: rgb(0, 0, 0);
     border: 2px solid $primary-color;
     border-radius: 2rem;
     transition: all 150ms ease-in-out;
     // padding: 1px;
   }
+
   input[type="checkbox"].toggle-input-mode.light + label::before {
     content: "dark >";
   }
+
   input[type="checkbox"].toggle-input-mode.dark + label::before {
     content: "< light";
   }
