@@ -7,7 +7,7 @@ import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
 import UserContext from "../UserContext";
 
-function Profile({ iduser }) {
+function Profile({ mode, iduser }) {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -20,12 +20,21 @@ function Profile({ iduser }) {
   // const [refresh, setRefresh] = useState(false);
 
   function getUser() {
-    axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => console.error(err));
+    if (mode === 1) {
+      axios
+        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => console.error(err));
+    } else if (mode === 0) {
+      axios
+        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   useEffect(() => {
@@ -260,4 +269,5 @@ export default Profile;
 
 Profile.propTypes = {
   iduser: PropTypes.number.isRequired,
+  mode: PropTypes.number.isRequired,
 };
