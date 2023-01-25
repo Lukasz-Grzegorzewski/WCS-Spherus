@@ -136,7 +136,7 @@ function AdminUsers({ id }) {
             // refresh={refresh}
             // setRefresh={setRefresh}
           />
-          <Profile id={Number(userId)} />
+          <Profile mode={1} iduser={Number(userId)} />
           {/* <UsersInformations id={Number(userId)} /> */}
         </div>
       )}

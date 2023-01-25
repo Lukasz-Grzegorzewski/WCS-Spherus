@@ -78,7 +78,7 @@ function App() {
               <Route path="/registration" element={<RegisterForm />} />
               <Route path="/videos/:id" element={<VideoPage />} />
               {userContext.id !== "" && (
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile mode={0} />} />
               )}
               {userContext.isAdmin === 1 && (
                 <Route path="/admin" element={<Admin />} />
