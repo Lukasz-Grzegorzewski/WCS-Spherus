@@ -58,7 +58,7 @@ function MenuBurger({
     >
       {userToken && userToken.length > 0 ? (
         <div className="buttons">
-          {isAdmin && isAdmin === 1 ? (
+          {isAdmin && isAdmin === 1 && (
             <NavLink to="/admin">
               <button
                 className="btn btn-admin-panel"
@@ -70,47 +70,47 @@ function MenuBurger({
                 <FaCog className="signin-icon" /> Admin Panel
               </button>
             </NavLink>
-          ) : (
-            <div className="profile-favorites-container">
-              <NavLink to="/profile">
-                <div className="btn-profil-image-container">
-                  <button
-                    className="btn btn-profil"
-                    type="button"
-                    onClick={() => {
-                      setIsBurgerClicked(false);
-                    }}
-                  >
-                    <FaCog className="signin-icon" /> Profil
-                  </button>
-                  <img
-                    ref={inputImgAvatar}
-                    className="img-avatar-profil"
-                    src={`${
-                      import.meta.env.VITE_PORT_BACKEND
-                    }/assets/images/avatars/${id}.jpg`}
-                    alt="avatar"
-                    onError={() => {
-                      inputImgAvatar.current.src =
-                        "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
-                    }}
-                  />
-                </div>
-              </NavLink>
-
-              <NavLink to="/favorite">
+          )}
+          <div className="profile-favorites-container">
+            <NavLink to="/profile">
+              <div className="btn-profil-image-container">
                 <button
-                  className="btn btn-admin-panel"
+                  className="btn btn-profil"
                   type="button"
                   onClick={() => {
                     setIsBurgerClicked(false);
                   }}
                 >
-                  <FaRegStar className="signin-icon" /> Favorites
+                  <FaUser className="signin-icon" /> Profil
                 </button>
-              </NavLink>
-            </div>
-          )}
+                <img
+                  ref={inputImgAvatar}
+                  className="img-avatar-profil"
+                  src={`${
+                    import.meta.env.VITE_PORT_BACKEND
+                  }/assets/images/avatars/${id}.jpg`}
+                  alt="avatar"
+                  onError={() => {
+                    inputImgAvatar.current.src =
+                      "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
+                  }}
+                />
+              </div>
+            </NavLink>
+
+            <NavLink to="/favorite">
+              <button
+                className="btn btn-admin-panel"
+                type="button"
+                onClick={() => {
+                  setIsBurgerClicked(false);
+                }}
+              >
+                <FaRegStar className="signin-icon" /> Favorites
+              </button>
+            </NavLink>
+          </div>
+
           <button
             className="btn btn-logout"
             type="button"
