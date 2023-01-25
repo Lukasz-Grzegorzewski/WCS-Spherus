@@ -28,6 +28,17 @@
       font-size: 24px;
       padding-top: 24px;
       color: $secondary-color;
+      font-family: $font-text;
+    }
+
+    .close_btn {
+      color: $tertiary-color;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 93%;
+      top: 3%;
+      cursor: pointer;
     }
 
     form {

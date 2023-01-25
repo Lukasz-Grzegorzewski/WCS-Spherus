@@ -5,7 +5,7 @@ import Toggle from "../menus/Toggle";
 import UserContext from "../../../UserContext";
 import MenuBurger from "../menus/MenuBurger";
 
-const navbarDesktop = ({ handlePopUpLogIn }) => {
+const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
   const [isLoopClicked, setIsLoopClicked] = useState(false);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const inputImgAvatar = useRef();
@@ -60,6 +60,7 @@ const navbarDesktop = ({ handlePopUpLogIn }) => {
           isBurgerClicked={isBurgerClicked}
           setIsBurgerClicked={() => setIsBurgerClicked()}
           handlePopUpLogIn={() => handlePopUpLogIn()}
+          handleRegisterPopUp={() => handleRegisterPopUp()}
         />
       )}
     </div>
@@ -70,4 +71,5 @@ export default navbarDesktop;
 
 navbarDesktop.propTypes = {
   handlePopUpLogIn: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };

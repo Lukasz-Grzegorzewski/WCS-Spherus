@@ -5,7 +5,7 @@ import NavbarMobile from "./navbarMobile/NavbarMobile";
 import ThemeContext from "../../ThemeContext";
 import NavbarDesktop from "./navbarDesktop/NavbarDesktop";
 
-function Navbar({ handlePopUpLogIn }) {
+function Navbar({ handlePopUpLogIn, handleRegisterPopUp }) {
   const [size, setSize] = useState(false);
   const { themeToggle } = useContext(ThemeContext);
 
@@ -54,9 +54,15 @@ function Navbar({ handlePopUpLogIn }) {
         )}
       </div>
       {!size ? (
-        <NavbarMobile handlePopUpLogIn={() => handlePopUpLogIn()} />
+        <NavbarMobile
+          handlePopUpLogIn={() => handlePopUpLogIn()}
+          handleRegisterPopUp={() => handleRegisterPopUp()}
+        />
       ) : (
-        <NavbarDesktop handlePopUpLogIn={() => handlePopUpLogIn()} />
+        <NavbarDesktop
+          handlePopUpLogIn={() => handlePopUpLogIn()}
+          handleRegisterPopUp={() => handleRegisterPopUp()}
+        />
       )}
     </div>
   );
@@ -66,4 +72,5 @@ export default Navbar;
 
 Navbar.propTypes = {
   handlePopUpLogIn: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };
