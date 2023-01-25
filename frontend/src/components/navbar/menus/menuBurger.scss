@@ -72,6 +72,7 @@
 
     .btn-login {
       background-color: rgb(116, 192, 2);
+      cursor: pointer;
 
       .login-icon {
       }
@@ -79,6 +80,7 @@
 
     .btn-logout {
       background-color: rgb(192, 2, 2);
+      cursor: pointer;
 
       .logout-icon {
       }
@@ -86,34 +88,48 @@
 
     .btn-signin {
       background-color: $tertiary-color;
+      cursor: pointer;
 
       .signin-icon {
       }
     }
+
     .btn-why-signin {
       background-color: rgb(142, 92, 11);
       padding-block: 0;
       height: 20px;
       font-size: 1rem;
+      cursor: pointer;
+
+      p {
+        margin-top: 1px;
+      }
+
       .why-signin-icon {
       }
     }
 
     .btn-admin-panel {
       background-color: rgb(2, 132, 192);
+      cursor: pointer;
     }
+
     .profile-favorites-container {
       display: flex;
       flex-direction: column;
       gap: 10px;
+
       .btn-profil-image-container {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 5px;
+
         .btn-profil {
           background-color: rgb(2, 132, 192);
+          cursor: pointer;
         }
+
         img.img-avatar-profil {
           height: 30px;
           border-radius: 15px;
