@@ -108,6 +108,12 @@
     }
   }
 
+  // Formulaire
+
+  .form {
+    box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
   //------- Admin Page---------
 
   // Admin Advert
@@ -132,6 +138,13 @@
   .fixtures-slider {
     background-color: $fourth-color;
     box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
+  .addhero_cat_name_select,
+  .choicehero_cat_name_select,
+  .choicehero_video_name_select {
+    background-color: $primary-color;
+    color: $secondary-color;
   }
 
   // Admin Home Page
