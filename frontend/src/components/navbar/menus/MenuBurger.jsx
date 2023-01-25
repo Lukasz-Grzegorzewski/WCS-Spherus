@@ -121,7 +121,7 @@ function MenuBurger({
               window.location.reload();
             }}
           >
-            <FaPowerOff className="logout-icon" /> Logout
+            <FaPowerOff className="logout-icon" /> Log out
           </button>
         </div>
       ) : (
@@ -134,7 +134,7 @@ function MenuBurger({
               setIsBurgerClicked(false);
             }}
           >
-            <FaUser className="login-icon" /> Login
+            <FaUser className="login-icon" /> Log in
           </button>
           <NavLink to="/registration">
             <button
@@ -144,7 +144,7 @@ function MenuBurger({
                 setIsBurgerClicked(false);
               }}
             >
-              <FaUserPlus className="signin-icon" /> Signin
+              <FaUserPlus className="signin-icon" /> Sign in
             </button>
           </NavLink>
 
@@ -158,7 +158,7 @@ function MenuBurger({
               }}
             >
               <FaQuestion className="why-signin-icon" />
-              <p>Why to sign in ?</p>
+              <p>Why sign in ?</p>
             </button>
           </NavLink>
         </div>
