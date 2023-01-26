@@ -12,13 +12,10 @@ function VideoCard({ id, url, title, description, display }) {
   const [favBtn, setFavBtn] = useState(false);
   const token = useContext(UserContext);
 
-  const [getFavId, setGetFavId] = useState([]);
-
   const getFavorite = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/favorites/${token.id}`)
       .then((res) => {
-        setGetFavId(res.data);
         btn(res.data)
       })
       .catch((err) => console.error(err));
@@ -60,7 +57,6 @@ function VideoCard({ id, url, title, description, display }) {
     }
   }
 
-
   return (
     <div className="videoCard">
       {token.userToken !== "" ? (
@@ -80,7 +76,6 @@ function VideoCard({ id, url, title, description, display }) {
             <div className="videocard">
               <HoverVideoPlayer
                 videoClassName="videocard_video"
-                // className="videocard_video"
                 videoSrc={videoUrl}
                 muted
                 playbackRangeStart={0}
