@@ -6,6 +6,7 @@ const getRoutes = require("./routes/getRoutes");
 const postRoutes = require("./routes/postRoutes");
 const patchRoutes = require("./routes/patchRoutes");
 const deleteRoutes = require("./routes/deleteRoutes");
+// const { verifyToken } = require("./handlers/auth");
 // const getRoutesFunctions = require("./handlers/getRoutesFunctions");
 // const postRoutesFunctions = require("./handlers/postRoutesFunctions");
 
