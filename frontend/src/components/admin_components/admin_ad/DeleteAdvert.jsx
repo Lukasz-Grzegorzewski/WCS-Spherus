@@ -70,17 +70,15 @@ function DeleteAdvert({ pub, getPub }) {
               <p>{screen.description}</p>
             </div>
           )}
-          <div className="deleteadvert_delete">
-            <button
-              type="button"
-              onClick={() => {
-                deletePub();
-              }}
-            >
-              <span>Delete</span>
-              <i />
-            </button>
-          </div>
+          <button
+            className="deleteBtn delete"
+            type="button"
+            onClick={() => {
+              deletePub();
+            }}
+          >
+            Delete
+          </button>
         </form>
       ) : (
         <div className="deleteadvert_check">

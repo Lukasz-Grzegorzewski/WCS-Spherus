@@ -38,7 +38,11 @@ function DeleteVideo({ video, getVideo }) {
               </select>
             )}
 
-            <button className="delete_Btn" type="button" onClick={deleteVideo}>
+            <button
+              className="deleteBtn delete_Btn"
+              type="button"
+              onClick={deleteVideo}
+            >
               Delete video
             </button>
           </div>

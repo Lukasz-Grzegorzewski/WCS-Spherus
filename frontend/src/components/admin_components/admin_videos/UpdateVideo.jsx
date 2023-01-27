@@ -194,7 +194,16 @@ function UpdateVideos({ video, getVideo }) {
   );
 }
 UpdateVideos.propTypes = {
-  video: PropTypes.string.isRequired,
+  video: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      display: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   getVideo: PropTypes.func.isRequired,
 };
 

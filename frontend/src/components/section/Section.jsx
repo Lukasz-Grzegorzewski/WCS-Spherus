@@ -8,23 +8,23 @@ import Advert from "../advert/Advert";
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
-  desktop2: {
-    breakpoint: { max: 4000, min: 1200 },
+  desktopB: {
+    breakpoint: { max: 4000, min: 1500 },
     items: 4,
     slidesToSlide: 2,
   },
-  desktop1: {
-    breakpoint: { max: 1200, min: 850 },
+  desktopS: {
+    breakpoint: { max: 1500, min: 1100 },
     items: 3,
     slidesToSlide: 2,
   },
-  tablette: {
-    breakpoint: { max: 850, min: 570 },
+  tablet: {
+    breakpoint: { max: 1100, min: 750 },
     items: 2,
     slidesToSlide: 1,
   },
   mobile: {
-    breakpoint: { max: 570, min: 320 },
+    breakpoint: { max: 750, min: 0 },
     items: 1,
     slidesToSlide: 1,
   },
@@ -56,40 +56,37 @@ function Section({ type, idLink, id }) {
   }, []);
 
   return (
-    <div className="section_container">
-      {type === 1 && (
-        <div>
-          {category.length >= 1 && (
-            <div>
-              <div className="section_navigation">
-                <NavLink to={`/categories/${idLink}`}>
-                  <div className="section_name">{categoryName.name}</div>
-                </NavLink>
-                <div className="section_seeMoreBtn">
-                  <NavLink to={`/categories/${idLink}`}>
-                    <div className="section_seeMoreBtn_btn">See more</div>
-                  </NavLink>
-                </div>
-              </div>
-
-              <Carousel
-                containerClass="section_carousel"
-                responsive={responsive}
-              >
-                {category.map((infos) => (
-                  <div className="section_card" key={infos.id}>
-                    <VideoCard
-                      id={infos.id}
-                      url={infos.url}
-                      title={infos.title}
-                      description={infos.description}
-                      display={infos.display}
-                    />
-                  </div>
-                ))}
-              </Carousel>
+    <div className="section">
+      {type === 1 && category.length >= 1 && (
+        <div className="section_container">
+          <div className="section_navigation">
+            <NavLink to={`/categories/${idLink}`}>
+              <div className="section_name">{categoryName.name}</div>
+            </NavLink>
+            <div className="section_seeMoreBtn">
+              <NavLink to={`/categories/${idLink}`}>
+                <div className="section_seeMoreBtn_btn">See more</div>
+              </NavLink>
             </div>
-          )}
+          </div>
+
+          <Carousel
+            containerClass="section_container_carousel"
+            responsive={responsive}
+            infinite
+          >
+            {category.map((infos) => (
+              <div key={infos.id} className="section_container_carousel_card">
+                <VideoCard
+                  id={infos.id}
+                  url={infos.url}
+                  title={infos.title}
+                  description={infos.description}
+                  display={infos.display}
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
       )}
 

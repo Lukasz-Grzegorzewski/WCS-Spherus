@@ -7,8 +7,9 @@ function UpdateUserByUser({
   type,
   keyName,
   id,
-  refresh,
-  setRefresh,
+  getUser,
+  // refresh,
+  // setRefresh,
   closeUpdateInput,
 }) {
   const [data, setData] = useState("");
@@ -16,21 +17,22 @@ function UpdateUserByUser({
   function handleSubmit(e) {
     e.preventDefault();
 
-    const answer = window.confirm("Are you sure?");
-    if (answer) {
-      axios
-        .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
-          [keyName]: data,
-        })
-        .then(() => {
-          console.warn("user updated");
-          setRefresh(!refresh);
-          closeUpdateInput(false);
-        })
-        .catch((err) => console.error(err));
-    } else {
-      window.alert("Ok. Update cancelled.");
-    }
+    // const answer = window.confirm("Are you sure?");
+    // if (answer) {
+    axios
+      .patch(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`, {
+        [keyName]: data,
+      })
+      .then(() => {
+        console.warn("user updated");
+        // setRefresh(!refresh);
+        getUser();
+        closeUpdateInput(false);
+      })
+      .catch((err) => console.error(err));
+    // } else {
+    //   window.alert("Ok. Update cancelled.");
+    // }
   }
 
   return (
@@ -58,8 +60,9 @@ export default UpdateUserByUser;
 
 UpdateUserByUser.propTypes = {
   keyName: PropTypes.string.isRequired,
-  refresh: PropTypes.bool.isRequired,
-  setRefresh: PropTypes.func.isRequired,
+  // refresh: PropTypes.bool.isRequired,
+  // setRefresh: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
   closeUpdateInput: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])

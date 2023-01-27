@@ -13,6 +13,7 @@
   overflow: hidden;
   animation-duration: 0.8s;
   animation-name: avatarPrompt;
+  z-index: 2;
 
   @keyframes avatarPrompt {
     0% {
@@ -36,6 +37,21 @@
 
     .btn-choose-file {
       position: absolute;
+      border-radius: 20px;
+      background-color: rgb(255, 0, 0);
+      box-shadow: 0 0 5px 5px rgba(255, 255, 0, 0.65);
+      animation: blink 1500ms ease-in-out infinite;
+    }
+    @keyframes blink {
+      0% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 0, 0.65);
+      }
+      50% {
+        box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 0, 0.65);
+      }
     }
 
     .cropCnt {
@@ -77,9 +93,16 @@
     .btn-update {
       background-color: green;
     }
-    .btn-cancel {
-      background-color: rgb(226, 105, 105);
-    }
+  }
+  .btn-cancel {
+    background-color: rgb(221, 221, 221);
+    color: black !important;
+  }
+  .btn-delete {
+    width: fit-content;
+  }
+  .dis-none {
+    display: none !important;
   }
 }
 
