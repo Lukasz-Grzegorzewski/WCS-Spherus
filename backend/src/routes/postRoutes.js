@@ -2,6 +2,7 @@ const express = require("express");
 const postRoutesFunctions = require("../handlers/postRoutesFunctions");
 const { upload, uploadImg, uploadAvatar } = require("./multers/multers");
 const { hashPassword, verifyPassword } = require("../handlers/auth");
+const { sendEmail } = require("../handlers/emailFunction");
 
 const router = express.Router();
 
@@ -30,6 +31,15 @@ router.post(
   postRoutesFunctions.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
+
+// EMAIL VERIFICATION
+
+router.post("/send_recovery_email", (req, res) => {
+  const { recipientEmail, OTP, id } = req.body;
+  sendEmail(recipientEmail, OTP, id)
+    .then((response) => res.send(response.message))
+    .catch((error) => res.status(500).send(error.message));
+});
 
 // CATEGORY-VIDEO
 router.post("/category/video", postRoutesFunctions.attachCategoryToVideo);

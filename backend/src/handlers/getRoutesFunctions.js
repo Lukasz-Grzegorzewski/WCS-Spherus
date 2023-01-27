@@ -41,6 +41,41 @@ const getUserById = (req, res) => {
     });
 };
 
+const getUserByEmail = (req, res) => {
+  const { email } = req.params;
+
+  database
+    .query(`SELECT id FROM user WHERE email = ?`, [email])
+    .then(([result]) => {
+      if (result[0] === null) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+/* VERIFICATION OF THE TEMPORARY CODE */
+
+const getUserCodeTmpById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  database
+    .query(`SELECT code_tmp FROM user WHERE id = ?`, [id])
+    .then(([result]) => {
+      if (result[0] === null) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 /* FAVORITES ROUTES (fullname, video_title, category ORDER BY fullname) */
 const getFavorites = (req, res) => {
   database
@@ -293,6 +328,8 @@ module.exports = {
   welcome,
   getUsers,
   getUserById,
+  getUserByEmail,
+  getUserCodeTmpById,
   getFavorites,
   getFavoritesByUserId,
   getVideos,

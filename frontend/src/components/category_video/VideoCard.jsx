@@ -4,7 +4,7 @@ import HoverVideoPlayer from "react-hover-video-player";
 import { CiLock } from "react-icons/ci";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import UserContext from "../../UserContext";
+import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
 function VideoCard({ id, url, title, description, display }) {

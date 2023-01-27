@@ -8,7 +8,7 @@ import AdminHeroSlider from "@components/admin_components/admin_heroSlider/Admin
 import AdminFixtures from "@components/admin_components/admin_fixtures/AdminFixtures";
 import AdminAd from "@components/admin_components/admin_ad/AdminAd";
 import { FaAngleLeft } from "react-icons/fa";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 function Admin() {
   const [user, setUser] = useState(false);

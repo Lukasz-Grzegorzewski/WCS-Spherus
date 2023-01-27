@@ -33,7 +33,7 @@ function TitleFixtures() {
   return (
     <div className="title_fixtures_component">
       <div className="title_fixtures_component_title">
-        <h1>Current title : {titleFix.name}</h1>
+        <h1>Current title: {titleFix.name}</h1>
         <button
           className="icon-btn add-btn"
           type="button"
@@ -62,7 +62,7 @@ function TitleFixtures() {
               setDisplayTitleInput(false);
             }}
           >
-            Validate
+            Submit
           </button>
         </div>
       ) : null}

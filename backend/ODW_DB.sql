@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`user` (
   `is_admin` TINYINT NOT NULL,
   `token` VARCHAR(256) NULL DEFAULT NULL,
   `token_start` DATE NULL DEFAULT NULL,
+  `code_tmp` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
