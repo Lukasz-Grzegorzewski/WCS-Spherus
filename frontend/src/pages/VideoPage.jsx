@@ -41,7 +41,7 @@ function VideoPage() {
 
   useEffect(() => {
     getVideo(id);
-  }, []);
+  }, [id]);
   return (
     <div className="video-container">
       {video && arrCatId && arrCatName && (
