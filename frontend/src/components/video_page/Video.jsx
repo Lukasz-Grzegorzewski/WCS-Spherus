@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { CiLock } from "react-icons/ci";
-import UserContext from "../../UserContext";
+import UserContext from "../../contexts/UserContext";
 
 function Video({
   // arrCatId,

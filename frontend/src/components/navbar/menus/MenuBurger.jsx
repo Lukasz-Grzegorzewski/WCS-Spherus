@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Toggle from "./Toggle";
-import UserContext from "../../../UserContext";
+import UserContext from "../../../contexts/UserContext";
 
 function MenuBurger({
   isBurgerClicked = false,

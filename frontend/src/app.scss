@@ -1,11 +1,12 @@
 //--------------App LAZY-----------------
 .App {
+  // height: 100vh;
   .loader-container {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
     position: fixed;
     background: $dt-background;

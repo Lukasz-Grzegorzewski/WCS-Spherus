@@ -5,7 +5,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 function Profile({ mode, iduser }) {
   const [user, setUser] = useState(null);

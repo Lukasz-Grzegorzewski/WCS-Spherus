@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import NavbarMobile from "./navbarMobile/NavbarMobile";
-import ThemeContext from "../../ThemeContext";
+import ThemeContext from "../../contexts/ThemeContext";
 import NavbarDesktop from "./navbarDesktop/NavbarDesktop";
 
 function Navbar({ handlePopUpLogIn, handleRegisterPopUp }) {
