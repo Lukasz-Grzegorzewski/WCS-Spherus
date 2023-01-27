@@ -77,7 +77,7 @@ function App() {
               <Route path="/categories/:id" element={<CategoryPage />} />
               <Route path="/registration" element={<RegisterForm />} />
               <Route path="/videos/:id" element={<VideoPage />} />
-              <Route path="/profile" element={<Profile id={1} />} />
+              <Route path="/profile" element={<Profile id={4} />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/*" element={<Page404 />} />
               <Route path="/favorite" element={<Favorite />} />

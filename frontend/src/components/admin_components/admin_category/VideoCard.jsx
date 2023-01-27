@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 function VideoCard({ elem }) {
   const concat = `${import.meta.env.VITE_PORT_BACKEND}`;
 
+/* const numAleat = Math.floor(Math.random() * 5) 
+console.log(numAleat); */
   return (
     <div>
       <div className="videocard">
@@ -13,6 +15,8 @@ function VideoCard({ elem }) {
           className="videocard_video"
           videoSrc={concat + elem.url}
           muted
+          /* playbackRangeStart={numAleat}
+          playbackRangeEnd={numAleat + 1} */
           playbackRangeStart={0}
           playbackRangeEnd={6}
         />

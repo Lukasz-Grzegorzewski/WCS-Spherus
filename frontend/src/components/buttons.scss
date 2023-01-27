@@ -280,3 +280,19 @@
     width: 200px;
   }
 }
+
+.open {
+  width: 150px;
+  font-size: 12px;
+  margin: 4px;
+  z-index: 0;
+}
+
+.close {
+  width: 12px;
+  font-size: 12px;
+  margin: 4px;
+  z-index: 0;
+  padding: 0 16px 0 8px;
+  max-height: 16px;
+}

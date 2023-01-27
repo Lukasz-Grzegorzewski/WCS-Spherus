@@ -3,23 +3,27 @@ import PropTypes from "prop-types";
 
 function DeletePopUp({ deleteCategory, setOpenDeletePopUp }) {
   return (
-    <div className="delete-popup-box">
-      <div className="popup-box">
-        Do you really want to delete this category?
-        <button
-          className="button-yes"
-          type="button"
-          onClick={() => deleteCategory()}
-        >
-          YES
-        </button>
-        <button
-          className="button-no"
-          type="button"
-          onClick={() => setOpenDeletePopUp(false)}
-        >
-          NO
-        </button>
+    <div className="delete_popup_box">
+      <div className="popup_box">
+        <p>Do you really want to delete this category?</p>
+
+        <div className="buttons_popup">
+          <button
+            className="deleteBtn button_no"
+            type="button"
+            onClick={() => deleteCategory()}
+          >
+            YES
+          </button>
+
+          <button
+            className="deleteBtn button_no"
+            type="button"
+            onClick={() => setOpenDeletePopUp(false)}
+          >
+            NO
+          </button>
+        </div>
       </div>
     </div>
   );

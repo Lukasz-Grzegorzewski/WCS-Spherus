@@ -222,7 +222,6 @@ const postAdvert = (req, res) => {
 // Post a user that try to log his account
 const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
   const { email } = req.body;
-
   database
     .query("SELECT * FROM user WHERE email = ?", [email])
     .then(([users]) => {

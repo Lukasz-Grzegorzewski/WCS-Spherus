@@ -1,0 +1,13 @@
+@import "./add/ButtonOpenAddCat.scss";
+@import "./delete/ButtonDeleteCat.scss";
+@import "./add/ButtonAddCat.scss";
+@import "./delete/deletePopUp.scss";
+@import "./delete/messageConfirmation.scss";
+@import "./categories.scss";
+@import "./modify/buttonOpenModify.scss";
+@import "./add/showVideos.scss";
+
+.add-button {
+  display: flex;
+  justify-content: center;
+}

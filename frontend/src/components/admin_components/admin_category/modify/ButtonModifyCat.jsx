@@ -3,7 +3,12 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import ModifyPopUp from "./ModifyPopUp";
 
-function ButtonModifyCat({ getCategories, catId, catName }) {
+function ButtonModifyCat({
+  getCategories,
+  catId,
+  catName,
+  changeShowButtonModify,
+}) {
   const [categoryModified, setCategoryModified] = useState("");
   const [openModifyPopUp, setOpenModifyPopUp] = useState(false);
   const [confirmationMessageModify, setConfirmationMessageModify] =
@@ -20,6 +25,7 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
         getCategories();
         setOpenModifyPopUp(false);
         setConfirmationMessageModify(true);
+        changeShowButtonModify();
       })
       .catch((err) => {
         console.warn(err);
@@ -29,28 +35,34 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
 
   function handleModifyPopUp(e) {
     e.preventDefault();
-    setOpenModifyPopUp(!openModifyPopUp);
+    if (categoryModified.trim() !== "" && categoryModified.length >= 3) {
+      setOpenModifyPopUp(!openModifyPopUp);
+    } else {
+      setErrorMessageModify(true);
+    }
   }
 
   return (
     <div>
       <form onSubmit={handleModifyPopUp}>
+        <input type="submit" className="deleteBtn open" value="Rename" />
         <input
           type="text"
           placeholder={catName}
           value={categoryModified}
           onChange={(e) => setCategoryModified(e.target.value)}
         />
-        <input type="submit" value="Rename" />
       </form>
       {openModifyPopUp && (
         <ModifyPopUp
           modifyCategory={(e) => modifyCategory(e)}
-          handleModifyPopUp={() => handleModifyPopUp()}
+          handleModifyPopUp={(e) => handleModifyPopUp(e)}
         />
       )}
       {confirmationMessageModify === true && "category modified"}
-      {errorMessageModify === true && "error retrieved"}
+      {errorMessageModify === true && (
+        <p>The name cannot be empty or must have more than 3 characters</p>
+      )}
     </div>
   );
 }
@@ -61,4 +73,5 @@ ButtonModifyCat.propTypes = {
   catId: PropTypes.node.isRequired,
   catName: PropTypes.string.isRequired,
   getCategories: PropTypes.func.isRequired,
+  changeShowButtonModify: PropTypes.func.isRequired,
 };

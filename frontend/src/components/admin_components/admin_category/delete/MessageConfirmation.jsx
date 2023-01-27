@@ -5,9 +5,9 @@ function MessageConfirmation({ setConfirmationMessageDelete, setCatId }) {
   return (
     <div className="message-confirmation">
       <div className="box-message-confirmation">
-        <p>Done !</p>
         <button
           type="button"
+          className="close-message-button"
           onClick={() => {
             setConfirmationMessageDelete(false);
             setCatId("Search category");
@@ -15,6 +15,7 @@ function MessageConfirmation({ setConfirmationMessageDelete, setCatId }) {
         >
           X
         </button>{" "}
+        <p>Done !</p>
       </div>
     </div>
   );
