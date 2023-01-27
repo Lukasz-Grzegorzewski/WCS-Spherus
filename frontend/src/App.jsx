@@ -35,6 +35,9 @@ const ResetPassword = lazy(() =>
   import("./components/recovery_password/ResetPassword")
 );
 const Favorite = lazy(() => import("./components/favorite_page/Favorite"));
+const WhyRegister = lazy(() =>
+  import("@components/navbar/whyregisterpopup/WhyRegister")
+);
 
 function App() {
   const [controlPopUpLogIn, setControlPopUpLogIn] = useState(false);
@@ -43,7 +46,13 @@ function App() {
     setControlPopUpLogIn(!controlPopUpLogIn);
   }
 
-  const [token, setToken] = useState({
+  const [controlWhyRegisterPopUp, setControlWhyRegisterPopUp] = useState(false);
+
+  function handleRegisterPopUp() {
+    setControlWhyRegisterPopUp(!controlWhyRegisterPopUp);
+  }
+
+  const [userContext, setUserContext] = useState({
     userToken: "",
     isAdmin: "",
     id: "",
@@ -57,7 +66,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setToken(JSON.parse(localStorage.getItem("token")));
+      setUserContext(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
 
@@ -72,10 +81,13 @@ function App() {
         }
       >
         <ThemeContext.Provider value={themeControlObject}>
-          <UserContext.Provider value={token}>
+          <UserContext.Provider value={userContext}>
             <Navbar
               handlePopUpLogIn={() => {
                 handlePopUpLogIn();
+              }}
+              handleRegisterPopUp={() => {
+                handleRegisterPopUp();
               }}
             />
             <Routes>
@@ -86,14 +98,18 @@ function App() {
               <Route path="/categories/:id" element={<CategoryPage />} />
               <Route path="/registration" element={<RegisterForm />} />
               <Route path="/videos/:id" element={<VideoPage />} />
-              <Route path="/profile" element={<Profile id={1} />} />
               <Route path="/forgot" element={<RecoveryRequest />} />
               <Route
                 path="/recoveryrequest/:id"
                 element={<EmailVerification />}
               />
               <Route path="/reset" element={<ResetPassword />} />
-              <Route path="/admin" element={<Admin />} />
+              {userContext.id !== "" && (
+                <Route path="/profile" element={<Profile mode={0} />} />
+              )}
+              {userContext.isAdmin === 1 && (
+                <Route path="/admin" element={<Admin />} />
+              )}
               <Route path="/*" element={<Page404 />} />
               <Route path="/favorite" element={<Favorite />} />
             </Routes>
@@ -102,8 +118,13 @@ function App() {
         <Footer />
         {controlPopUpLogIn && (
           <LoginPopUp
-            setToken={setToken}
+            setUserContext={setUserContext}
             setControlPopUpLogIn={setControlPopUpLogIn}
+          />
+        )}
+        {controlWhyRegisterPopUp && (
+          <WhyRegister
+            setControlWhyRegisterPopUp={setControlWhyRegisterPopUp}
           />
         )}
       </Suspense>

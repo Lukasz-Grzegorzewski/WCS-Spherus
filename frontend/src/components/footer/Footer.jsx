@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import {
@@ -9,13 +9,34 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+  const [size, setSize] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 600) {
+        setSize(true);
+      } else {
+        setSize(false);
+      }
+    });
+    if (window.innerWidth >= 600) {
+      setSize(true);
+    } else {
+      setSize(false);
+    }
+  }, [window.innerWidth]);
+
   return (
     <div className="footer">
       <div className="footer_container_logo">
         <NavLink to="/">
           <img
             className="footer_logo"
-            src="/src/assets/images/logo_sphereus.png"
+            src={
+              size
+                ? "/src/assets/images/logoLongLight.png"
+                : "/src/assets/images/logoShort.png"
+            }
             alt="sphereus"
           />
         </NavLink>

@@ -56,44 +56,37 @@ function Section({ type, idLink, id }) {
   }, []);
 
   return (
-    <div>
-      {type === 1 && (
+    <div className="section">
+      {type === 1 && category.length >= 1 && (
         <div className="section_container">
-          {category.length >= 1 && (
-            <div>
-              <div className="section_navigation">
-                <NavLink to={`/categories/${idLink}`}>
-                  <div className="section_name">{categoryName.name}</div>
-                </NavLink>
-                <div className="section_seeMoreBtn">
-                  <NavLink to={`/categories/${idLink}`}>
-                    <div className="section_seeMoreBtn_btn">See more</div>
-                  </NavLink>
-                </div>
-              </div>
-
-              <Carousel
-                containerClass="section_container_carousel"
-                responsive={responsive}
-                infinite
-              >
-                {category.map((infos) => (
-                  <div
-                    key={infos.id}
-                    className="section_container_carousel_card"
-                  >
-                    <VideoCard
-                      id={infos.id}
-                      url={infos.url}
-                      title={infos.title}
-                      description={infos.description}
-                      display={infos.display}
-                    />
-                  </div>
-                ))}
-              </Carousel>
+          <div className="section_navigation">
+            <NavLink to={`/categories/${idLink}`}>
+              <div className="section_name">{categoryName.name}</div>
+            </NavLink>
+            <div className="section_seeMoreBtn">
+              <NavLink to={`/categories/${idLink}`}>
+                <div className="section_seeMoreBtn_btn">See more</div>
+              </NavLink>
             </div>
-          )}
+          </div>
+
+          <Carousel
+            containerClass="section_container_carousel"
+            responsive={responsive}
+            infinite
+          >
+            {category.map((infos) => (
+              <div key={infos.id} className="section_container_carousel_card">
+                <VideoCard
+                  id={infos.id}
+                  url={infos.url}
+                  title={infos.title}
+                  description={infos.description}
+                  display={infos.display}
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
       )}
 

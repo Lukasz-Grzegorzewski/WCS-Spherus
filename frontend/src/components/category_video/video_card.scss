@@ -52,16 +52,16 @@
   }
 
   .videocard_veil {
-    width: 350px;
-    height: auto;
+    width: 320px;
+    height: 220px;
     font-family: $font-text;
-    margin: 10px;
+
     z-index: 0;
     position: relative;
 
     &_video {
-      width: 350px;
-      height: auto;
+      width: 320px;
+      height: 220px;
       overflow: hidden;
       border-radius: 15px;
       opacity: 60%;

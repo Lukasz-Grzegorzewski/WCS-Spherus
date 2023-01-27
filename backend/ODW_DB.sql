@@ -79,29 +79,6 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
--- Table `origins_digital_wcs`.`color`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `origins_digital_wcs`.`color` ;
-
-CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`color` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `theme` VARCHAR(100) NOT NULL,
-  `background_color` VARCHAR(100) NOT NULL,
-  `font_color` VARCHAR(100) NOT NULL,
-  `button_color` VARCHAR(100) NOT NULL,
-  `button_color_hover` VARCHAR(100) NOT NULL,
-  `header_footer_color` VARCHAR(100) NOT NULL,
-  `section_color` VARCHAR(100) NOT NULL,
-  `button_shadow_color` VARCHAR(100) NOT NULL,
-  `border_button_color` VARCHAR(100) NOT NULL,
-  `border_section_color` VARCHAR(100) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `origins_digital_wcs`.`user` ;
@@ -134,7 +111,7 @@ VALUES
     'Lukas',
     '1985-07-23',
     'luk@luk.com',
-    'l',
+    '$argon2id$v=19$m=65536,t=5,p=1$qeE+HvJbSo4pQezAkdFXfw$u8dUQqXUumdgJ9Loiv4s8KgHncDexReEBmV+mSF6Fdg',
     1,
     'token_1',
     '2022-12-01'
@@ -173,13 +150,13 @@ VALUES
     '2022-12-01'
   ),
   (
-    'X',
-    'Y',
-    'XY',
-    '2000-01-01',
-    'xy@xy.com',
-    'x',
-    0,
+    'jonathan',
+    'scattolini',
+    'Megakrash',
+    '1980-02-02',
+    'jscattolini@gmail.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$vN99MwcsPZrazM1lAen+0g$mI4VIGHa/kT/4ShiAyCp0OZF853+N+bTUAdHDN86mic',
+    1,
     'token_6',
     '2022-12-01'
   );

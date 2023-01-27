@@ -14,7 +14,6 @@ function AdminCategory() {
       .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {
         setSelectCategory(res.data);
-        console.warn("ceci est res.dat getCategories", res.data);
       })
       .catch((err) => console.warn(err));
   };

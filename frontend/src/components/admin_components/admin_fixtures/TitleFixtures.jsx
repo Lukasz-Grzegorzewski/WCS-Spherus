@@ -48,11 +48,13 @@ function TitleFixtures() {
       {displayTitleInput ? (
         <div className="title_fixtures_component_input">
           <input
+            className="title_fixtures_component_input_input"
             type="input"
             value={fixName}
             onChange={(e) => setFixName(e.target.value)}
           />
           <button
+            className="title_fixtures_component_input_btn"
             type="button"
             onClick={() => {
               handleUpdateTitle();

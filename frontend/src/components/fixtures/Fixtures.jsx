@@ -56,7 +56,7 @@ function Fixtures() {
 
   return (
     <div className="section_container">
-      {fixtures?.length >= 0 && (
+      {fixtures.length >= 1 && (
         <div>
           <div className="section_navigation">
             {fixtures.length !== 0 && (
