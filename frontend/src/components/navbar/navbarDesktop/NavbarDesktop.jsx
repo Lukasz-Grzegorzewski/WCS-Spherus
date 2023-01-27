@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import MenuSearch from "../menus/MenuSearch";
 import Toggle from "../menus/Toggle";
-import UserContext from "../../../UserContext";
+import UserContext from "../../../contexts/UserContext";
 import MenuBurger from "../menus/MenuBurger";
 
 const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {

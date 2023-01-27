@@ -71,7 +71,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App dark-theme">
+    <div className={!themeToggle ? "App dark-theme" : "App light-theme"}>
       <Suspense
         fallback={
           <div className="loader-container">

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../../UserContext";
+import UserContext from "../../contexts/UserContext";
 
 function DeleteUser({ id }) {
   const navigate = useNavigate();
