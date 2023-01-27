@@ -59,7 +59,6 @@ function DeleteFixtures({ el, getHeroInfo }) {
 export default DeleteFixtures;
 
 DeleteFixtures.propTypes = {
-  getFixtures: PropTypes.func.isRequired,
   getHeroInfo: PropTypes.func.isRequired,
   el: PropTypes.shape({
     id: PropTypes.number,

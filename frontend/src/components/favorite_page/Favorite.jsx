@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import VideoCard from "@components/category_video/VideoCard";
-import UserContext from "../../UserContext";
+import UserContext from "../../contexts/UserContext";
 
 function Favorite() {
   const { id } = useContext(UserContext);

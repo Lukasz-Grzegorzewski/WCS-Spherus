@@ -1,7 +1,7 @@
 .login-pop-up {
   animation: soft-fade-in 0.7s ease-out;
   position: absolute;
-  top: 20%;
+  top: 12%;
 
   @keyframes soft-fade-in {
     0% {
@@ -16,21 +16,171 @@
 
   .login-card {
     position: relative;
-    background-color: white;
+    background-color: rgb(240, 240, 240);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 80vw;
-    height: 75vh;
+    height: 80vh;
     left: 10vw;
-    border-radius: 12px;
+    border-radius: 6px;
+
+    .login-form {
+      input {
+        background: none;
+      }
+    }
 
     h2 {
       text-align: center;
       font-size: 24px;
+      font-family: $font-text;
       padding-top: 24px;
       color: $secondary-color;
     }
 
-    form {
+    h3 {
+      text-align: center;
+      font-size: 18px;
+      font-family: $font-text;
+      padding-top: 24px;
+      color: $secondary-color;
+    }
+
+    h4 {
+      padding-top: 24px;
+      text-align: center;
+      font-family: $font-text;
+      color: $secondary-color;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .code-form {
+      position: absolute;
+      width: 100%;
+      font-size: 16px;
+      justify-content: center;
+      margin-top: 50px;
+      gap: 2rem;
+
+      ._numbers {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+
+        .code-input {
+          text-align: center;
+          font-family: $font-text;
+          font-size: 40px;
+          height: 100px;
+          width: 50px;
+          border: 0;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          border-radius: 12px;
+
+          &:focus {
+            border: none;
+          }
+        }
+      }
+
+      ._password-validation {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+
+        p {
+          padding-top: 24px;
+          padding-inline: 24px;
+          color: black;
+          font-size: 28px;
+          font-family: $font-text;
+          text-align: center;
+          opacity: 0.9;
+        }
+
+        input {
+          font-size: 16px;
+          border: 1px solid rgba(56, 56, 56, 0.5);
+          padding: 12px;
+          width: 40vw;
+          border-radius: 12px;
+        }
+      }
+
+      ._resend {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 32px;
+        opacity: 0.9;
+
+        p {
+          color: black;
+          font-size: 16px;
+          font-family: $font-text;
+        }
+
+        button {
+          background: none;
+          font-family: $font-text;
+        }
+      }
+
+      ._unvalidate {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+
+        input[type="button"] {
+          pointer-events: none;
+          padding-block: 24px;
+          font-family: $font-text;
+          min-width: 100px;
+          width: 20vw;
+          font-size: $font-text;
+          font-size: 16px;
+          background: linear-gradient(to bottom, #8e817c 5%, #413836 100%);
+          background-color: #685e5b;
+          color: #ffffff;
+          border-radius: 3px;
+          text-shadow: 0px 1px 0px #854629;
+        }
+      }
+
+      ._validate {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+
+        input[type="button"] {
+          padding-block: 24px;
+          font-family: $font-text;
+          min-width: 100px;
+          width: 20vw;
+          font-size: $font-text;
+          font-size: 16px;
+          box-shadow: inset 0px 1px 0px 0px #cf866c;
+          background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+          background-color: #d0451b;
+          border: 1px solid #942911;
+          color: #ffffff;
+          border-radius: 3px;
+          cursor: pointer;
+          text-decoration: none;
+          text-shadow: 0px 1px 0px #854629;
+
+          &:hover {
+            background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+            background-color: #bc3315;
+          }
+        }
+      }
+    }
+
+    .login-form {
       position: absolute;
       width: 100%;
       font-size: 16px;
@@ -59,21 +209,8 @@
         outline: none;
       }
 
-      :nth-child(3) {
-        margin-left: 60%;
-      }
-
-      .btn-submit {
-        width: 80px;
-        border-bottom: none;
-        border-radius: 4px;
-        background-color: rgb(254, 115, 1);
-        box-shadow: rgba(0, 0, 1, 0.3) 0px 20px 25px -5px,
-          rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
-      }
-
-      .btn-submit:hover {
-        background-color: rgb(241, 162, 98);
+      h3 {
+        color: black;
       }
 
       .btn-registration {
@@ -87,6 +224,24 @@
       .btn-registration:hover {
         background-color: rgb(241, 162, 98);
       }
+
+      .forgotten-password {
+        font-family: $font-text;
+        font-size: 14px;
+        padding-inline: 12px;
+        color: black;
+        opacity: 0.8;
+        text-align: end;
+
+        & a {
+          font-weight: bold;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }
@@ -97,8 +252,12 @@
 
     .login-card {
       width: 50vw;
-      height: 70vh;
+      height: 80vh;
       left: 25vw;
+
+      .forgotten-password {
+        margin-right: 32px;
+      }
     }
   }
 }
