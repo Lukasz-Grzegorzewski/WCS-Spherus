@@ -46,7 +46,7 @@ function RecoveryRequest() {
 
   return (
     <div className="login-pop-up">
-      <div className="login-card">
+      <div className="login-pop-up_card">
         <h2>Enter your email address</h2>
         <form className="login-form" onSubmit={handleRandomCode}>
           <label htmlFor="email">
