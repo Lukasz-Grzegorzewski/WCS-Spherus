@@ -74,7 +74,7 @@ function EmailVerification() {
 
   return (
     <div className="login-pop-up">
-      <div className="login-card">
+      <div className="login-pop-up_card">
         <h2>Code verification</h2>
         <h4>We have sent a code to your email : {email}</h4>
         <form className="code-form">

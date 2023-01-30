@@ -43,7 +43,7 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
 
   return (
     <div className="login-pop-up">
-      <div className="login-card">
+      <div className="login-pop-up_card">
         <h2>Connexion</h2>
         <button type="button" onClick={closePopUp}>
           <FaSkull className="close_btn" />
@@ -54,7 +54,7 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
               type="email"
               className="email"
               name="email"
-              placeholder="Votre adresse mail"
+              placeholder="Your email address"
               onChange={(e) => {
                 setLoginDetails({ ...loginDetails, email: e.target.value });
               }}
@@ -65,7 +65,7 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
               type="password"
               className="password"
               name="password"
-              placeholder="Votre mot de passe"
+              placeholder="Your password"
               onChange={(e) =>
                 setLoginDetails({ ...loginDetails, password: e.target.value })
               }
@@ -97,12 +97,13 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
             </button>
           </label>
           <label htmlFor="redirecting">
-            <input
+            <button
               className="btn-registration"
               type="submit"
-              value="Create your account"
               onClick={navigateToRegistration}
-            />
+            >
+              Create your account
+            </button>
           </label>
         </form>
       </div>
