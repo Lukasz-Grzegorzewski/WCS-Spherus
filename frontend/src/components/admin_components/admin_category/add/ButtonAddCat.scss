@@ -6,7 +6,7 @@
 
   & .add-form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 1rem;
   }
@@ -18,7 +18,11 @@
 
 @media screen and (min-width: 600px) {
   .open-add-box {
-    width: 16.5rem;
+    max-width: 36rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
 
     & input {
       width: 169.21px;
@@ -27,9 +31,12 @@
 
     & .add-form {
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      padding: 0;
+      height: 8rem;
+      max-width: 100%;
+      gap: 0 1rem;
 
       & .submitBtn {
         margin: 0;
@@ -40,8 +47,13 @@
       }
     }
 
-    & p {
-      margin: 0;
+    & .error-message-add {
+      display: flex;
+
+      & p {
+        width: 42rem;
+        margin-left: 8.5rem;
+      }
     }
   }
 }

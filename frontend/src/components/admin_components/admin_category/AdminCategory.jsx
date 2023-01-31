@@ -58,9 +58,7 @@ function AdminCategory() {
           changeShowButtonAdd={() => changeShowButtonAdd()}
           showButtonAdd={showButtonAdd}
         />
-      </div>
 
-      <div>
         {catId === "Search category" ? (
           ""
         ) : (
