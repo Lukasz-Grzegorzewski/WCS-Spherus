@@ -12,7 +12,7 @@ function MessageErrorAdding({ setErrorMessageSend }) {
         >
           X
         </button>{" "}
-        <p>"You must select one video at least"</p>
+        <p>You must select one video at least !</p>
       </div>
     </div>
   );

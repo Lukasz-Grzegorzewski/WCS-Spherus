@@ -3,22 +3,23 @@ import PropTypes from "prop-types";
 
 function ModifyPopUp({ modifyCategory, handleModifyPopUp }) {
   return (
-    <div className="delete_popup_box">
+    <div className="delete_popup_box modify">
       <div className="popup_box">
-        Do you really want to delete this category?
+        Do you really want to modify this category?
         <div className="buttons_popup">
           <form onSubmit={modifyCategory}>
-            <button className="deleteBtn button_yes" type="submit">
+            <button className="deleteBtn open" type="submit">
               YES
             </button>
+
+            <button
+              className="deleteBtn open"
+              type="button"
+              onClick={(e) => handleModifyPopUp(e)}
+            >
+              NO
+            </button>
           </form>
-          <button
-            className="deleteBtn button_no"
-            type="button"
-            onClick={(e) => handleModifyPopUp(e)}
-          >
-            NO
-          </button>
         </div>
       </div>
     </div>

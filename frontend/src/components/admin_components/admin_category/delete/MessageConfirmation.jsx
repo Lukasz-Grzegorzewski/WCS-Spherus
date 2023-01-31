@@ -15,7 +15,7 @@ function MessageConfirmation({ setConfirmationMessageDelete, setCatId }) {
         >
           X
         </button>{" "}
-        <p>Done !</p>
+        <p>The video has been deleted !</p>
       </div>
     </div>
   );

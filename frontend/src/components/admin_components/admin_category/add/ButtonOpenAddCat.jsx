@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import ButtonAddCat from "./ButtonAddCat";
 
 function ButtonOpenAddCat({
@@ -9,19 +8,19 @@ function ButtonOpenAddCat({
 }) {
   return (
     <div className="button_open_add_cat">
+      <button
+        type="button"
+        className={showButtonAdd ? "deleteBtn close" : "deleteBtn open"}
+        onClick={changeShowButtonAdd}
+      >
+        {showButtonAdd ? "X" : "Add a new Category"}
+      </button>
       {showButtonAdd && (
         <ButtonAddCat
           getCategories={() => getCategories()}
           changeShowButtonAdd={() => changeShowButtonAdd()}
         />
       )}
-      <button
-        type="button"
-        className={showButtonAdd ? "deleteBtn close" : "deleteBtn open"}
-        onClick={changeShowButtonAdd}
-      >
-        {showButtonAdd ? "X" : "Add Category"}
-      </button>
     </div>
   );
 }

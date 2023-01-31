@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import VideoCard from "../VideoCard";
+import VideoCard from "./VideoCard";
 import MessageErrorAdding from "./MessageErrorAdding";
 
-function ShowVideos({ catId, getVideosByCategorie, setShowSelectedVideos }) {
+function ShowVideos({
+  catId,
+  getVideosByCategorie,
+  setShowSelectedVideos,
+  selectVideos,
+}) {
   const [showVids, setShowVids] = useState(false);
   const [getVideosForAdd, setGetVideosForAdd] = useState([]);
   const [showVideoCard, setShowVideoCard] = useState(null);
   const [pushArray, setPushArray] = useState([]);
   const [errorMessageSend, setErrorMessageSend] = useState(false);
+  /* const [showVideoCardCompo, set] */
 
   const getVideos = () => {
     axios
@@ -61,6 +67,11 @@ function ShowVideos({ catId, getVideosByCategorie, setShowSelectedVideos }) {
     }
   }
 
+  const filterVideos = () =>
+    getVideosForAdd.filter(
+      (item) => !selectVideos.some((video) => video.id === item.id)
+    );
+
   return (
     <div className="show-videos">
       <div className="open-all-buttons">
@@ -102,33 +113,42 @@ function ShowVideos({ catId, getVideosByCategorie, setShowSelectedVideos }) {
       {errorMessageSend && (
         <MessageErrorAdding setErrorMessageSend={() => setErrorMessageSend()} />
       )}
-      {showVids &&
-        getVideosForAdd &&
-        getVideosForAdd.map((elem) => (
-          <div
-            className="video-list-to-add"
-            key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
-          >
-            <p>{elem.title}</p>
-            <p>{elem.id}</p>
-            <button
-              type="button"
-              onClick={() => setShowVideoCard(showVideoCard ? null : elem.id)}
+
+      <div className={showVids ? "video-list-to-add" : null}>
+        {showVids &&
+          getVideosForAdd &&
+          filterVideos().map((elem) => (
+            <div
+              className="video-info"
+              key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
             >
-              Show more
-            </button>
-            {showVideoCard && showVideoCard === elem.id && (
-              <VideoCard elem={elem} />
-            )}
-            <input
-              name={elem.name}
-              type="checkbox"
-              checked={!!(pushArray.length > 0 && pushArray.includes(elem.id))}
-              onChange={() => handleCheckBox(elem.id)}
-            />
-            <label htmlFor={elem.name}>Add video</label>
-          </div>
-        ))}
+              <p>{elem.title}</p>
+              <p>{elem.id}</p>
+              <button
+                className="deleteBtn close"
+                type="button"
+                onClick={() => setShowVideoCard(showVideoCard ? null : elem.id)}
+              >
+                <p>Show more</p>
+              </button>
+              {showVideoCard && showVideoCard === elem.id && (
+                <VideoCard
+                  elem={elem}
+                  setShowVideoCard={() => setShowVideoCard(null)}
+                />
+              )}
+              <input
+                name={elem.name}
+                type="checkbox"
+                checked={
+                  !!(pushArray.length > 0 && pushArray.includes(elem.id))
+                }
+                onChange={() => handleCheckBox(elem.id)}
+              />
+              <label htmlFor={elem.name}>Add</label>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
@@ -139,4 +159,5 @@ ShowVideos.propTypes = {
   getVideosByCategorie: PropTypes.func.isRequired,
   catId: PropTypes.node.isRequired,
   setShowSelectedVideos: PropTypes.func.isRequired,
+  selectVideos: PropTypes.node.isRequired,
 };

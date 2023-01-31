@@ -42,6 +42,7 @@ function Categories({ catId, getCategories, catName, setCatId }) {
   console.warn(selectVideos);
   const numAleat = Math.floor(Math.random() * 10);
   console.warn(numAleat);
+
   return (
     <div className="videos-by-cat">
       <div className="category-class-btn">
@@ -63,6 +64,7 @@ function Categories({ catId, getCategories, catName, setCatId }) {
           setShowSelectedVideos={() =>
             setShowSelectedVideos(!showSelectedVideos)
           }
+          selectVideos={selectVideos}
         />
       </div>
 
@@ -85,7 +87,7 @@ function Categories({ catId, getCategories, catName, setCatId }) {
             />
             <p>{elem.title}</p>
             <button
-              className="delete-video-button"
+              className="deleteBtn open"
               type="button"
               onClick={() => deleteVideoFromCat(elem.id)}
             >

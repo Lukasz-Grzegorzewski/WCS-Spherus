@@ -25,7 +25,7 @@ function ButtonOpenModify({ getCategories, catId, catName }) {
         className={showButtonModify ? "deleteBtn close" : "deleteBtn open"}
         onClick={changeShowButtonModify}
       >
-        {showButtonModify ? "X" : "Modify category"}
+        {showButtonModify ? "X" : "Modify Category"}
       </button>
     </div>
   );

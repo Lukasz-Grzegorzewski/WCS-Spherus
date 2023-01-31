@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import axios from "axios";
 
-function ButtonAddCat({ getCategories, changeShowButtonAdd }) {
+function ButtonAddCat({ getCategories /* changeShowButtonAdd */ }) {
   const [addedCat, setAddedCat] = useState({ name: "" });
   const [errorMessageAdd, setErrorMessageAdd] = useState(false);
+  const [sucessMessage, setSuccessMessage] = useState(false);
   function handleSubmit(e) {
     e.preventDefault();
     if (addedCat.name.trim() !== "" && addedCat.name.length >= 3) {
@@ -15,7 +16,9 @@ function ButtonAddCat({ getCategories, changeShowButtonAdd }) {
         ) /* addedCat es un objeto, como lo que se pone en Postman para añadir un user */
         .then(() => {
           getCategories();
-          changeShowButtonAdd();
+          /* changeShowButtonAdd(); */
+          setSuccessMessage(true);
+          setErrorMessageAdd(false);
         })
         .catch((err) => console.warn(err));
     } else {
@@ -56,6 +59,9 @@ function ButtonAddCat({ getCategories, changeShowButtonAdd }) {
           <span>Add</span>
         </button>
       </form>
+      {sucessMessage === true && (
+        <p>The category {addedCat.name} has been successfully added</p>
+      )}
       {errorMessageAdd === true && (
         <p>The name cannot be empty or must have more than 3 characters</p>
       )}
@@ -67,5 +73,4 @@ export default ButtonAddCat;
 
 ButtonAddCat.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  changeShowButtonAdd: PropTypes.func.isRequired,
 };

@@ -1,5 +1,15 @@
-@media screen and (min-width: 600px) {
-  .popup_box {
-    background-color: red;
+.modify {
+  & .buttons_popup {
+    display: flex;
+    justify-content: center;
+
+    & form {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
   }
+}
+@media screen and (min-width: 600px) {
 }

@@ -1,10 +1,11 @@
 .css-13cymwt-control {
   width: 100%;
   background-color: $primary-color !important;
-  color: red !important;
 }
 .css-b62m3t-container {
-  width: 300px;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .css-1nmdiq5-menu {
@@ -16,6 +17,6 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 2rem 0;
+    margin-bottom: 1rem;
   }
 }

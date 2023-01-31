@@ -9,7 +9,7 @@ function DeletePopUp({ deleteCategory, setOpenDeletePopUp }) {
 
         <div className="buttons_popup">
           <button
-            className="deleteBtn button_no"
+            className="deleteBtn open"
             type="button"
             onClick={() => deleteCategory()}
           >
@@ -17,7 +17,7 @@ function DeletePopUp({ deleteCategory, setOpenDeletePopUp }) {
           </button>
 
           <button
-            className="deleteBtn button_no"
+            className="deleteBtn open"
             type="button"
             onClick={() => setOpenDeletePopUp(false)}
           >
