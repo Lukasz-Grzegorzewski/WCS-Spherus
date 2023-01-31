@@ -110,6 +110,7 @@ function App() {
               {userContext.isAdmin === 1 && (
                 <Route path="/admin" element={<Admin />} />
               )}
+
               <Route path="/*" element={<Page404 />} />
               <Route path="/favorite" element={<Favorite />} />
             </Routes>

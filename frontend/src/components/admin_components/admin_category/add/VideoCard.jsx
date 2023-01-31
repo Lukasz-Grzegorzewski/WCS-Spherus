@@ -2,19 +2,22 @@ import React from "react";
 import HoverVideoPlayer from "react-hover-video-player";
 import PropTypes from "prop-types";
 
-function VideoCard({ elem }) {
+function VideoCard({ elem, setShowVideoCard }) {
   const concat = `${import.meta.env.VITE_PORT_BACKEND}`;
 
+const numAleat = Math.floor(Math.random() * 10) 
+console.log(numAleat);
   return (
-    <div>
-      <div className="videocard">
+    <div className="delete_popup_box">
+      <div className="popup_box videocard">
+      <button onClick={setShowVideoCard}>X</button>
         <HoverVideoPlayer
           videoClassName="videocard_video"
           className="videocard_video"
           videoSrc={concat + elem.url}
           muted
-          playbackRangeStart={0}
-          playbackRangeEnd={6}
+          playbackRangeStart={numAleat}
+          playbackRangeEnd={numAleat + 6}
         />
 
         <div className="videocard_video_description">

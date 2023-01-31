@@ -144,7 +144,7 @@ VALUES
     'Dani',
     '1988-01-01',
     'dani@dani.com',
-    'd',
+    '$argon2id$v=19$m=65536,t=5,p=1$fN0iQfw2aYoFOrSXMU8A6Q$aX21q7guyYbk/drjbSCTd4paYussIKchl7tJS27V2fA',
     1,
     'token_5',
     '2022-12-01'

@@ -1,0 +1,47 @@
+.open-add-box {
+  max-width: 22rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  & .add-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  & p {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .open-add-box {
+    width: 16.5rem;
+
+    & input {
+      width: 169.21px;
+      height: 81, 2;
+    }
+
+    & .add-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+
+      & .submitBtn {
+        margin: 0;
+      }
+
+      & input {
+        margin-left: 20px;
+      }
+    }
+
+    & p {
+      margin: 0;
+    }
+  }
+}

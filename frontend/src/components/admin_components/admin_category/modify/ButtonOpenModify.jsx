@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ButtonModifyCat from "./ButtonModifyCat";
 
 function ButtonOpenModify({ getCategories, catId, catName }) {
+  document.activeElement?.blur();
   const [showButtonModify, setShowButtonModify] = useState(false);
 
   function changeShowButtonModify() {
@@ -11,16 +12,21 @@ function ButtonOpenModify({ getCategories, catId, catName }) {
 
   return (
     <div className="button-open-modify">
-      <button type="button" onClick={changeShowButtonModify}>
-        {showButtonModify ? "CLOSE" : "MODIFY CATEGORY"}
-      </button>
       {showButtonModify && (
         <ButtonModifyCat
           getCategories={() => getCategories()}
           catId={catId}
           catName={catName}
+          changeShowButtonModify={() => changeShowButtonModify()}
         />
       )}
+      <button
+        type="button"
+        className={showButtonModify ? "deleteBtn close" : "deleteBtn open"}
+        onClick={changeShowButtonModify}
+      >
+        {showButtonModify ? "X" : "Modify Category"}
+      </button>
     </div>
   );
 }

@@ -48,10 +48,12 @@
         outline: thick double #6bcdf4;
       }
 
+
       &[type="date"] {
         font-size: 12px;
         text-indent: 8px;
         color: rgb(108, 108, 108);
+
 
         &::-webkit-calendar-picker-indicator {
           color: rgba(0, 0, 0, 0);
