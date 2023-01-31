@@ -1,11 +1,12 @@
 //--------------App LAZY-----------------
 .App {
+  // height: 100vh;
   .loader-container {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
     position: fixed;
     background: $dt-background;
@@ -65,12 +66,28 @@
   color: $secondary-color;
   background: $lt-background;
 
+  //--------Lazy -------------
+
+  .loader-container {
+    background: $primary-color;
+
+    p {
+      color: $secondary-color;
+    }
+  }
+
   //------- Home Page---------
+
+  // Navbar
+  .btn-img-avatar {
+    box-shadow: 0 0 5px 1px $secondary-color;
+    border-radius: 20px;
+  }
 
   // Video Card
   .main {
     .videocard_video {
-      box-shadow: 0 0 5px 1px $secondary-color;
+      // box-shadow: 0 0 5px 1px $secondary-color;
 
       &_description {
         color: $primary-color;
@@ -108,6 +125,12 @@
     }
   }
 
+  // Formulaire
+
+  .form {
+    box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
   //------- Admin Page---------
 
   // Admin Advert
@@ -132,6 +155,14 @@
   .fixtures-slider {
     background-color: $fourth-color;
     box-shadow: 0 0 5px 1px $secondary-color;
+  }
+
+  .addhero_video_name_select,
+  .addhero_cat_name_select,
+  .choicehero_cat_name_select,
+  .choicehero_video_name_select {
+    background-color: $primary-color;
+    color: $secondary-color;
   }
 
   // Admin Home Page

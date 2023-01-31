@@ -10,12 +10,13 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Toggle from "./Toggle";
-import UserContext from "../../../UserContext";
+import UserContext from "../../../contexts/UserContext";
 
 function MenuBurger({
   isBurgerClicked = false,
   setIsBurgerClicked,
   handlePopUpLogIn,
+  handleRegisterPopUp,
 }) {
   const { isAdmin, userToken, id } = useContext(UserContext);
 
@@ -58,7 +59,7 @@ function MenuBurger({
     >
       {userToken && userToken.length > 0 ? (
         <div className="buttons">
-          {isAdmin && isAdmin === 1 ? (
+          {isAdmin && isAdmin === 1 && (
             <NavLink to="/admin">
               <button
                 className="btn btn-admin-panel"
@@ -70,47 +71,47 @@ function MenuBurger({
                 <FaCog className="signin-icon" /> Admin Panel
               </button>
             </NavLink>
-          ) : (
-            <div className="profile-favorites-container">
-              <NavLink to="/profile">
-                <div className="btn-profil-image-container">
-                  <button
-                    className="btn btn-profil"
-                    type="button"
-                    onClick={() => {
-                      setIsBurgerClicked(false);
-                    }}
-                  >
-                    <FaCog className="signin-icon" /> Profil
-                  </button>
-                  <img
-                    ref={inputImgAvatar}
-                    className="img-avatar-profil"
-                    src={`${
-                      import.meta.env.VITE_PORT_BACKEND
-                    }/assets/images/avatars/${id}.jpg`}
-                    alt="avatar"
-                    onError={() => {
-                      inputImgAvatar.current.src =
-                        "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
-                    }}
-                  />
-                </div>
-              </NavLink>
-
-              <NavLink to="/favorite">
+          )}
+          <div className="profile-favorites-container">
+            <NavLink to="/profile">
+              <div className="btn-profil-image-container">
                 <button
-                  className="btn btn-admin-panel"
+                  className="btn btn-profil"
                   type="button"
                   onClick={() => {
                     setIsBurgerClicked(false);
                   }}
                 >
-                  <FaRegStar className="signin-icon" /> Favorites
+                  <FaUser className="signin-icon" /> Profil
                 </button>
-              </NavLink>
-            </div>
-          )}
+                <img
+                  ref={inputImgAvatar}
+                  className="img-avatar-profil"
+                  src={`${
+                    import.meta.env.VITE_PORT_BACKEND
+                  }/assets/images/avatars/${id}.jpg`}
+                  alt="avatar"
+                  onError={() => {
+                    inputImgAvatar.current.src =
+                      "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
+                  }}
+                />
+              </div>
+            </NavLink>
+
+            <NavLink to="/favorite">
+              <button
+                className="btn btn-admin-panel"
+                type="button"
+                onClick={() => {
+                  setIsBurgerClicked(false);
+                }}
+              >
+                <FaRegStar className="signin-icon" /> Favorites
+              </button>
+            </NavLink>
+          </div>
+
           <button
             className="btn btn-logout"
             type="button"
@@ -120,7 +121,7 @@ function MenuBurger({
               window.location.reload();
             }}
           >
-            <FaPowerOff className="logout-icon" /> Logout
+            <FaPowerOff className="logout-icon" /> Log out
           </button>
         </div>
       ) : (
@@ -133,7 +134,7 @@ function MenuBurger({
               setIsBurgerClicked(false);
             }}
           >
-            <FaUser className="login-icon" /> Login
+            <FaUser className="login-icon" /> Log in
           </button>
           <NavLink to="/registration">
             <button
@@ -143,7 +144,7 @@ function MenuBurger({
                 setIsBurgerClicked(false);
               }}
             >
-              <FaUserPlus className="signin-icon" /> Signin
+              <FaUserPlus className="signin-icon" /> Sign in
             </button>
           </NavLink>
 
@@ -152,10 +153,12 @@ function MenuBurger({
               className="btn btn-why-signin"
               type="button"
               onClick={() => {
+                handleRegisterPopUp();
                 setIsBurgerClicked(false);
               }}
             >
-              <FaQuestion className="why-signin-icon" /> Why to sign in?
+              <FaQuestion className="why-signin-icon" />
+              <p>Why sign in ?</p>
             </button>
           </NavLink>
         </div>
@@ -172,4 +175,5 @@ MenuBurger.propTypes = {
   isBurgerClicked: PropTypes.bool.isRequired,
   handlePopUpLogIn: PropTypes.func.isRequired,
   setIsBurgerClicked: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };

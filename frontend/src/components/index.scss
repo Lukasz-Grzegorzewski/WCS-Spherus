@@ -1,6 +1,8 @@
 @import "./variables.scss";
 @import "./reset.scss";
 @import "./loginPopUp/loginPopUp.scss";
+@import "./recovery_password/recoveryRequest.scss";
+@import "./recovery_password/emailVerification.scss";
 @import "./footer/footer.scss";
 @import "./heroSlider/heroslider.scss";
 @import "../pages/videoPage.scss";
@@ -28,3 +30,5 @@
 @import "../components/arthour/couilliere.scss";
 @import "../components/admin_components/admin_videos/popupVideo.scss";
 @import "../components/favorite_page/favorite.scss";
+@import "../components/share/share.scss";
+@import "../components/navbar/whyregisterpopup/whyregister.scss";

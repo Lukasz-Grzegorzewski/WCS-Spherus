@@ -2,10 +2,10 @@ import React, { useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import MenuSearch from "../menus/MenuSearch";
 import Toggle from "../menus/Toggle";
-import UserContext from "../../../UserContext";
+import UserContext from "../../../contexts/UserContext";
 import MenuBurger from "../menus/MenuBurger";
 
-const navbarDesktop = ({ handlePopUpLogIn }) => {
+const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
   const [isLoopClicked, setIsLoopClicked] = useState(false);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const inputImgAvatar = useRef();
@@ -60,6 +60,7 @@ const navbarDesktop = ({ handlePopUpLogIn }) => {
           isBurgerClicked={isBurgerClicked}
           setIsBurgerClicked={() => setIsBurgerClicked()}
           handlePopUpLogIn={() => handlePopUpLogIn()}
+          handleRegisterPopUp={() => handleRegisterPopUp()}
         />
       )}
     </div>
@@ -70,4 +71,5 @@ export default navbarDesktop;
 
 navbarDesktop.propTypes = {
   handlePopUpLogIn: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };

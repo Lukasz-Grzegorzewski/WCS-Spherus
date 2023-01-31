@@ -1,43 +1,64 @@
 .login-pop-up {
   animation: soft-fade-in 0.7s ease-out;
   position: absolute;
-  top: 20%;
+  top: 12%;
 
-  @keyframes soft-fade-in {
-    0% {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .login-card {
+  &_card {
     position: relative;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(240, 240, 240);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 80vw;
-    height: 75vh;
+    height: 65vh;
     left: 10vw;
-    border-radius: 12px;
+    border-radius: 6px;
 
-    h2 {
-      text-align: center;
-      font-size: 24px;
-      padding-top: 24px;
-      color: $secondary-color;
+    .login-form {
+      input {
+        font-family: $font-text;
+        background-color: transparent !important;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 8px 0;
+        width: 90%;
+
+        &:focus {
+          background-color: transparent !important;
+          outline: none;
+        }
+      }
     }
 
-    form {
+    h4 {
+      padding-top: 24px;
+      text-align: center;
+      font-family: $font-text;
+      color: $secondary-color;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .close_btn {
+      color: $tertiary-color;
+      width: 25px;
+      height: 25px;
       position: absolute;
+      left: 93%;
+      top: 3%;
+      cursor: pointer;
+    }
+    .login-form {
+      // form {
       width: 100%;
       font-size: 16px;
       justify-content: center;
       margin-top: 50px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 6rem;
 
       label {
@@ -45,60 +66,87 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
+        width: 80%;
       }
 
-      input {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        padding: 8px 0;
-        width: 70%;
-      }
-
-      input:focus {
-        outline: none;
-      }
-
-      :nth-child(3) {
-        margin-left: 60%;
-      }
-
-      .btn-submit {
-        width: 80px;
-        border-bottom: none;
-        border-radius: 4px;
-        background-color: rgb(254, 115, 1);
-        box-shadow: rgba(0, 0, 1, 0.3) 0px 20px 25px -5px,
-          rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
-      }
-
-      .btn-submit:hover {
-        background-color: rgb(241, 162, 98);
+      h3 {
+        color: black;
       }
 
       .btn-registration {
+        opacity: 0.7;
         border-bottom: none;
-        border-radius: 12px;
-        margin-left: 10%;
+        border-radius: 24px;
+        padding-block: 12px;
+        margin-inline: 100px;
+        color: black;
+        cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
           rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+        &:hover {
+          opacity: 1;
+          animation: fadeIn 1s ease-out;
+          background-color: $button-background-login;
+          color: white;
+        }
       }
 
-      .btn-registration:hover {
-        background-color: rgb(241, 162, 98);
+      .forgotten-password {
+        font-family: $font-text;
+        font-size: 14px;
+        padding-inline: 12px;
+        color: black;
+        opacity: 0.8;
+        text-align: end;
+
+        & a {
+          font-weight: bold;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .login-pop-up {
+    top: 15vh;
+
+    &_card {
+      height: 75vh;
+      left: 25vw;
+      width: 50vw;
+
+      .forgotten-password {
+        margin-right: 32px;
       }
     }
   }
 }
 
-@media screen and (min-width: 600px) {
-  .login-pop-up {
-    top: 15vh;
+@keyframes soft-fade-in {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
 
-    .login-card {
-      width: 50vw;
-      height: 70vh;
-      left: 25vw;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    color: black;
+    opacity: 0.7;
+  }
+
+  100% {
+    color: white;
+    opacity: 1;
   }
 }

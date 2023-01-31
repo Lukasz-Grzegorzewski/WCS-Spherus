@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MenuBurger from "../menus/MenuBurger";
 import MenuSearch from "../menus/MenuSearch";
 
-function NavbarMobile({ handlePopUpLogIn }) {
+function NavbarMobile({ handlePopUpLogIn, handleRegisterPopUp }) {
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isLoopClicked, setIsLoopClicked] = useState(false);
 
@@ -37,6 +37,7 @@ function NavbarMobile({ handlePopUpLogIn }) {
         isBurgerClicked={isBurgerClicked}
         setIsBurgerClicked={() => setIsBurgerClicked()}
         handlePopUpLogIn={() => handlePopUpLogIn()}
+        handleRegisterPopUp={() => handleRegisterPopUp()}
       />
 
       <button
@@ -59,4 +60,5 @@ export default NavbarMobile;
 
 NavbarMobile.propTypes = {
   handlePopUpLogIn: PropTypes.func.isRequired,
+  handleRegisterPopUp: PropTypes.func.isRequired,
 };

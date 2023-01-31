@@ -50,7 +50,7 @@
       font-size: 20px;
       font-family: $font-display;
       transition: 0.3s ease-in-out;
-      transform: scale(1.07);
+      transform: scale(1.02);
       border-radius: 20px;
       cursor: pointer;
 
@@ -81,7 +81,7 @@
     align-items: flex-start;
     padding-left: 2%;
     gap: 40px;
-    padding-top: 6%;
+    padding-top: 1%;
 
     &_menu {
       width: 25%;

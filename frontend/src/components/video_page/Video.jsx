@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { CiLock } from "react-icons/ci";
-// import Section from "@components/section/Section";
+import UserContext from "../../contexts/UserContext";
 
 function Video({
   // arrCatId,
@@ -16,6 +16,8 @@ function Video({
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
+
+  const { userToken } = useContext(UserContext);
 
   const refVideo = useRef();
   const url = `${import.meta.env.VITE_PORT_BACKEND}${videoUrl}`;
@@ -51,7 +53,7 @@ function Video({
         onFocus={handleMouseOver}
         onBlur={handleMouseOver}
       >
-        {display === 1 ? (
+        {userToken || display === 1 ? (
           <video
             ref={refVideo}
             onPlay={handleOnPlay}
@@ -75,26 +77,24 @@ function Video({
         {(isHovering || isPlaying || isPausing) && (
           <div className="info-video">
             <p className="video-title">{title}</p>
-            <p className="video-desc">{description}</p>
+            <p className="video-date">Date : {date}</p>
             <div className="video-categories-container">
               Category :
-              {arrCatName?.map((item) => {
+              {arrCatName?.map((item, index) => {
                 return (
                   <p key={item} className="video-category">
-                    {item},
+                    {item} {arrCatName.length !== index + 1 ? "," : ""}
                   </p>
                 );
               })}
             </div>
-
-            <p className="video-date">Date : {date}</p>
           </div>
         )}
       </div>
       {/* END VIDEO */}
       {/* DESCRIPTION */}
       <div className="description">
-        {display === 0 && (
+        {!userToken && display === 0 && (
           <div className="lock-container">
             <CiLock className="lock-icon" />
             <p className="lock-desc">
@@ -107,9 +107,8 @@ function Video({
         )}
         <div className="info_container">
           <hr />
-          <h1 className="info">Description</h1>
           <p className="info-video-title">{title}</p>
-          <p className="info-video-desc">{description}</p>
+          <p className="video-date">Date : {date}</p>
           <div className="info-video-categories-container">
             Category :
             {arrCatName?.map((item) => {
@@ -120,14 +119,8 @@ function Video({
               );
             })}
           </div>
-          <p className="p-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            finibus volutpat nisi eu rhoncus. Ut venenatis vitae velit sed
-            vulputate. Etiam pharetra erat massa,vitae tempor erat varius id.
-            Praesent non dui ermentum, viverra felis vel, consectetur nulla.
-            Donec sodales eros at lorem aliquam, id vehicula nulla aliquam. Sed
-            faucibus.
-          </p>
+          <h1 className="info">Description</h1>
+          <p className="p-desc">{description}</p>
           <hr />
         </div>
       </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategorySugestions from "@components/video_page/CategorySugestions";
+import Share from "@components/share/Share";
 import Video from "../components/video_page/Video";
 
 function VideoPage() {
@@ -40,7 +41,7 @@ function VideoPage() {
 
   useEffect(() => {
     getVideo(id);
-  }, []);
+  }, [id]);
   return (
     <div className="video-container">
       {video && arrCatId && arrCatName && (
@@ -54,6 +55,7 @@ function VideoPage() {
             display={video.display}
             videoUrl={video.url}
           />
+          <Share title={video.title} />
           <div className="section-container">
             <CategorySugestions arrCatId={arrCatId} vidName={video.title} />
           </div>

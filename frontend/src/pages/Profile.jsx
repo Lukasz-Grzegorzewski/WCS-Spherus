@@ -1,12 +1,13 @@
 import UpdateUserByUser from "@components/profile/UpdateUserByUser";
 import PropTypes from "prop-types";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
+import UserContext from "../contexts/UserContext";
 
-function Profile({ id }) {
+function Profile({ mode, iduser }) {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -15,24 +16,38 @@ function Profile({ id }) {
   const [birthdayUpdate, setBirthdayUpdate] = useState(false);
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
+  const { id } = useContext(UserContext);
   // const [refresh, setRefresh] = useState(false);
 
   function getUser() {
-    axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => console.error(err));
+    if (mode === 1) {
+      axios
+        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => console.error(err));
+    } else if (mode === 0) {
+      axios
+        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   useEffect(() => {
     getUser();
   }, [
     // refresh,
-    id,
+    iduser,
     // user
   ]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className="profile-conatainer">
@@ -253,5 +268,6 @@ function Profile({ id }) {
 export default Profile;
 
 Profile.propTypes = {
-  id: PropTypes.number.isRequired,
+  iduser: PropTypes.number.isRequired,
+  mode: PropTypes.number.isRequired,
 };
