@@ -58,13 +58,15 @@ function ButtonAddCat({ getCategories /* changeShowButtonAdd */ }) {
 
           <span>Add</span>
         </button>
+        {sucessMessage === true && (
+          <p>The category {addedCat.name} has been successfully added</p>
+        )}
+        {errorMessageAdd === true && (
+          <div className="error-message-add">
+            <p>The name cannot be empty or must have more than 3 characters</p>
+          </div>
+        )}
       </form>
-      {sucessMessage === true && (
-        <p>The category {addedCat.name} has been successfully added</p>
-      )}
-      {errorMessageAdd === true && (
-        <p>The name cannot be empty or must have more than 3 characters</p>
-      )}
     </div>
   );
 }
