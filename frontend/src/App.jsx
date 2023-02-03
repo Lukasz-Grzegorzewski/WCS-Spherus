@@ -36,7 +36,7 @@ const ResetPassword = lazy(() =>
 );
 const Favorite = lazy(() => import("./components/favorite_page/Favorite"));
 const WhyRegister = lazy(() =>
-  import("@components/navbar/whyregisterpopup/WhyRegister")
+  import("./components/navbar/whyregisterpopup/WhyRegister")
 );
 
 function App() {

@@ -147,7 +147,7 @@ function RegisterForm() {
         ) : (
           <h3>...</h3>
         )}
-        <button className="submitBtn" type="submit">
+        <button className="submitBtn registerForm" type="submit">
           <div className="svg-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"

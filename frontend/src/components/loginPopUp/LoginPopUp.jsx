@@ -96,7 +96,7 @@ function LoginPopUp({ setUserContext, setControlPopUpLogIn }) {
               <span>Submit</span>
             </button>
           </label>
-          <label htmlFor="redirecting">
+          <label className="btn-registration-label" htmlFor="redirecting">
             <button
               className="btn-registration"
               type="submit"
