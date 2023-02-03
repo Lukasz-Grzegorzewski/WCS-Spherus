@@ -1,0 +1,22 @@
+.css-13cymwt-control {
+  width: 100%;
+  background-color: $primary-color !important;
+}
+.css-b62m3t-container {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.css-1nmdiq5-menu {
+  color: black !important;
+}
+
+.videos-by-cat {
+  & .category-class-btn {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+}

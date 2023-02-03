@@ -3,19 +3,24 @@ import PropTypes from "prop-types";
 
 function ModifyPopUp({ modifyCategory, handleModifyPopUp }) {
   return (
-    <div className="delete-popup-box">
-      <div className="popup-box">
-        Do you really want to delete this category?
-        <form onSubmit={modifyCategory}>
-          <input type="submit" value="YES" />
-        </form>
-        <button
-          className="button-no"
-          type="button"
-          onClick={(e) => handleModifyPopUp(e)}
-        >
-          NO
-        </button>
+    <div className="delete_popup_box modify">
+      <div className="popup_box">
+        Do you really want to modify this category?
+        <div className="buttons_popup">
+          <form onSubmit={modifyCategory}>
+            <button className="deleteBtn open" type="submit">
+              YES
+            </button>
+
+            <button
+              className="deleteBtn open"
+              type="button"
+              onClick={(e) => handleModifyPopUp(e)}
+            >
+              NO
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
