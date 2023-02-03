@@ -9,6 +9,7 @@ import {
   FaPowerOff,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import Toggle from "./Toggle";
 import UserContext from "../../../contexts/UserContext";
 
@@ -21,7 +22,22 @@ function MenuBurger({
   const { isAdmin, userToken, id } = useContext(UserContext);
 
   const [size, setSize] = useState(false);
+  const [user, setUser] = useState(null);
+
   const inputImgAvatar = useRef();
+
+  function getUser() {
+    axios
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -84,18 +100,18 @@ function MenuBurger({
                 >
                   <FaUser className="signin-icon" /> Profil
                 </button>
-                <img
-                  ref={inputImgAvatar}
-                  className="img-avatar-profil"
-                  src={`${
-                    import.meta.env.VITE_PORT_BACKEND
-                  }/assets/images/avatars/${id}.jpg`}
-                  alt="avatar"
-                  onError={() => {
-                    inputImgAvatar.current.src =
-                      "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
-                  }}
-                />
+                {user && (
+                  <img
+                    ref={inputImgAvatar}
+                    className="img-avatar-profil"
+                    src={`${import.meta.env.VITE_PORT_BACKEND}/${user.url}`}
+                    alt="avatar"
+                    onError={() => {
+                      inputImgAvatar.current.src =
+                        "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
+                    }}
+                  />
+                )}
               </div>
             </NavLink>
 
