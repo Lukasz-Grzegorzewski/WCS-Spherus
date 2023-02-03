@@ -1,5 +1,5 @@
 .registration-page {
-  padding-block: 100px;
+  padding-block: 70px;
   ._form {
     display: flex;
     justify-content: center;
@@ -12,21 +12,9 @@
     margin-block: 32px;
     margin-inline: auto;
     gap: 24px;
-    height: calc(100vh - 190px);
+    height: calc(100vh - 160px);
     box-shadow: 0 0 5px 1px $primary-color;
-    margin-top: 15%;
-
-    //  .form {
-    //    display: flex;
-    //    justify-content: center;
-    //    flex-direction: column;
-    //    align-items: center;
-    //    width: 90%;
-    //    max-width: 800px;
-    //    border-radius: 20px;
-    //    margin-inline: auto;
-    //    gap: 24px;
-    //    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: 2%;
 
     h1 {
       font-size: 32px;
@@ -64,16 +52,10 @@
           border-width: thin;
         }
       }
+    }
 
-      @keyframes fade {
-        0% {
-          outline: none;
-        }
-
-        100% {
-          outline: thick double #6bcdf4;
-        }
-      }
+    .submitBtn.registerForm {
+      padding-block: 16px;
     }
 
     h3 {
@@ -86,25 +68,29 @@
       border-radius: 20px;
       border: 1px solid rgb(255, 8, 8);
     }
-
-    @keyframes border-fade-in {
-      0% {
-        box-shadow: 0 0 10px rgb(179, 0, 0);
-      }
-
-      50% {
-        box-shadow: 0 0 3px rgb(179, 0, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 10px rgb(179, 0, 0);
-      }
-    }
   }
 }
 
-@media screen and (min-width: 600px) {
-  .form {
-    margin-top: 2%;
+@keyframes fade {
+  0% {
+    outline: none;
+  }
+
+  100% {
+    outline: thick double #6bcdf4;
+  }
+}
+
+@keyframes border-fade-in {
+  0% {
+    box-shadow: 0 0 10px rgb(179, 0, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 3px rgb(179, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgb(179, 0, 0);
   }
 }
