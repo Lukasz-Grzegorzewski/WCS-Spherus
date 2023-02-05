@@ -1,10 +1,10 @@
 import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import axios from "axios";
 import UserContext from "./contexts/UserContext";
 import ThemeContext from "./contexts/ThemeContext";
-
-// const Profile = lazy(() => import("@pages/Profile"));
+import AvatarUrlContext from "./contexts/AvatarUrlContext";
 
 const Home = lazy(() => import("./pages/Home"));
 const Policy = lazy(() =>
@@ -69,6 +69,28 @@ function App() {
       setUserContext(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
+  /* Avatar Context START */
+  const [avatarUrlContext, setAvatarUrlContext] = useState(null);
+  const avatarUrlControlObject = useMemo(() => {
+    return { avatarUrlContext, setAvatarUrlContext };
+  }, [avatarUrlContext]);
+
+  function getUser(tokeuUserId) {
+    axios
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${tokeuUserId}`)
+      .then((res) => {
+        setAvatarUrlContext(res.data.url);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const tokeuUserId = JSON.parse(localStorage.getItem("token")).id;
+      getUser(tokeuUserId);
+    }
+  }, []);
+  /* Avatar Context END */
 
   return (
     <div className={!themeToggle ? "App dark-theme" : "App light-theme"}>
@@ -82,38 +104,43 @@ function App() {
       >
         <ThemeContext.Provider value={themeControlObject}>
           <UserContext.Provider value={userContext}>
-            <Navbar
-              handlePopUpLogIn={() => {
-                handlePopUpLogIn();
-              }}
-              handleRegisterPopUp={() => {
-                handleRegisterPopUp();
-              }}
-            />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/policy" element={<Policy />} />
-              <Route path="/cookies" element={<Cookies />} />
-              <Route path="/termsofservices" element={<TermsOfServices />} />
-              <Route path="/categories/:id" element={<CategoryPage />} />
-              <Route path="/registration" element={<RegisterForm />} />
-              <Route path="/videos/:id" element={<VideoPage />} />
-              <Route path="/forgot" element={<RecoveryRequest />} />
-              <Route
-                path="/recoveryrequest/:id"
-                element={<EmailVerification />}
+            <AvatarUrlContext.Provider value={avatarUrlControlObject}>
+              <Navbar
+                handlePopUpLogIn={() => {
+                  handlePopUpLogIn();
+                }}
+                handleRegisterPopUp={() => {
+                  handleRegisterPopUp();
+                }}
               />
-              <Route path="/reset" element={<ResetPassword />} />
-              {userContext.id !== "" && (
-                <Route path="/profile" element={<Profile mode={0} />} />
-              )}
-              {userContext.isAdmin === 1 && (
-                <Route path="/admin" element={<Admin />} />
-              )}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/policy" element={<Policy />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/termsofservices" element={<TermsOfServices />} />
+                <Route path="/categories/:id" element={<CategoryPage />} />
+                <Route path="/registration" element={<RegisterForm />} />
+                <Route path="/videos/:id" element={<VideoPage />} />
+                <Route path="/forgot" element={<RecoveryRequest />} />
+                <Route
+                  path="/recoveryrequest/:id"
+                  element={<EmailVerification />}
+                />
+                <Route path="/reset" element={<ResetPassword />} />
+                {userContext.id !== "" && (
+                  <Route
+                    path="/profile"
+                    element={<Profile iduser={userContext.id} />}
+                  />
+                )}
+                {userContext.isAdmin === 1 && (
+                  <Route path="/admin" element={<Admin />} />
+                )}
 
-              <Route path="/*" element={<Page404 />} />
-              <Route path="/favorite" element={<Favorite />} />
-            </Routes>
+                <Route path="/*" element={<Page404 />} />
+                <Route path="/favorite" element={<Favorite />} />
+              </Routes>
+            </AvatarUrlContext.Provider>
           </UserContext.Provider>
         </ThemeContext.Provider>
         <Footer />

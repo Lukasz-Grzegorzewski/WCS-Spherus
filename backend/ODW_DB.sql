@@ -103,20 +103,22 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO
-  `origins_digital_wcs`.`user` (firstname, lastname, nickname, birthday, email, password, is_admin, token, token_start)
+  `origins_digital_wcs`.`user` (url, firstname, lastname, nickname, birthday, email, password, is_admin, token, token_start)
 VALUES
   (
-    'L',
-    'G',
+    'assets/images/avatars/1.jpg',
+    'Lukasz',
+    'Grzegorzewski',
     'Lukas',
     '1985-07-23',
-    'grzegorzewski.luk@gmail.com',
-    '$argon2id$v=19$m=65536,t=5,p=1$qeE+HvJbSo4pQezAkdFXfw$u8dUQqXUumdgJ9Loiv4s8KgHncDexReEBmV+mSF6Fdg',
+    'luk@luk.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$uW0X1qEJWD7M48wIXnTKkA$knaEsBupxN1oCyoyM3SEwCoaHc2D3Bwj6ySQPH72wo4',
     1,
     'token_1',
     '2022-12-01'
   ),
   (
+    'assets/images/avatars/2.jpg',
     'N',
     'M',
     'Nico',
@@ -128,6 +130,7 @@ VALUES
     '2022-12-01'
   ),
   (
+    'assets/images/avatars/3.jpg',
     'E',
     'C',
     'Ed',
@@ -139,6 +142,7 @@ VALUES
     '2022-12-01'
   ),
   (
+    'assets/images/avatars/4.jpg',
     'D',
     'G',
     'Dani',
@@ -146,18 +150,19 @@ VALUES
     'dani@dani.com',
     '$argon2id$v=19$m=65536,t=5,p=1$fN0iQfw2aYoFOrSXMU8A6Q$aX21q7guyYbk/drjbSCTd4paYussIKchl7tJS27V2fA',
     1,
-    'token_5',
+    'token_4',
     '2022-12-01'
   ),
   (
-    'jonathan',
-    'scattolini',
+    'assets/images/avatars/5.jpg',
+    'Jonathan',
+    'Scattolini',
     'Megakrash',
     '1980-02-02',
     'jscattolini@gmail.com',
     '$argon2id$v=19$m=65536,t=5,p=1$vN99MwcsPZrazM1lAen+0g$mI4VIGHa/kT/4ShiAyCp0OZF853+N+bTUAdHDN86mic',
     1,
-    'token_6',
+    'token_5',
     '2022-12-01'
   );
 

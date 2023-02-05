@@ -7,7 +7,7 @@ import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
 import UserContext from "../contexts/UserContext";
 
-function Profile({ mode, iduser }) {
+function Profile({ iduser }) {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -17,33 +17,19 @@ function Profile({ mode, iduser }) {
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
   const { id } = useContext(UserContext);
-  // const [refresh, setRefresh] = useState(false);
 
   function getUser() {
-    if (mode === 1) {
-      axios
-        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
-        .then((res) => {
-          setUser(res.data);
-        })
-        .catch((err) => console.error(err));
-    } else if (mode === 0) {
-      axios
-        .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
-        .then((res) => {
-          setUser(res.data);
-        })
-        .catch((err) => console.error(err));
-    }
+    axios
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
   }
 
   useEffect(() => {
     getUser();
-  }, [
-    // refresh,
-    iduser,
-    // user
-  ]);
+  }, [iduser]);
 
   useEffect(() => {
     getUser();
@@ -52,13 +38,10 @@ function Profile({ mode, iduser }) {
   return (
     <div className="profile-conatainer">
       {user && (
-        // && refresh !== undefined
         <div>
           <Avatar
-            id={id}
+            id={iduser}
             getUser={() => getUser()}
-            // refresh={refresh}
-            // setRefresh={setRefresh}
             photoSrc={
               user.url
                 ? `${import.meta.env.VITE_PORT_BACKEND}/${user.url}`
@@ -91,8 +74,6 @@ function Profile({ mode, iduser }) {
                   keyName="firstname"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setFirstnameUpdate}
                 />
               )}
@@ -123,8 +104,6 @@ function Profile({ mode, iduser }) {
                   keyName="lastname"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setLastnameUpdate}
                 />
               )}
@@ -155,8 +134,6 @@ function Profile({ mode, iduser }) {
                   keyName="nickname"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setNicknameUpdate}
                 />
               )}
@@ -187,8 +164,6 @@ function Profile({ mode, iduser }) {
                   keyName="birthday"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setBirthdayUpdate}
                 />
               )}
@@ -219,8 +194,6 @@ function Profile({ mode, iduser }) {
                   keyName="email"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setEmailUpdate}
                 />
               )}
@@ -251,8 +224,6 @@ function Profile({ mode, iduser }) {
                   keyName="password"
                   id={id}
                   getUser={() => getUser()}
-                  // refresh={refresh}
-                  // setRefresh={setRefresh}
                   closeUpdateInput={setPasswordUpdate}
                 />
               )}
@@ -269,5 +240,4 @@ export default Profile;
 
 Profile.propTypes = {
   iduser: PropTypes.number.isRequired,
-  mode: PropTypes.number.isRequired,
 };

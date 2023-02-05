@@ -39,8 +39,8 @@ const storageAvatar = multer.diskStorage({
     cb(null, "./public/assets/images/avatars");
   },
   filename: (req, file, cb) => {
-    // const date = new Date().getTime();
-    req.body.filename = `${req.body.id}.jpg`;
+    // const date = Date.now();
+    req.body.filename = `${req.body.id + req.body.dateCreation}.jpg`;
     cb(null, req.body.filename.toString());
   },
 });

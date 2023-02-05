@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import AvatarEditor from "react-avatar-editor";
-
 import axios from "axios";
+import AvatarUrlContext from "../../contexts/AvatarUrlContext";
 
 function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
   const [data, setData] = useState(null);
@@ -12,6 +12,8 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
   const [fileUploadErrors, setFileUploadErrors] = useState([]);
   const [urlIn, setUrlIn] = useState([]);
   const [inputChooseToggle, setInputChooseToggle] = useState(false);
+
+  const { setAvatarUrlContext } = useContext(AvatarUrlContext);
 
   const inputRef = useRef();
 
@@ -56,9 +58,11 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
       n -= 1;
       u8arr[n] = bstr.charCodeAt(n);
     }
+    const datecreation = Date.now();
     const file = new File([u8arr], `${id}.jpg`, { type: mime });
     const formD = new FormData();
     formD.append("id", id);
+    formD.append("dateCreation", datecreation);
     formD.append("file", file);
 
     axios
@@ -66,6 +70,7 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
       .then((response) => {
         setCardToggle(false);
         getUser();
+        setAvatarUrlContext(() => response.data.avatarUrlRes);
         console.warn("POSTED OK! :", response.data);
       })
       .catch((err) => {
@@ -98,7 +103,6 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
             onChange={(e) => {
               profilePicChange(e);
               setInputChooseToggle(!inputChooseToggle);
-              // onCrop();
             }}
           />
         )}
@@ -121,7 +125,6 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
             <div className="range-container">
               <input
                 className="range"
-                // style={{ width: "90%" }}
                 type="range"
                 value={scaleValue}
                 name="points"
@@ -131,12 +134,6 @@ function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
                 onChange={(e) => onScaleChange(e)}
               />
             </div>
-            {/* <button
-              onClick={() => onCrop()}
-              className="editorOverlayCloseBtn crpBtn"
-            >
-              Save
-            </button> */}
           </div>
         )}
       </div>

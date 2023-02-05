@@ -31,7 +31,6 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  //   align-items: flex-start;
   align-items: center;
   gap: 20px;
   font-size: 2rem;
@@ -54,10 +53,6 @@
       box-shadow: inset 0 0 10px 4px $tertiary-color;
       scale: 1.2;
     }
-
-    //   .label-users-admins:has(.input:checked) .pen {
-    //     color: $tertiary-color;
-    //   }
   }
 
   .input-search {

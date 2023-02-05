@@ -9,8 +9,6 @@ function DeleteUser({ id }) {
   const { isAdmin } = useContext(UserContext);
 
   function handleDelete() {
-    // const answer = window.confirm("Are you sure?");
-    // if (answer) {
     axios
       .delete(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
       .then(() => {
@@ -18,9 +16,6 @@ function DeleteUser({ id }) {
         if (isAdmin === 0) navigate("/registration");
       })
       .catch((err) => console.error("DELETE ERROR : ", err));
-    // } else {
-    //   window.alert("Ok. Deletion canceled.");
-    // }
   }
 
   return (

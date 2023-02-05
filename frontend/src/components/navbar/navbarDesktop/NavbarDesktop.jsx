@@ -4,6 +4,7 @@ import axios from "axios";
 import MenuSearch from "../menus/MenuSearch";
 import Toggle from "../menus/Toggle";
 import UserContext from "../../../contexts/UserContext";
+import AvatarUrlContext from "../../../contexts/AvatarUrlContext";
 import MenuBurger from "../menus/MenuBurger";
 
 const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
@@ -13,6 +14,7 @@ const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
   const inputImgAvatar = useRef();
 
   const { id } = useContext(UserContext);
+  const { avatarUrlContext } = useContext(AvatarUrlContext);
 
   function getUser() {
     axios
@@ -26,6 +28,10 @@ const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
   useEffect(() => {
     getUser();
   }, []);
+
+  useEffect(() => {
+    getUser();
+  }, [avatarUrlContext]);
 
   return (
     <div className="navbar-desktop">

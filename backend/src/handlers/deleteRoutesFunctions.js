@@ -19,28 +19,40 @@ const deleteUserById = (req, res) => {
 
 const deleteAvatarByUserId = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const urlAvatar = `public/assets/images/avatars/${id}.jpg`;
+
   database
-    .query("Update user SET url = NULL WHERE id = ?", [id])
-    .then(() => {
-      try {
-        if (fs.existsSync(urlAvatar)) {
-          fs.unlink(urlAvatar, (err) => {
-            if (err) {
-              console.error(err);
+    .query("SELECT url FROM user WHERE id = ?", [id])
+    .then(([url]) => {
+      const urlAvatar = url[0].url;
+      if (urlAvatar === null)
+        res.status(404).send({ message: "url NOT FOUND" });
+
+      database
+        .query("Update user SET url = NULL WHERE id = ?", [id])
+        .then(() => {
+          try {
+            if (fs.existsSync(`public/${urlAvatar}`)) {
+              fs.unlink(`public/${urlAvatar}`, (err) => {
+                if (err) {
+                  console.error(err);
+                }
+              });
+              res.sendStatus(204);
+            } else {
+              console.warn("file doesn't exists!");
             }
-          });
-          res.sendStatus(204);
-        } else {
-          console.warn("file doesn't exists!");
-        }
-      } catch (err) {
-        console.error(err);
-      }
+          } catch (err) {
+            console.error(err);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error deleting user");
+        });
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error deleting user");
+      res.status(500).send("Error getting user's url");
     });
 };
 

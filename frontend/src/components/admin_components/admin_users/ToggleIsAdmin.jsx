@@ -2,11 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-function ToggleIsAdmin({
-  id,
-  // refresh,
-  // setRefresh
-}) {
+function ToggleIsAdmin({ id }) {
   const [isChecked, setIsChecked] = useState(false);
 
   function getUserById(uid) {
@@ -24,7 +20,6 @@ function ToggleIsAdmin({
         isAdmin: isChecked ? 0 : 1,
       })
       .then(() => {
-        // setRefresh(!refresh);
         getUserById(id);
         console.warn("user updated");
       })
@@ -33,10 +28,7 @@ function ToggleIsAdmin({
 
   useEffect(() => {
     getUserById(id);
-  }, [
-    id,
-    // refresh
-  ]);
+  }, [id]);
 
   return (
     <div className="toggle-is-admin-container">
@@ -58,6 +50,4 @@ export default ToggleIsAdmin;
 
 ToggleIsAdmin.propTypes = {
   id: PropTypes.number.isRequired,
-  // refresh: PropTypes.bool.isRequired,
-  // setRefresh: PropTypes.func.isRequired,
 };

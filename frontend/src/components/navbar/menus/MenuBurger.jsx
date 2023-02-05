@@ -25,6 +25,7 @@ function MenuBurger({
   const [user, setUser] = useState(null);
 
   const inputImgAvatar = useRef();
+  const refBurgerContainer = useRef();
 
   function getUser() {
     axios
@@ -54,26 +55,14 @@ function MenuBurger({
     }
   }, [window.innerWidth]);
 
-  // document.body.addEventListener("click", (e) => {
-  //   setIsBurgerClicked(false);
-  //   if (isBurgerClicked) {
-  //     const menuB = document.querySelector(".menu-burger");
-  //     console.log("isBurgerClicked :", isBurgerClicked);
-  //     if (!menuB.contains(e.target)) {
-  //       // Your code here
-  //       setIsBurgerClicked(false);
-  //     }
-  //   }
-  // });
-  // useEffect(() => {}, [isBurgerClicked]);
-
   return (
     <div
+      ref={refBurgerContainer}
       className={
         isBurgerClicked ? "menu-burger active" : "menu-burger inactive"
       }
     >
-      {userToken && userToken.length > 0 ? (
+      {user && userToken && userToken.length > 0 ? (
         <div className="buttons">
           {isAdmin && isAdmin === 1 && (
             <NavLink to="/admin">
