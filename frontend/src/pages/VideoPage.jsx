@@ -28,12 +28,10 @@ function VideoPage() {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/cat/${idArg}`)
       .then((res) => {
-        // console.warn("result", res.data);
         setVideo(res.data[0]);
         return res.data;
       })
       .then((result) => {
-        // console.warn("result2", result);
         getArrayOfCategoriesByVideoId(result);
       })
       .catch((err) => console.error(err));
@@ -47,7 +45,6 @@ function VideoPage() {
       {video && arrCatId && arrCatName && (
         <div>
           <Video
-            // arrCatId={arrCatId}
             title={video.title}
             description={video.description}
             arrCatName={arrCatName}

@@ -38,7 +38,7 @@ function MenuSearch({ setIsLoopClicked }) {
         placeholder="Search video by name"
         onChange={(e) => setQuery(e.target.value)}
       />
-      {videos.length > 0 && query.length > 0 && (
+      {videos.length > 0 && (
         <div className="videos-list">
           {videos
             .filter((video) =>
@@ -48,7 +48,7 @@ function MenuSearch({ setIsLoopClicked }) {
             .map((video) => {
               return (
                 <NavLink key={video.id} to={`/videos/${video.id}`} onClick>
-                  {video.title}
+                  <p className="video-in-list">{video.title}</p>
                 </NavLink>
               );
             })}

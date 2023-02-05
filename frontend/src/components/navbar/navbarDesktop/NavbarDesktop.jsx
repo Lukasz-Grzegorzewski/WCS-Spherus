@@ -1,16 +1,37 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import MenuSearch from "../menus/MenuSearch";
 import Toggle from "../menus/Toggle";
 import UserContext from "../../../contexts/UserContext";
+import AvatarUrlContext from "../../../contexts/AvatarUrlContext";
 import MenuBurger from "../menus/MenuBurger";
 
 const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
   const [isLoopClicked, setIsLoopClicked] = useState(false);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
+  const [user, setUser] = useState(null);
   const inputImgAvatar = useRef();
 
   const { id } = useContext(UserContext);
+  const { avatarUrlContext } = useContext(AvatarUrlContext);
+
+  function getUser() {
+    axios
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    getUser();
+  }, [avatarUrlContext]);
 
   return (
     <div className="navbar-desktop">
@@ -42,18 +63,18 @@ const navbarDesktop = ({ handlePopUpLogIn, handleRegisterPopUp }) => {
         type="button"
         onClick={() => setIsBurgerClicked(!isBurgerClicked)}
       >
-        <img
-          ref={inputImgAvatar}
-          className="img-avatar-profil"
-          src={`${
-            import.meta.env.VITE_PORT_BACKEND
-          }/assets/images/avatars/${id}.jpg`}
-          alt="avatar"
-          onError={() => {
-            inputImgAvatar.current.src =
-              "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
-          }}
-        />
+        {user && (
+          <img
+            ref={inputImgAvatar}
+            className="img-avatar-profil"
+            src={`${import.meta.env.VITE_PORT_BACKEND}/${user.url}`}
+            alt="avatar"
+            onError={() => {
+              inputImgAvatar.current.src =
+                "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg";
+            }}
+          />
+        )}
       </button>
       {isBurgerClicked && (
         <MenuBurger

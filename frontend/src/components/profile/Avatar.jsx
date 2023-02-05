@@ -21,12 +21,12 @@ function Avatar({
     pointToScroll.scrollIntoView();
   }
 
-  async function handleSetUrl() {
-    await setUrl(photoSrc);
+  function handleSetUrl() {
+    setUrl(photoSrc);
   }
   useEffect(() => {
     handleSetUrl();
-  }, [photoSrc, cardToggle, setUrl]);
+  }, [photoSrc, cardToggle]);
 
   return (
     <div className="img-profile-container">
@@ -56,7 +56,5 @@ export default Avatar;
 Avatar.propTypes = {
   photoSrc: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  // refresh: PropTypes.bool.isRequired,
-  // setRefresh: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
 };

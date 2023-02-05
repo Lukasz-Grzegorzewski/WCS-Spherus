@@ -4,15 +4,7 @@ import { NavLink } from "react-router-dom";
 import { CiLock } from "react-icons/ci";
 import UserContext from "../../contexts/UserContext";
 
-function Video({
-  // arrCatId,
-  title,
-  description,
-  arrCatName,
-  date,
-  display,
-  videoUrl,
-}) {
+function Video({ title, description, arrCatName, date, display, videoUrl }) {
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
@@ -132,7 +124,6 @@ function Video({
 export default Video;
 
 Video.propTypes = {
-  // arrCatId: PropTypes.arrayOf(PropTypes.number).isRequired,
   arrCatName: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

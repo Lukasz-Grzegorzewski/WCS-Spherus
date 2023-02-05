@@ -136,8 +136,6 @@
     }
 
     .choose-file-container {
-      // width: 90%;
-      // margin: 10px auto;
       border-radius: 20px;
       display: flex;
       justify-content: center;
@@ -155,7 +153,6 @@
         .cropCanvas {
           display: flex;
           justify-content: center;
-          // width: 50vw !important;
         }
       }
       .range-container {
@@ -164,7 +161,6 @@
         .range {
           width: 60vw;
           margin: 0 auto;
-          // margin: 0 auto;
         }
       }
     }
