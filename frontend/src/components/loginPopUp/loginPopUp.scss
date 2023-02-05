@@ -3,18 +3,7 @@
   position: absolute;
   top: 12%;
 
-  @keyframes soft-fade-in {
-    0% {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .login-card {
+  &_card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -22,34 +11,25 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 80vw;
-    height: 80vh;
+    height: 65vh;
     left: 10vw;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     .login-form {
       input {
-        background: none;
+        font-family: $font-text;
+        background-color: transparent !important;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 8px 0;
+        width: 90%;
+
+        &:focus {
+          background-color: transparent !important;
+          outline: none;
+        }
       }
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 24px;
-      font-family: $font-text;
-      padding-top: 24px;
-      color: $secondary-color;
-      font-family: $font-text;
-    }
-
-    h3 {
-      text-align: center;
-      font-size: 18px;
-      font-family: $font-text;
-      padding-top: 24px;
-      color: $secondary-color;
     }
 
     h4 {
@@ -59,132 +39,6 @@
       color: $secondary-color;
       font-size: 16px;
       opacity: 0.8;
-    }
-
-    .code-form {
-      position: absolute;
-      width: 100%;
-      font-size: 16px;
-      justify-content: center;
-      margin-top: 50px;
-      gap: 2rem;
-
-      ._numbers {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-
-        .code-input {
-          text-align: center;
-          font-family: $font-text;
-          font-size: 40px;
-          height: 100px;
-          width: 50px;
-          border: 0;
-          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-          border-radius: 12px;
-
-          &:focus {
-            border: none;
-          }
-        }
-      }
-
-      ._password-validation {
-        margin-top: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-
-        p {
-          padding-top: 24px;
-          padding-inline: 24px;
-          color: black;
-          font-size: 28px;
-          font-family: $font-text;
-          text-align: center;
-          opacity: 0.9;
-        }
-
-        input {
-          font-size: 16px;
-          border: 1px solid rgba(56, 56, 56, 0.5);
-          padding: 12px;
-          width: 40vw;
-          border-radius: 12px;
-        }
-      }
-
-      ._resend {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 32px;
-        opacity: 0.9;
-
-        p {
-          color: black;
-          font-size: 16px;
-          font-family: $font-text;
-        }
-
-        button {
-          background: none;
-          font-family: $font-text;
-        }
-      }
-
-      ._unvalidate {
-        display: flex;
-        justify-content: center;
-        margin-top: 24px;
-
-        input[type="button"] {
-          pointer-events: none;
-          padding-block: 24px;
-          font-family: $font-text;
-          min-width: 100px;
-          width: 20vw;
-          font-size: $font-text;
-          font-size: 16px;
-          background: linear-gradient(to bottom, #8e817c 5%, #413836 100%);
-          background-color: #685e5b;
-          color: #ffffff;
-          border-radius: 3px;
-          text-shadow: 0px 1px 0px #854629;
-        }
-      }
-
-      ._validate {
-        display: flex;
-        justify-content: center;
-        margin-top: 24px;
-
-        input[type="button"] {
-          padding-block: 24px;
-          font-family: $font-text;
-          min-width: 100px;
-          width: 20vw;
-          font-size: $font-text;
-          font-size: 16px;
-          box-shadow: inset 0px 1px 0px 0px #cf866c;
-          background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-          background-color: #d0451b;
-          border: 1px solid #942911;
-          color: #ffffff;
-          border-radius: 3px;
-          cursor: pointer;
-          text-decoration: none;
-          text-shadow: 0px 1px 0px #854629;
-
-          &:hover {
-            background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-            background-color: #bc3315;
-          }
-        }
-      }
     }
 
     .close_btn {
@@ -213,6 +67,7 @@
         gap: 24px;
         width: 80%;
       }
+
       .btn-registration-label {
 
         .btn-registration {
@@ -287,10 +142,10 @@
   .login-pop-up {
     top: 15vh;
 
-    .login-card {
-      width: 50vw;
-      height: 80vh;
+    &_card {
+      height: 75vh;
       left: 25vw;
+      width: 50vw;
 
       .forgotten-password {
         margin-right: 32px;
