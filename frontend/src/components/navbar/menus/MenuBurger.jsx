@@ -8,7 +8,7 @@ import {
   FaRegStar,
   FaPowerOff,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Toggle from "./Toggle";
 import UserContext from "../../../contexts/UserContext";
@@ -26,6 +26,8 @@ function MenuBurger({
 
   const inputImgAvatar = useRef();
   const refBurgerContainer = useRef();
+
+  const navigate = useNavigate();
 
   function getUser() {
     axios
@@ -123,6 +125,7 @@ function MenuBurger({
             onClick={() => {
               localStorage.removeItem("token");
               setIsBurgerClicked(false);
+              navigate("/");
               window.location.reload();
             }}
           >
