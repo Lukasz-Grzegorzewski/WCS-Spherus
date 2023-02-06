@@ -58,6 +58,13 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+INSERT INTO
+  `origins_digital_wcs`.`home` (position, type, idLink )
+VALUES
+  ( '1', '1', '1' ),
+  ( '3', '1', '3' ),
+  ( '2', '2', '1' );
+
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`video_carousel`
 -- -----------------------------------------------------
@@ -77,6 +84,22 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`video_carousel` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`video_carousel` (video_carousel_id, home_id )
+VALUES
+  ( '1', '1' ),
+  ( '6', '1' ),
+  ( '5', '1' ),
+  ( '2', '1' ),
+  ( '4', '1' ),
+  ( '3', '1' ),
+  ( '13', '2' ),
+  ( '14', '2' ),
+  ( '18', '2' ),
+  ( '15', '2' ),
+  ( '17', '2' ),
+  ( '16', '2' );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`user`
@@ -376,6 +399,14 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+INSERT INTO
+  `origins_digital_wcs`.`fixtures` (fk_fix_video_id)
+VALUES
+  ( '2' ),
+  ( '18' ),
+  ( '8' ),
+  ( '4' );
+
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`hero_slider`
 -- -----------------------------------------------------
@@ -392,6 +423,13 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`hero_slider` (fk_video)
+VALUES
+('16'),
+('14'),
+('6');
   
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`publicity`
