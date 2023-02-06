@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import VideoCard from "./VideoCard";
 import MessageErrorAdding from "./MessageErrorAdding";
+import VideoCategory from "./VideoCategory";
 
 function ShowVideos({
   catId,
@@ -12,7 +12,6 @@ function ShowVideos({
 }) {
   const [showVids, setShowVids] = useState(false);
   const [getVideosForAdd, setGetVideosForAdd] = useState([]);
-  const [showVideoCard, setShowVideoCard] = useState(null);
   const [pushArray, setPushArray] = useState([]);
   const [errorMessageSend, setErrorMessageSend] = useState(false);
   /* const [showVideoCardCompo, set] */
@@ -67,10 +66,11 @@ function ShowVideos({
     }
   }
 
-  const filterVideos = () =>
-    getVideosForAdd.filter(
+  const filterVideos = () => {
+    return getVideosForAdd.filter(
       (item) => !selectVideos.some((video) => video.id === item.id)
     );
+  };
 
   return (
     <div className="show-videos">
@@ -117,37 +117,23 @@ function ShowVideos({
       <div className={showVids ? "video-list-to-add" : null}>
         {showVids &&
           getVideosForAdd &&
-          filterVideos().map((elem) => (
-            <div
-              className="video-info"
-              key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
-            >
-              <p>{elem.title}</p>
-              <p>{elem.id}</p>
-              <button
-                className="deleteBtn close"
-                type="button"
-                onClick={() => setShowVideoCard(showVideoCard ? null : elem.id)}
-              >
-                <p>Show more</p>
-              </button>
-              {showVideoCard && showVideoCard === elem.id && (
-                <VideoCard
-                  elem={elem}
-                  setShowVideoCard={() => setShowVideoCard(null)}
-                />
-              )}
-              <input
-                name={elem.name}
-                type="checkbox"
-                checked={
-                  !!(pushArray.length > 0 && pushArray.includes(elem.id))
-                }
-                onChange={() => handleCheckBox(elem.id)}
-              />
-              <label htmlFor={elem.name}>Add</label>
-            </div>
-          ))}
+          filterVideos().map((elem) => {
+            return (
+              <>
+                <VideoCategory elem={elem} />
+                <label htmlFor={elem.name}>
+                  <input
+                    name={elem.name}
+                    type="checkbox"
+                    checked={
+                      !!(pushArray.length > 0 && pushArray.includes(elem.id))
+                    }
+                    onChange={() => handleCheckBox(elem.id)}
+                  />
+                </label>
+              </>
+            );
+          })}
       </div>
     </div>
   );

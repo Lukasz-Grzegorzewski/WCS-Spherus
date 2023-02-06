@@ -68,33 +68,35 @@ function Categories({ catId, getCategories, catName, setCatId }) {
         />
       </div>
 
-      {selectVideos &&
-        showSelectedVideos &&
-        typeof selectVideos ===
-          "object" /* el código typeof escrito así permite esperar un objeto en este caso, y si no, no lo recibe */ &&
-        selectVideos.map((elem) => (
-          <div
-            className="video-preview"
-            key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
-          >
-            <HoverVideoPlayer
-              videoClassName="videocard_video"
-              className="videocard_video"
-              videoSrc={concat + elem.url}
-              muted
-              playbackRangeStart={numAleat}
-              playbackRangeEnd={numAleat + 5}
-            />
-            <p>{elem.title}</p>
-            <button
-              className="deleteBtn open"
-              type="button"
-              onClick={() => deleteVideoFromCat(elem.id)}
+      <div className={selectVideos.length > 0 ? "box-all-videos" : null}>
+        {selectVideos &&
+          showSelectedVideos &&
+          typeof selectVideos ===
+            "object" /* el código typeof escrito así permite esperar un objeto en este caso, y si no, no lo recibe */ &&
+          selectVideos.map((elem) => (
+            <div
+              className="video-preview"
+              key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
             >
-              delete video
-            </button>
-          </div>
-        ))}
+              <HoverVideoPlayer
+                videoClassName="videocard_video"
+                className="videocard_video"
+                videoSrc={concat + elem.url}
+                muted
+                playbackRangeStart={numAleat}
+                playbackRangeEnd={numAleat + 5}
+              />
+              <p>{elem.title}</p>
+              <button
+                className="deleteBtn open cat"
+                type="button"
+                onClick={() => deleteVideoFromCat(elem.id)}
+              >
+                delete
+              </button>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import axios from "axios";
 
-function ButtonAddCat({ getCategories /* changeShowButtonAdd */ }) {
+function ButtonAddCat({ getCategories }) {
   const [addedCat, setAddedCat] = useState({ name: "" });
   const [errorMessageAdd, setErrorMessageAdd] = useState(false);
   const [sucessMessage, setSuccessMessage] = useState(false);
@@ -16,7 +16,6 @@ function ButtonAddCat({ getCategories /* changeShowButtonAdd */ }) {
         ) /* addedCat es un objeto, como lo que se pone en Postman para añadir un user */
         .then(() => {
           getCategories();
-          /* changeShowButtonAdd(); */
           setSuccessMessage(true);
           setErrorMessageAdd(false);
         })
