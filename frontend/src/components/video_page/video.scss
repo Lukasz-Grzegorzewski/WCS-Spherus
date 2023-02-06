@@ -1,6 +1,7 @@
 @import "../variables.scss";
 
 .video-component {
+  font-family: $font-text;
   .video-player {
     position: relative;
     .video {
@@ -76,9 +77,14 @@
 
     .info_container {
       font-size: 1.5rem;
+      .info-video-title{
+        font-family: $font-display;
+        font-size: 3.5rem;
+      }
       .info {
         margin-block: 10px;
         font-size: 2.5rem;
+        text-align: center;
       }
       .info-video-categories-container {
         display: flex;
