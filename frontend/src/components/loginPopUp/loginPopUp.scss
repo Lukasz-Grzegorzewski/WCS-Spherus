@@ -69,7 +69,6 @@
       }
 
       .btn-registration-label {
-
         .btn-registration {
           opacity: 0.85;
           margin-inline: auto;
@@ -85,35 +84,36 @@
           border-radius: 4px;
           text-transform: uppercase;
           outline: 0;
-          overflow:hidden;
+          overflow: hidden;
           background: none;
           z-index: 1;
           cursor: pointer;
-          transition:         0.08s ease-in;
-          -o-transition:      0.08s ease-in;
-          -ms-transition:     0.08s ease-in;
-          -moz-transition:    0.08s ease-in;
+          transition: 0.08s ease-in;
+          -o-transition: 0.08s ease-in;
+          -ms-transition: 0.08s ease-in;
+          -moz-transition: 0.08s ease-in;
           -webkit-transition: 0.08s ease-in;
-            &:before {
-              content: "";
-              position: absolute;
-              background: #383736;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              top: 100%;
-              z-index: -1;
-              transition: top 0.09s ease-in;
-            }
-            
-            &:hover:before {
-              top: 0;
-            }
+          &:before {
+            content: "";
+            position: absolute;
+            background: #383736;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 100%;
+            z-index: -1;
+            transition: top 0.09s ease-in;
+          }
 
-            &:hover {
-              color: whitesmoke;
-              opacity: 1;
-              animation: fadeIn 1s ease-out forwards;            }
+          &:hover:before {
+            top: 0;
+          }
+
+          &:hover {
+            color: whitesmoke;
+            opacity: 1;
+            animation: fadeIn 1s ease-out forwards;
+          }
         }
       }
 

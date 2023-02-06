@@ -1,11 +1,10 @@
 import UpdateUserByUser from "@components/profile/UpdateUserByUser";
 import PropTypes from "prop-types";
 import axios from "axios";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
-import UserContext from "../contexts/UserContext";
 
 function Profile({ iduser }) {
   const [user, setUser] = useState(null);
@@ -16,7 +15,6 @@ function Profile({ iduser }) {
   const [birthdayUpdate, setBirthdayUpdate] = useState(false);
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
-  const { id } = useContext(UserContext);
 
   function getUser() {
     axios
@@ -72,7 +70,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="firstname"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setFirstnameUpdate}
                 />
@@ -102,7 +100,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="lastname"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setLastnameUpdate}
                 />
@@ -132,7 +130,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="nickname"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setNicknameUpdate}
                 />
@@ -162,7 +160,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="date"
                   keyName="birthday"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setBirthdayUpdate}
                 />
@@ -192,7 +190,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="email"
                   keyName="email"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setEmailUpdate}
                 />
@@ -222,7 +220,7 @@ function Profile({ iduser }) {
                 <UpdateUserByUser
                   type="password"
                   keyName="password"
-                  id={id}
+                  id={iduser}
                   getUser={() => getUser()}
                   closeUpdateInput={setPasswordUpdate}
                 />
@@ -231,7 +229,7 @@ function Profile({ iduser }) {
           </div>
         </div>
       )}
-      <DeleteUser id={id} />
+      <DeleteUser id={iduser} />
     </div>
   );
 }
