@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import VideoCard from "@components/category_video/VideoCard";
-import UserContext from "../../UserContext";
+import UserContext from "../../contexts/UserContext";
 
 function Favorite() {
   const { id } = useContext(UserContext);
@@ -12,7 +12,14 @@ function Favorite() {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/favorites/${id}`)
       .then((res) => {
-        setFavorite(res.data);
+        const uniqueArr = res.data.reduce((acc, current) => {
+          const x = acc.find((item) => item.id === current.id);
+          if (!x) {
+            return acc.concat([current]);
+          }
+          return acc;
+        }, []);
+        setFavorite(uniqueArr);
       })
       .catch((err) => console.error(err));
   };
@@ -23,10 +30,9 @@ function Favorite() {
 
   return (
     <div>
-      <div className="category_video_main_name">{favorite.length >= 1}</div>
       <div className="category_video_main_container">
         {favorite.map((e) => (
-          <div key={e.idCat}>
+          <div className="category_video_main_container_title" key={e.id}>
             {e.catName}
             <VideoCard
               id={e.id}

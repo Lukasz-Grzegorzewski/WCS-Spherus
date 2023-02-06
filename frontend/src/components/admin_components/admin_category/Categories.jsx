@@ -9,14 +9,13 @@ import ButtonOpenModify from "./modify/ButtonOpenModify";
 function Categories({ catId, getCategories, catName, setCatId }) {
   const [selectVideos, setSelectVideos] = useState([]);
   const concat = `${import.meta.env.VITE_PORT_BACKEND}`;
+  const [showSelectedVideos, setShowSelectedVideos] = useState(true);
 
   const getVideosByCategorie = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${catId}`)
       .then((res) => {
         setSelectVideos(res.data);
-        console.warn("ceci est res.data : ");
-        console.warn(res.data);
       })
       .catch((err) => {
         console.warn(err);
@@ -38,52 +37,62 @@ function Categories({ catId, getCategories, catName, setCatId }) {
 
       .catch((err) => console.warn(err));
   }
-  console.warn(selectVideos);
+  const numAleat = Math.floor(Math.random() * 10);
+
   return (
     <div className="videos-by-cat">
-      <ButtonDeleteCat
-        catId={catId}
-        setCatId={(value) => setCatId(value)}
-        getCategories={() => getCategories()}
-      />
+      <div className="category-class-btn">
+        <ButtonDeleteCat
+          catId={catId}
+          setCatId={(value) => setCatId(value)}
+          getCategories={() => getCategories()}
+        />
 
-      <ButtonOpenModify
-        getCategories={() => getCategories()}
-        catId={catId}
-        catName={catName}
-      />
+        <ButtonOpenModify
+          getCategories={() => getCategories()}
+          catId={catId}
+          catName={catName}
+        />
 
-      <ShowVideos
-        catId={catId}
-        getVideosByCategorie={() => getVideosByCategorie()}
-      />
+        <ShowVideos
+          catId={catId}
+          getVideosByCategorie={() => getVideosByCategorie()}
+          setShowSelectedVideos={() =>
+            setShowSelectedVideos(!showSelectedVideos)
+          }
+          selectVideos={selectVideos}
+        />
+      </div>
 
-      {selectVideos &&
-        typeof selectVideos ===
-          "object" /* el código typeof escrito así permite esperar un objeto en este caso, y si no, no lo recibe */ &&
-        selectVideos.map((elem) => (
-          <div
-            className="video-preview"
-            key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
-          >
-            <HoverVideoPlayer
-              videoClassName="videocard_video"
-              className="videocard_video"
-              videoSrc={concat + elem.url}
-              muted
-              playbackRangeStart={0}
-              playbackRangeEnd={6}
-            />
-            <p>{elem.title}</p>
-            <button
-              className="delete-video-button"
-              type="button"
-              onClick={() => deleteVideoFromCat(elem.id)}
+      <div className={selectVideos.length > 0 ? "box-all-videos" : null}>
+        {selectVideos &&
+          showSelectedVideos &&
+          typeof selectVideos ===
+            "object" /* el código typeof escrito así permite esperar un objeto en este caso, y si no, no lo recibe */ &&
+          selectVideos.map((elem) => (
+            <div
+              className="video-preview"
+              key={`${elem.id}-${Math.floor(Math.random() * 100)}`}
             >
-              delete video
-            </button>
-          </div>
-        ))}
+              <HoverVideoPlayer
+                videoClassName="videocard_video"
+                className="videocard_video"
+                videoSrc={concat + elem.url}
+                muted
+                playbackRangeStart={numAleat}
+                playbackRangeEnd={numAleat + 5}
+              />
+              <p>{elem.title}</p>
+              <button
+                className="deleteBtn open cat"
+                type="button"
+                onClick={() => deleteVideoFromCat(elem.id)}
+              >
+                delete
+              </button>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

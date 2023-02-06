@@ -14,7 +14,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: none;
       box-shadow: 0 0 5px 1px $primary-color;
       border-radius: 20px;
       gap: 10px;
@@ -45,104 +44,18 @@
       }
     }
 
-    .icone-btn {
-      width: 50px;
-      height: 50px;
-      border: 2px solid red;
+    .deleteComp {
+      border: 2px solid $delete-color;
       background-color: $secondary-color;
-      border-radius: 25px;
-      color: $primary-color;
-      overflow: hidden;
-      position: relative;
-      transition: width 0.2s ease-in-out;
-      font-size: 15px;
-      font-family: $font-text;
-      cursor: pointer;
+
+      .btn-txt {
+        color: $delete-color;
+      }
     }
 
-    .adde-btn:hover {
-      width: 120px;
-      color: $primary-color;
-    }
-
-    .adde-btn::before,
-    .adde-btn::after {
-      transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-      content: "";
-      position: absolute;
-      height: 4px;
-      width: 10px;
-      top: calc(50% - 2px);
-      background: red;
-    }
-
-    .adde-btn::after {
-      right: 14px;
-      overflow: hidden;
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-    }
-
-    .adde-btn::before {
-      left: 14px;
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
-    }
-
-    .icone-btn:focus {
-      outline: none;
-    }
-
-    .btn-txt {
-      opacity: 0;
-      transition: opacity 0.2s;
-      font-family: $font-display;
-      color: $primary-color;
-    }
-
-    .adde-btn:hover::before,
-    .adde-btn:hover::after {
-      width: 4px;
-      border-radius: 2px;
-    }
-
-    .adde-btn:hover .btn-txt {
-      opacity: 1;
-    }
-
-    .adde-icon::after,
-    .adde-icon::before {
-      transition: all 0.2s ease-in-out;
-      content: "";
-      position: absolute;
-      width: 3px;
-      top: calc(50% - 10px);
-      background: $secondary-color;
-      overflow: hidden;
-    }
-
-    .adde-icon::before {
-      left: 22px;
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
-    }
-
-    .adde-icon::after {
-      right: 22px;
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-    }
-
-    .adde-btn:hover .add-icon::before {
-      left: 15px;
-      height: 4px;
-      top: calc(50% - 2px);
-    }
-
-    .adde-btn:hover .add-icon::after {
-      right: 15px;
-      height: 4px;
-      top: calc(50% - 2px);
+    .add-btn::before,
+    .add-btn::after {
+      background: $delete-color;
     }
   }
 }

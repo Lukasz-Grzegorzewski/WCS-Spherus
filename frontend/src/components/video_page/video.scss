@@ -1,18 +1,13 @@
 @import "../variables.scss";
 
 .video-component {
+  font-family: $font-text;
   .video-player {
     position: relative;
     .video {
       position: relative;
       width: 100%;
       aspect-ratio: 16/9;
-      background: linear-gradient(
-        180deg,
-        $dt-background-gradient-color-top 10.6%,
-        $secondary-color 40%,
-        #00000000 100%
-      );
     }
 
     .video.locked {
@@ -39,12 +34,11 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+      color: white;
 
       .video-title {
         font-family: $font-display;
         font-size: 2rem;
-      }
-      .video-desc {
       }
       .video-categories-container {
         display: flex;
@@ -57,7 +51,6 @@
     display: flex;
     flex-direction: column;
     padding: 0 5%;
-    // font-weight: 400;
 
     .lock-container {
       display: flex;
@@ -84,9 +77,14 @@
 
     .info_container {
       font-size: 1.5rem;
+      .info-video-title {
+        font-family: $font-display;
+        font-size: 3.5rem;
+      }
       .info {
         margin-block: 10px;
         font-size: 2.5rem;
+        text-align: center;
       }
       .info-video-categories-container {
         display: flex;
@@ -96,12 +94,6 @@
         margin-top: 20px;
         text-align: center;
       }
-    }
-
-    .btn-subscribe {
-    }
-
-    .btn-seemore {
     }
   }
 
@@ -125,7 +117,6 @@
         opacity: 40%;
       }
       .info-video {
-        // left: 15%;
         bottom: 18%;
         font-size: large;
 
@@ -145,38 +136,10 @@
     }
 
     .description {
-      // display: flex;
-      // flex-direction: column;
-      // padding: 0 5%;
-      // font-weight: 400;
-
       .lock-container {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        .lock-icon {
-          // font-size: 4rem;
-        }
         .lock-desc {
           font-size: 2rem;
         }
-        .btn {
-          // background-color: $tertiary-color;
-          // border-radius: 10px;
-          // margin-left: 5px;
-          // color: $tertiary-color;
-          // padding: 5px;
-        }
-      }
-
-      .info {
-        // font-size: 2rem;
-      }
-
-      .btn-subscribe {
-      }
-
-      .btn-seemore {
       }
     }
   }

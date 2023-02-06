@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import axios from "axios";
 import Profile from "@pages/Profile";
 import Users from "./Users";
-// import UsersInformations from "./UsersInformations";
 import ToggleIsAdmin from "./ToggleIsAdmin";
 
-function AdminUsers({ id }) {
+function AdminUsers() {
   const [users, setUsers] = useState(null);
   const [user, setUser] = useState(null);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState("all");
   const [userId, setUserId] = useState(null);
-  const [refresh, setRefresh] = useState(false);
 
   const filteredUsers = users?.filter((item) => {
     if (selected === "users")
@@ -107,7 +105,6 @@ function AdminUsers({ id }) {
         placeholder="Search user by Email"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <p>User ID : {id}</p>
       <div className="users-table-container">
         <div className="headers">Emails</div>
         <div className="users-table">
@@ -120,8 +117,6 @@ function AdminUsers({ id }) {
                   id={us.id}
                   email={us.email}
                   setUserId={setUserId}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
                   getUserById={(uid) => getUserById(uid)}
                 />
               );
@@ -130,14 +125,8 @@ function AdminUsers({ id }) {
       </div>
       {user && userId && (
         <div className="user-block">
-          <ToggleIsAdmin
-            id={Number(userId)}
-            // isAdmin={user.is_admin}
-            refresh={refresh}
-            setRefresh={setRefresh}
-          />
-          <Profile id={Number(userId)} />
-          {/* <UsersInformations id={Number(userId)} /> */}
+          <ToggleIsAdmin id={Number(userId)} />
+          <Profile iduser={Number(userId)} />
         </div>
       )}
     </div>
@@ -146,6 +135,6 @@ function AdminUsers({ id }) {
 
 export default AdminUsers;
 
-AdminUsers.propTypes = {
-  id: PropTypes.number.isRequired,
-};
+// AdminUsers.propTypes = {
+//   id: PropTypes.number.isRequired,
+// };

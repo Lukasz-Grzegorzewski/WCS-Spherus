@@ -3,13 +3,15 @@
 $font-display: "Kdam Thmor Pro", "sans-serif";
 $font-text: "Roboto", "sans-serif";
 
-$primary-color: #ffffff;
-$secondary-color: #000000;
+$primary-color: #f5f5f5;
+$secondary-color: #38383d;
 $tertiary-color: #ff8a00;
 $fourth-color: #888888;
 $fifte-color: #555555;
 $sixth-color: rgb(85, 85, 85, 0.5);
 $seventh-color: #01153d;
+$delete-color: #e14d2a;
+
 //THEME TOGGLE
 $dt-toggle-background-color-font: black;
 
@@ -32,17 +34,18 @@ $placeholder-font-color: #888888;
 $lt-background-gradient-color-top: #d1ddeb;
 $lt-background-gradient-color-middle: #8fa5bc;
 $lt-background-gradient-color-bottom: #d1ddeb;
+
 //background
-$lt-background: linear-gradient(
-  180deg,
-  $lt-background-gradient-color-top 17.97%,
-  $lt-background-gradient-color-middle 53.4%,
-  $lt-background-gradient-color-bottom 80%
-);
+// $lt-background: linear-gradient(180deg,
+//     $lt-background-gradient-color-top 17.97%,
+//     $lt-background-gradient-color-middle 53.4%,
+//     $lt-background-gradient-color-bottom 80%);
+$lt-background: $primary-color;
+
 //footer / navbar
-$lt-navbar-footer-color: #d1ddeb;
+$lt-navbar-footer-color: $fifte-color;
 //publicity
-$lt-publicity-background-color: #e3ecf5;
+$lt-publicity-background-color: $seventh-color;
 $lt-publicity-font-color: #555555;
 
 //--------------------DARK THEME---------------------------------------------
@@ -62,240 +65,11 @@ $dt-background: linear-gradient(
   $dt-background-gradient-color-top 95%
 );
 //footer / navbar
-$dt-navbar-footer-color: #01153d;
+$dt-navbar-footer-color: $sixth-color;
 
-//publicity
-$dt-publicity-background-color: #383838;
+//Advert
+$dt-publicity-background-color: $fifte-color;
+$dt-publicity-font-color: $primary-color;
 
 //button
 $dt-button-font-color: #ffffff;
-
-//--------------------BUTTONS---------------------------------------------
-
-// BUTTON HERO SLIDER + ADVERT + POPUP ADMINADVERT & ADMINHOMEPAGE
-.cssbuttons-io-button {
-  background: $tertiary-color;
-  color: white;
-  font-family: $font-display;
-  padding: 0.35em;
-  padding-left: 1.2em;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 20px;
-  border: none;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em $primary-color;
-  overflow: hidden;
-  position: relative;
-  height: 2.8em;
-  padding-right: 3.3em;
-}
-
-.cssbuttons-io-button .icon {
-  background: white;
-  margin-left: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.2em;
-  width: 2.2em;
-  border-radius: 20px;
-  box-shadow: 0.1em 0.1em 0.6em 0.2em $secondary-color;
-  right: 0.3em;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.cssbuttons-io-button:hover .icon {
-  width: calc(100% - 0.6em);
-  cursor: pointer;
-}
-
-.cssbuttons-io-button .icon svg {
-  width: 1.1em;
-  transition: transform 0.3s;
-  color: $secondary-color;
-}
-
-.cssbuttons-io-button:hover .icon svg {
-  transform: translateX(0.1em);
-}
-
-.cssbuttons-io-button:active .icon {
-  transform: scale(0.95);
-}
-
-@media screen and (min-width: 600px) {
-  .cssbuttons-io-button {
-    font-size: 20px;
-  }
-}
-
-// BUTTON +- CIRCLE
-.icon-btn {
-  width: 50px;
-  height: 50px;
-  border: 2px solid $tertiary-color;
-  background-color: $tertiary-color;
-  border-radius: 25px;
-  color: white;
-  overflow: hidden;
-  position: relative;
-  transition: width 0.2s ease-in-out;
-  font-size: 15px;
-  font-family: $font-text;
-  cursor: pointer;
-  color: $secondary-color;
-}
-
-.add-btn:hover {
-  width: 120px;
-  color: $secondary-color;
-}
-
-.add-btn::before,
-.add-btn::after {
-  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 4px;
-  width: 10px;
-  top: calc(50% - 2px);
-  background: $secondary-color;
-}
-
-.add-btn::after {
-  right: 14px;
-  overflow: hidden;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.add-btn::before {
-  left: 14px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.icon-btn:focus {
-  outline: none;
-}
-
-.btn-txt {
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-family: $font-display;
-}
-
-.add-btn:hover::before,
-.add-btn:hover::after {
-  width: 4px;
-  border-radius: 2px;
-}
-
-.add-btn:hover .btn-txt {
-  opacity: 1;
-}
-
-.add-icon::after,
-.add-icon::before {
-  transition: all 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 3px;
-  top: calc(50% - 10px);
-  background: $secondary-color;
-  overflow: hidden;
-}
-
-.add-icon::before {
-  left: 22px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.add-icon::after {
-  right: 22px;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.add-btn:hover .add-icon::before {
-  left: 15px;
-  height: 4px;
-  top: calc(50% - 2px);
-}
-
-.add-btn:hover .add-icon::after {
-  right: 15px;
-  height: 4px;
-  top: calc(50% - 2px);
-}
-
-// BUTTON SUBMIT
-.submitBtn {
-  display: flex;
-  font-family: $font-text;
-  font-size: 16px;
-  background-color: $tertiary-color;
-  width: 150px;
-  height: 35px;
-  padding: 0.7em 1em;
-  padding-left: 0.9em;
-  align-items: center;
-  border: 2px solid $tertiary-color;
-  border-radius: 20px;
-  transition: all 0.3s;
-  cursor: pointer;
-  overflow: hidden;
-
-  svg {
-    display: block;
-    transform-origin: center center;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  span {
-    display: block;
-    margin-left: 0.6em;
-    transition: all 0.3s ease-in-out;
-  }
-
-  &:hover {
-    svg {
-      transform: translateX(1.2em) rotate(45deg) scale(1.1);
-    }
-
-    .svg-wrapper {
-      animation: fly-1 0.6s ease-in-out infinite alternate;
-    }
-
-    @keyframes fly-1 {
-      from {
-        transform: translateY(0.1em);
-      }
-
-      to {
-        transform: translateY(-0.1em);
-      }
-    }
-
-    span {
-      transform: translateX(10em);
-    }
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .submitBtn {
-    width: 200px;
-  }
-}

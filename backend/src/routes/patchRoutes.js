@@ -9,6 +9,10 @@ router.patch("/videos/:id", patchRoutesFunctions.patchVideoById);
 router.patch("/users/:id", hashPassword, patchRoutesFunctions.patchUserById);
 router.patch("/categories/:id", patchRoutesFunctions.patchCategoryById);
 
+// Password recovery route
+
+router.patch("/users/recovery/:id", patchRoutesFunctions.patchUserById);
+
 // Admin Hero Slider
 router.put("/hero_slider/:id", patchRoutesFunctions.updateHeroSliderById);
 

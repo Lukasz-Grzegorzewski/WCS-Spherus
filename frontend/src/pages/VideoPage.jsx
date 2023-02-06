@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategorySugestions from "@components/video_page/CategorySugestions";
+import Share from "@components/share/Share";
 import Video from "../components/video_page/Video";
 
 function VideoPage() {
@@ -27,12 +28,10 @@ function VideoPage() {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/cat/${idArg}`)
       .then((res) => {
-        // console.warn("result", res.data);
         setVideo(res.data[0]);
         return res.data;
       })
       .then((result) => {
-        // console.warn("result2", result);
         getArrayOfCategoriesByVideoId(result);
       })
       .catch((err) => console.error(err));
@@ -40,13 +39,12 @@ function VideoPage() {
 
   useEffect(() => {
     getVideo(id);
-  }, []);
+  }, [id]);
   return (
     <div className="video-container">
       {video && arrCatId && arrCatName && (
         <div>
           <Video
-            // arrCatId={arrCatId}
             title={video.title}
             description={video.description}
             arrCatName={arrCatName}
@@ -54,6 +52,7 @@ function VideoPage() {
             display={video.display}
             videoUrl={video.url}
           />
+          <Share title={video.title} />
           <div className="section-container">
             <CategorySugestions arrCatId={arrCatId} vidName={video.title} />
           </div>

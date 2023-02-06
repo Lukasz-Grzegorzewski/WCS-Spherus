@@ -68,17 +68,15 @@ function ActuallyHeroSlider({ id, idVid, title, url, getHeroInfo }) {
         >
           Modify <FaPenFancy className="svg" />
         </button>
-        <div className="actuallyHeroSlider_btn_delete">
-          <button
-            type="button"
-            onClick={() => {
-              deleteHero();
-            }}
-          >
-            <span>Delete</span>
-            <i />
-          </button>
-        </div>
+        <button
+          className="deleteBtn hs_delete"
+          type="button"
+          onClick={() => {
+            deleteHero();
+          }}
+        >
+          Delete
+        </button>
       </div>
       <div>
         {choice === true && (

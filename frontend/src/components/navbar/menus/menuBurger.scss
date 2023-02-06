@@ -1,31 +1,36 @@
 @import "./toggle.scss";
 
 .menu-burger.active {
-  left: 10px;
+  right: 10px;
   opacity: 1;
   animation: slideInMenu 700ms ease;
 }
 
 @keyframes slideInMenu {
   0% {
-    left: -200px;
+    right: -200px;
   }
+
   60% {
-    left: 20px;
+    right: 20px;
   }
+
   100% {
-    left: 10px;
+    right: 10px;
   }
 }
+
 .menu-burger.inactive {
   opacity: 0;
   animation: slideOutMenu 700ms ease;
   transition: all 1000ms ease-in-out;
 }
+
 @keyframes slideOutMenu {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -34,8 +39,8 @@
 .menu-burger {
   position: absolute;
   top: 55px;
-  left: -200px;
-  width: 100px;
+  right: -200px;
+  min-width: 110px;
   background-color: #01153dcb;
   border: 1px solid $primary-color;
   box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.509);
@@ -50,26 +55,85 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     .btn {
       font-family: $font-text;
       font-size: 1.8rem;
-      width: 70px;
+      width: fit-content;
       height: 30px;
       border-radius: 15px;
-      padding: 5px;
+      padding: 10px;
       display: flex;
       justify-content: center;
       gap: 5px;
       align-items: center;
+      color: white;
     }
+
     .btn-login {
       background-color: rgb(116, 192, 2);
+      cursor: pointer;
+
       .login-icon {
       }
     }
+
+    .btn-logout {
+      background-color: rgb(192, 2, 2);
+      cursor: pointer;
+
+      .logout-icon {
+      }
+    }
+
     .btn-signin {
       background-color: $tertiary-color;
+      cursor: pointer;
+
       .signin-icon {
+      }
+    }
+
+    .btn-why-signin {
+      background-color: rgb(142, 92, 11);
+      padding-block: 0;
+      height: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+
+      p {
+        margin-top: 3px;
+      }
+
+      .why-signin-icon {
+      }
+    }
+
+    .btn-admin-panel {
+      background-color: rgb(2, 132, 192);
+      cursor: pointer;
+    }
+
+    .profile-favorites-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .btn-profil-image-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+
+        .btn-profil {
+          background-color: rgb(2, 132, 192);
+          cursor: pointer;
+        }
+
+        img.img-avatar-profil {
+          height: 30px;
+          border-radius: 15px;
+        }
       }
     }
   }

@@ -1,5 +1,4 @@
-// const { decode } = require("node-base64-image");
-// const fs = require("fs");
+const fs = require("fs");
 
 const database = require("../../database");
 
@@ -51,9 +50,8 @@ const signInUserByUser = (req, res) => {
         res.status(500).send("Impossible to save the user");
       }
     })
-    .catch((err) => {
-      console.warn(err);
-      res.status(409).send("Fuck");
+    .catch(() => {
+      res.status(409).send("err");
     });
 };
 
@@ -73,17 +71,38 @@ const uploadAvatarUrl = (req, res) => {
   // }
 
   database
-    .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
-    .then(() => {
-      // await decode(base64Final, {
-      //   fname: `./public/${dir}${id}`,
-      //   ext: "jpg",
-      // });
-      res.status(201).send({ message: "url avatar updated" });
+    .query("SELECT url FROM user WHERE id = ?", [id])
+    .then(([avatarUrl]) => {
+      const urlAvatar = avatarUrl[0].url;
+      try {
+        if (fs.existsSync(`public/${urlAvatar}`)) {
+          fs.unlink(`public/${urlAvatar}`, (err) => {
+            if (err) {
+              console.error(err);
+              res.sendStatus(404);
+            }
+          });
+        }
+        database
+          .query("UPDATE user SET url = ? WHERE id = ?", [url, id])
+          .then(() => {
+            res.status(201).send({
+              message: "url avatar updated",
+              avatarUrlRes: `public/${urlAvatar}`,
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error updating avatar url");
+          });
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("Error getting user url");
+      }
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error updating avatar url");
+      res.status(500).send("Error getting user url");
     });
 };
 
@@ -222,7 +241,6 @@ const postAdvert = (req, res) => {
 // Post a user that try to log his account
 const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
   const { email } = req.body;
-
   database
     .query("SELECT * FROM user WHERE email = ?", [email])
     .then(([users]) => {

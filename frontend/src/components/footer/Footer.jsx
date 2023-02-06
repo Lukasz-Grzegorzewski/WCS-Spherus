@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import Couilliere from "@components/arthour/Couilliere";
 
 import {
   FaInstagramSquare,
   FaFacebookSquare,
   FaTwitterSquare,
+  FaArrowAltCircleUp,
 } from "react-icons/fa";
 
 function Footer() {
-  const url = `${import.meta.env.VITE_PORT_BACKEND}/assets/sound/arthour2.mp3`;
+  const [size, setSize] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 600) {
+        setSize(true);
+      } else {
+        setSize(false);
+      }
+    });
+    if (window.innerWidth >= 600) {
+      setSize(true);
+    } else {
+      setSize(false);
+    }
+  }, [window.innerWidth]);
 
   return (
     <div className="footer">
@@ -17,7 +32,11 @@ function Footer() {
         <NavLink to="/">
           <img
             className="footer_logo"
-            src="/src/assets/images/logo_sphereus.png"
+            src={
+              size
+                ? "/src/assets/images/logoLongLight.png"
+                : "/src/assets/images/logoShort.png"
+            }
             alt="sphereus"
           />
         </NavLink>
@@ -34,16 +53,29 @@ function Footer() {
         </a>
       </div>
       <div className="footer_link">
-        <Couilliere url={url} />
-        <NavLink to="/policy">
-          <p>Privacy Policy</p>
-        </NavLink>
-        <NavLink to="/cookies">
-          <p>Cookies</p>
-        </NavLink>
-        <NavLink to="/termsofservices">
-          <p>Terms of Services</p>
-        </NavLink>
+        <div className="footer_link_url">
+          <NavLink to="/policy">
+            <p className="footer_link_url_txt">Privacy Policy</p>
+          </NavLink>
+          <NavLink to="/cookies">
+            <p className="footer_link_url_txt">Cookies</p>
+          </NavLink>
+          <NavLink to="/termsofservices">
+            <p className="footer_link_url_txt">Terms of Services</p>
+          </NavLink>
+        </div>
+
+        <div className="footer_link_btn">
+          <button
+            type="button"
+            className="btnToTop"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <FaArrowAltCircleUp />
+          </button>
+        </div>
       </div>
     </div>
   );

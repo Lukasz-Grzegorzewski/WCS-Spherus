@@ -1,18 +1,19 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
 import ButtonAddCat from "./ButtonAddCat";
 
-function ButtonOpenAddCat({ getCategories }) {
-  const [showButtonAdd, setShowButtonAdd] = useState(false);
-
-  function changeShowButtonAdd() {
-    setShowButtonAdd(!showButtonAdd);
-  }
-
+function ButtonOpenAddCat({
+  getCategories,
+  changeShowButtonAdd,
+  showButtonAdd,
+}) {
   return (
-    <div className="button-open-add">
-      <button type="button" onClick={changeShowButtonAdd}>
-        {showButtonAdd ? "CLOSE" : "ADD CATEGORY"}
+    <div className="button_open_add_cat">
+      <button
+        type="button"
+        className={showButtonAdd ? "deleteBtn close" : "deleteBtn open"}
+        onClick={changeShowButtonAdd}
+      >
+        {showButtonAdd ? "X" : "Add a new Category"}
       </button>
       {showButtonAdd && (
         <ButtonAddCat
@@ -24,8 +25,10 @@ function ButtonOpenAddCat({ getCategories }) {
   );
 }
 
-export default ButtonOpenAddCat;
-
 ButtonOpenAddCat.propTypes = {
   getCategories: PropTypes.func.isRequired,
+  changeShowButtonAdd: PropTypes.func.isRequired,
+  showButtonAdd: PropTypes.func.isRequired,
 };
+
+export default ButtonOpenAddCat;

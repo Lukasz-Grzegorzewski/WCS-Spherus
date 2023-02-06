@@ -6,7 +6,7 @@ import { FaPen } from "react-icons/fa";
 import DeleteUser from "@components/profile/DeleteUser";
 import Avatar from "@components/profile/Avatar";
 
-function Profile({ id }) {
+function Profile({ iduser }) {
   const [user, setUser] = useState(null);
 
   const [firstnameUpdate, setFirstnameUpdate] = useState(false);
@@ -15,11 +15,10 @@ function Profile({ id }) {
   const [birthdayUpdate, setBirthdayUpdate] = useState(false);
   const [emailUpdate, setEmailUpdate] = useState(false);
   const [passwordUpdate, setPasswordUpdate] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   function getUser() {
     axios
-      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${id}`)
+      .get(`${import.meta.env.VITE_PORT_BACKEND}/users/${iduser}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -28,17 +27,19 @@ function Profile({ id }) {
 
   useEffect(() => {
     getUser();
-  }, [refresh, id, user]);
+  }, [iduser]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className="profile-conatainer">
-      {user && refresh !== undefined && (
+      {user && (
         <div>
           <Avatar
-            id={id}
+            id={iduser}
             getUser={() => getUser()}
-            refresh={refresh}
-            setRefresh={setRefresh}
             photoSrc={
               user.url
                 ? `${import.meta.env.VITE_PORT_BACKEND}/${user.url}`
@@ -69,9 +70,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="firstname"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setFirstnameUpdate}
                 />
               )}
@@ -100,9 +100,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="lastname"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setLastnameUpdate}
                 />
               )}
@@ -131,9 +130,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="text"
                   keyName="nickname"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setNicknameUpdate}
                 />
               )}
@@ -162,9 +160,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="date"
                   keyName="birthday"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setBirthdayUpdate}
                 />
               )}
@@ -193,9 +190,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="email"
                   keyName="email"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setEmailUpdate}
                 />
               )}
@@ -224,9 +220,8 @@ function Profile({ id }) {
                 <UpdateUserByUser
                   type="password"
                   keyName="password"
-                  id={id}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  id={iduser}
+                  getUser={() => getUser()}
                   closeUpdateInput={setPasswordUpdate}
                 />
               )}
@@ -234,7 +229,7 @@ function Profile({ id }) {
           </div>
         </div>
       )}
-      <DeleteUser id={id} />
+      <DeleteUser id={iduser} />
     </div>
   );
 }
@@ -242,5 +237,5 @@ function Profile({ id }) {
 export default Profile;
 
 Profile.propTypes = {
-  id: PropTypes.number.isRequired,
+  iduser: PropTypes.number.isRequired,
 };
