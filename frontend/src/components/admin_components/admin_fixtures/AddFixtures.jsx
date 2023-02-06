@@ -67,7 +67,7 @@ function AddFixtures({ getFixtures, getAllCategories, setAdd }) {
           className="submitBtn addFixtures_btn"
           type="button"
           onClick={() => {
-            postFixture()();
+            postFixture();
           }}
         >
           <div className="svg-wrapper">
@@ -86,14 +86,6 @@ function AddFixtures({ getFixtures, getAllCategories, setAdd }) {
           </div>
           <span>Submit</span>
         </button>
-
-        // <button
-        //   className="addhero_button"
-        //   type="button"
-        //   onClick={() => postFixture()}
-        // >
-        //   Upload
-        // </button>
       )}
     </div>
   );

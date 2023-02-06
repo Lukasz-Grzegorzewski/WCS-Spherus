@@ -42,7 +42,7 @@ function CategorySugestions({ arrCatId, vidName }) {
     <div className="category_sugestions">
       <div className="category_sugestions_videos">
         <p className="category_sugestions_heading">
-          Reccomendations after watching {vidName}
+          {`You like "${vidName}" ? We suggest these other videos`}
         </p>
         <div className="category_sugestions_videos_container">
           {video.length > 0 &&

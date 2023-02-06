@@ -7,7 +7,8 @@
     width: 100%;
 
     &_name {
-      font-size: 15px;
+      font-size: 16px;
+      font-family: $font-text;
 
       &_select {
         width: 40%;
@@ -24,14 +25,15 @@
     width: 100%;
 
     &_name {
-      font-size: 15px;
+      font-size: 16px;
+      font-family: $font-text;
 
       &_select {
         width: 40%;
         height: 25px;
         background-color: $fourth-color;
         color: white;
-        margin-left: 29px;
+        margin-left: 32px;
         border-radius: 20px;
       }
     }
@@ -48,7 +50,8 @@
     gap: 15px;
 
     &_btn {
-      margin-left: 30%;
+      margin-left: 26%;
+      width: 20px;
     }
   }
 }

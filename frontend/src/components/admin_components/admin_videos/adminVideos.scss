@@ -6,7 +6,6 @@
 .adminvideo_container {
   width: 95%;
   height: auto;
-  border: 2px solid white;
   padding: 15px;
   margin-right: 20px;
   font-family: $font-text;
@@ -36,7 +35,7 @@
   }
 
   .adminvideo_file_input {
-    background-color: rgba(159, 193, 244, 0.611);
+    background-color: $sixth-color;
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
@@ -47,7 +46,7 @@
     flex-direction: column;
     width: 80%;
     gap: 10px;
-    border-bottom: 1px white solid;
+    border-bottom: 1px solid $primary-color;
     padding-bottom: 15px;
 
     label {
@@ -60,7 +59,7 @@
       background-color: $primary-color;
       border: $button-input-border-size;
       height: 25px;
-      border-radius: 15px;
+      border-radius: 20px;
     }
 
     option {
@@ -107,14 +106,8 @@
     }
 
     .delete_Btn {
-      width: 25%;
-      font-size: 15px;
-      background-color: $fourth-color;
-      color: $primary-color;
-      margin: 10px auto;
-      border: 2px white solid;
-      border-radius: 15px;
-      height: 25px;
+      margin-top: 1%;
+      width: 200px;
     }
   }
 }

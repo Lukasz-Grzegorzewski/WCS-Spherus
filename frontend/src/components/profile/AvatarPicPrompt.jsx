@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import AvatarEditor from "react-avatar-editor";
-
 import axios from "axios";
+import AvatarUrlContext from "../../contexts/AvatarUrlContext";
 
-function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
+function AvatarPicPrompt({ id, setUrl, avatarUrl, setCardToggle, getUser }) {
   const [data, setData] = useState(null);
   const [scaleValue, setScaleValue] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -12,6 +12,8 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
   const [fileUploadErrors, setFileUploadErrors] = useState([]);
   const [urlIn, setUrlIn] = useState([]);
   const [inputChooseToggle, setInputChooseToggle] = useState(false);
+
+  const { setAvatarUrlContext } = useContext(AvatarUrlContext);
 
   const inputRef = useRef();
 
@@ -56,9 +58,11 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
       n -= 1;
       u8arr[n] = bstr.charCodeAt(n);
     }
+    const datecreation = Date.now();
     const file = new File([u8arr], `${id}.jpg`, { type: mime });
     const formD = new FormData();
     formD.append("id", id);
+    formD.append("dateCreation", datecreation);
     formD.append("file", file);
 
     axios
@@ -66,6 +70,7 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
       .then((response) => {
         setCardToggle(false);
         getUser();
+        setAvatarUrlContext(() => response.data.avatarUrlRes);
         console.warn("POSTED OK! :", response.data);
       })
       .catch((err) => {
@@ -98,7 +103,6 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
             onChange={(e) => {
               profilePicChange(e);
               setInputChooseToggle(!inputChooseToggle);
-              // onCrop();
             }}
           />
         )}
@@ -114,12 +118,13 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
               rotate={0}
               ref={inputRef}
               onImageChange={() => onCrop()}
-              onImageReady={() => onCrop()}
+              onImageReady={() => {
+                onCrop();
+              }}
             />
             <div className="range-container">
               <input
                 className="range"
-                // style={{ width: "90%" }}
                 type="range"
                 value={scaleValue}
                 name="points"
@@ -129,38 +134,40 @@ function AvatarPicPrompt({ id, setUrl, setCardToggle, getUser }) {
                 onChange={(e) => onScaleChange(e)}
               />
             </div>
-            {/* <button
-              onClick={() => onCrop()}
-              className="editorOverlayCloseBtn crpBtn"
-            >
-              Save
-            </button> */}
           </div>
         )}
       </div>
       <div className="btns-container">
-        <button
-          className="btn btn-update"
-          onClick={() => handleUpload()}
-          type="button"
-        >
-          Update
-        </button>
-        <button
-          className="btn btn-delete"
-          onClick={() => handleDelete()}
-          type="button"
-        >
-          Delete
-        </button>
-        <button
-          className="btn btn-cancel"
-          onClick={() => setCardToggle(false)}
-          type="button"
-        >
-          Cancel
-        </button>
+        {selectedImage ? (
+          <button
+            className="btn btn-update"
+            onClick={() => handleUpload()}
+            type="button"
+          >
+            Update
+          </button>
+        ) : (
+          <button
+            className={
+              avatarUrl ===
+              "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg"
+                ? "deleteBtn btn-delete dis-none"
+                : "deleteBtn btn-delete"
+            }
+            onClick={() => handleDelete()}
+            type="button"
+          >
+            Delete your avatar
+          </button>
+        )}
       </div>
+      <button
+        className="btn btn-cancel"
+        onClick={() => setCardToggle(false)}
+        type="button"
+      >
+        Cancel
+      </button>
     </div>
   );
 }
@@ -172,4 +179,5 @@ AvatarPicPrompt.propTypes = {
   setCardToggle: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
 };

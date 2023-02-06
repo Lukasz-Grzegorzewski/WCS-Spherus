@@ -58,6 +58,13 @@ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+INSERT INTO
+  `origins_digital_wcs`.`home` (position, type, idLink )
+VALUES
+  ( '1', '1', '1' ),
+  ( '3', '1', '3' ),
+  ( '2', '2', '1' );
+
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`video_carousel`
 -- -----------------------------------------------------
@@ -78,28 +85,21 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
--- -----------------------------------------------------
--- Table `origins_digital_wcs`.`color`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `origins_digital_wcs`.`color` ;
-
-CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`color` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `theme` VARCHAR(100) NOT NULL,
-  `background_color` VARCHAR(100) NOT NULL,
-  `font_color` VARCHAR(100) NOT NULL,
-  `button_color` VARCHAR(100) NOT NULL,
-  `button_color_hover` VARCHAR(100) NOT NULL,
-  `header_footer_color` VARCHAR(100) NOT NULL,
-  `section_color` VARCHAR(100) NOT NULL,
-  `button_shadow_color` VARCHAR(100) NOT NULL,
-  `border_button_color` VARCHAR(100) NOT NULL,
-  `border_section_color` VARCHAR(100) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
+INSERT INTO
+  `origins_digital_wcs`.`video_carousel` (video_carousel_id, home_id )
+VALUES
+  ( '1', '1' ),
+  ( '6', '1' ),
+  ( '5', '1' ),
+  ( '2', '1' ),
+  ( '4', '1' ),
+  ( '3', '1' ),
+  ( '13', '2' ),
+  ( '14', '2' ),
+  ( '18', '2' ),
+  ( '15', '2' ),
+  ( '17', '2' ),
+  ( '16', '2' );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`user`
@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`user` (
   `is_admin` TINYINT NOT NULL,
   `token` VARCHAR(256) NULL DEFAULT NULL,
   `token_start` DATE NULL DEFAULT NULL,
+  `code_tmp` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
@@ -125,61 +126,66 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO
-  `origins_digital_wcs`.`user` (firstname, lastname, nickname, birthday, email, password, is_admin, token, token_start)
+  `origins_digital_wcs`.`user` (url, firstname, lastname, nickname, birthday, email, password, is_admin, token, token_start)
 VALUES
   (
-    'L',
-    'G',
+    'assets/images/avatars/1.jpg',
+    'Lukasz',
+    'Grzegorzewski',
     'Lukas',
     '1985-07-23',
     'luk@luk.com',
-    'l',
+    '$argon2id$v=19$m=65536,t=5,p=1$uW0X1qEJWD7M48wIXnTKkA$knaEsBupxN1oCyoyM3SEwCoaHc2D3Bwj6ySQPH72wo4',
     1,
     'token_1',
     '2022-12-01'
   ),
   (
-    'N',
-    'M',
+    'assets/images/avatars/2.jpg',
+    'Nicolas',
+    'Michel',
     'Nico',
     '1998-10-17',
     'nico@nico.com',
-    'n',
+    '$argon2id$v=19$m=65536,t=5,p=1$uuWDP0e7/RVOYaLDFyB/6Q$ir0+Zby5A1SdWhXzWzCz4/+YiL21q/Jp7rrLS6eo9oA',
     1,
     'token_2',
     '2022-12-01'
   ),
   (
-    'E',
+    'assets/images/avatars/3.jpg',
+    'Eduard',
     'C',
     'Ed',
     '1983-05-12',
     'ed@ed.com',
-    'e',
+    '$argon2id$v=19$m=65536,t=5,p=1$Rdguaav98Ua0ue28FKTVrQ$C5uLywCLmuXp4Ni5OonN3duJI6pVKeTDW2SD314vgFU',
     1,
     'token_3',
     '2022-12-01'
   ),
   (
+    'assets/images/avatars/4.jpg',
     'D',
     'G',
     'Dani',
     '1988-01-01',
     'dani@dani.com',
-    'd',
+    '$argon2id$v=19$m=65536,t=5,p=1$fN0iQfw2aYoFOrSXMU8A6Q$aX21q7guyYbk/drjbSCTd4paYussIKchl7tJS27V2fA',
     1,
-    'token_5',
+    'token_4',
     '2022-12-01'
   ),
   (
-    'X',
-    'Y',
-    'XY',
-    '2000-01-01',
-    'xy@xy.com',
-    'x',
-    0,
-    'token_6',
+    'assets/images/avatars/5.jpg',
+    'Jonathan',
+    'Scattolini',
+    'Megakrash',
+    '1980-02-02',
+    'jscattolini@gmail.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$vN99MwcsPZrazM1lAen+0g$mI4VIGHa/kT/4ShiAyCp0OZF853+N+bTUAdHDN86mic',
+    1,
+    'token_5',
     '2022-12-01'
   );
 
@@ -353,20 +359,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO
-  `origins_digital_wcs`.`favorites` (user_id, video_fav_id)
-VALUES
-  (1,5),
-  (1,10),
-  (2,2),
-  (2,14),
-  (3,3),
-  (3,16),
-  (4,7),
-  (4,8),
-  (5,14),
-  (5,18);
-
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`display_fixtures`
 -- -----------------------------------------------------
@@ -380,6 +372,7 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`display_fixtures` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -402,8 +395,17 @@ CREATE TABLE IF NOT EXISTS `origins_digital_wcs`.`fixtures` (
     FOREIGN KEY (`fk_fix_video_id`)
     REFERENCES `origins_digital_wcs`.`video` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+  `origins_digital_wcs`.`fixtures` (fk_fix_video_id)
+VALUES
+  ( '2' ),
+  ( '18' ),
+  ( '8' ),
+  ( '4' );
 
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`hero_slider`
@@ -425,9 +427,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 INSERT INTO
   `origins_digital_wcs`.`hero_slider` (fk_video)
 VALUES
-  ( 1 ),
-  ( 2 ),
-  ( 3 );
+('16'),
+('14'),
+('6');
   
 -- -----------------------------------------------------
 -- Table `origins_digital_wcs`.`publicity`

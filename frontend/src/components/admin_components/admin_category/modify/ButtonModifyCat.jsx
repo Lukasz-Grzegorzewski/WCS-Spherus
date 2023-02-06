@@ -20,6 +20,7 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
         getCategories();
         setOpenModifyPopUp(false);
         setConfirmationMessageModify(true);
+        /* changeShowButtonModify(); */
       })
       .catch((err) => {
         console.warn(err);
@@ -29,28 +30,37 @@ function ButtonModifyCat({ getCategories, catId, catName }) {
 
   function handleModifyPopUp(e) {
     e.preventDefault();
-    setOpenModifyPopUp(!openModifyPopUp);
+    if (categoryModified.trim() !== "" && categoryModified.length >= 3) {
+      setOpenModifyPopUp(!openModifyPopUp);
+    } else {
+      setErrorMessageModify(true);
+    }
   }
 
   return (
-    <div>
+    <div className="modify-cat">
       <form onSubmit={handleModifyPopUp}>
+        <input type="submit" className="deleteBtn open" value="Rename" />
         <input
+          className="input-modify"
           type="text"
           placeholder={catName}
           value={categoryModified}
           onChange={(e) => setCategoryModified(e.target.value)}
         />
-        <input type="submit" value="Rename" />
       </form>
       {openModifyPopUp && (
         <ModifyPopUp
           modifyCategory={(e) => modifyCategory(e)}
-          handleModifyPopUp={() => handleModifyPopUp()}
+          handleModifyPopUp={(e) => handleModifyPopUp(e)}
         />
       )}
-      {confirmationMessageModify === true && "category modified"}
-      {errorMessageModify === true && "error retrieved"}
+      {confirmationMessageModify === true && (
+        <p>category name modified to "{categoryModified}"</p>
+      )}
+      {errorMessageModify === true && (
+        <p>The name cannot be empty or must have more than 3 characters</p>
+      )}
     </div>
   );
 }

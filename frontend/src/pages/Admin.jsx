@@ -4,23 +4,21 @@ import AdminUsers from "@components/admin_components/admin_users/AdminUsers";
 import AdminHomePage from "@components/admin_components/admin_homePage/AdminHomePage";
 import AdminCategory from "@components/admin_components/admin_category/AdminCategory";
 import AdminVideos from "@components/admin_components/admin_videos/AdminVideos";
-import AdminColors from "@components/admin_components/admin_colors/AdminColors";
 import AdminHeroSlider from "@components/admin_components/admin_heroSlider/AdminHeroSlider";
 import AdminFixtures from "@components/admin_components/admin_fixtures/AdminFixtures";
 import AdminAd from "@components/admin_components/admin_ad/AdminAd";
 import { FaAngleLeft } from "react-icons/fa";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 function Admin() {
   const [user, setUser] = useState(false);
   const [home, setHome] = useState(false);
   const [category, setCategory] = useState(false);
   const [videos, setVideos] = useState(false);
-  const [colors, setColors] = useState(false);
   const [hero, setHero] = useState(false);
   const [advert, setadvert] = useState(false);
   const [fixtures, setFixtures] = useState(false);
-  const { is_admin: isAdmin, user_token: userToken } = useContext(UserContext);
+  const { isAdmin, userToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,12 +57,7 @@ function Admin() {
     }
     return "admin_menu_btn";
   };
-  const classButtonColor = () => {
-    if (colors === true) {
-      return "admin_menu_btn_activ";
-    }
-    return "admin_menu_btn";
-  };
+
   const classHero = () => {
     if (hero === true) {
       return "admin_menu_btn_activ";
@@ -95,7 +88,6 @@ function Admin() {
             setHome(false);
             setCategory(false);
             setVideos(false);
-            setColors(false);
             setHero(false);
             setFixtures(false);
             setadvert(false);
@@ -104,26 +96,7 @@ function Admin() {
           USERS <FaAngleLeft className="svgsamere" />
         </button>
         <div className="admin_menu_comp_users">
-          {user === true && <AdminUsers id={6} className="comp" />}
-        </div>
-        <button
-          className={classButtonVid()}
-          type="button"
-          onClick={() => {
-            setUser(false);
-            setHome(false);
-            setCategory(false);
-            setVideos(!videos);
-            setColors(false);
-            setHero(false);
-            setFixtures(false);
-            setadvert(false);
-          }}
-        >
-          VIDEOS <FaAngleLeft className="svgsamere" />
-        </button>
-        <div className="admin_menu_comp_videos">
-          {videos === true && <AdminVideos />}
+          {user === true && <AdminUsers className="comp" />}
         </div>
         <button
           className={classButtonCat()}
@@ -133,7 +106,6 @@ function Admin() {
             setHome(false);
             setCategory(!category);
             setVideos(false);
-            setColors(false);
             setHero(false);
             setFixtures(false);
             setadvert(false);
@@ -145,23 +117,22 @@ function Admin() {
           {category === true && <AdminCategory />}
         </div>
         <button
-          className={classButtonHome()}
+          className={classButtonVid()}
           type="button"
           onClick={() => {
             setUser(false);
-            setHome(!home);
+            setHome(false);
             setCategory(false);
-            setVideos(false);
-            setColors(false);
+            setVideos(!videos);
             setHero(false);
             setFixtures(false);
             setadvert(false);
           }}
         >
-          HOME PAGE <FaAngleLeft className="svgsamere" />
+          VIDEOS <FaAngleLeft className="svgsamere" />
         </button>
-        <div className="admin_menu_comp_home">
-          {home === true && <AdminHomePage />}
+        <div className="admin_menu_comp_videos">
+          {videos === true && <AdminVideos />}
         </div>
         <button
           className={classHero()}
@@ -171,7 +142,6 @@ function Admin() {
             setHome(false);
             setCategory(false);
             setVideos(false);
-            setColors(false);
             setHero(!hero);
             setFixtures(false);
             setadvert(false);
@@ -190,7 +160,6 @@ function Admin() {
             setHome(false);
             setCategory(false);
             setVideos(false);
-            setColors(false);
             setHero(false);
             setFixtures(!fixtures);
             setadvert(false);
@@ -209,7 +178,6 @@ function Admin() {
             setHome(false);
             setCategory(false);
             setVideos(false);
-            setColors(false);
             setHero(false);
             setFixtures(false);
             setadvert(!advert);
@@ -221,31 +189,29 @@ function Admin() {
           {advert === true && <AdminAd className="comp" />}
         </div>
         <button
-          className={classButtonColor()}
+          className={classButtonHome()}
           type="button"
           onClick={() => {
             setUser(false);
-            setHome(false);
+            setHome(!home);
             setCategory(false);
             setVideos(false);
-            setColors(!colors);
             setHero(false);
             setFixtures(false);
             setadvert(false);
           }}
         >
-          COLORS <FaAngleLeft className="svgsamere" />
+          HOME PAGE <FaAngleLeft className="svgsamere" />
         </button>
-        <div className="admin_menu_comp_colors">
-          {colors === true && <AdminColors />}
+        <div className="admin_menu_comp_home">
+          {home === true && <AdminHomePage />}
         </div>
       </div>
       <div className="admin_components">
-        {user === true && <AdminUsers id={6} />}
+        {user === true && <AdminUsers />}
         {home === true && <AdminHomePage />}
         {category === true && <AdminCategory />}
         {videos === true && <AdminVideos />}
-        {colors === true && <AdminColors />}
         {advert === true && <AdminAd />}
         {fixtures === true && <AdminFixtures />}
         {hero === true && <AdminHeroSlider />}

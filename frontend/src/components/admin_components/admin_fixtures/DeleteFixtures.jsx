@@ -25,7 +25,7 @@ function DeleteFixtures({ el, getHeroInfo }) {
   return (
     <li className="fixtures-map">
       <VideoCard classname="fixtures-vid-slot" {...el} />
-      <div className="actuallyHeroSlider_btn">
+      <div className="fixtures-map_btn">
         <button
           type="button"
           className={classButton()}
@@ -33,21 +33,24 @@ function DeleteFixtures({ el, getHeroInfo }) {
         >
           Modify <FaPenFancy className="svg" />
         </button>
-        <div className="actuallyHeroSlider_btn_delete">
-          <button onClick={() => deleteFromFixture(el.id)} type="button">
-            <span>Delete</span>
-            <i />
-          </button>
-        </div>
+        <button
+          className="deleteBtn fx_delete"
+          type="button"
+          onClick={() => deleteFromFixture(el.id)}
+        >
+          Delete
+        </button>
       </div>
       {choice === true && (
-        <ChoiceHero
-          id={el.id}
-          choice={choice}
-          setChoice={setChoice}
-          getHeroInfo={getHeroInfo}
-          type={2}
-        />
+        <div className="fixtures-map_choice">
+          <ChoiceHero
+            id={el.id}
+            choice={choice}
+            setChoice={setChoice}
+            getHeroInfo={getHeroInfo}
+            type={2}
+          />
+        </div>
       )}
     </li>
   );
@@ -56,7 +59,6 @@ function DeleteFixtures({ el, getHeroInfo }) {
 export default DeleteFixtures;
 
 DeleteFixtures.propTypes = {
-  getFixtures: PropTypes.func.isRequired,
   getHeroInfo: PropTypes.func.isRequired,
   el: PropTypes.shape({
     id: PropTypes.number,

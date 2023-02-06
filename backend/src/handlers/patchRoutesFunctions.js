@@ -50,8 +50,16 @@ const patchVideoById = (req, res) => {
 
 const patchUserById = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const { firstname, lastname, nickname, birthday, email, password, isAdmin } =
-    req.body;
+  const {
+    firstname,
+    lastname,
+    nickname,
+    birthday,
+    email,
+    password,
+    isAdmin,
+    codeTmp,
+  } = req.body;
   const reqBodyKeysArr = Object.keys(req.body);
 
   let sql = "UPDATE user SET";
@@ -79,6 +87,9 @@ const patchUserById = (req, res) => {
       case "isAdmin":
         sql += ` is_admin = "${isAdmin}"`;
         break;
+      case "codeTmp":
+        sql += ` code_tmp = "${codeTmp}"`;
+        break;
       default:
         break;
     }
@@ -88,6 +99,8 @@ const patchUserById = (req, res) => {
   database
     .query(sql, [id])
     .then(([result]) => {
+      console.warn(sql);
+      console.warn(result);
       return result.affectedRows === 0
         ? res.status(404).send("Not Found")
         : res.sendStatus(204);
@@ -219,6 +232,8 @@ const updateFixtureTitle = (req, res) => {
     .then(() => res.sendStatus(204))
     .catch((err) => console.error(err));
 };
+
+// Update password by user id
 
 module.exports = {
   patchVideoById,

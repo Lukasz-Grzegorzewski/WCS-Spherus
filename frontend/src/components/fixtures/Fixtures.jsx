@@ -5,23 +5,23 @@ import VideoCard from "../category_video/VideoCard";
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
-  desktop2: {
-    breakpoint: { max: 4000, min: 1200 },
+  desktopB: {
+    breakpoint: { max: 4000, min: 1500 },
     items: 4,
     slidesToSlide: 2,
   },
-  desktop1: {
-    breakpoint: { max: 1200, min: 850 },
+  desktopS: {
+    breakpoint: { max: 1500, min: 1100 },
     items: 3,
     slidesToSlide: 2,
   },
-  tablette: {
-    breakpoint: { max: 850, min: 570 },
+  tablet: {
+    breakpoint: { max: 1100, min: 750 },
     items: 2,
     slidesToSlide: 1,
   },
   mobile: {
-    breakpoint: { max: 570, min: 320 },
+    breakpoint: { max: 750, min: 0 },
     items: 1,
     slidesToSlide: 1,
   },
@@ -36,7 +36,9 @@ function Fixtures() {
   const getInfos = () => {
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/fixtures`)
-      .then((res) => setFixtures(res.data))
+      .then((res) => {
+        setFixtures(res.data);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -54,7 +56,7 @@ function Fixtures() {
 
   return (
     <div className="section_container">
-      {fixtures?.length >= 0 && (
+      {fixtures.length >= 1 && (
         <div>
           <div className="section_navigation">
             {fixtures.length !== 0 && (
@@ -62,11 +64,15 @@ function Fixtures() {
             )}
           </div>
 
-          <Carousel containerClass="section_carousel" responsive={responsive}>
+          <Carousel
+            containerClass="section_carousel"
+            responsive={responsive}
+            infinite
+          >
             {fixtures.map((infos) => (
               <div className="section_card" key={infos.id}>
                 <VideoCard
-                  id={infos.id}
+                  id={infos.fk_fix_video_id}
                   url={infos.url}
                   title={infos.title}
                   description={infos.description}
