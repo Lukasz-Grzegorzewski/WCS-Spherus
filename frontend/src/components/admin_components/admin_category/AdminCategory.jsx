@@ -39,6 +39,7 @@ function AdminCategory() {
       <div className="select-bar">
         {selectCategory && (
           <Select
+            className="select-input-inp"
             options={selectCategory.map((elem) => ({
               label: elem.name,
               value: elem.id,
