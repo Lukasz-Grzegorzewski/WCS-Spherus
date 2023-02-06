@@ -149,7 +149,12 @@
       color: $secondary-color;
     }
   }
+  //Admin category
 
+  .select-category {
+    background-color: $fourth-color;
+    box-shadow: 0 0 5px 1px $secondary-color;
+  }
   // Admin Hero Slider & Fixtures
   .adminheroslider,
   .fixtures-slider {

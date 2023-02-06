@@ -50,9 +50,8 @@ const signInUserByUser = (req, res) => {
         res.status(500).send("Impossible to save the user");
       }
     })
-    .catch((err) => {
-      console.warn(err);
-      res.status(409).send("Fuck");
+    .catch(() => {
+      res.status(409).send("err");
     });
 };
 

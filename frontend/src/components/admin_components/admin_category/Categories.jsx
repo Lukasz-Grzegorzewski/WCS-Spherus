@@ -16,8 +16,6 @@ function Categories({ catId, getCategories, catName, setCatId }) {
       .get(`${import.meta.env.VITE_PORT_BACKEND}/videos/categories/${catId}`)
       .then((res) => {
         setSelectVideos(res.data);
-        console.warn("ceci est res.data : ");
-        console.warn(res.data);
       })
       .catch((err) => {
         console.warn(err);
@@ -39,9 +37,7 @@ function Categories({ catId, getCategories, catName, setCatId }) {
 
       .catch((err) => console.warn(err));
   }
-  console.warn(selectVideos);
   const numAleat = Math.floor(Math.random() * 10);
-  console.warn(numAleat);
 
   return (
     <div className="videos-by-cat">

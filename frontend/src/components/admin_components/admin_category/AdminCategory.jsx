@@ -25,7 +25,6 @@ function AdminCategory() {
   }, []);
 
   const handleOptions = (elem) => {
-    console.warn(elem);
     setCatId(elem.value);
     setCatName(elem.label);
   };
@@ -39,6 +38,7 @@ function AdminCategory() {
       <div className="select-bar">
         {selectCategory && (
           <Select
+            className="class_Text"
             options={selectCategory.map((elem) => ({
               label: elem.name,
               value: elem.id,

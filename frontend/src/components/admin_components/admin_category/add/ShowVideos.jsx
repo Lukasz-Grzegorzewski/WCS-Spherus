@@ -21,7 +21,6 @@ function ShowVideos({
       .get(`${import.meta.env.VITE_PORT_BACKEND}/videos`)
       .then((res) => {
         setGetVideosForAdd(res.data);
-        console.warn("gdhsgy", res.data);
       })
       .catch((err) => console.warn(err));
   };

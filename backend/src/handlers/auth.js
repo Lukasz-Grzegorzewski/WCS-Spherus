@@ -45,8 +45,6 @@ const verifyPassword = (req, res) => {
 };
 
 const verifyToken = (req, res, next) => {
-  console.warn("req.params.id: ", req.params.id);
-
   try {
     const authorizationHeader = req.get("Authorization");
     if (!authorizationHeader) throw new Error("No authorization header");
