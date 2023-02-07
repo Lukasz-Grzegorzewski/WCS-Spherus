@@ -174,7 +174,6 @@ const deleteHeroSliderById = (req, res) => {
   database
     .query("DELETE FROM hero_slider WHERE id = ?", [id])
     .then(([hero]) => {
-      console.warn(hero);
       return hero.affectedRows === 0
         ? res.status(404).send("Not Found")
         : res.sendStatus(204);
@@ -192,7 +191,6 @@ const deleteFixturesById = (req, res) => {
   database
     .query("DELETE FROM fixtures WHERE id = ?", [id])
     .then(([fix]) => {
-      console.warn(fix);
       return fix.affectedRows === 0
         ? res.status(404).send("File not found")
         : res.sendStatus(204);

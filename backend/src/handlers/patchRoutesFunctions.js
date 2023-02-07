@@ -99,8 +99,6 @@ const patchUserById = (req, res) => {
   database
     .query(sql, [id])
     .then(([result]) => {
-      console.warn(sql);
-      console.warn(result);
       return result.affectedRows === 0
         ? res.status(404).send("Not Found")
         : res.sendStatus(204);
