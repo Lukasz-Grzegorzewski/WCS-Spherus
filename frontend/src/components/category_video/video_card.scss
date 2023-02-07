@@ -6,6 +6,7 @@
     width: 330px;
 
     .videocard {
+      position: relative;
       width: 320px;
       height: 220px;
       font-family: $font-text;
@@ -20,8 +21,9 @@
       &_video_description {
         position: relative;
         bottom: 47px;
-        padding: 10px;
-        font-size: 1.3rem;
+        padding: 15px;
+        font-size: 1.8rem;
+        font-weight: bold;
         background-color: $sixth-color;
         border-radius: 0 0 20px 20px;
       }
