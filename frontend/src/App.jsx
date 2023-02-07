@@ -120,7 +120,7 @@ function App() {
                 <Route path="/termsofservices" element={<TermsOfServices />} />
                 <Route path="/categories/:id" element={<CategoryPage />} />
                 <Route path="/registration" element={<RegisterForm />} />
-                <Route path="/videos/:id" element={<VideoPage />} />
+                <Route path="/video/:id" element={<VideoPage />} />
                 <Route path="/forgot" element={<RecoveryRequest />} />
                 <Route
                   path="/recoveryrequest/:id"

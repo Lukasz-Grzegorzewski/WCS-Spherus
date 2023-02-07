@@ -47,7 +47,7 @@ function MenuSearch({ setIsLoopClicked }) {
             .sort()
             .map((video) => {
               return (
-                <NavLink key={video.id} to={`/videos/${video.id}`} onClick>
+                <NavLink key={video.id} to={`/video/${video.id}`} onClick>
                   <p className="video-in-list">{video.title}</p>
                 </NavLink>
               );

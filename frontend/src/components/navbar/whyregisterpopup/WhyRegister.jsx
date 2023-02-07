@@ -23,14 +23,18 @@ function WhyRegister({ setControlWhyRegisterPopUp }) {
         <div className="howToSetFav">
           <div>
             <img
-              src="../src/assets/images/vignette_locked.png"
+              src={`${
+                import.meta.env.VITE_PORT_BACKEND
+              }/assets/images/front/vignette_locked.png`}
               alt="vignette_locked"
             />
           </div>
           <FaArrowCircleRight className="arrow" />
           <div>
             <img
-              src="../src/assets/images/vignette_unlocked.png"
+              src={`${
+                import.meta.env.VITE_PORT_BACKEND
+              }/assets/images/front/vignette_unlocked.png`}
               alt="vignette_unlocked"
             />
           </div>
@@ -44,14 +48,18 @@ function WhyRegister({ setControlWhyRegisterPopUp }) {
         <div className="howToSetFav">
           <div>
             <img
-              src="../src/assets/images/vignette_etoile_vide.png"
+              src={`${
+                import.meta.env.VITE_PORT_BACKEND
+              }/assets/images/front/vignette_etoile_vide.png`}
               alt="vignette_etoile_vide"
             />
           </div>
           <FaArrowCircleRight className="arrow" />
           <div>
             <img
-              src="../src/assets/images/vignette_etoile_pleine.png"
+              src={`${
+                import.meta.env.VITE_PORT_BACKEND
+              }/assets/images/front/vignette_etoile_pleine.png`}
               alt="vignette_etoile_pleine"
             />
           </div>
