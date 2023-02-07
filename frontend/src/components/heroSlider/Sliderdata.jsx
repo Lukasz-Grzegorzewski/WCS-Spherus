@@ -48,7 +48,7 @@ function Sliderdata({ id, title, date, url }) {
                 .slice(0, -2)}{" "}
           </p>
         </div>
-        <Link to={`/videos/${id}`}>
+        <Link to={`/video/${id}`}>
           <button type="button" className="cssbuttons-io-button">
             {" "}
             Watch
