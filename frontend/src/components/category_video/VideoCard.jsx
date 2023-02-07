@@ -84,7 +84,7 @@ function VideoCard({ id, url, title, description, display }) {
 
               <div className="videocard_video_description">
                 <div>{title}</div>
-                <div>{description}</div>
+                {/* <div>{description}</div> */}
               </div>
             </div>
           </NavLink>

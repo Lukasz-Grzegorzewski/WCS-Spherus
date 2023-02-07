@@ -81,30 +81,42 @@ const deleteVideoById = (req, res) => {
                           "DELETE FROM video_category WHERE video_id = ?",
                           [id]
                         )
-                        .then(([videoCategory]) => {
-                          if (videoCategory.affectedRows !== 0) {
-                            database
-                              .query("DELETE FROM video WHERE id = ?", [id])
-                              .then(([video]) => {
+                        .then(() => {
+                          database
+                            .query("DELETE FROM video WHERE id = ?", [id])
+                            .then(([video]) => {
+                              if (video.affectedRows !== 0) {
                                 const path = `/${url.url}`;
                                 fs.unlink(`public${path}`, (err) => {
                                   if (err) {
                                     console.error(err);
                                   }
                                 });
-
-                                return video.affectedRows === 0
-                                  ? res.status(404).send("Not Found")
-                                  : res.sendStatus(204);
-                              })
-
-                              .catch((err) => {
-                                console.error(err);
-                                res.status(500).send("Error deleting a video");
-                              });
-                          }
+                                res.sendStatus(204);
+                              } else {
+                                res.status(404).send("Video Not Found");
+                              }
+                            })
+                            .catch((err) => {
+                              console.error(err);
+                              res.status(500).send("Error deleting a video");
+                            });
+                        })
+                        .catch((err) => {
+                          console.error(err);
+                          res
+                            .status(500)
+                            .send("Error deleting from video_category");
                         });
+                    })
+                    .catch((err) => {
+                      console.error(err);
+                      res.status(500).send("Error finding url of a video");
                     });
+                })
+                .catch((err) => {
+                  console.error(err);
+                  res.status(500).send("Error deleting from video_carousel");
                 });
             })
             .catch((err) => {
@@ -113,7 +125,15 @@ const deleteVideoById = (req, res) => {
                 .status(500)
                 .send("Error deleting a video_category attachment");
             });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error deleting a hero_slider ");
         });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting from favorites ");
     });
 };
 
