@@ -154,7 +154,7 @@ VALUES
   ),
   (
     'assets/images/avatars/3.jpg',
-    'Eduard',
+    'Edouard',
     'C',
     'Ed',
     '1983-05-12',
