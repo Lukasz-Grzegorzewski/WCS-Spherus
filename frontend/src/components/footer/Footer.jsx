@@ -34,8 +34,12 @@ function Footer() {
             className="footer_logo"
             src={
               size
-                ? "/src/assets/images/logoLongLight.png"
-                : "/src/assets/images/logoShort.png"
+                ? `${
+                    import.meta.env.VITE_PORT_BACKEND
+                  }/assets/images/front/logo_spherus_long_light.png`
+                : `${
+                    import.meta.env.VITE_PORT_BACKEND
+                  }/assets/images/front/logo_spherus_short.png`
             }
             alt="sphereus"
           />

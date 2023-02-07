@@ -21,6 +21,7 @@
     box-shadow: 0 0 5px 1px $primary-color;
     background-color: #000000;
     animation: open-inp-video 500ms ease-in-out;
+    font-family: $font-text;
   }
   @keyframes open-inp-video {
     0% {
@@ -48,6 +49,7 @@
       padding: 3px 10px;
       border-radius: 10px;
       width: 150px;
+      font-family: $font-text;
     }
     .video-in-list:hover {
       background-color: rgba(255, 255, 255, 0.411);

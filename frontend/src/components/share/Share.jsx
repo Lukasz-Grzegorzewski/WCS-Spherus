@@ -16,7 +16,7 @@ function Share({ title }) {
 
   return (
     <div className="share_container">
-      <div>Share this video on: </div>
+      <div className="share_container_text">Share this video on: </div>
       <div className="Demo__some-network">
         <TwitterShareButton
           url={shareUrl}
