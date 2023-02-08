@@ -79,6 +79,7 @@ function VideoCard({ id, url, title, description, display }) {
                 videoClassName="videocard_video"
                 videoSrc={videoUrl}
                 muted
+                // preload="none"
                 playbackRangeStart={0}
                 playbackRangeEnd={6}
               />
