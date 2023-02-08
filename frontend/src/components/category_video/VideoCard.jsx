@@ -102,7 +102,7 @@ function VideoCard({ id, url, title, description, display }) {
               <FaRegStar className="videocard_fav_btn_off" />
             )}
           </button>
-          <NavLink to={`/videos/${id}`}>
+          <NavLink to={`/video/${id}`}>
             <div className="videocard">
               <HoverVideoPlayer
                 videoClassName="videocard_video"
@@ -122,7 +122,7 @@ function VideoCard({ id, url, title, description, display }) {
         </div>
       ) : (
         <div>
-          <NavLink to={`/videos/${id}`}>
+          <NavLink to={`/video/${id}`}>
             <div className="videocard_veil">
               <HoverVideoPlayer
                 videoClassName="videocard_veil_video"
