@@ -8,6 +8,8 @@
   font-weight: 100;
   display: flex;
   flex-direction: column;
+  min-height: 590px;
+  margin-top: 10%;
 
   .pen {
     width: 20px;
@@ -47,7 +49,8 @@
 
 @media screen and (min-width: 600px) {
   .profile-conatainer {
-    min-height: 690px;
+    min-height: 650px;
+    margin-top: 0%;
   }
 }
 
@@ -59,6 +62,6 @@
 
 @media screen and (min-width: 1200px) {
   .profile-conatainer {
-    min-height: 810px;
+    min-height: 700px;
   }
 }
