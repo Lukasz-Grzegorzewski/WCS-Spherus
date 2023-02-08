@@ -6,6 +6,23 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 4%;
+    .react-multiple-carousel__arrow {
+      background-color: $secondary-color;
+      border: $button-input-border-size solid $primary-color;
+
+      &:hover {
+        background-color: $primary-color;
+        border: $button-input-border-size solid $secondary-color;
+
+        &::before {
+          color: $secondary-color;
+        }
+      }
+
+      &::before {
+        color: $primary-color;
+      }
+    }
 
     .react-multiple-carousel__arrow {
       background-color: $secondary-color;
