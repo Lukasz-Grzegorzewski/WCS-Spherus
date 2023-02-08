@@ -1,15 +1,19 @@
-.modify {
-  & .buttons_popup {
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  .buttons_popup {
     display: flex;
     justify-content: center;
-
-    & form {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      width: 100%;
-    }
+    flex-direction: column;
   }
 }
+
 @media screen and (min-width: 600px) {
+  .modify {
+    .buttons_popup {
+      flex-direction: row;
+    }
+  }
 }

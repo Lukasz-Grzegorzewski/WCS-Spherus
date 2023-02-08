@@ -27,8 +27,20 @@
     align-items: center;
     border: 3px solid $tertiary-color;
 
-    & .buttons_popup {
+    .buttons_popup {
       display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .delete_popup_box {
+    & .popup_box {
+      .buttons_popup {
+        display: flex;
+        flex-direction: row;
+      }
     }
   }
 }

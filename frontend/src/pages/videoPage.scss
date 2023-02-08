@@ -4,11 +4,11 @@
 
 .video-container {
   // width: 100vw;
-  padding-top: 12%;
+  padding-top: 50px;
 }
 
 @media screen and (min-width: 600px) {
   .video-container {
-    margin-top: initial;
+    padding-top: 0;
   }
 }

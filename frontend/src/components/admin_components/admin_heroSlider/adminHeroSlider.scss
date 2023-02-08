@@ -28,7 +28,11 @@
   }
 
   &_videos {
-    width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    padding-left: 10px;
+    width: 90%;
   }
 }
 

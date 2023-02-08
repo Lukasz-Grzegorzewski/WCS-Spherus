@@ -1,11 +1,15 @@
 .category_video_main_container {
-  padding-top: 15%;
-  margin-bottom: 2%;
-  margin-top: 10%;
-  height: 100vh;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 150px;
+  margin-bottom: 10px;
+  padding-top: 100px;
+  min-height: calc(100vh - 154px);
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  // align-items: center;
   gap: 25px;
 
   .prevBtn {
@@ -34,12 +38,13 @@
 @media screen and (min-width: 600px) {
   .category_video_main_container {
     padding-top: 0;
-    margin-top: 5%;
-    margin-bottom: 2%;
-    height: 100vh;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    margin-top: 100px;
+    // margin-bottom: 2%;
+    min-height: calc(100vh - 212px);
+    // flex-direction: row;
+    // justify-content: center;
+    // flex-wrap: wrap;
+    // align-items: center;
 
     .prevBtn {
       top: 80px;
