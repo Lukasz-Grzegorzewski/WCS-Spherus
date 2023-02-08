@@ -56,23 +56,13 @@ function CategorySugestions({ arrCatId, vidName }) {
           <div className="category_sugestions_videos_container">
             {video.length > 0 &&
               video.map((e) => (
-                <button
-                  div
-                  className="category_sugestions_videos_container_btn"
-                  type="button"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <VideoCard
-                    key={e.id}
-                    id={e.id}
-                    url={e.url}
-                    title={e.title}
-                    description={e.description}
-                    display={e.display}
-                  />
-                </button>
+                <VideoCard
+                  id={e.id}
+                  url={e.url}
+                  title={e.title}
+                  description={e.description}
+                  display={e.display}
+                />
               ))}
           </div>
         </div>

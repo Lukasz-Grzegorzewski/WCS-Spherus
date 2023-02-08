@@ -39,6 +39,7 @@ function VideoPage() {
 
   useEffect(() => {
     getVideo(id);
+    window.scrollTo(0, 0);
   }, [id]);
   return (
     <div className="video-container">

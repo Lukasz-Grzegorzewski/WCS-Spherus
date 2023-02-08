@@ -118,9 +118,10 @@ function ShowVideos({
           filterVideos().map((elem) => {
             return (
               <div key={elem.id}>
-                <VideoCategory elem={elem} />
-                <label htmlFor={elem.name}>
+                <label className="video-list-to-add_label" htmlFor={elem.name}>
+                  <VideoCategory elem={elem} />
                   <input
+                    className="video-list-to-add_label_input"
                     name={elem.name}
                     type="checkbox"
                     checked={
