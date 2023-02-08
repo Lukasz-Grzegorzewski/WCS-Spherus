@@ -33,7 +33,7 @@ function CategoryVideo() {
               video[0].cat.charAt(0).toUpperCase() + video[0].cat.slice(1)}
           </div>
         </div>
-        <div className="category_video_main_container">
+        <div className="category_video_main_containerbis">
           {video.map((e) => (
             <div key={e.id}>
               <VideoCard

@@ -43,13 +43,13 @@
       }
     }
 
-    &_container {
+    &_containerbis {
       min-width: 320;
       width: 90%;
       display: flex;
       flex-wrap: wrap;
-      margin-top: -10%;
       justify-content: center;
+      margin-top: 3%;
     }
   }
 }

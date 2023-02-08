@@ -57,6 +57,7 @@ function CategorySugestions({ arrCatId, vidName }) {
             {video.length > 0 &&
               video.map((e) => (
                 <VideoCard
+                  key={e.id}
                   id={e.id}
                   url={e.url}
                   title={e.title}
