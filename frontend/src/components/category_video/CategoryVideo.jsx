@@ -29,7 +29,8 @@ function CategoryVideo() {
             <FaAngleLeft className="arrow" />
           </NavLink>
           <div className="category_video_main_headerCtn_name">
-            {video.length > 1 && video[0].cat}
+            {video.length > 1 &&
+              video[0].cat.charAt(0).toUpperCase() + video[0].cat.slice(1)}
           </div>
         </div>
         <div className="category_video_main_container">

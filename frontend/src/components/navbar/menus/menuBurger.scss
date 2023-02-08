@@ -22,6 +22,7 @@
 
 .menu-burger.inactive {
   opacity: 0;
+  display: none;
   right: 0;
   animation: slideOutMenu 700ms ease forwards;
   transition: all 1000ms ease-in-out;
