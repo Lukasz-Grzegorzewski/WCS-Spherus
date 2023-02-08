@@ -73,7 +73,8 @@ function VideoCard({ id, url, title, description, display }) {
             )}
           </button>
           <NavLink to={`/video/${id}`}>
-            <div className="videocard">
+            <div
+              className="videocard">
               <HoverVideoPlayer
                 videoClassName="videocard_video"
                 videoSrc={videoUrl}
@@ -84,7 +85,7 @@ function VideoCard({ id, url, title, description, display }) {
 
               <div className="videocard_video_description">
                 <div>{title}</div>
-                <div>{description}</div>
+                {/* <div>{description}</div> */}
               </div>
             </div>
           </NavLink>
@@ -103,7 +104,8 @@ function VideoCard({ id, url, title, description, display }) {
             )}
           </button>
           <NavLink to={`/video/${id}`}>
-            <div className="videocard">
+            <div
+              className="videocard">
               <HoverVideoPlayer
                 videoClassName="videocard_video"
                 className="videocard_video"
@@ -123,7 +125,8 @@ function VideoCard({ id, url, title, description, display }) {
       ) : (
         <div>
           <NavLink to={`/video/${id}`}>
-            <div className="videocard_veil">
+            <div
+              className="videocard_veil">
               <HoverVideoPlayer
                 videoClassName="videocard_veil_video"
                 className="videocard_veil_video"

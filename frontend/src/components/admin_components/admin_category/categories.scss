@@ -2,6 +2,7 @@
   width: 100%;
   background-color: $primary-color !important;
 }
+
 .css-b62m3t-container {
   max-width: 40rem;
   margin: 0 auto;
@@ -27,7 +28,8 @@
     flex-wrap: wrap;
     justify-content: center;
     height: auto;
-    overflow-y: auto;
+    gap: 15px;
+    // overflow-y: auto;
 
     & .video-preview {
       display: flex;
@@ -38,10 +40,12 @@
 
       & .videocard_video {
         border-radius: 20px;
+        box-shadow: 0 0 5px 1px $secondary-color;
       }
 
       & p {
         font-size: 1em;
+        margin-top: 3%;
       }
 
       & .cat {

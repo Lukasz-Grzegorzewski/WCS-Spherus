@@ -14,7 +14,6 @@ function ShowVideos({
   const [getVideosForAdd, setGetVideosForAdd] = useState([]);
   const [pushArray, setPushArray] = useState([]);
   const [errorMessageSend, setErrorMessageSend] = useState(false);
-  /* const [showVideoCardCompo, set] */
 
   const getVideos = () => {
     axios
@@ -118,10 +117,11 @@ function ShowVideos({
           getVideosForAdd &&
           filterVideos().map((elem) => {
             return (
-              <>
-                <VideoCategory elem={elem} />
-                <label htmlFor={elem.name}>
+              <div key={elem.id}>
+                <label className="video-list-to-add_label" htmlFor={elem.name}>
+                  <VideoCategory elem={elem} />
                   <input
+                    className="video-list-to-add_label_input"
                     name={elem.name}
                     type="checkbox"
                     checked={
@@ -130,7 +130,7 @@ function ShowVideos({
                     onChange={() => handleCheckBox(elem.id)}
                   />
                 </label>
-              </>
+              </div>
             );
           })}
       </div>
@@ -144,5 +144,14 @@ ShowVideos.propTypes = {
   getVideosByCategorie: PropTypes.func.isRequired,
   catId: PropTypes.node.isRequired,
   setShowSelectedVideos: PropTypes.func.isRequired,
-  selectVideos: PropTypes.node.isRequired,
+  selectVideos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      cat: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      display: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };

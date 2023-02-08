@@ -48,6 +48,7 @@
 //----------DARK-----------------------
 //-------------------------------------
 .App.dark-theme {
+  width: 100%;
   color: $primary-color;
   background: $dt-background;
 
@@ -63,6 +64,7 @@
 //----------LIGHT-----------------------
 //--------------------------------------
 .App.light-theme {
+  width: 100%;
   color: $secondary-color;
   background: $lt-background;
 
@@ -149,12 +151,14 @@
       color: $secondary-color;
     }
   }
+
   //Admin category
 
   .select-category {
     background-color: $fourth-color;
     box-shadow: 0 0 5px 1px $secondary-color;
   }
+
   // Admin Hero Slider & Fixtures
   .adminheroslider,
   .fixtures-slider {

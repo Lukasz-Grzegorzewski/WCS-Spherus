@@ -28,7 +28,7 @@ function ButtonOpenAddCat({
 ButtonOpenAddCat.propTypes = {
   getCategories: PropTypes.func.isRequired,
   changeShowButtonAdd: PropTypes.func.isRequired,
-  showButtonAdd: PropTypes.func.isRequired,
+  showButtonAdd: PropTypes.bool.isRequired,
 };
 
 export default ButtonOpenAddCat;

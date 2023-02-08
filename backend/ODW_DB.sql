@@ -154,7 +154,7 @@ VALUES
   ),
   (
     'assets/images/avatars/3.jpg',
-    'Eduard',
+    'Edouard',
     'C',
     'Ed',
     '1983-05-12',
@@ -337,6 +337,34 @@ VALUES
     1,
     'Waterdrop',
     '2011-01-01'
+  ),
+  (
+    '/assets/videos/Ambiance_chutedeau.mp4',
+    'A nice Tropical waterfall',
+    0,
+    'tropical waterfall',
+    '2023-01-01'
+  ),
+  (
+    '/assets/videos/Ambiance_montagne.mp4',
+    'A nice Mountain view',
+    1,
+    'Mountain view',
+    '2023-01-01'
+  ),
+  (
+    '/assets/videos/Ambiance_plage.mp4',
+    'A nice Beach view',
+    1,
+    'Beach view',
+    '2023-01-01'
+  ),
+  (
+    '/assets/videos/Ambiance_playasunset.mp4',
+    ' A nice Playa sunset',
+    1,
+    'Playa sunset',
+    '2023-01-01'
   );
 
 -- -----------------------------------------------------
