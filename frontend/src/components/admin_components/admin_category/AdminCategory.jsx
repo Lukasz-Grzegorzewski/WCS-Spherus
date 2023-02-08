@@ -11,7 +11,7 @@ function AdminCategory() {
   const [showButtonAdd, setShowButtonAdd] = useState(false);
 
   const getCategories = () => {
-    document.activeElement?.blur();
+    // document.activeElement?.blur();
     axios
       .get(`${import.meta.env.VITE_PORT_BACKEND}/categories`)
       .then((res) => {

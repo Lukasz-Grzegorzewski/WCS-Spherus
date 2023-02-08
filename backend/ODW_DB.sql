@@ -340,30 +340,30 @@ VALUES
   ),
   (
     '/assets/videos/Ambiance_chutedeau.mp4',
-    'Tropical waterfall',
+    'A nice Tropical waterfall',
     0,
-    'A nice tropical waterfall',
+    'tropical waterfall',
     '2023-01-01'
   ),
   (
     '/assets/videos/Ambiance_montagne.mp4',
-    'Mountain view',
-    1,
     'A nice Mountain view',
+    1,
+    'Mountain view',
     '2023-01-01'
   ),
   (
     '/assets/videos/Ambiance_plage.mp4',
-    'Beach view',
-    1,
     'A nice Beach view',
+    1,
+    'Beach view',
     '2023-01-01'
   ),
   (
     '/assets/videos/Ambiance_playasunset.mp4',
-    'Playa sunset',
+    ' A nice Playa sunset',
     1,
-    'A nice Playa sunset',
+    'Playa sunset',
     '2023-01-01'
   );
 

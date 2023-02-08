@@ -1,7 +1,8 @@
-import VideoCard from "@components/category_video/VideoCard";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+const VideoCard = lazy(() => import("../category_video/VideoCard"));
 
 function CategorySugestions({ arrCatId, vidName }) {
   const [video, setVideo] = useState([]);
@@ -40,24 +41,32 @@ function CategorySugestions({ arrCatId, vidName }) {
 
   return (
     <div className="category_sugestions">
-      <div className="category_sugestions_videos">
-        <p className="category_sugestions_heading">
-          {`You like "${vidName}" ? We suggest these other videos`}
-        </p>
-        <div className="category_sugestions_videos_container">
-          {video.length > 0 &&
-            video.map((e) => (
-              <VideoCard
-                key={e.id}
-                id={e.id}
-                url={e.url}
-                title={e.title}
-                description={e.description}
-                display={e.display}
-              />
-            ))}
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <div className="spinner" />
+            <p>Loading</p>
+          </div>
+        }
+      >
+        <div className="category_sugestions_videos">
+          <p className="category_sugestions_heading">
+            {`You like "${vidName}" ? We suggest these other videos`}
+          </p>
+          <div className="category_sugestions_videos_container">
+            {video.length > 0 &&
+              video.map((e) => (
+                <VideoCard
+                  id={e.id}
+                  url={e.url}
+                  title={e.title}
+                  description={e.description}
+                  display={e.display}
+                />
+              ))}
+          </div>
         </div>
-      </div>
+      </Suspense>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CiLock } from "react-icons/ci";
+import { FaAngleLeft } from "react-icons/fa";
 import UserContext from "../../contexts/UserContext";
 
 function Video({ title, description, arrCatName, date, display, videoUrl }) {
@@ -34,6 +35,8 @@ function Video({ title, description, arrCatName, date, display, videoUrl }) {
       setIsPausing(false);
     }, 3000);
   }
+
+  const navigate = useNavigate();
 
   return (
     <div className="video-component">
@@ -86,6 +89,16 @@ function Video({ title, description, arrCatName, date, display, videoUrl }) {
       {/* END VIDEO */}
       {/* DESCRIPTION */}
       <div className="description">
+        <button
+          type="button"
+          className="prevBtn"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <FaAngleLeft className="arrow" />
+        </button>
+
         {!userToken && display === 0 && (
           <div className="lock-container">
             <CiLock className="lock-icon" />

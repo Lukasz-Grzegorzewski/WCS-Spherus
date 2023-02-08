@@ -24,6 +24,23 @@
       }
     }
 
+    .react-multiple-carousel__arrow {
+      background-color: $secondary-color;
+      border: $button-input-border-size solid $primary-color;
+
+      &:hover {
+        background-color: $primary-color;
+
+        &::before {
+          color: $secondary-color;
+        }
+      }
+
+      &::before {
+        color: $primary-color;
+      }
+    }
+
     .react-multi-carousel-item {
       width: 380px;
 
@@ -66,6 +83,7 @@
       }
     }
   }
+
   &_container:empty {
     display: none;
   }

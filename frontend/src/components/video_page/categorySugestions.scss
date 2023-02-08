@@ -29,6 +29,10 @@
       margin: auto;
       justify-content: center;
       gap: 18px;
+
+      &_btn {
+        background-color: inherit;
+      }
     }
   }
 }

@@ -1,16 +1,26 @@
-import React from "react";
-import HomeDisplay from "../components/homeDisplay/HomeDisplay";
-import Heroslider from "../components/heroSlider/Heroslider";
-import Fixtures from "../components/fixtures/Fixtures";
+import React, { lazy, Suspense } from "react";
+
+const HomeDisplay = lazy(() => import("../components/homeDisplay/HomeDisplay"));
+const Fixtures = lazy(() => import("../components/fixtures/Fixtures"));
+const Heroslider = lazy(() => import("../components/heroSlider/Heroslider"));
 
 export default function Home() {
   return (
     <div className="home">
-      <Heroslider />
-      <Fixtures />
-      <div className="home_display">
-        <HomeDisplay />
-      </div>
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <div className="spinner" />
+            <p>Loading</p>
+          </div>
+        }
+      >
+        <Heroslider />
+        <Fixtures />
+        <div className="home_display">
+          <HomeDisplay />
+        </div>
+      </Suspense>
     </div>
   );
 }

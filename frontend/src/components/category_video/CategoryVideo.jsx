@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { FaAngleLeft } from "react-icons/fa";
 import VideoCard from "./VideoCard";
 
 function CategoryVideo() {
@@ -23,8 +24,13 @@ function CategoryVideo() {
   return (
     <div className="category_video">
       <div className="category_video_main">
-        <div className="category_video_main_name">
-          {video.length > 1 && video[0].cat}
+        <div className="category_video_main_headerCtn">
+          <NavLink to="/" className="category_video_main_headerCtn_prevBtn">
+            <FaAngleLeft className="arrow" />
+          </NavLink>
+          <div className="category_video_main_headerCtn_name">
+            {video.length > 1 && video[0].cat}
+          </div>
         </div>
         <div className="category_video_main_container">
           {video.map((e) => (
