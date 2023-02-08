@@ -26,6 +26,7 @@
 
     & .videocard_video {
       border-radius: 20px;
+      box-shadow: 0 0 5px 1px $secondary-color;
     }
 
     & label {
@@ -43,7 +44,6 @@
       align-items: center;
       height: auto;
       width: 100px;
-      border: solid 1px $primary-color;
       font-size: 12px;
       margin: 8px;
       border-radius: 20px;

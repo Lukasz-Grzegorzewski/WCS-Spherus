@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function MessageConfirmation({ setConfirmationMessageDelete, setCatId }) {
+function MessageConfirmation({
+  setConfirmationMessageDelete,
+  setCatId,
+  getCategories,
+}) {
   return (
     <div className="message-confirmation">
       <div className="box-message-confirmation">
@@ -11,6 +15,7 @@ function MessageConfirmation({ setConfirmationMessageDelete, setCatId }) {
           onClick={() => {
             setConfirmationMessageDelete(false);
             setCatId("Search category");
+            getCategories();
           }}
         >
           X
@@ -26,4 +31,5 @@ export default MessageConfirmation;
 MessageConfirmation.propTypes = {
   setConfirmationMessageDelete: PropTypes.func.isRequired,
   setCatId: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
 };
