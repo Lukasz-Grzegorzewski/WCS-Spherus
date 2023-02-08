@@ -48,6 +48,7 @@ function ButtonDeleteCat({ catId, getCategories, setCatId }) {
         <MessageConfirmation
           setConfirmationMessageDelete={() => setConfirmationMessageDelete()}
           setCatId={(value) => setCatId(value)}
+          getCategories={getCategories}
         />
       )}
       {errorMessageDelete && (
