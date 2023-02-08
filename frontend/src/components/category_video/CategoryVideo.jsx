@@ -32,7 +32,7 @@ function CategoryVideo() {
             {video.length > 1 && video[0].cat}
           </div>
         </div>
-        <div className="category_video_main_container">
+        <div className="category_video_main_containerbis">
           {video.map((e) => (
             <div key={e.id}>
               <VideoCard
