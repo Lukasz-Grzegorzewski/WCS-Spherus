@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import VideoCard from "@components/category_video/VideoCard";
+import { useNavigate } from "react-router-dom";
+import { FaAngleLeft } from "react-icons/fa";
 import UserContext from "../../contexts/UserContext";
 
 function Favorite() {
@@ -28,9 +30,21 @@ function Favorite() {
     getFavorite();
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="category_video_main_container">
+        <button
+          type="button"
+          className="prevBtn"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <FaAngleLeft className="arrow" />
+        </button>
+
         {favorite.map((e) => (
           <div className="category_video_main_container_title" key={e.id}>
             {e.catName}
