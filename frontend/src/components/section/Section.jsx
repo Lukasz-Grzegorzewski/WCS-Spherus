@@ -33,7 +33,7 @@ const responsive = {
 function Section({ type, idLink, id }) {
   const Carousel = C.default ? C.default : C;
   const [category, setCategory] = useState([]);
-  const [categoryName, setCategoryName] = useState([]);
+  const [categoryName, setCategoryName] = useState(null);
 
   const getInfos = () => {
     axios
@@ -61,7 +61,12 @@ function Section({ type, idLink, id }) {
         <div className="section_container">
           <div className="section_navigation">
             <NavLink to={`/categories/${idLink}`}>
-              <div className="section_name">{categoryName.name}</div>
+              <div className="section_name">
+                {categoryName
+                  ? categoryName.name.charAt(0).toUpperCase() +
+                    categoryName.name.slice(1)
+                  : ""}
+              </div>
             </NavLink>
             <div className="section_seeMoreBtn">
               <NavLink to={`/categories/${idLink}`}>
